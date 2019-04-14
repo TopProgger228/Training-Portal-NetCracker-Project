@@ -88,10 +88,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
+                            <outputDirectory>${basedir}/../backend/src/main/resources/static</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/frontend/src/main/web/dist/frontendApp/</directory>
+                                    <directory>${basedir}/../frontend/src/main/web/dist/frontendApp/</directory>
                                 </resource>
                             </resources>
                         </configuration>
