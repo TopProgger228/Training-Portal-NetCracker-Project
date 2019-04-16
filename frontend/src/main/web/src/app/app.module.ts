@@ -7,13 +7,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { FirstPageModule } from './first-page/first-page.module';
-import { StartComponent } from './first-page/start/start.component'
+import { StartComponent } from './first-page/start/start.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
