@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class UsersMapper implements RowMapper {
+
+
     @Override
     public Users mapRow(ResultSet rs, int rowNum) throws SQLException {
         Users users = new Users();
@@ -20,7 +22,7 @@ public class UsersMapper implements RowMapper {
         users.setPass(rs.getString("pass"));
         users.setCreated_at(rs.getObject("created_at", LocalDate.class));
         users.setPhoto(rs.getBytes("photo"));
-        users.setId(rs.getInt("id"));
+        //users.setId(rs.getInt("id"));
         return users;
     }
 }

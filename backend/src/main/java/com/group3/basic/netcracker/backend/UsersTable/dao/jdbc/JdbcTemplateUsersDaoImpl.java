@@ -20,39 +20,39 @@ public class JdbcTemplateUsersDaoImpl implements UsersDAO {
     }
 
     @Override
-    public void createUser(String username, int role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int id) {
-        String SQL = "INSERT INTO Users (username, role_id, fname, lname, email, pass, created_at,photo, id) VALUES (?,?,?,?,?,?,?,?,?)";
+    public void createUser(String username, int role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
+        String SQL = "INSERT INTO \"Users\" (username, role_id, fname, lname, email, pass, created_at, photo) VALUES (?,?,?,?,?,?,?,?)";
 
-        jdbcTemplate.update(SQL, username, role_id, fname, lname, email, pass, created_at, photo, id);
+        jdbcTemplate.update(SQL, username, role_id, fname, lname, email, pass, created_at, photo);
         System.out.println("Users successfully created.\nUsername: " + username + ";\nFirst name: " +
-                fname + ";\nLast name: " + lname + "\nEmail: " + email + "\nPassword: " + pass + "\nCreated at: " + created_at + "\nPhoto: " + photo + "\nId: " + id);
+                fname + ";\nLast name: " + lname + "\nEmail: " + email + "\nPassword: " + pass + "\nCreated at: " + created_at + "\nPhoto: " + photo);
     }
 
     @Override
     public Users getUserById(int id) {
-        String SQL = "SELECT * FROM Users WHERE id = ?";
+        String SQL = "SELECT * FROM \"Users\" WHERE id = ?";
         Users users = (Users) jdbcTemplate.queryForObject(SQL, new Object[]{id}, new UsersMapper());
         return users;
     }
 
     @Override
     public List listUsers() {
-        String SQL = "SELECT * FROM Users";
+        String SQL = "SELECT * FROM \"Users\"";
         List Users = jdbcTemplate.query(SQL, new UsersMapper());
         return Users;
     }
 
     @Override
     public void removeUser(int id) {
-        String SQL = "DELETE FROM Users WHERE id = ?";
+        String SQL = "DELETE FROM \"Users\" WHERE id = ?";
         jdbcTemplate.update(SQL, id);
         System.out.println("Users with id: " + id + " successfully removed");
     }
 
     @Override
-    public void updateUser(String username, int role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int id) {
-        String SQL = "UPDATE Users SET username = ?, role_id = ?, fname = ?, lname = ?, email = ?, pass = ?, created_at = ?, photo = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, username, role_id, fname, lname, email, pass, created_at, photo, id);
-        System.out.println("Users with id: " + id + " successfully updated.");
+    public void updateUser(String username, int role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
+        String SQL = "UPDATE \"Users\" SET username = ?, role_id = ?, fname = ?, lname = ?, email = ?, pass = ?, created_at = ?, photo = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, username, role_id, fname, lname, email, pass, created_at, photo);
+        System.out.println("Users with id: " + username + " successfully updated.");
     }
 }

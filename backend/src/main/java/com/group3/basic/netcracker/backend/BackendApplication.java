@@ -22,7 +22,8 @@ public class BackendApplication {
         LocalDate todayDate = LocalDate.now();
 
         System.out.println("========Creating new records to DB========");
-        jdbcTemplateUsersDao.createUser("student0", 4,"Jack", "Bo", "mail@temp-mail.com", "12345", todayDate, null,5);
+        //jdbcTemplateUsersDao.createUser("student0", 4,"Jack", "Bo", "mail@temp-mail.com", "12345", todayDate, null);
+        jdbcTemplateUsersDao.createUser("billy123", 4,"Rick", "Taker", "billymail@temp-mail.com", "qwerty", todayDate, null);
         //jdbcTemplateUsersDao.createUser("Petr", "C++ Developer", 2);
         //jdbcTemplateUsersDao.createUser("DesignerAsya", "UI Developer", 1);
 

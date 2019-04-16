@@ -45,7 +45,16 @@ public class Users {
         this.id = id;
     }
 
-
+    public Users(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
+        this.username = username;
+        this.role_id = role_id;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.pass = pass;
+        this.created_at = created_at;
+        this.photo = photo;
+    }
 
     @Override
     public String toString() {
