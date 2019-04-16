@@ -1,61 +1,51 @@
 package com.group3.basic.netcracker.backend.UsersTable.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 
-@Entity
-@Table(name = "Users")
+
 public class Users {
 
-    @Column(name = "username")
+
     private String username;
 
-    @Column(name = "role_id")
-    private long role_id = 4;
+    private long role_id;
 
-    @Column(name = "fname")
     private String fname;
 
-    @Column(name = "lname")
     private String lname;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "pass")
     private String pass;
 
-    @Column(name = "created_at")
-    private LocalDate created_at = LocalDate.now();
+    private LocalDate created_at;
 
-    @Column(name = "photo")
     private byte[] photo = null;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
-/*
-    @Column(name = "active")
-    private boolean active;
-*/
+    /*
+        @Column(name = "active")
+        private boolean active;
+    */
     public Users() {
     }
 
-    public Users(String username, String fname, String lname, String email, String pass, byte[] photo) {
+    public Users(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int id) {
         this.username = username;
+        this.role_id = role_id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.pass = pass;
+        this.created_at = created_at;
         this.photo = photo;
+        this.id = id;
     }
+
+
 
     @Override
     public String toString() {
@@ -134,11 +124,11 @@ public class Users {
         this.photo = photo;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
