@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { StartComponent } from './first-page/start/start.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
     redirectTo: 'firstPage',
     pathMatch: 'full'
   }
+  // {
+  //   path: 'sign-in',
+  //   component: SignInComponent
+  // }
 ];
 
 @NgModule({
