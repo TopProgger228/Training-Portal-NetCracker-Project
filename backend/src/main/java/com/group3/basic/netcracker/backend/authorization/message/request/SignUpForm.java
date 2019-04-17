@@ -7,8 +7,9 @@ import javax.validation.constraints.*;
 public class SignUpForm {
     @NotBlank
     private String username;
-    @NotBlank
+   /* @NotBlank
     private long role_id;
+    */
     @NotBlank
     private String fname;
     @NotBlank
@@ -16,20 +17,21 @@ public class SignUpForm {
     @NotBlank
     private String email;
     @NotBlank
-    private String pass;
+    private String password;
+
     private int id;
     private Set<String> role;
 
 
-    private byte[] photo = null;
+   // private byte[] photo = null;
 
     public String getUsername() {
         return username;
     }
 
-    public long getRole_id() {
+   /* public long getRole_id() {
         return role_id;
-    }
+    }*/
 
     public String getFname() {
         return fname;
@@ -43,13 +45,15 @@ public class SignUpForm {
         return email;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public byte[] getPhoto() {
+  /*  public byte[] getPhoto() {
         return photo;
     }
+
+   */
 
     public int getId() {
         return id;

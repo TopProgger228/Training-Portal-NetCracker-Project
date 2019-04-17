@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FirstPageModule } from './first-page/first-page.module';
 import { StartComponent } from './first-page/start/start.component'
 
-import { SingInComponent } from './sign-in/sign-in.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { AdminComponent } from './admin/admin.component';
@@ -22,7 +22,7 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     AppComponent,
     StartComponent,
-    SingInComponent,
+    SignInComponent,
     AdminComponent,
     TrainerComponent,
     MngComponent,

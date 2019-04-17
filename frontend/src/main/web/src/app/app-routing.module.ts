@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { StartComponent } from './first-page/start/start.component';
 import { RegisterComponent } from './register/register.component';
-import { SingInComponent } from './sign-in/sign-in.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { MngComponent } from './mng/mng.component';
@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'auth/login',
-    component: SingInComponent
+    component: SignInComponent
   },
   {
     path: 'signup',

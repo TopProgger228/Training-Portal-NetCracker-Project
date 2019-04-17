@@ -10,7 +10,7 @@ export class UserService {
   private userUrl = 'http://localhost:8080/api/test/user';
   private trainerUrl = 'http://localhost:8080/api/test/trainer';
   private adminUrl = 'http://localhost:8080/api/test/admin';
-  private mngUrl = 'http://localhost:8080/api/test/admin';
+  private mngUrl = 'http://localhost:8080/api/test/mng';
 
   constructor(private http: HttpClient) { }
 

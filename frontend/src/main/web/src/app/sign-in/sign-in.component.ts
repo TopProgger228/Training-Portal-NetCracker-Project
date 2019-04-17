@@ -9,7 +9,7 @@ import { SignInInfo } from '../auth/signin-info';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SingInComponent implements OnInit {
+export class SignInComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;

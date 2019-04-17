@@ -3,15 +3,14 @@
     <div class="container h-100">
       <div class="row h-100 justify-content-center align-items-center">
         <div *ngIf="isLoggedIn; else loggedOut">
-          Logged in as {{roles}}.
-          <app-start></app-start>
+          <a routerLink="FirstPage">Logged in as {{roles}}.</a>
         </div>
 
 
         <ng-template #loggedOut>
-            <form class="text-center">
+            <form class="text-center"  (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
               <div class="form-group  text-center">
-                <label for="username">Username</label>
+                <label for="username" >Username</label>
                 <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
                   required />
                 <div *ngIf="f.submitted && username.invalid">
@@ -32,6 +31,7 @@
                 Login failed: {{errorMessage}}
               </div>
             </form>
+          <a routerLink="/signup">register</a>
         </ng-template>
       </div>
     </div>

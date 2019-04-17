@@ -80,7 +80,7 @@ public class AuthRestAPIs {
 
 
         jdbcTemplateUsersDao.createUser(signUpRequest.getUsername(), 4,signUpRequest.getFname(),signUpRequest.getLname(), signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPass()), LocalDate.now(), null);
+                encoder.encode(signUpRequest.getPassword()), LocalDate.now(), null);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
     }

@@ -11,6 +11,7 @@ import com.group3.basic.netcracker.backend.authorization.security.services.UserP
 
 import java.util.Date;
 
+import javax.xml.bind.DatatypeConverter;
 @Component
 public class JwtProvider {
 
