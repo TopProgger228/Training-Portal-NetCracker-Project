@@ -68,7 +68,7 @@ public class AuthRestAPIs {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
 
         JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUsersDao");
+                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUserDao");
         if (jdbcTemplateUsersDao.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
