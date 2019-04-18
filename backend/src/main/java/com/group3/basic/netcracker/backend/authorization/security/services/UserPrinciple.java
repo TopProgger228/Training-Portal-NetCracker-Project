@@ -91,11 +91,14 @@ public class UserPrinciple implements UserDetails {
 
     public static UserPrinciple build(User user) {
 
-        Set<Long> roles = new HashSet<>();
-        roles.add(user.getRole_id());
-        List<GrantedAuthority> authorities = roles.stream().map(role ->
-                new SimpleGrantedAuthority(role.toString())
-        ).collect(Collectors.toList());
+        //        Set<Long> roles = new HashSet<>();
+//        roles.add(user.getRole_id());
+        int[] roles = new int[]{(int) user.getRole_id()};
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("4"));
+//        List<GrantedAuthority> authorities = roles.stream().map(role ->
+//                new SimpleGrantedAuthority(role.toString())
+//        ).collect(Collectors.toList());
 
         return new UserPrinciple(
                 user.getUsername(),
@@ -140,4 +143,5 @@ public class UserPrinciple implements UserDetails {
         UserPrinciple user = (UserPrinciple) o;
         return Objects.equals(id, user.id);
     }
+
 }
