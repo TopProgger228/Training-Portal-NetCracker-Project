@@ -1,7 +1,7 @@
 package com.group3.basic.netcracker.backend;
 
-import com.group3.basic.netcracker.backend.UsersTable.dao.jdbc.JdbcTemplateUsersDaoImpl;
-import com.group3.basic.netcracker.backend.UsersTable.model.Users;
+import com.group3.basic.netcracker.backend.UserTable.dao.jdbc.JdbcTemplateUserDaoImpl;
+import com.group3.basic.netcracker.backend.UserTable.model.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,10 +15,10 @@ public class BackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
-        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-users-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
 
-        JdbcTemplateUsersDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUsersDaoImpl) context.getBean("jdbcTemplateUsersDao");
+        JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
+                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUsersDao");
         LocalDate todayDate = LocalDate.now();
 
         System.out.println("========Creating new records to DB========");
@@ -29,8 +29,8 @@ public class BackendApplication {
         //jdbcTemplateUsersDao.createUser("DesignerAsya", "UI Developer", 1);
 
         System.out.println("========Developers List========");
-        List<Users> user = jdbcTemplateUsersDao.listUsers();
-        for (Users users : user) {
+        List<User> user = jdbcTemplateUsersDao.listUsers();
+        for (User users : user) {
             System.out.println(users);
         }
 
@@ -39,9 +39,9 @@ public class BackendApplication {
         //jdbcTemplateUsersDao.removeUser(32);
 
         System.out.println("========Final Developers List========");
-        List<Users> finalUsers = jdbcTemplateUsersDao.listUsers();
+        List<User> finalUsers = jdbcTemplateUsersDao.listUsers();
 
-        for (Users users : finalUsers) {
+        for (User users : finalUsers) {
             System.out.println(users);
         }
     }

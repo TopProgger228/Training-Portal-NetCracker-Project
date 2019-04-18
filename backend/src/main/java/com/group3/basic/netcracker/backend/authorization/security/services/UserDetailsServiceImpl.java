@@ -1,8 +1,7 @@
 package com.group3.basic.netcracker.backend.authorization.security.services;
 
-import com.group3.basic.netcracker.backend.UsersTable.dao.jdbc.JdbcTemplateUsersDaoImpl;
-import com.group3.basic.netcracker.backend.UsersTable.model.Users;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.group3.basic.netcracker.backend.UserTable.dao.jdbc.JdbcTemplateUserDaoImpl;
+import com.group3.basic.netcracker.backend.UserTable.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,11 +15,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-users-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
 
-        JdbcTemplateUsersDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUsersDaoImpl) context.getBean("jdbcTemplateUsersDao");
-        Users user = jdbcTemplateUsersDao.findByUsername(username);
+        JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
+                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUsersDao");
+        User user = jdbcTemplateUsersDao.findByUsername(username);
 
         return UserPrinciple.build(user);
     }

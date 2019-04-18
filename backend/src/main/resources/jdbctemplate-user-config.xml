@@ -13,8 +13,8 @@
     </bean>
 
     <!-- Here we're defining studentJDBCTemplate bean -->
-    <bean id="jdbcTemplateUsersDao"
-          class="com.group3.basic.netcracker.backend.UsersTable.dao.jdbc.JdbcTemplateUsersDaoImpl">
+    <bean id="jdbcTemplateUserDao"
+          class="com.group3.basic.netcracker.backend.UserTable.dao.jdbc.JdbcTemplateUserDaoImpl">
         <property name="dataSource"  ref="dataSource" />
     </bean>
 

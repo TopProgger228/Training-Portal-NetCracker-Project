@@ -1,7 +1,6 @@
 package com.group3.basic.netcracker.backend.authorization.security.services;
 
-import com.group3.basic.netcracker.backend.UsersTable.model.Users;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.group3.basic.netcracker.backend.UserTable.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -90,7 +89,7 @@ public class UserPrinciple implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserPrinciple build(Users user) {
+    public static UserPrinciple build(User user) {
 
         Set<Long> roles = new HashSet<>();
         roles.add(user.getRole_id());

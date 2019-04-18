@@ -1,12 +1,10 @@
 package com.group3.basic.netcracker.backend.authorization.controller;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.validation.Valid;
 
-import com.group3.basic.netcracker.backend.UsersTable.dao.jdbc.JdbcTemplateUsersDaoImpl;
+import com.group3.basic.netcracker.backend.UserTable.dao.jdbc.JdbcTemplateUserDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,7 +27,6 @@ import com.group3.basic.netcracker.backend.authorization.message.request.SignUpF
 import com.group3.basic.netcracker.backend.authorization.message.response.JwtResponse;
 import com.group3.basic.netcracker.backend.authorization.message.response.ResponseMessage;
 //import com.group3.basic.netcracker.backend.authorization.model.Role;
-import com.group3.basic.netcracker.backend.UsersTable.model.Users;
 import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -68,10 +65,10 @@ public class AuthRestAPIs {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-users-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
 
-        JdbcTemplateUsersDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUsersDaoImpl) context.getBean("jdbcTemplateUsersDao");
+        JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
+                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUsersDao");
         if (jdbcTemplateUsersDao.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);

@@ -1,11 +1,11 @@
-package com.group3.basic.netcracker.backend.UsersTable.model;
+package com.group3.basic.netcracker.backend.UserTable.model;
 
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
 
-public class Users {
+public class User {
 
 
     private String username;
@@ -30,10 +30,10 @@ public class Users {
         @Column(name = "active")
         private boolean active;
     */
-    public Users() {
+    public User() {
     }
 
-    public Users(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int id) {
+    public User(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int id) {
         this.username = username;
         this.role_id = role_id;
         this.fname = fname;
@@ -45,7 +45,7 @@ public class Users {
         this.id = id;
     }
 
-    public Users(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
+    public User(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
         this.username = username;
         this.role_id = role_id;
         this.fname = fname;
@@ -58,7 +58,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "User{" +
                 "username='" + username + '\'' +
                 ", fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
