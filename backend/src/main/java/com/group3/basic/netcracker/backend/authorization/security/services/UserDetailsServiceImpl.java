@@ -18,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
 
         JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUsersDao");
+                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUserDao");
         User user = jdbcTemplateUsersDao.findByUsername(username);
 
         return UserPrinciple.build(user);
