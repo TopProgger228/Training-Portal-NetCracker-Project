@@ -18,7 +18,7 @@ public class BackendApplication {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
 
         JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUsersDao");
+                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUserDao");
         LocalDate todayDate = LocalDate.now();
 
         System.out.println("========Creating new records to DB========");
