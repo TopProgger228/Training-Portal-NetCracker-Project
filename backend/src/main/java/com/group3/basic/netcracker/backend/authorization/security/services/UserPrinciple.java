@@ -51,7 +51,7 @@ public class UserPrinciple implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
 
@@ -90,15 +90,8 @@ public class UserPrinciple implements UserDetails {
     }
 
     public static UserPrinciple build(User user) {
-
-        //        Set<Long> roles = new HashSet<>();
-//        roles.add(user.getRole_id());
-        int[] roles = new int[]{(int) user.getRole_id()};
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("4"));
-//        List<GrantedAuthority> authorities = roles.stream().map(role ->
-//                new SimpleGrantedAuthority(role.toString())
-//        ).collect(Collectors.toList());
 
         return new UserPrinciple(
                 user.getUsername(),
