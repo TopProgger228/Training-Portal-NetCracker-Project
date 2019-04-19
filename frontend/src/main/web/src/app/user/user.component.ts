@@ -10,8 +10,6 @@ import { TokenStorageService } from '../auth/token-storage.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  board: string;
-  errorMessage: string;
   user: string = "user";
 
   loggedOut = false;
