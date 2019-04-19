@@ -36,5 +36,6 @@ import { TrainersserService } from './trainers-list/trainersser.service';
   providers: [TrainersserService]
 })
 
+
 export class FirstPageModule { }
 

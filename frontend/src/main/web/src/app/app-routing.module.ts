@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'firstPage',
+    redirectTo: 'auth/login',
     pathMatch: 'full'
   }
 ];

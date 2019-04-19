@@ -3,12 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { SignInInfo } from '../auth/signin-info';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
+
 export class SignInComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
@@ -17,12 +19,30 @@ export class SignInComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: SignInInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService,
+    private router: Router, private tokenStorage: TokenStorageService) { }
+
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
+      this.roles.every(role => {
+        if (role === '1') {
+          this.router.navigate(['admin']);
+          return false;
+        } else if (role === '2') {
+          this.router.navigate(['mng']);
+          return false;
+        } else if (role === '3') {
+          this.router.navigate(['trainer']);
+          return false;
+        }else if (role === '4') {
+          this.router.navigate(['user']);
+          return false;
+        }
+        return true;
+      });
     }
   }
 
@@ -42,7 +62,22 @@ export class SignInComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.reloadPage();
+        this.roles.every(role => {
+          if (role === '1') {
+            this.router.navigate(['admin']);
+            return false;
+          } else if (role === '2') {
+            this.router.navigate(['mng']);
+            return false;
+          } else if (role === '3') {
+            this.router.navigate(['trainer']);
+            return false;
+          }else if (role === '4') {
+            this.router.navigate(['user']);
+            return false;
+          }
+          return true;
+        });
       },
       error => {
         console.log(error);

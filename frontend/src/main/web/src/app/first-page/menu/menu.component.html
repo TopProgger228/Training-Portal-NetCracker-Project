@@ -8,7 +8,7 @@
         </button>
       </li>
       <li>
-        <span class="text-secondary" style="font-size: 25px">Signed in as {{accountType}}</span>
+        <span class="text-secondary" style="font-size: 25px">Signed in as {{role}}</span>
       </li>
     </ul>
 
@@ -24,9 +24,13 @@
         </button>
       </li>
       <li>
-        <button type="button" class="btn btn-outline-secondary"><a class="nav-link" routerLink="">Sign out</a></button>
+        <button type="button" class="btn btn-outline-secondary" (click)="logout()"><a class="nav-link">Logout</a></button>
       </li>
     </ul>
   </div>
 
 </nav>
+
+
+<ng-template #loggedOut>
+  </ng-template>

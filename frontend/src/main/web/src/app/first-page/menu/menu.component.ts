@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { TokenStorageService } from '../../auth/token-storage.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -6,12 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+@Input()
+role:string;
 
-  accountType: string = 'admin';
+info: any;
 
-  constructor() { }
+constructor(private token: TokenStorageService,
+  private router: Router) { }
 
-  ngOnInit() {
+ngOnInit() {
+  this.info = {
+    token: this.token.getToken(),
+    username: this.token.getUsername(),
+    authorities: this.token.getAuthorities()
+  };
+}
+  logout() {
+    this.token.signOut();
+    window.location.reload();
+    this.router.navigate(['']);
   }
 
 }
