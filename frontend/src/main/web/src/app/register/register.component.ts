@@ -28,22 +28,8 @@ export class RegisterComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isSignedUp = true;
       this.roles = this.tokenStorage.getAuthorities();
-      this.roles.every(role => {
-        if (role === '1') {
-          this.router.navigate(['admin']);
-          return false;
-        } else if (role === '2') {
-          this.router.navigate(['mng']);
-          return false;
-        } else if (role === '3') {
-          this.router.navigate(['trainer']);
-          return false;
-        } else if (role === '4') {
-          this.router.navigate(['user']);
-          return false;
-        }
-        return true;
-      });
+
+      this.router.navigate(['auth/login']);
     }
   }
 
@@ -63,22 +49,7 @@ export class RegisterComponent implements OnInit {
         this.isSignedUp = true;
         this.isSignUpFailed = false;
         this.roles = this.tokenStorage.getAuthorities();
-        this.roles.every(role => {
-          if (role === '1') {
-            this.router.navigate(['admin']);
-            return false;
-          } else if (role === '2') {
-            this.router.navigate(['mng']);
-            return false;
-          } else if (role === '3') {
-            this.router.navigate(['trainer']);
-            return false;
-          }else if (role === '4') {
-            this.router.navigate(['user']);
-            return false;
-          }
-          return true;
-        });
+        this.router.navigate(['auth/login']);
       },
       error => {
         console.log(error);

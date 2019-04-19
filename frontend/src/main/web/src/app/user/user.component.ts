@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
+import { TokenStorageService } from '../auth/token-storage.service';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -10,18 +12,16 @@ import { Router } from '@angular/router';
 export class UserComponent implements OnInit {
   board: string;
   errorMessage: string;
+  user: string = "user";
 
-  constructor(private router: Router,private userService: UserService) { }
+  loggedOut = false;
+
+  constructor(private router: Router,private userService: UserService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.userService.getUserBoard().subscribe(
-      data => {
-        this.board = data;
-        this.router.navigate(['admin']);
-      },
-      error => {
-        this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
-      }
-    );
+    if (!this.tokenStorage.getToken()) {
+      this.loggedOut = true;
+      this.router.navigate(['auth/login']);
+    }
   }
 }

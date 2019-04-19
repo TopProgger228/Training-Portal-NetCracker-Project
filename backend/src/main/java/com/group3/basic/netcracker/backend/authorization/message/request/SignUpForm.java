@@ -10,6 +10,7 @@ public class SignUpForm {
    /* @NotBlank
     private long role_id;
     */
+
     @NotBlank
     private String fname;
     @NotBlank
@@ -29,9 +30,11 @@ public class SignUpForm {
         return username;
     }
 
-   /* public long getRole_id() {
+    /*public long getRole_id() {
         return role_id;
-    }*/
+    }
+
+     */
 
     public String getFname() {
         return fname;

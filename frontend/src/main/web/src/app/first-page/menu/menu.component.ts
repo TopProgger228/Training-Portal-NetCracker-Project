@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 @Input()
-role:string;
+role: string;
 
 info: any;
 
@@ -26,8 +26,8 @@ ngOnInit() {
 }
   logout() {
     this.token.signOut();
-    window.location.reload();
     this.router.navigate(['']);
+    window.location.reload();
   }
 
 }
