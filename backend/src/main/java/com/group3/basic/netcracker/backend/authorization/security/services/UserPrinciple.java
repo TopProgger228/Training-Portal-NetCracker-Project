@@ -91,7 +91,7 @@ public class UserPrinciple implements UserDetails {
 
     public static UserPrinciple build(User user) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("4"));
+        authorities.add(new SimpleGrantedAuthority(Objects.toString(user.getRole_id())));
 
         return new UserPrinciple(
                 user.getUsername(),
