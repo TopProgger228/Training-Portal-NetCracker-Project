@@ -10,7 +10,9 @@ import { TrainersListComponent } from './trainers-list/trainers-list.component';
 import { FooterComponent } from './footer/footer.component';
 
 
+
 import { TrainersserService } from './trainers-list/trainersser.service';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { TrainersserService } from './trainers-list/trainersser.service';
     FooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     MenuComponent,
@@ -31,11 +33,9 @@ import { TrainersserService } from './trainers-list/trainersser.service';
     CoursesContainerComponent,
     FirstSlideComponent,
     TrainersListComponent,
-    FooterComponent
+    FooterComponent,
   ],
   providers: [TrainersserService]
 })
 
-
 export class FirstPageModule { }
-

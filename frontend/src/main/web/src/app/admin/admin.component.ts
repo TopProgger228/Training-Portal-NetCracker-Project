@@ -10,7 +10,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  user: string = "admin";
+  user: string = 'admin';
 
   loggedOut = false;
 

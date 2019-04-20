@@ -63,16 +63,16 @@ export class SignInComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
         this.roles.every(role => {
-          if (role === '1') {
+          if (role === 'Admin') {
             this.router.navigate(['admin']);
             return false;
-          } else if (role === '2') {
+          } else if (role === 'Manager') {
             this.router.navigate(['mng']);
             return false;
-          } else if (role === '3') {
+          } else if (role === 'Trainer') {
             this.router.navigate(['trainer']);
             return false;
-          }else if (role === '4') {
+          }else if (role === 'Student') {
             this.router.navigate(['user']);
             return false;
           }
