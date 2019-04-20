@@ -1,4 +1,4 @@
-package com.group3.basic.netcracker.backend.UserTable.model;
+package com.group3.basic.netcracker.backend.usertable.entity;
 
 
 import java.time.LocalDate;
@@ -7,53 +7,32 @@ import java.util.Arrays;
 
 public class User {
 
-
-    private String username;
-
-    private long role_id;
-
-    private String fname;
-
-    private String lname;
-
-    private String email;
-
-    private String pass;
-
-    private LocalDate created_at;
-
-    private byte[] photo = null;
-
     private int id;
+    private String username;
+    private String role;
+    private String fname;
+    private String lname;
+    private String email;
+    private String pass;
+    private LocalDate created_at;
+    private byte[] photo = null;
+    private int manager_id;
 
-    /*
-        @Column(name = "active")
-        private boolean active;
-    */
     public User() {
     }
 
-    public User(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int id) {
-        this.username = username;
-        this.role_id = role_id;
-        this.fname = fname;
-        this.lname = lname;
-        this.email = email;
-        this.pass = pass;
-        this.created_at = created_at;
-        this.photo = photo;
+    public User(int id, String username, String role, String fname, String lname,
+                String email, String pass, LocalDate created_at, byte[] photo, int manager_id){
         this.id = id;
-    }
-
-    public User(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
         this.username = username;
-        this.role_id = role_id;
+        this.role = role;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.pass = pass;
         this.created_at = created_at;
         this.photo = photo;
+        this.manager_id = manager_id;
     }
 
     @Override
@@ -75,14 +54,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public long getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(long role_id) {
-        this.role_id = role_id;
     }
 
     public String getFname() {
@@ -139,5 +110,21 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getManager_id() {
+        return manager_id;
+    }
+
+    public void setManager_id(int manager_id) {
+        this.manager_id = manager_id;
     }
 }

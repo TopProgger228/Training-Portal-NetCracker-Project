@@ -1,7 +1,7 @@
 package com.group3.basic.netcracker.backend;
 
-import com.group3.basic.netcracker.backend.UserTable.dao.jdbc.JdbcTemplateUserDaoImpl;
-import com.group3.basic.netcracker.backend.UserTable.model.User;
+import com.group3.basic.netcracker.backend.usertable.dao.daoimpl.UserDaoImpl;
+import com.group3.basic.netcracker.backend.usertable.entity.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,11 +14,9 @@ import java.util.List;
 public class BackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BackendApplication.class, args);
-        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
+        ApplicationContext context = SpringApplication.run(BackendApplication.class, args);
 
-        JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUserDao");
+        UserDaoImpl jdbcTemplateUsersDao = context.getBean(UserDaoImpl.class);
         LocalDate todayDate = LocalDate.now();
 
         System.out.println("========Creating new records to DB========");

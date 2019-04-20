@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.validation.Valid;
 
-import com.group3.basic.netcracker.backend.UserTable.dao.jdbc.JdbcTemplateUserDaoImpl;
+import com.group3.basic.netcracker.backend.usertable.dao.daoimpl.UserDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -26,28 +26,29 @@ import com.group3.basic.netcracker.backend.authorization.message.request.LoginFo
 import com.group3.basic.netcracker.backend.authorization.message.request.SignUpForm;
 import com.group3.basic.netcracker.backend.authorization.message.response.JwtResponse;
 import com.group3.basic.netcracker.backend.authorization.message.response.ResponseMessage;
-//import com.group3.basic.netcracker.backend.authorization.model.Role;
+//import com.group3.basic.netcracker.backend.authorization.entity.Role;
 import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthRestAPIs {
+    private final AuthenticationManager authenticationManager;
+
+    private final PasswordEncoder encoder;
+
+    private final JwtProvider jwtProvider;
+
+    private ApplicationContext context;
 
     @Autowired
-    AuthenticationManager authenticationManager;
-
-//    @Autowired
-//    UserRepository userRepository;
-//
-//    @Autowired
-//    RoleRepository roleRepository;
-
-    @Autowired
-    PasswordEncoder encoder;
-
-    @Autowired
-    JwtProvider jwtProvider;
+    public AuthRestAPIs(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
+                        JwtProvider jwtProvider, ApplicationContext context){
+        this.authenticationManager = authenticationManager;
+        this.encoder = passwordEncoder;
+        this.jwtProvider = jwtProvider;
+        this.context = context;
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
@@ -71,18 +72,14 @@ public class AuthRestAPIs {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("jdbctemplate-user-config.xml");
-
-        JdbcTemplateUserDaoImpl jdbcTemplateUsersDao =
-                (JdbcTemplateUserDaoImpl) context.getBean("jdbcTemplateUserDao");
+        UserDaoImpl jdbcTemplateUsersDao = context.getBean(UserDaoImpl.class);
         if (jdbcTemplateUsersDao.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-
-
-        jdbcTemplateUsersDao.createUser(signUpRequest.getUsername(), 4,signUpRequest.getFname(),signUpRequest.getLname(), signUpRequest.getEmail(),
+        jdbcTemplateUsersDao.createUser(signUpRequest.getUsername(),
+                "Admin",signUpRequest.getFname(),signUpRequest.getLname(), signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()), LocalDate.now(), null);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);

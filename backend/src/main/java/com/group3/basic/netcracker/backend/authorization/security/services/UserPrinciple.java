@@ -1,13 +1,12 @@
 package com.group3.basic.netcracker.backend.authorization.security.services;
 
-import com.group3.basic.netcracker.backend.UserTable.model.User;
+import com.group3.basic.netcracker.backend.usertable.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class UserPrinciple implements UserDetails {
     private static final long serialVersionUID = 1L;
@@ -17,8 +16,8 @@ public class UserPrinciple implements UserDetails {
         return username;
     }
 
-    public long getRole_id() {
-        return role_id;
+    public String getRole() {
+        return role;
     }
 
     public String getFname() {
@@ -49,6 +48,10 @@ public class UserPrinciple implements UserDetails {
         return id;
     }
 
+    public int getManager_id(){
+        return manager_id;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
@@ -58,7 +61,7 @@ public class UserPrinciple implements UserDetails {
 
     private String username;
 
-    private long role_id;
+    private String role;
 
     private String fname;
 
@@ -74,34 +77,38 @@ public class UserPrinciple implements UserDetails {
 
     private int id;
 
+    private int manager_id;
+
     private Collection<? extends GrantedAuthority> authorities;
 
 
-    public UserPrinciple(String username, long role_id, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrinciple(String username, String  role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int manager_id, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
-        this.role_id = role_id;
+        this.role = role;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.pass = pass;
         this.created_at = created_at;
         this.photo = photo;
+        this.manager_id = manager_id;
         this.authorities = authorities;
     }
 
     public static UserPrinciple build(User user) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(Objects.toString(user.getRole_id())));
+        authorities.add(new SimpleGrantedAuthority(Objects.toString(user.getRole())));
 
         return new UserPrinciple(
                 user.getUsername(),
-                user.getRole_id(),
+                user.getRole(),
                 user.getFname(),
                 user.getLname(),
                 user.getEmail(),
                 user.getPass(),
                 user.getCreated_at(),
                 user.getPhoto(),
+                user.getManager_id(),
                 authorities
         );
     }

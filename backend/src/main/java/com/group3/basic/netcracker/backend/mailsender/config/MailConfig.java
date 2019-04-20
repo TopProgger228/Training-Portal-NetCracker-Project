@@ -1,8 +1,8 @@
-package com.group3.basic.netcracker.backend.MailSender.Config;
+package com.group3.basic.netcracker.backend.mailsender.config;
 
 import java.util.Properties;
 
-import com.group3.basic.netcracker.backend.MailSender.Contact;
+import com.group3.basic.netcracker.backend.mailsender.Contact;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;

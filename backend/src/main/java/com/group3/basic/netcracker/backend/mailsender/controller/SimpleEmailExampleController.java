@@ -1,6 +1,6 @@
-package com.group3.basic.netcracker.backend.MailSender.Controller;
+package com.group3.basic.netcracker.backend.mailsender.controller;
 
-import com.group3.basic.netcracker.backend.MailSender.Contact;
+import com.group3.basic.netcracker.backend.mailsender.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

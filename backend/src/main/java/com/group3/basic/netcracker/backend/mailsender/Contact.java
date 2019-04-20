@@ -1,4 +1,4 @@
-package com.group3.basic.netcracker.backend.MailSender;
+package com.group3.basic.netcracker.backend.mailsender;
 
 public class Contact {
     public static final String MY_EMAIL = "Email";
