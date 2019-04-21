@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isSignedUp = true;
-      this.roles = this.tokenStorage.getAuthorities();
 
       this.router.navigate(['auth/login']);
     }

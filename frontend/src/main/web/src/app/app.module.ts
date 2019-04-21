@@ -11,11 +11,11 @@ import { StartComponent } from './first-page/start/start.component'
 import { SignInComponent } from './sign-in/sign-in.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
-import { AdminComponent } from './admin/admin.component';
-import { TrainerComponent } from './trainer/trainer.component';
-import { MngComponent } from './mng/mng.component';
-import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
+
+import { UsersInfoComponent } from './users-info/users-info.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ; 
 
 
 @NgModule({
@@ -23,18 +23,17 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     StartComponent,
     SignInComponent,
-    AdminComponent,
-    TrainerComponent,
-    MngComponent,
-    UserComponent,
-    RegisterComponent
+    RegisterComponent,
+
+    UsersInfoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FirstPageModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

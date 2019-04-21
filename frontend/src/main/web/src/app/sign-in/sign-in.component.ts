@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
@@ -26,23 +26,8 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getAuthorities();
-      this.roles.every(role => {
-        if (role === '1') {
-          this.router.navigate(['admin']);
-          return false;
-        } else if (role === '2') {
-          this.router.navigate(['mng']);
-          return false;
-        } else if (role === '3') {
-          this.router.navigate(['trainer']);
-          return false;
-        }else if (role === '4') {
-          this.router.navigate(['user']);
-          return false;
-        }
-        return true;
-      });
+      this.router.navigate(['firstPage']);
+
     }
   }
 
@@ -61,28 +46,16 @@ export class SignInComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getAuthorities();
-        this.roles.every(role => {
-          if (role === 'Admin') {
-            this.router.navigate(['admin']);
-            return false;
-          } else if (role === 'Manager') {
-            this.router.navigate(['mng']);
-            return false;
-          } else if (role === 'Trainer') {
-            this.router.navigate(['trainer']);
-            return false;
-          }else if (role === 'Student') {
-            this.router.navigate(['user']);
-            return false;
-          }
-          return true;
-        });
+
+
+        this.router.navigate(['firstPage']);
       },
       error => {
         console.log(error);
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
+
+        this.router.navigate(['auth/login']);
       }
     );
   }
