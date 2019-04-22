@@ -6,6 +6,8 @@ import { StartComponent } from './first-page/start/start.component';
 import { RegisterComponent } from './register/register.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UsersInfoComponent } from './users-info/users-info.component';
+import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
+
 
 const routes: Routes = [
   {
@@ -15,6 +17,10 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: UsersInfoComponent
+  },
+  {
+    path: 'admin/add-user',
+    component: AddNewManagerComponent
   },
   {
     path: 'auth/login',

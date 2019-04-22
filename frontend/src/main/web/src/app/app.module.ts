@@ -14,9 +14,8 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { RegisterComponent } from './register/register.component';
 
 import { UsersInfoComponent } from './users-info/users-info.component';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ; 
-
+import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ;
     RegisterComponent,
 
     UsersInfoComponent,
+    AddNewManagerComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,12 @@
 .container{
-  width: 400px;
-  height: 100px;
+  width: 50%;
+  margin-top: 8%;
+}
+
+label, input, select, option{
+  font-size: 20px;
+}
+
+button{
+  font-size: 22px;
 }
