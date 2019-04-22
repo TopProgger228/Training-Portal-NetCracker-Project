@@ -8,6 +8,15 @@
       <div *ngIf="this.role == 'admin'">
 
         <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <button class="btn btn-default" type="button">
+              <a class="nav-link" href="firstPage">
+                Home
+              </a>
+            </button>
+          </li>
+
           <li class="nav-item">
 
             <div class="dropdown">
@@ -20,7 +29,7 @@
               <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
                 <a class="dropdown-item " href="#">Edit trainers</a>
                 <a class="dropdown-item" href="#">Edit managers</a>
-                <a class="dropdown-item" href="#">View all users</a>
+                <a class="dropdown-item" href="admin/users">View all users</a>
               </div>
             </div>
 
@@ -43,6 +52,7 @@
               </button>
               <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
                 <a class="dropdown-item" href="#">Create new course</a>
+                <a class="dropdown-item" href="#">Create new course group</a>
                 <a class="dropdown-item" href="#">Groups' Schedule</a>
                 <a class="dropdown-item" href="#">Attendance</a>
               </div>

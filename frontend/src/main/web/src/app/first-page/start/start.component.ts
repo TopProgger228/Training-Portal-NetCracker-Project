@@ -10,19 +10,12 @@ import { Router } from '@angular/router';
 })
 
 export class StartComponent implements OnInit {
-  info: any;
-  @Input()
-  role: string;
+
   loggedout = false;
   constructor( private router: Router, private token: TokenStorageService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.info = {
-        token: this.token.getToken(),
-        username: this.token.getUsername(),
-        authorities: this.token.getAuthorities()
-      }
     }else{
       this.loggedout = true;
       this.router.navigate(['auth/login']);

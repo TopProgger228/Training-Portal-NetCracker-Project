@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MngComponent } from './mng.component';
+import { UsersInfoComponent } from './users-info.component';
 
-describe('MngComponent', () => {
-  let component: MngComponent;
-  let fixture: ComponentFixture<MngComponent>;
+describe('UsersInfoComponent', () => {
+  let component: UsersInfoComponent;
+  let fixture: ComponentFixture<UsersInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MngComponent ]
+      declarations: [ UsersInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MngComponent);
+    fixture = TestBed.createComponent(UsersInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

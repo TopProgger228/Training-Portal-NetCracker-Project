@@ -5,10 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StartComponent } from './first-page/start/start.component';
 import { RegisterComponent } from './register/register.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { UserComponent } from './user/user.component';
-import { AdminComponent } from './admin/admin.component';
-import { MngComponent } from './mng/mng.component';
-import { TrainerComponent } from './trainer/trainer.component';
+import { UsersInfoComponent } from './users-info/users-info.component';
 
 const routes: Routes = [
   {
@@ -16,20 +13,8 @@ const routes: Routes = [
     component: StartComponent
   },
   {
-    path: 'user',
-    component: UserComponent
-  },
-  {
-    path: 'mng',
-    component: MngComponent
-  },
-  {
-    path: 'admin',
-    component: AdminComponent
-  },
-  {
-    path: 'trainer',
-    component: TrainerComponent
+    path: 'admin/users',
+    component: UsersInfoComponent
   },
   {
     path: 'auth/login',

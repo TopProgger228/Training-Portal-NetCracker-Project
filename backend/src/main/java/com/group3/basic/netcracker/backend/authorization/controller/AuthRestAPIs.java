@@ -66,8 +66,9 @@ public class AuthRestAPIs {
 
         } catch(Exception e){
             e.printStackTrace();
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Username or Password is wrong!"),
+                    HttpStatus.BAD_REQUEST);
         }
-        return null;
     }
 
     @PostMapping("/signup")

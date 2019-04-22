@@ -11,19 +11,39 @@ import { Router } from '@angular/router';
 })
 
 export class MenuComponent implements OnInit {
-  @Input()
+  
   role: string;
+  roles: string[];
 
   info: any;
   constructor(private token: TokenStorageService,
     private router: Router) { }
 
   ngOnInit() {
-    this.info = {
-      token: this.token.getToken(),
-      username: this.token.getUsername(),
-      authorities: this.token.getAuthorities()
-    };
+
+    if (this.token.getToken()) {
+      this.roles = this.token.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'Admin') {
+          this.role = 'admin';
+          return false;
+        } else if (role === 'Manager') {
+          this.role = 'mng';
+          return false;
+        } else if (role === 'Trainer') {
+          this.role='trainer';
+          return false;
+        }else if (role === 'Student') {
+          this.role= 'user';
+          return false;
+        }
+        return true;
+      });
+    }else{
+
+      this.router.navigate(['auth/login']);
+    }
+
   }
   logout() {
     this.token.signOut();

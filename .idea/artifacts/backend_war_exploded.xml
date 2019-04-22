@@ -43,6 +43,9 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: com.zaxxer:HikariCP:3.2.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.26" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.5" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-security:2.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.1.6.RELEASE" />
@@ -52,7 +55,6 @@
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-mail:2.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.26" />
           <element id="archive" name="frontend-1.0-SNAPSHOT.jar">
             <element id="module-output" name="frontend" />
           </element>
@@ -60,7 +62,7 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.8" />
-          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.2.11" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.0" />
           <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-core:2.2.11" />
           <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.11" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
