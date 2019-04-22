@@ -81,4 +81,11 @@ public class UserDaoImpl implements UserDAO {
         jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo, id);
         System.out.println("User with id: " + username + " successfully updated.");
     }
+
+    @Override
+    public void addMember(String username, String role, String fname, String lname,String email, String pass, LocalDate created_at) {
+        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at) VALUES" +
+                "(?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at);
+    }
 }
