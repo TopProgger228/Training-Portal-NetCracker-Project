@@ -3,6 +3,7 @@ package com.group3.basic.netcracker.backend.coursetable.dao.daoimpl;
 import com.group3.basic.netcracker.backend.coursetable.dao.CourseDAO;
 import com.group3.basic.netcracker.backend.coursetable.entity.Course;
 import com.group3.basic.netcracker.backend.coursetable.rowmapper.CourseRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,12 +16,13 @@ import java.util.List;
 public class CourseDaoImpl implements CourseDAO {
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public CourseDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public void createUser(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, String learn_direction, int user_id, int qty_per_week) {
+    public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, String learn_direction, int user_id, int qty_per_week) {
         String SQL = "INSERT INTO \"Course\" (name, start_date, end_date, info, skill_level, learn_direction, user_id, qty_per_week) VALUES (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, learn_direction, user_id, qty_per_week);
     }

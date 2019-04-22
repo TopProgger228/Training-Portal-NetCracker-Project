@@ -17,6 +17,15 @@ public interface UserService {
 
     void updateUser(int id, String username, String role, String fname, String lname,
                     String email, String pass, LocalDate created_at, byte[] photo);
+
     void addMember(String username, String role, String fname, String lname,
                    String email, String pass, LocalDate created_at);
+
+    void updateUserName(int id, String newUsername);
+
+    void updateUserFirstName(int id, String newFirstName);
+
+    void updateUserLastName(int id, String newLastName);
+
+    void updateUserEmail(int id, String newEmail);
 }

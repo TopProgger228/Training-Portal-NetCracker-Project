@@ -88,4 +88,28 @@ public class UserDaoImpl implements UserDAO {
                 "(?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at);
     }
+
+    @Override
+    public void updateUserName(int id, String newUsername) {
+        String SQL = "UPDATE \"User\" SET username = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, newUsername, id);
+    }
+
+    @Override
+    public void updateUserFirstName(int id, String newFirstName) {
+        String SQL = "UPDATE \"User\" SET fname = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, newFirstName, id);
+    }
+
+    @Override
+    public void updateUserLastName(int id, String newLastName) {
+        String SQL = "UPDATE \"User\" SET lname = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, newLastName, id);
+    }
+
+    @Override
+    public void updateUserEmail(int id, String newEmail) {
+        String SQL = "UPDATE \"User\" SET email = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, newEmail, id);
+    }
 }

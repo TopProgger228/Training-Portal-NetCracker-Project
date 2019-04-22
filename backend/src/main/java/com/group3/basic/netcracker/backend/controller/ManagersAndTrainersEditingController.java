@@ -6,10 +6,7 @@ import com.group3.basic.netcracker.backend.usertable.userservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -30,5 +27,23 @@ public class ManagersAndTrainersEditingController {
                 member.getFname(), member.getLname(), member.getEmail(),
                 member.getPassword(), LocalDate.now());
         return new ResponseEntity<> (new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("delete")
+    public ResponseEntity<?> delete(@RequestParam int id){
+        userService.removeUser(id);
+        return new ResponseEntity<>(new ResponseMessage("Deleted!"), HttpStatus.OK);
+    }
+
+    @PostMapping("updateUsername")
+    public ResponseEntity<?> updateUserName(@RequestParam int id, @RequestParam String newUserName){
+        userService.updateUserName(id, newUserName);
+        return new ResponseEntity<>(new ResponseMessage("Username updated!"), HttpStatus.OK);
+    }
+
+    @PostMapping("updateFirstName")
+    public ResponseEntity<?> updateFirstName(@RequestParam int id, @RequestParam String newFirstName){
+        userService.updateUserFirstName(id, newFirstName);
+        return new ResponseEntity<>(new ResponseMessage("First name updated!"), HttpStatus.OK);
     }
 }
