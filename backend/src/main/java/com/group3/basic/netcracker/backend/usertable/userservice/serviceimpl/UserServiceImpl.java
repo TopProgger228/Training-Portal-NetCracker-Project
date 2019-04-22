@@ -49,4 +49,24 @@ public class UserServiceImpl implements UserService {
     public void addMember(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at) {
         userDAO.addMember(username, role, fname, lname, email, pass, created_at);
     }
+
+    @Override
+    public void updateUserName(int id, String newUsername) {
+        userDAO.updateUserName(id, newUsername);
+    }
+
+    @Override
+    public void updateUserFirstName(int id, String newFirstName) {
+        userDAO.updateUserFirstName(id, newFirstName);
+    }
+
+    @Override
+    public void updateUserLastName(int id, String newLastName) {
+        userDAO.updateUserLastName(id, newLastName);
+    }
+
+    @Override
+    public void updateUserEmail(int id, String newEmail) {
+        userDAO.updateUserEmail(id, newEmail);
+    }
 }
