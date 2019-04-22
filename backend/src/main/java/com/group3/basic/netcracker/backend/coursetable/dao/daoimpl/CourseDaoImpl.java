@@ -3,6 +3,7 @@ package com.group3.basic.netcracker.backend.coursetable.dao.daoimpl;
 import com.group3.basic.netcracker.backend.coursetable.dao.CourseDAO;
 import com.group3.basic.netcracker.backend.coursetable.entity.Course;
 import com.group3.basic.netcracker.backend.coursetable.rowmapper.CourseRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.util.List;
 public class CourseDaoImpl implements CourseDAO {
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public CourseDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
