@@ -1,0 +1,76 @@
+<div class="container">
+  <h1>User Form</h1>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" required
+             [(ngModel)]="userModel.firstName" name="firstName"
+             #firstName="ngModel">
+
+      <div [hidden]="firstName.valid || firstName.pristine"
+           class="alert alert-danger">
+        User name is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" required
+             [(ngModel)]="userModel.lastName" name="lastName"
+             #lastName="ngModel">
+
+      <div [hidden]="lastName.valid || lastName.pristine"
+           class="alert alert-danger">
+        Last name is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="role">User role</label>
+      <select class="form-control" id="role"
+              [(ngModel)]="userModel.role" name="role">
+        <option *ngFor="let rl of roles" [value]="rl">{{rl}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" required
+             [(ngModel)]="userModel.username" name="username"
+             #username="ngModel">
+
+      <div [hidden]="username.valid || username.pristine"
+           class="alert alert-danger">
+        Username is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">User e-mail</label>
+      <input type="text" class="form-control" id="email" required
+             [(ngModel)]="userModel.email" name="email"
+             #email="ngModel">
+
+      <div [hidden]="email.valid || email.pristine"
+           class="alert alert-danger">
+        E-mail is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" required
+             [(ngModel)]="userModel.password" name="password"
+             #password="ngModel">
+
+      <div [hidden]="password.valid || password.pristine"
+           class="alert alert-danger">
+        Password is required!
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success"
+            [disabled]="!userForm.form.valid">Submit</button>
+
+  </form>
+</div>

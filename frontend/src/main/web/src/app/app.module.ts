@@ -16,6 +16,7 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { MngComponent } from './mng/mng.component';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
+import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { RegisterComponent } from './register/register.component';
     TrainerComponent,
     MngComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddNewManagerComponent
   ],
   imports: [
     BrowserModule,
