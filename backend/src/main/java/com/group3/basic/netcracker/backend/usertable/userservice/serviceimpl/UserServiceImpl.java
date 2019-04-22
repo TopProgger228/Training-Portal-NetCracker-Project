@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
                            String email, String pass, LocalDate created_at, byte[] photo) {
         userDAO.updateUser(username, role, fname, lname, email, pass, created_at, photo);
     }
+
+    @Override
+    public void addMember(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at) {
+        userDAO.addMember(username, role, fname, lname, email, pass, created_at);
+    }
 }

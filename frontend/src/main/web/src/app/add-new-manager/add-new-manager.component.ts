@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import {User} from "../user";
+import {User} from "../services/user";
 
 @Component({
   selector: 'app-add-new-manager',

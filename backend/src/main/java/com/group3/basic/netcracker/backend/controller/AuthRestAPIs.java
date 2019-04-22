@@ -1,4 +1,4 @@
-package com.group3.basic.netcracker.backend.authorization.controller;
+package com.group3.basic.netcracker.backend.controller;
 
 import java.time.LocalDate;
 

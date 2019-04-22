@@ -17,4 +17,6 @@ public interface UserService {
 
     void updateUser(String username, String role, String fname, String lname,
                     String email, String pass, LocalDate created_at, byte[] photo);
+    void addMember(String username, String role, String fname, String lname,
+                   String email, String pass, LocalDate created_at);
 }
