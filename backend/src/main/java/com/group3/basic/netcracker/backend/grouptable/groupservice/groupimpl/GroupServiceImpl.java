@@ -4,9 +4,11 @@ import com.group3.basic.netcracker.backend.grouptable.dao.GroupDAO;
 import com.group3.basic.netcracker.backend.grouptable.entity.Group;
 import com.group3.basic.netcracker.backend.grouptable.groupservice.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GroupServiceImpl implements GroupService {
     private final GroupDAO groupDAO;
 
