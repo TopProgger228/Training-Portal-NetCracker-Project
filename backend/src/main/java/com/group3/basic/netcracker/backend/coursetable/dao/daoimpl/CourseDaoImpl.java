@@ -20,7 +20,7 @@ public class CourseDaoImpl implements CourseDAO {
     }
 
     @Override
-    public void createUser(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, String learn_direction, int user_id, int qty_per_week) {
+    public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, String learn_direction, int user_id, int qty_per_week) {
         String SQL = "INSERT INTO \"Course\" (name, start_date, end_date, info, skill_level, learn_direction, user_id, qty_per_week) VALUES (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, learn_direction, user_id, qty_per_week);
     }

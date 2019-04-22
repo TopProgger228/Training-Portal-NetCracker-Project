@@ -1,5 +1,6 @@
 package com.group3.basic.netcracker.backend.coursetable.courseservice.serviceimpl;
 
+import com.group3.basic.netcracker.backend.coursetable.courseservice.CourseService;
 import com.group3.basic.netcracker.backend.coursetable.dao.CourseDAO;
 import com.group3.basic.netcracker.backend.coursetable.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CourseServiceImpl implements CourseDAO{
+public class CourseServiceImpl implements CourseService{
     private final CourseDAO courseDAO;
 
     @Autowired
