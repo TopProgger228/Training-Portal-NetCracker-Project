@@ -16,7 +16,7 @@ public interface UserDAO {
 
     void removeUser(int id);
 
-    void updateUser(String username, String  role, String fname, String lname,
+    void updateUser(int id, String username, String  role, String fname, String lname,
                     String email, String pass, LocalDate created_at, byte[] photo);
 
     List listUsersForDisplay(String role);

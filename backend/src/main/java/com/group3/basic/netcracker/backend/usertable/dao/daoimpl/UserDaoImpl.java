@@ -76,9 +76,9 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
+    public void updateUser(int id, String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
         String SQL = "UPDATE \"User\" SET username = ?, role = ?, fname = ?, lname = ?, email = ?, pass = ?, created_at = ?, photo = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo);
+        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo, id);
         System.out.println("User with id: " + username + " successfully updated.");
     }
 }
