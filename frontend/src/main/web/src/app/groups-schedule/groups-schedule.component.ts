@@ -7,6 +7,8 @@ import {CoursesService} from "./courses.service";
 import {Courses} from "./courses";
 import {UserService} from "../services/user.service";
 import {UserModel} from "../services/user-model";
+import {StudySchedule} from "./study-schedule";
+import {ScheduleService} from "./schedule.service";
 
 @Component({
   selector: 'app-groups-schedule',
@@ -18,11 +20,14 @@ export class GroupsScheduleComponent implements OnInit {
   timeSlots: Timeslot[];
   courses: Courses[];
   students: UserModel[];
+  studySchedule: StudySchedule = new StudySchedule();
 
   loggedout = false;
+  submitted = false;
 
   constructor(private router: Router, private timeSlotService: TimeSlotServiceService,
-              private courseService: CoursesService, private userService: UserService,private token: TokenStorageService) { }
+              private courseService: CoursesService, private userService: UserService,
+              private token: TokenStorageService, private scheduleService: ScheduleService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
