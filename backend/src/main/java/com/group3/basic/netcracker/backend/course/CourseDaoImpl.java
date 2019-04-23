@@ -1,18 +1,13 @@
 //package com.group3.basic.netcracker.backend.course;
 //
-//import java.sql.Time;
-//import java.time.LocalDate;
-//import java.time.LocalTime;
-//import java.util.List;
-//
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.jdbc.core.JdbcTemplate;
 //import org.springframework.stereotype.Repository;
 //import org.springframework.transaction.annotation.Transactional;
 //
-//import com.group3.basic.netcracker.backend.timeslot.TimeSlot;
-//import com.group3.basic.netcracker.backend.timeslot.TimeSlotDao;
-//import com.group3.basic.netcracker.backend.timeslot.TimeSlotRowMapper;
+//
+//import java.time.LocalDate;
+//import java.util.List;
 //
 //@Transactional
 //	@Repository
@@ -65,4 +60,4 @@
 //		}
 //
 //}
-//
+////

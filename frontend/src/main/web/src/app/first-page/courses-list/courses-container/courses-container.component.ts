@@ -10,7 +10,7 @@ import { Course } from '../course';
 })
 export class CoursesContainerComponent implements OnInit {
 
-  courses: Array<Course> = COURSES;
+  coursesC: Array<Course> = COURSES;
   constructor() { }
 
   ngOnInit() {
