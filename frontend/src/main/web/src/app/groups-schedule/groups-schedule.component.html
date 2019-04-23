@@ -26,6 +26,19 @@
                 <td>{{ timeslot.endTime }}</td>
                 <td>{{ timeslot.weekDay }}</td>
               </tr>
+
+
+
+              <td align="center">
+                <select name="select">
+                  <option *ngFor="let timeslot of timeSlots">
+                    {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
+
+                  </option>
+                </select>
+              </td>
+
+
               </tbody>
             </table>
           </ng-template>
@@ -34,6 +47,5 @@
     </div>
 
   </div>
-
   <app-footer></app-footer>
 </ng-template>
