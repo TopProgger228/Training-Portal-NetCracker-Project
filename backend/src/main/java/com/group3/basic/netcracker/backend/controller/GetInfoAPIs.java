@@ -2,6 +2,7 @@ package com.group3.basic.netcracker.backend.controller;
 
 
 import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
+import com.group3.basic.netcracker.backend.timeslot.TimeSlotDaoImplement;
 import com.group3.basic.netcracker.backend.usertable.dao.daoimpl.UserDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -52,5 +53,11 @@ public class GetInfoAPIs {
     public List getStudents(){
         UserDaoImpl jdbcTemplateUserDao = context.getBean(UserDaoImpl.class);
         return jdbcTemplateUserDao.listUsersForDisplay("Student");
+    }
+
+    @GetMapping("/timeslot")
+    public List getTimeSlots(){
+        TimeSlotDaoImplement timeSlotDaoImplement = context.getBean(TimeSlotDaoImplement.class);
+        return timeSlotDaoImplement.listTimeSlots();
     }
 }
