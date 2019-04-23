@@ -17,6 +17,7 @@ import { UsersInfoComponent } from './users-info/users-info.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ; 
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.component';
+import {CoursesListComponent} from "./first-page/courses-list/courses-list.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.compo
 
     UsersInfoComponent,
     AddNewManagerComponent,
-    GroupsScheduleComponent,
+    GroupsScheduleComponent
   ],
   imports: [
     BrowserModule,

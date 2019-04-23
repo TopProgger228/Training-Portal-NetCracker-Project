@@ -2,7 +2,7 @@ package com.group3.basic.netcracker.backend.controller;
 
 
 import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
-import com.group3.basic.netcracker.backend.coursetable.dao.daoimpl.CourseDaoImpl;
+import com.group3.basic.netcracker.backend.course.CourseDaoImpl;
 import com.group3.basic.netcracker.backend.timeslot.TimeSlotDaoImplement;
 import com.group3.basic.netcracker.backend.usertable.dao.daoimpl.UserDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
