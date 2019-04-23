@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { UsersInfoComponent } from './users-info/users-info.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ; 
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
+import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AddNewManagerComponent } from './add-new-manager/add-new-manager.compon
 
     UsersInfoComponent,
     AddNewManagerComponent,
+    GroupsScheduleComponent,
   ],
   imports: [
     BrowserModule,
