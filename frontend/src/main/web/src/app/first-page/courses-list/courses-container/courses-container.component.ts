@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { COURSES } from '../default-courses';
-import { Course } from '../course';
 import {StockCourses} from "../stock-courses";
 
 

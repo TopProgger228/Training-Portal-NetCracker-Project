@@ -33,7 +33,7 @@
                 <select name="select">
                   <option disabled>Choose time</option>
                   <option *ngFor="let timeslot of timeSlots">
-                    {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
+                    {{timeslot.id}} {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
                   </option>
                 </select>
               </td>
@@ -42,7 +42,16 @@
                 <select name="select2">
                   <option disabled>Choose course</option>
                   <option *ngFor="let course of courses">
-                    {{course.name}} {{course.info}}
+                    {{course.id}} {{course.name}} {{course.info}}
+                  </option>
+                </select>
+              </td>
+
+              <td align="center">
+                <select name="select3">
+                  <option disabled>Choose student</option>
+                  <option *ngFor="let student of students">
+                    {{student.id}} {{student.fname}}
                   </option>
                 </select>
                 <input type="submit" value="Send"/>

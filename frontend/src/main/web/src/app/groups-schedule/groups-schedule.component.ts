@@ -3,8 +3,10 @@ import {Timeslot} from "./timeslot";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../auth/token-storage.service";
 import {TimeSlotServiceService} from "./time-slot-service.service";
-import {Course} from "../first-page/courses-list/course";
 import {CoursesService} from "./courses.service";
+import {Courses} from "./courses";
+import {UserService} from "../services/user.service";
+import {UserModel} from "../services/user-model";
 
 @Component({
   selector: 'app-groups-schedule',
@@ -14,11 +16,13 @@ import {CoursesService} from "./courses.service";
 export class GroupsScheduleComponent implements OnInit {
 
   timeSlots: Timeslot[];
-  courses: Course[];
+  courses: Courses[];
+  students: UserModel[];
 
   loggedout = false;
 
-  constructor(private router: Router, private timeSlotService: TimeSlotServiceService, private courseService: CoursesService,private token: TokenStorageService) { }
+  constructor(private router: Router, private timeSlotService: TimeSlotServiceService,
+              private courseService: CoursesService, private userService: UserService,private token: TokenStorageService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
@@ -29,6 +33,10 @@ export class GroupsScheduleComponent implements OnInit {
       this.courseService.getCourses()
         .subscribe(data => {
           this.courses = data;
+        })
+      this.userService.getStudents()
+        .subscribe(data => {
+          this.students = data;
         })
     }else {
       this.loggedout = true;
