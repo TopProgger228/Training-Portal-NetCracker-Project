@@ -17,10 +17,17 @@ export class AddNewManagerComponent{
 
   }
 
-  onSubmit(user : User){
-    this.httpService.addMember(user).subscribe(
-      (data)=>console.log(data)
-    );
+  onSubmit(){
+    console.log(this.userModel);
+    this.httpService.addMember(this.userModel).subscribe(
+      value => {
+        console.log('[POST] create user successfully', value);
+      }, error => {
+        console.log('FAIL to create user!');
+      },
+      () => {
+        console.log('POST user - now completed.');
+      });
   }
 }
 

@@ -24,7 +24,7 @@ public class GetInfoAPIs {
     private ApplicationContext context;
 
     @Autowired
-    public GetInfoAPIs(ApplicationContext context){
+    public GetInfoAPIs( ApplicationContext context){
         this.context = context;
     }
 
