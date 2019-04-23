@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Course} from "./course";
+import {Courses} from "../../groups-schedule/courses";
 import {Observable} from "rxjs";
 
 const httpOptions = {
@@ -17,7 +17,7 @@ export class CourseService {
   constructor(private http: HttpClient) {
   }
 
-  createNewCourse(newCourse: Course): Observable<any> {
+  createNewCourse(newCourse: Courses): Observable<any> {
     return this.http.post<string>(this.createCourseUrl, newCourse, httpOptions);
   }
 }

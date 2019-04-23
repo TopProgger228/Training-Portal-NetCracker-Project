@@ -24,10 +24,10 @@ const routes: Routes = [
     path: 'admin/groups-schedule',
     component: GroupsScheduleComponent
   },
- /* {
-    path: 'admin/courses-list',
+  {
+    path: 'admin/create_new_course',
     component: CoursesListComponent
-  },*/
+  },
   {
     path: 'admin/add-user',
     component: AddNewManagerComponent

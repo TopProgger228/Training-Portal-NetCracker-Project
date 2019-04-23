@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDAO {
 
     @Override
     public List listUsersForDisplay(String role) {
-        String SQL = ("SELECT fname, lname, username, email FROM \"User\" WHERE role = '" + role + "';");
+        String SQL = ("SELECT fname, lname, username, email, id FROM \"User\" WHERE role = '" + role + "';");
         List Users = jdbcTemplate.query(SQL, new UserForDisplayRowMapper());
         return Users;
     }

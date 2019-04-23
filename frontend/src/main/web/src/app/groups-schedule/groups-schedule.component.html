@@ -8,7 +8,8 @@
     <div style="width: 80%;  margin: 20px auto;">
       <ngb-tabset>
         <ngb-tab>
-          <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">Timeslots</span></ng-template>
+          <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">Timeslots</span>
+          </ng-template>
           <ng-template ngbTabContent>
             <table class="table table-striped">
               <thead>
@@ -28,7 +29,6 @@
               </tr>
 
 
-
               <td align="center">
                 <select name="select">
                   <option disabled>Choose time</option>
@@ -45,9 +45,18 @@
                     {{course.name}} {{course.info}}
                   </option>
                 </select>
-                <input type="submit" value="Send"/>
               </td>
 
+              <td align="center">
+                <select name="select3">
+                  <option disabled>Choose student</option>
+                  <option *ngFor="let student of students">
+                    {{student.fname}}
+                  </option>
+                </select>
+                <input type="submit" value="Send"/>
+
+              </td>
 
               </tbody>
             </table>
