@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../auth/token-storage.service";
-import {CoursesService} from "./courses.service";
-import {Courses} from "./courses";
+import {Course} from "./course";
+import {CourseService} from "./course.service";
 
 @Component({
   selector: 'app-courses-list',
@@ -11,29 +11,46 @@ import {Courses} from "./courses";
 })
 export class CoursesListComponent implements OnInit {
 
-  courses: Courses[];
+  form: any = {};
+  course: Course;
 
-  loggedout = false;
+  roles: string[] = [];
+  errorMessage = '';
 
-  constructor(private router: Router, private coursesService: CoursesService, private token: TokenStorageService) { }
+  constructor(private courseService: CourseService,
+              private router: Router,
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    if (this.token.getToken()) {
-      this.coursesService.getCourses()
-        .subscribe(data => {
-          this.courses = data;
-        })
-    }else {
-      this.loggedout = true;
-      this.router.navigate(['auth/login']);
-    };
-  };
+    if (this.tokenStorage.getToken()) {
 
-  logout() {
-    this.loggedout = true;
-    this.token.signOut();
+    }
+  }
+
+  onSubmit() {
+    console.log(this.form);
+
+    this.course = new Course(
+      this.form.name,
+      this.form.info,
+      this.form.trainer,
+      this.form.skill_level,
+      this.form.learn_direction);
+
+    this.courseService.createNewCourse(this.course).subscribe(
+      data => {
+        console.log(data);
+
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+      }
+    );
+  }
+
+  reloadPage() {
     window.location.reload();
-    this.router.navigate(['auth/login']);
   }
 
 }

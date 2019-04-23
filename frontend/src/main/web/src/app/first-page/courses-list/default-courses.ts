@@ -1,5 +1,6 @@
 import { Course } from './course';
-export const COURSES: Course[] = [
+import {StockCourses} from "./stock-courses";
+export const COURSES: StockCourses[] = [
     {name: "Photoshop CC 2019 MasterClass", 
     trainer: "Martin Perhiniak", 
     level: "hurd", 

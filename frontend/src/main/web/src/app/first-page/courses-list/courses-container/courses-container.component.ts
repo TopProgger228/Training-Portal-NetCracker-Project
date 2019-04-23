@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { COURSES } from '../default-courses';
 import { Course } from '../course';
+import {StockCourses} from "../stock-courses";
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Course } from '../course';
 })
 export class CoursesContainerComponent implements OnInit {
 
-  coursesC: Array<Course> = COURSES;
+  coursesC: Array<StockCourses> = COURSES;
   constructor() { }
 
   ngOnInit() {
