@@ -1,16 +1,15 @@
 package com.group3.basic.netcracker.backend.shedule;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.TreeMap;
+
+import javax.management.Query;
+import javax.management.ValueExp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.group3.basic.netcracker.backend.course.Course;
-import com.group3.basic.netcracker.backend.course.CourseDao;
-import com.group3.basic.netcracker.backend.course.CourseRowMapper;
 
 	@Transactional
 	@Repository
@@ -45,7 +44,7 @@ import com.group3.basic.netcracker.backend.course.CourseRowMapper;
 	    }
 
 	    @Override
-	    public void updateStudySchedule(int courseId, int userId, int timeSlotId, boolean isChoosen) {
+	    public void updateStudySchedule(int courseId, int userId, int timeSlotId, boolean isChoosen, int id) {
 	        String SQL = "UPDATE \"StudySchedule\" SET course_id = ?, time_slot_id = ?, is_choosen = ? WHERE id = ?";
 	        jdbcTemplate.update(SQL, courseId, userId, timeSlotId, isChoosen);
 	        System.out.println("StudySchedule updated.");
@@ -55,6 +54,19 @@ import com.group3.basic.netcracker.backend.course.CourseRowMapper;
 			 String SQL = "INSERT INTO \"StudySchedule\" (course_id, user_id, time_slot_id, is_choosen) VALUES (?,?,?,?)";
 		        jdbcTemplate.update(SQL, courseId, userId, timeSlotId, isChoosen);
 		        System.out.println("StudySchedule created.");
+		}
+
+		@Override
+		public TreeMap<Integer, Integer> getChooseCount(int course) {
+			
+			TreeMap<Integer, Integer> tm = new TreeMap<Integer, Integer>();
+			int timeslot = this.jdbcTemplate.queryForObject("select time_slot_id as TimeSlot from \"StudySchedule\" "
+					+ "where course_id = ? group by time_slot_id;", Integer.class, course);
+			int count = this.jdbcTemplate.queryForObject(
+					"select count(id) as Voted from \"StudySchedule\"" + "where course_id = ? ;", Integer.class, course);
+			tm.put(timeslot, count);
+			return tm;
+		}
 		}
 
 	}
