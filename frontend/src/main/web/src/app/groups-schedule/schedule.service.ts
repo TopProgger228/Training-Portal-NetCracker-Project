@@ -16,7 +16,7 @@ export class ScheduleService {
 
   constructor(private http: HttpClient) { }
 
-  createStudySchedule(studySceduler: Object): Observable<any> {
-    return this.http.post<StudySchedule>(this.studyUrl, httpOptions);
+  createStudySchedule(studySceduler: StudySchedule): Observable<any> {
+    return this.http.post<StudySchedule>(this.studyUrl, studySceduler,httpOptions);
   }
 }
