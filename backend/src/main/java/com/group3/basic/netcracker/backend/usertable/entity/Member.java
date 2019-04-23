@@ -3,17 +3,18 @@ package com.group3.basic.netcracker.backend.usertable.entity;
 import javax.validation.constraints.NotBlank;
 
 public class Member {
-    @NotBlank
-    private String username;
-
-    @NotBlank
-    private String role;
 
     @NotBlank
     private String fname;
 
     @NotBlank
     private String lname;
+
+    @NotBlank
+    private String role;
+
+    @NotBlank
+    private String username;
 
     @NotBlank
     private String email;

@@ -9,7 +9,7 @@
       <h1>User Form</h1>
       <br>
       <br>
-      <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+      <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
         <div class="form-group">
           <label for="firstName">First name</label>
           <input #firstName="ngModel" [(ngModel)]="userModel.firstName" class="form-control" id="firstName" name="firstName"

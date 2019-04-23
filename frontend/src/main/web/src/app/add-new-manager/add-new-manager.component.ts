@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import {User} from "../services/user";
+import {AddMemberService} from "../services/add-member.service";
 
 @Component({
   selector: 'app-add-new-manager',
@@ -9,13 +10,17 @@ import {User} from "../services/user";
 export class AddNewManagerComponent{
   roles = ['Trainer', 'Manager'];
 
-  userModel = new User('Dima', 'Pylypiuk', this.roles[0], 'user1',
-    'user@gmail.com', 'userpass');
+  userModel = new User('', '', this.roles[0], '',
+    '', '');
 
-  submitted = false;
+  constructor(private httpService : AddMemberService){
 
-  onSubmit(){
-    this.submitted = true;
+  }
+
+  onSubmit(user : User){
+    this.httpService.addMember(user).subscribe(
+      (data)=>console.log(data)
+    );
   }
 }
 
