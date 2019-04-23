@@ -21,20 +21,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class GetInfoAPIs {
 
-    private final AuthenticationManager authenticationManager;
-
-    private final PasswordEncoder encoder;
-
-    private final JwtProvider jwtProvider;
-
     private ApplicationContext context;
 
     @Autowired
-    public GetInfoAPIs(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
-                        JwtProvider jwtProvider, ApplicationContext context){
-        this.authenticationManager = authenticationManager;
-        this.encoder = passwordEncoder;
-        this.jwtProvider = jwtProvider;
+    public GetInfoAPIs(ApplicationContext context){
         this.context = context;
     }
 
