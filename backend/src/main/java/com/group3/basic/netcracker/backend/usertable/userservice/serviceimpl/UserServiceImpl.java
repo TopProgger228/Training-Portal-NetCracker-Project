@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List getTrainers() {
-        return userDAO.getTrainers();
+        return userDao.getTrainers();
     }
 
 

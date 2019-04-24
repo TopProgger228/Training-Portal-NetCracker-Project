@@ -28,7 +28,6 @@ public interface UserDao {
 
     void updateUserName(int id, String newUsername);
 
-    boolean isUserExists(String username, String email);
 
     void updateUserFirstName(int id, String newFirstName);
 

@@ -3,8 +3,7 @@ package com.group3.basic.netcracker.backend.controller;
 
 import com.group3.basic.netcracker.backend.authorization.message.response.ResponseMessage;
 import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
-import com.group3.basic.netcracker.backend.course.Course;
-import com.group3.basic.netcracker.backend.course.CourseDaoImpl;
+import com.group3.basic.netcracker.backend.coursetable.dao.daoimpl.CourseDaoImpl;
 import com.group3.basic.netcracker.backend.shedule.StudySchedule;
 import com.group3.basic.netcracker.backend.shedule.StudyScheduleDao;
 import com.group3.basic.netcracker.backend.shedule.StudyScheduleDaoImpl;

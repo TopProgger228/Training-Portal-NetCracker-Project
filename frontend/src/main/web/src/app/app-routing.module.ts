@@ -27,16 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'admin/create_new_course',
-    component: CoursesListComponent
+    component: AddNewCourseComponent
   },
   {
     path: 'admin/add-user',
     component: AddNewManagerComponent
   },
-  {
-    path: 'admin/add-course',
-    component: AddNewCourseComponent
-  },
+
   {
     path: 'auth/login',
     component: SignInComponent
