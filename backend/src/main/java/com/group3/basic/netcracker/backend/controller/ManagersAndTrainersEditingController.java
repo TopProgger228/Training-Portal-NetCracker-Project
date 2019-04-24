@@ -24,10 +24,14 @@ public class ManagersAndTrainersEditingController {
 
     @PostMapping("addmember")
     public ResponseEntity<?> addMember(@Valid @RequestBody Member member){
-        userService.addMember(member.getUsername(), member.getRole(),
-                member.getFname(), member.getLname(), member.getEmail(),
-                member.getPassword(), LocalDate.now());
-        return new ResponseEntity<> (new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
+        if (userService.isUserExists(member.getUsername(), member.getEmail())){
+            return new ResponseEntity<>(new ResponseMessage("User exists!"), HttpStatus.BAD_REQUEST);
+        }else {
+            userService.addMember(member.getUsername(), member.getRole(),
+                    member.getFname(), member.getLname(), member.getEmail(),
+                    member.getPassword(), LocalDate.now());
+            return new ResponseEntity<> (new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
+        }
     }
 
     @DeleteMapping("delete")

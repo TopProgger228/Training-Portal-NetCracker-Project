@@ -28,4 +28,6 @@ public interface UserService {
     void updateUserLastName(int id, String newLastName);
 
     void updateUserEmail(int id, String newEmail);
+
+    boolean isUserExists(String username, String email);
 }
