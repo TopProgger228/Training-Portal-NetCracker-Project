@@ -6,34 +6,54 @@
 
     <app-menu></app-menu>
     <div style="width: 80%;  margin: 20px auto;">
-      <ngb-tabset>
-        <ngb-tab>
-          <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">Timeslots</span>
-          </ng-template>
-          <ng-template ngbTabContent>
-            <table class="table table-striped">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Start time</th>
-                <th scope="col">End time</th>
-                <th scope="col">Week day</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let timeslot of timeSlots; index as i">
-                <th scope="row">{{ i + 1 }}</th>
-                <td>{{timeslot.startTime}}</td>
-                <td>{{ timeslot.endTime }}</td>
-                <td>{{ timeslot.weekDay }}</td>
-              </tr>
+
+
+      <div id="bg-image">
+        <div id="bg-overlay">
+          <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+              <<form class="text-center" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <div class="form-group  text-center">
+                  <label for="course_id">Course_id</label>
+                  <input type="text" class="form-control" name="course_id" [(ngModel)]="form.course_id" #course_id="ngModel" required />
+
+                </div>
+                <div class="form-group  text-center">
+                  <label for="user_id">User_id</label>
+                  <input type="text" class="form-control" name="user_id" [(ngModel)]="form.user_id" #user_id="ngModel" required />
+
+                </div>
+                <div class="form-group text-center">
+                  <label for="time_slot_id">Timeslot</label>
+                  <input type="text" class="form-control" name="time_slot_id" [(ngModel)]="form.time_slot_id" #time_slot_id="ngModel"
+                         required />
+
+                </div>
+                <div class="form-group text-center">
+                  <label for="is_choosen">is_choosen</label>
+                  <input type="text" class="form-control" name="is_choosen" [(ngModel)]="form.is_choosen" #is_choosen="ngModel" required/>
+
+                </div>
+                <div class="form-group text-center">
+                  <button class="btn btn-outline-secondary ">Send</button>
+                  <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning" style="font-size: 15pt">
+                    Signup failed!<br />{{errorMessage}}
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
 
               <td align="center">
                 <select name="select">
                   <option disabled>Choose time</option>
                   <option *ngFor="let timeslot of timeSlots">
-                    {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
+                    {{timeslot.id}} {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
                   </option>
                 </select>
               </td>
@@ -42,7 +62,7 @@
                 <select name="select2">
                   <option disabled>Choose course</option>
                   <option *ngFor="let course of courses">
-                    {{course.name}} {{course.info}}
+                    {{course.id}} {{course.name}} {{course.info}}
                   </option>
                 </select>
               </td>
@@ -51,18 +71,14 @@
                 <select name="select3">
                   <option disabled>Choose student</option>
                   <option *ngFor="let student of students">
-                    {{student.fname}}
+                    {{student.id}} {{student.fname}}
                   </option>
                 </select>
                 <input type="submit" value="Send"/>
 
               </td>
 
-              </tbody>
-            </table>
-          </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
+
     </div>
 
   </div>
