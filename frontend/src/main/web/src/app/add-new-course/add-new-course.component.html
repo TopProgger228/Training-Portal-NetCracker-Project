@@ -1,0 +1,69 @@
+<div class="container">
+  <h1>Course Form</h1>
+  <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required
+             [(ngModel)]="course.name" name="name"
+             #firstName="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="start_date">Star date</label>
+      <input type="date" class="form-control" id="start_date" required
+             [(ngModel)]="course.start_date" name="start_date"
+             #start_date="ngModel">
+
+    </div>
+
+    <div class="form-group">
+      <label for="end_date">End date</label>
+      <input type="date" class="form-control" id="end_date" required
+             [(ngModel)]="course.end_date" name="end_date"
+             #end_date="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="info">Info</label>
+      <input type="text" class="form-control" id="info" required
+             [(ngModel)]="course.info" name="info"
+             #info="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="skill_level">Skill level</label>
+      <input type="text" class="form-control" id="skill_level" required
+             [(ngModel)]="course.skill_level" name="skill_level"
+             #skill_level="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="learn_direction">Skill level</label>
+      <input type="text" class="form-control" id="learn_direction" required
+             [(ngModel)]="course.learn_direction" name="learn_direction"
+             #learn_direction="ngModel">
+    </div>
+
+
+    <div class="form-group">
+      <label for="user_id">Trainer</label>
+      <select [(ngModel)]="course.user_id" class="form-control" id="user_id" name="user_id">
+        <option *ngFor="let t of trainers" [value]="t.id">{{t.fname}} {{t.lname}}</option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="qty_per_week">Quantity per week</label>
+      <input type="number" class="form-control" id="qty_per_week" required
+             [(ngModel)]="course.qty_per_week" name="qty_per_week"
+             #qty_per_week="ngModel">
+
+
+    </div>
+
+    <button type="submit" class="btn btn-success" >
+            <!--[disabled]="!courseForm.course.valid"-->Submit</button>
+
+  </form>
+</div>

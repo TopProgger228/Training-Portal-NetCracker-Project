@@ -14,6 +14,8 @@ public interface UserDAO {
 
     List listUsers();
 
+    List getTrainers();
+
     void removeUser(int id);
 
     void updateUser(int id, String username, String  role, String fname, String lname,

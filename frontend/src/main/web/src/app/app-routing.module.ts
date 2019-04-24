@@ -8,7 +8,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { UsersInfoComponent } from './users-info/users-info.component';
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 import {GroupsScheduleComponent} from "./groups-schedule/groups-schedule.component";
-
+import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
 
 const routes: Routes = [
   {
@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'admin/add-user',
     component: AddNewManagerComponent
+  },
+  {
+    path: 'admin/add-course',
+    component: AddNewCourseComponent
   },
   {
     path: 'auth/login',

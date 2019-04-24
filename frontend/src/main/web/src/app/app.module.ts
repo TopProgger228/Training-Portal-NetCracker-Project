@@ -17,6 +17,7 @@ import { UsersInfoComponent } from './users-info/users-info.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ; 
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.component';
+import { AddNewCourseComponent } from "./add-new-course/add-new-course.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.compo
     StartComponent,
     SignInComponent,
     RegisterComponent,
-
+    AddNewCourseComponent,
     UsersInfoComponent,
     AddNewManagerComponent,
     GroupsScheduleComponent,

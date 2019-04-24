@@ -35,6 +35,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List getTrainers() {
+        return userDAO.getTrainers();
+    }
+
+
+    @Override
     public void removeUser(int id) {
         userDAO.removeUser(id);
     }

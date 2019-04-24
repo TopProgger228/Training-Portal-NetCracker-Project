@@ -2,6 +2,7 @@ package com.group3.basic.netcracker.backend.usertable.dao.daoimpl;
 
 import com.group3.basic.netcracker.backend.usertable.dao.UserDAO;
 import com.group3.basic.netcracker.backend.usertable.entity.User;
+import com.group3.basic.netcracker.backend.usertable.rowmapper.TrainerRowMapper;
 import com.group3.basic.netcracker.backend.usertable.rowmapper.UserForDisplayRowMapper;
 import com.group3.basic.netcracker.backend.usertable.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,13 @@ public class UserDaoImpl implements UserDAO {
         String SQL = "SELECT * FROM \"User\"";
         List Users = jdbcTemplate.query(SQL, new UserRowMapper());
         return Users;
+    }
+
+    @Override
+    public List getTrainers() {
+        String SQL = "SELECT id, fname, lname, username, email FROM \"User\" where role= 'Trainer' ";
+        List trainers = jdbcTemplate.query(SQL, new TrainerRowMapper());
+        return trainers;
     }
 
     @Override
