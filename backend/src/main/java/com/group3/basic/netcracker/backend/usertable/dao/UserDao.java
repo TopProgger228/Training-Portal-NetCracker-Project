@@ -5,7 +5,7 @@ import com.group3.basic.netcracker.backend.usertable.entity.User;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface UserDAO {
+public interface UserDao {
 
     void createUser(String username, String  role, String fname, String lname,
                     String email, String pass, LocalDate created_at, byte[] photo);
@@ -31,4 +31,6 @@ public interface UserDAO {
     void updateUserLastName(int id, String newLastName);
 
     void updateUserEmail(int id, String newEmail);
+
+    boolean isUserExists(String username, String email);
 }

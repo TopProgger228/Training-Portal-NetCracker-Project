@@ -10,10 +10,12 @@ import com.group3.basic.netcracker.backend.shedule.StudyScheduleDao;
 import com.group3.basic.netcracker.backend.shedule.StudyScheduleDaoImpl;
 import com.group3.basic.netcracker.backend.timeslot.TimeSlotDaoImplement;
 import com.group3.basic.netcracker.backend.usertable.dao.daoimpl.UserDaoImpl;
+import com.group3.basic.netcracker.backend.usertable.userservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -30,27 +32,27 @@ public class GetInfoAPIs {
 
     private ApplicationContext context;
 
+    private final UserService userService;
+
     @Autowired
-    public GetInfoAPIs( ApplicationContext context){
+    public GetInfoAPIs( ApplicationContext context, UserService userService){
         this.context = context;
+        this.userService = userService;
     }
 
     @GetMapping("/usersinfo/trainers")
     public List getTrainers(){
-        UserDaoImpl jdbcTemplateUserDao = context.getBean(UserDaoImpl.class);
-        return jdbcTemplateUserDao.listUsersForDisplay("Trainer");
+        return userService.listUsersForDisplay("Trainer");
     }
 
     @GetMapping("/usersinfo/managers")
     public List getManagers(){
-        UserDaoImpl jdbcTemplateUserDao = context.getBean(UserDaoImpl.class);
-        return jdbcTemplateUserDao.listUsersForDisplay("Manager");
+        return userService.listUsersForDisplay("Manager");
     }
 
     @GetMapping("/usersinfo/students")
     public List getStudents(){
-        UserDaoImpl jdbcTemplateUserDao = context.getBean(UserDaoImpl.class);
-        return jdbcTemplateUserDao.listUsersForDisplay("Student");
+        return userService.listUsersForDisplay("Student");
     }
 
     @GetMapping("/timeslot")

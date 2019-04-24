@@ -30,4 +30,6 @@ public interface UserService {
     void updateUserEmail(int id, String newEmail);
 
     boolean isUserExists(String username, String email);
+
+    List listUsersForDisplay(String role);
 }

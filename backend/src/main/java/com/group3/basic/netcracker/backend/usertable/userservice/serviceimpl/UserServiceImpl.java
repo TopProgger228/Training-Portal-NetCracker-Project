@@ -74,4 +74,9 @@ public class UserServiceImpl implements UserService {
     public boolean isUserExists(String username, String email) {
         return userDao.isUserExists(username, email);
     }
+
+    @Override
+    public List listUsersForDisplay(String role) {
+        return userDao.listUsersForDisplay(role);
+    }
 }
