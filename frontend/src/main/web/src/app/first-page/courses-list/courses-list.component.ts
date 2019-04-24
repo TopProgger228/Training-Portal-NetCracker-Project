@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {TokenStorageService} from "../../auth/token-storage.service";
+//import {Course} from "../../groups-schedule/course";
+import {CourseService} from "./course.service";
 
 @Component({
   selector: 'app-courses-list',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesListComponent implements OnInit {
 
-  constructor() { }
+  form: any = {};
+
+  roles: string[] = [];
+  errorMessage = '';
+
+  constructor(private courseService: CourseService,
+              private router: Router,
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+
+    }
   }
+
 
 }

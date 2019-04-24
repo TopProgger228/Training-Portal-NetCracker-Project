@@ -6,27 +6,36 @@ import com.group3.basic.netcracker.backend.usertable.userservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("edit")
 public class ManagersAndTrainersEditingController {
-    private UserService userService;
+    private final UserService userService;
+
+    private final PasswordEncoder encoder;
 
     @Autowired
-    public ManagersAndTrainersEditingController(UserService userService){
+    public ManagersAndTrainersEditingController(UserService userService, PasswordEncoder encoder){
         this.userService = userService;
+        this.encoder = encoder;
     }
 
     @PostMapping("addmember")
     public ResponseEntity<?> addMember(@Valid @RequestBody Member member){
-        userService.addMember(member.getUsername(), member.getRole(),
-                member.getFname(), member.getLname(), member.getEmail(),
-                member.getPassword(), LocalDate.now());
-        return new ResponseEntity<> (new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
+        if (userService.isUserExists(member.getUsername(), member.getEmail())){
+            return new ResponseEntity<>(new ResponseMessage("User exists!"), HttpStatus.BAD_REQUEST);
+        }else {
+            userService.addMember(member.getUsername(), member.getRole(),
+                    member.getFname(), member.getLname(), member.getEmail(),
+                    encoder.encode(member.getPassword()), LocalDate.now());
+            return new ResponseEntity<> (new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
+        }
     }
 
     @DeleteMapping("delete")

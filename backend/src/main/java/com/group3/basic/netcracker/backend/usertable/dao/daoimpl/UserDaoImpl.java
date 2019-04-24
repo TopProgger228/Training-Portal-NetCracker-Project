@@ -1,6 +1,6 @@
 package com.group3.basic.netcracker.backend.usertable.dao.daoimpl;
 
-import com.group3.basic.netcracker.backend.usertable.dao.UserDAO;
+import com.group3.basic.netcracker.backend.usertable.dao.UserDao;
 import com.group3.basic.netcracker.backend.usertable.entity.User;
 import com.group3.basic.netcracker.backend.usertable.rowmapper.TrainerRowMapper;
 import com.group3.basic.netcracker.backend.usertable.rowmapper.UserForDisplayRowMapper;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class UserDaoImpl implements UserDAO {
+public class UserDaoImpl implements UserDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -71,7 +71,7 @@ public class UserDaoImpl implements UserDAO {
 
     @Override
     public List listUsersForDisplay(String role) {
-        String SQL = ("SELECT fname, lname, username, email FROM \"User\" WHERE role = '" + role + "';");
+        String SQL = ("SELECT fname, lname, username, email, id FROM \"User\" WHERE role = '" + role + "';");
         List Users = jdbcTemplate.query(SQL, new UserForDisplayRowMapper());
         return Users;
     }
@@ -119,5 +119,22 @@ public class UserDaoImpl implements UserDAO {
     public void updateUserEmail(int id, String newEmail) {
         String SQL = "UPDATE \"User\" SET email = ? WHERE id = ?";
         jdbcTemplate.update(SQL, newEmail, id);
+    }
+
+    @Override
+    public boolean isUserExists(String username, String email) {
+        if (isUserWithUsername(username) == 1 || isUserWithEmail(email) == 1){
+            return true;
+        }else return false;
+    }
+
+    private int isUserWithUsername(String username){
+        String SQL = "SELECT COUNT(*) FROM \"User\" WHERE username = ?";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, username);
+    }
+
+    private int isUserWithEmail(String email){
+        String SQL = "SELECT COUNT(*) FROM \"User\" WHERE email = ?";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, email);
     }
 }
