@@ -66,8 +66,12 @@ public class GetInfoAPIs {
     }
 
     @PostMapping("/create_new_studySchedule")
-    public ResponseEntity<?> createNewCourse(@Valid @RequestBody StudySchedule studySchedule){
+    public ResponseEntity<?> createNewStudySchedule(@Valid @RequestBody StudySchedule studySchedule){
         StudyScheduleDao studyScheduleDao = context.getBean(StudyScheduleDaoImpl.class);
+
+        CourseDaoImpl courseDaoImpl = context.getBean(CourseDaoImpl.class);
+        UserDaoImpl userDaoImpl = context.getBean(UserDaoImpl.class);
+        TimeSlotDaoImplement timeSlotDaoImplement = context.getBean(TimeSlotDaoImplement.class);
 
         studyScheduleDao.createStudySchedule(studySchedule.getCourseId(), studySchedule.getUserId(), studySchedule.getTimeSlotId(), studySchedule.isChoosen());
 
