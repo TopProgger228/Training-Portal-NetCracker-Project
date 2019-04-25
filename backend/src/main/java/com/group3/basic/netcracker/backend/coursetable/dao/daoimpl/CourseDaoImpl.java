@@ -36,7 +36,7 @@ public class CourseDaoImpl implements CourseDAO {
 
     @Override
     public List listCourses() {
-        String SQL = "SELECT * FROM \"Course\"";
+        String SQL = "SELECT id, name, info, user_id, skill_level, learn_direction, start_date, end_date, qty_per_week FROM \"Course\"";
         List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
         return courses;
     }

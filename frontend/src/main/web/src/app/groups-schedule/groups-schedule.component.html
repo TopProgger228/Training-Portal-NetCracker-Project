@@ -8,75 +8,21 @@
     <div style="width: 80%;  margin: 20px auto;">
 
 
-      <div id="bg-image">
-        <div id="bg-overlay">
-          <div class="container h-100">
-            <div class="row h-100 justify-content-center align-items-center">
-              <<form class="text-center" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                <div class="form-group  text-center">
-                  <label for="course_id">Course_id</label>
-                  <input type="text" class="form-control" name="course_id" [(ngModel)]="form.course_id" #course_id="ngModel" required />
+      <td align="center">
+        <select name="select">
+          <option disabled>Choose time</option>
+          <option *ngFor="let timeslot of timeSlots">
+            {{timeslot.id}} {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
+          </option>
+        </select>
+      </td>
 
-                </div>
-                <div class="form-group  text-center">
-                  <label for="user_id">User_id</label>
-                  <input type="text" class="form-control" name="user_id" [(ngModel)]="form.user_id" #user_id="ngModel" required />
-
-                </div>
-                <div class="form-group text-center">
-                  <label for="time_slot_id">Timeslot</label>
-                  <input type="text" class="form-control" name="time_slot_id" [(ngModel)]="form.time_slot_id" #time_slot_id="ngModel"
-                         required />
-
-                </div>
-                <div class="form-group text-center">
-                  <label for="is_choosen">is_choosen</label>
-                  <input type="text" class="form-control" name="is_choosen" [(ngModel)]="form.is_choosen" #is_choosen="ngModel" required/>
-
-                </div>
-                <div class="form-group text-center">
-                  <button class="btn btn-outline-secondary ">Send</button>
-                  <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning" style="font-size: 15pt">
-                    Signup failed!<br />{{errorMessage}}
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="course_id">Courses</label>
+        <select [(ngModel)]="studySchedule.course_id" class="form-control" id="course_id" name="course_id">
+          <option *ngFor="let c of courses" [value]="c.id">{{c.name}} {{c.info}}</option>
+        </select>
       </div>
-
-
-
-
-              <td align="center">
-                <select name="select">
-                  <option disabled>Choose time</option>
-                  <option *ngFor="let timeslot of timeSlots">
-                    {{timeslot.id}} {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
-                  </option>
-                </select>
-              </td>
-
-              <td align="center">
-                <select name="select2">
-                  <option disabled>Choose course</option>
-                  <option *ngFor="let course of courses">
-                    {{course.id}} {{course.name}} {{course.info}}
-                  </option>
-                </select>
-              </td>
-
-              <td align="center">
-                <select name="select3">
-                  <option disabled>Choose student</option>
-                  <option *ngFor="let student of students">
-                    {{student.id}} {{student.fname}}
-                  </option>
-                </select>
-                <input type="submit" value="Send"/>
-
-              </td>
 
 
     </div>

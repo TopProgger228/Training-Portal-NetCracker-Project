@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Timeslot} from "./timeslot";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../auth/token-storage.service";
@@ -17,19 +17,15 @@ import {SignUpInfo} from "../auth/signup-info";
   styleUrls: ['./groups-schedule.component.css']
 })
 export class GroupsScheduleComponent implements OnInit {
-
-  form: any = {};
+  loggedout = false;
   timeSlots: Timeslot[];
   courses: Courses[];
-  students: UserModel[];
-  studySchedule: StudySchedule;
-
-  loggedout = false;
-  submitted = false;
+  studySchedule = new StudySchedule(0,0,0,false);
 
   constructor(private router: Router, private timeSlotService: TimeSlotServiceService,
-              private courseService: CoursesService, private userService: UserService,
-              private token: TokenStorageService, private scheduleService: ScheduleService) { }
+              private coursesService: CoursesService, private httpService: ScheduleService,
+              private token: TokenStorageService) {
+  }
 
   ngOnInit() {
     if (this.token.getToken()) {
@@ -37,39 +33,29 @@ export class GroupsScheduleComponent implements OnInit {
         .subscribe(data => {
           this.timeSlots = data;
         })
-      this.courseService.getCourses()
+      this.coursesService.getCourses()
         .subscribe(data => {
           this.courses = data;
         })
-      this.userService.getStudents()
-        .subscribe(data => {
-          this.students = data;
-        })
-    }else {
+    } else {
       this.loggedout = true;
       this.router.navigate(['auth/login']);
     };
   };
 
+  submitted = false;
+
   onSubmit(){
-    console.log(this.form);
-
-    this.studySchedule = new StudySchedule(
-      //this.form.id,
-      this.form.course_id,
-      this.form.user_id,
-      this.form.time_slot_id,
-      this.form.is_choosen);
-
-    this.scheduleService.createStudySchedule(this.studySchedule).subscribe(
-      data => {
-        console.log(data);
-        this.router.navigate(['auth/login']);
+    console.log(this.studySchedule);
+    this.httpService.createStudySchedule(this.studySchedule).subscribe(
+      value => {
+        console.log('[POST] create schedule successfully', value);
+      }, error => {
+        console.log('FAIL to create schedule!');
       },
-      error => {
-        console.log(error);
-      }
-    );
+      () => {
+        console.log('POST schedule - now completed.');
+      });
   }
 
   logout() {

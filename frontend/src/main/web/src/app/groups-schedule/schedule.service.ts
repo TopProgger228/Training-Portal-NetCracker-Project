@@ -14,9 +14,9 @@ export class ScheduleService {
 
   private studyUrl = 'http://localhost:8080/api/create_new_studySchedule';
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient : HttpClient) { }
 
-  createStudySchedule(studySceduler: StudySchedule): Observable<any> {
-    return this.http.post<StudySchedule>(this.studyUrl, studySceduler,httpOptions);
+  createStudySchedule(studyScheduler: StudySchedule): Observable<any> {
+    return this.httpClient.post<StudySchedule>(this.studyUrl, studyScheduler,httpOptions);
   }
 }

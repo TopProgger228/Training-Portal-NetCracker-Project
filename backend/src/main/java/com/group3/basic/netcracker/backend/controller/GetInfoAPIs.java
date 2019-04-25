@@ -3,6 +3,7 @@ package com.group3.basic.netcracker.backend.controller;
 
 import com.group3.basic.netcracker.backend.authorization.message.response.ResponseMessage;
 import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
+import com.group3.basic.netcracker.backend.coursetable.courseservice.CourseService;
 import com.group3.basic.netcracker.backend.coursetable.dao.daoimpl.CourseDaoImpl;
 import com.group3.basic.netcracker.backend.shedule.StudySchedule;
 import com.group3.basic.netcracker.backend.shedule.StudyScheduleDao;
@@ -32,11 +33,13 @@ public class GetInfoAPIs {
     private ApplicationContext context;
 
     private final UserService userService;
+    private final CourseService courseService;
 
     @Autowired
-    public GetInfoAPIs( ApplicationContext context, UserService userService){
+    public GetInfoAPIs(ApplicationContext context, UserService userService, CourseService courseService){
         this.context = context;
         this.userService = userService;
+        this.courseService = courseService;
     }
 
     @GetMapping("/usersinfo/trainers")
@@ -62,8 +65,7 @@ public class GetInfoAPIs {
 
     @GetMapping("/courses-list")
     public List getCourses(){
-        CourseDaoImpl courseDaoImpl = context.getBean(CourseDaoImpl.class);
-        return courseDaoImpl.listCourses();
+        return courseService.listCourses();
     }
 
     @PostMapping("/create_new_studySchedule")
