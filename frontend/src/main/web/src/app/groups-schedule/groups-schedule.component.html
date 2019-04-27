@@ -12,14 +12,14 @@
         <select name="select">
           <option disabled>Choose time</option>
           <option *ngFor="let timeslot of timeSlots">
-            {{timeslot.id}} {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
+            {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
           </option>
         </select>
       </td>
 
       <div class="form-group">
         <label for="course_id">Courses</label>
-        <select [(ngModel)]="studySchedule.course_id" class="form-control" id="course_id" name="course_id">
+        <select [(ngModel)]="schedule.course_id" class="form-control" id="course_id" name="course_id">
           <option *ngFor="let c of courses" [value]="c.id">{{c.name}} {{c.info}}</option>
         </select>
       </div>
