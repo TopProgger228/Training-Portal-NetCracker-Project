@@ -5,11 +5,8 @@ import {TokenStorageService} from "../auth/token-storage.service";
 import {TimeSlotServiceService} from "./time-slot-service.service";
 import {CoursesService} from "./courses.service";
 import {Courses} from "./courses";
-import {UserService} from "../services/user.service";
-import {UserModel} from "../services/user-model";
-import {StudySchedule} from "./study-schedule";
 import {ScheduleService} from "./schedule.service";
-import {SignUpInfo} from "../auth/signup-info";
+import {Schedule} from "./schedule";
 
 @Component({
   selector: 'app-groups-schedule',
@@ -20,7 +17,7 @@ export class GroupsScheduleComponent implements OnInit {
   loggedout = false;
   timeSlots: Timeslot[];
   courses: Courses[];
-  studySchedule = new StudySchedule(0,0,0,false);
+  schedule = new Schedule(0,0,0,false);
 
   constructor(private router: Router, private timeSlotService: TimeSlotServiceService,
               private coursesService: CoursesService, private httpService: ScheduleService,
@@ -46,8 +43,8 @@ export class GroupsScheduleComponent implements OnInit {
   submitted = false;
 
   onSubmit(){
-    console.log(this.studySchedule);
-    this.httpService.createStudySchedule(this.studySchedule).subscribe(
+    console.log(this.schedule);
+    this.httpService.createStudySchedule(this.schedule).subscribe(
       value => {
         console.log('[POST] create schedule successfully', value);
       }, error => {

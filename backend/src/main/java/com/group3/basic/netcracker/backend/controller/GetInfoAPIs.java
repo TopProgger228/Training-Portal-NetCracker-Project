@@ -1,28 +1,19 @@
 package com.group3.basic.netcracker.backend.controller;
 
-
-import com.group3.basic.netcracker.backend.authorization.message.response.ResponseMessage;
-import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
-import com.group3.basic.netcracker.backend.coursetable.courseservice.CourseService;
-import com.group3.basic.netcracker.backend.coursetable.dao.daoimpl.CourseDaoImpl;
-import com.group3.basic.netcracker.backend.shedule.StudySchedule;
-import com.group3.basic.netcracker.backend.shedule.StudyScheduleDao;
-import com.group3.basic.netcracker.backend.shedule.StudyScheduleDaoImpl;
-import com.group3.basic.netcracker.backend.timeslot.TimeSlotDaoImplement;
-import com.group3.basic.netcracker.backend.usertable.dao.daoimpl.UserDaoImpl;
-import com.group3.basic.netcracker.backend.usertable.userservice.UserService;
+import com.group3.basic.netcracker.backend.dao.ScheduleDao;
+import com.group3.basic.netcracker.backend.dao.impl.ScheduleDaoImpl;
+import com.group3.basic.netcracker.backend.dao.impl.TimeSlotDaoImplement;
+import com.group3.basic.netcracker.backend.entity.Schedule;
+import com.group3.basic.netcracker.backend.service.CourseService;
+import com.group3.basic.netcracker.backend.service.UserService;
+import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -68,15 +59,11 @@ public class GetInfoAPIs {
         return courseService.listCourses();
     }
 
-    @PostMapping("/create_new_studySchedule")
-    public ResponseEntity<?> createNewStudySchedule(@Valid @RequestBody StudySchedule studySchedule){
-        StudyScheduleDao studyScheduleDao = context.getBean(StudyScheduleDaoImpl.class);
+    @PostMapping("/create_new_schedule")
+    public ResponseEntity<?> createNewSchedule(@Valid @RequestBody Schedule schedule){
+        ScheduleDao scheduleDao = context.getBean(ScheduleDaoImpl.class);
 
-        CourseDaoImpl courseDaoImpl = context.getBean(CourseDaoImpl.class);
-        UserDaoImpl userDaoImpl = context.getBean(UserDaoImpl.class);
-        TimeSlotDaoImplement timeSlotDaoImplement = context.getBean(TimeSlotDaoImplement.class);
-
-        studyScheduleDao.createStudySchedule(studySchedule.getCourseId(), studySchedule.getUserId(), studySchedule.getTimeSlotId(), studySchedule.isChoosen());
+        scheduleDao.createSchedule(schedule.getCourseId(), schedule.getUserId(), schedule.getTimeSlotId(), schedule.isChoosen());
 
         return new ResponseEntity<>(new ResponseMessage("Course created successfully!"), HttpStatus.OK);
     }

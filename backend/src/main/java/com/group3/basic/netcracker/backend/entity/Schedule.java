@@ -1,6 +1,6 @@
 package com.group3.basic.netcracker.backend.entity;
 
-public class StudySchedule {
+public class Schedule {
     int id;
     int courseId;
     int userId;

@@ -1,4 +1,4 @@
-export class StudySchedule {
+export class Schedule {
   constructor(
     public course_id: number,
     public user_id: number,

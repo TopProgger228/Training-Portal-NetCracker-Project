@@ -4,10 +4,16 @@ import java.time.LocalDate;
 
 import javax.validation.Valid;
 
-import com.group3.basic.netcracker.backend.usertable.dao.daoimpl.UserDaoImpl;
+
+import com.group3.basic.netcracker.backend.dao.impl.UserDaoImpl;
+import com.group3.basic.netcracker.backend.util.authorization.message.request.LoginForm;
+import com.group3.basic.netcracker.backend.util.authorization.message.request.SignUpForm;
+import com.group3.basic.netcracker.backend.util.authorization.message.response.JwtResponse;
+import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
+import com.group3.basic.netcracker.backend.util.authorization.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,12 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.group3.basic.netcracker.backend.authorization.message.request.LoginForm;
-import com.group3.basic.netcracker.backend.authorization.message.request.SignUpForm;
-import com.group3.basic.netcracker.backend.authorization.message.response.JwtResponse;
-import com.group3.basic.netcracker.backend.authorization.message.response.ResponseMessage;
-//import com.group3.basic.netcracker.backend.authorization.entity.Role;
-import com.group3.basic.netcracker.backend.authorization.security.jwt.JwtProvider;
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

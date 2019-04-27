@@ -1,10 +1,10 @@
 package com.group3.basic.netcracker.backend.controller;
 
 
-import com.group3.basic.netcracker.backend.authorization.message.response.ResponseMessage;
-import com.group3.basic.netcracker.backend.coursetable.courseservice.CourseService;
-import com.group3.basic.netcracker.backend.coursetable.entity.CourseForm;
-import com.group3.basic.netcracker.backend.usertable.userservice.UserService;
+import com.group3.basic.netcracker.backend.dto.CourseForm;
+import com.group3.basic.netcracker.backend.service.CourseService;
+import com.group3.basic.netcracker.backend.service.UserService;
+import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
