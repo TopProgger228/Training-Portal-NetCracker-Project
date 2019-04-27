@@ -15,6 +15,7 @@ public class TimeSlotRowMapper implements RowMapper<TimeSlot> {
 		timeSlot.setStartTime(row.getTime("start_time"));
 		timeSlot.setEndTime(row.getTime("end_time"));
 		timeSlot.setWeekDay(row.getString("week_day"));
+		timeSlot.setCourseId(row.getInt("course_id"));
 		return timeSlot;
 	}
 }

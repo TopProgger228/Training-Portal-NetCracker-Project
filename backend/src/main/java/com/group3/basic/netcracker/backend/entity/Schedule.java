@@ -2,7 +2,6 @@ package com.group3.basic.netcracker.backend.entity;
 
 public class Schedule {
     int id;
-    int courseId;
     int userId;
     int timeSlotId;
     boolean isChoosen;
@@ -13,14 +12,6 @@ public class Schedule {
 
     public void setId(int Id) {
         this.id = Id;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourse(int courseId) {
-        this.courseId = courseId;
     }
 
     public int getUserId() {

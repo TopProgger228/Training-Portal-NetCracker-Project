@@ -9,6 +9,6 @@ public interface TimeSlotDao {
 	    TimeSlot getTimeSlotById(int id);
 	    List<TimeSlot> listTimeSlots();
 	    void removeTimeSlot(int id);
-		void createTimeSlot(LocalTime of, LocalTime of2, String weekDay);
-		void updateTimeSlot(LocalTime localTime, LocalTime localTime2, String weekDay, int id);
+		void createTimeSlot(LocalTime of, LocalTime of2, String weekDay, int courseId);
+		void updateTimeSlot(LocalTime localTime, LocalTime localTime2, String weekDay, int courseId, int id);
 	}

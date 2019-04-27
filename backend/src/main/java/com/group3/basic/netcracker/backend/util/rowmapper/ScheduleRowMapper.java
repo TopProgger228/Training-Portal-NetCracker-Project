@@ -11,7 +11,6 @@ public class ScheduleRowMapper implements RowMapper {
 	@Override
 	public Schedule mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Schedule shedule = new Schedule();
-		shedule.setCourse(rs.getInt("course_id"));
 		shedule.setUserId(rs.getInt("user_id"));
 		shedule.setTimeSlotId(rs.getInt("time_slot_id"));
 		shedule.setChoosen(rs.getBoolean("is_choosen"));

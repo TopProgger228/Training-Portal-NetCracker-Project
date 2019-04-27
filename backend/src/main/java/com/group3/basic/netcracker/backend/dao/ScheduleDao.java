@@ -11,7 +11,6 @@ public interface ScheduleDao {
 	Schedule getScheduleById(int id);
     List<Schedule> listSchedule();
     void removeSchedule(int id);
-	void createSchedule(int courseId, int userId, int timeSlotId, boolean isChoosen);
-	void updateSchedule(int courseId, int userId, int timeSlotId, boolean isChoosen, int id);
-	TreeMap<Integer, Integer> getChooseCount(int course);
+	void createSchedule(int userId, int timeSlotId, boolean isChoosen);
+	void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id);
 }

@@ -13,11 +13,11 @@ import com.group3.basic.netcracker.backend.dao.TimeSlotDao;
 
 @Transactional
 @Repository
-public class TimeSlotDaoImplement implements TimeSlotDao {
+public class TimeSlotDaoImpl implements TimeSlotDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TimeSlotDaoImplement(JdbcTemplate jdbcTemplate){
+    public TimeSlotDaoImpl(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -49,15 +49,15 @@ public class TimeSlotDaoImplement implements TimeSlotDao {
     }
 
     @Override
-    public void updateTimeSlot(LocalTime localTime, LocalTime localTime2, String weekDay, int id) {
-        String SQL = "UPDATE \"TimeSlot\" SET start_time = ?, end_time = ?, week_day = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, localTime, localTime2, weekDay, id );
+    public void updateTimeSlot(LocalTime localTime, LocalTime localTime2, String weekDay, int courseId, int id) {
+        String SQL = "UPDATE \"TimeSlot\" SET start_time = ?, end_time = ?, week_day = ?, course_id = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, localTime, localTime2, weekDay, courseId, id );
         System.out.println("TimeSlot updated.");
     }
     @Override
-	public void createTimeSlot(LocalTime of, LocalTime of2, String weekDay) {
-		 String SQL = "INSERT INTO \"TimeSlot\" (start_time, end_time, week_day) VALUES (?,?,?)";
-	        jdbcTemplate.update(SQL, of, of2, weekDay );
+	public void createTimeSlot(LocalTime of, LocalTime of2, String weekDay, int courseId) {
+		 String SQL = "INSERT INTO \"TimeSlot\" (start_time, end_time, week_day, course_id) VALUES (?,?,?, ?)";
+	        jdbcTemplate.update(SQL, of, of2, weekDay, courseId );
 	        System.out.println("TimeSlot created.");
 	}
 }

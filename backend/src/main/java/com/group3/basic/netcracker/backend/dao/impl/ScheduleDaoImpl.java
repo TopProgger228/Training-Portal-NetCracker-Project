@@ -44,30 +44,19 @@ public class ScheduleDaoImpl implements ScheduleDao {
     }
 
     @Override
-    public void updateSchedule(int courseId, int userId, int timeSlotId, boolean isChoosen, int id) {
-        String SQL = "UPDATE \"Schedule\" SET course_id = ?, time_slot_id = ?, is_choosen = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, courseId, userId, timeSlotId, isChoosen);
+    public void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id) {
+        String SQL = "UPDATE \"Schedule\" SET user_id = ?, time_slot_id = ?, is_choosen = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, userId, timeSlotId, isChoosen);
         System.out.println("Schedule updated.");
     }
 
     @Override
-    public void createSchedule(int courseId, int userId, int timeSlotId, boolean isChoosen) {
-        String SQL = "INSERT INTO \"Schedule\" (course_id, user_id, time_slot_id, is_choosen) VALUES (?,?,?,?)";
-        jdbcTemplate.update(SQL, courseId, userId, timeSlotId, isChoosen);
+    public void createSchedule(int userId, int timeSlotId, boolean isChoosen) {
+        String SQL = "INSERT INTO \"Schedule\" (user_id, time_slot_id, is_choosen) VALUES (?,?,?)";
+        jdbcTemplate.update(SQL,  userId, isChoosen, timeSlotId);
         System.out.println("Schedule created.");
     }
 
-    @Override
-    public TreeMap<Integer, Integer> getChooseCount(int course) {
-
-        TreeMap<Integer, Integer> tm = new TreeMap<Integer, Integer>();
-        int timeslot = this.jdbcTemplate.queryForObject("select time_slot_id as TimeSlot from \"Schedule\" "
-                + "where course_id = ? group by time_slot_id;", Integer.class, course);
-        int count = this.jdbcTemplate.queryForObject(
-                "select count(id) as Voted from \"Schedule\"" + "where course_id = ? ;", Integer.class, course);
-        tm.put(timeslot, count);
-        return tm;
-    }
 }
 
 
