@@ -19,6 +19,7 @@ import { AddNewManagerComponent } from './add-new-manager/add-new-manager.compon
 import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.component';
 import { AddNewCourseComponent } from "./add-new-course/add-new-course.component";
 import {CoursesListComponent} from "./first-page/courses-list/courses-list.component";
+import { MyScheduleComponent } from './my-schedule/my-schedule.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {CoursesListComponent} from "./first-page/courses-list/courses-list.compo
     AddNewCourseComponent,
     UsersInfoComponent,
     AddNewManagerComponent,
-    GroupsScheduleComponent
+    GroupsScheduleComponent,
+    MyScheduleComponent
   ],
   imports: [
     BrowserModule,

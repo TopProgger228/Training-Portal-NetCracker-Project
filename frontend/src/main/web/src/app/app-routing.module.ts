@@ -10,6 +10,7 @@ import { AddNewManagerComponent } from './add-new-manager/add-new-manager.compon
 import {GroupsScheduleComponent} from "./groups-schedule/groups-schedule.component";
 import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
 import {CoursesListComponent} from "./first-page/courses-list/courses-list.component";
+import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'admin/groups-schedule',
     component: GroupsScheduleComponent
+  },
+  {
+    path: 'student/my-schedule',
+    component: MyScheduleComponent
   },
   {
     path: 'admin/create_new_course',

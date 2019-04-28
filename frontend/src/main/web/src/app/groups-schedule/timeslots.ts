@@ -1,8 +1,8 @@
 export class Timeslots {
 
   id:number;
-  start_time: string;
-  end_time: string;
-  week_day: string;
+  startTime: string;
+  endTime: string;
+  weekDay: string;
   course_id: number;
 }

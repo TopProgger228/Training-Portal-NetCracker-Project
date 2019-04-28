@@ -61,6 +61,37 @@
           </li>
         </ul>
       </div>
+
+      <div *ngIf="this.role == 'user'">
+
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <button class="btn btn-default" type="button">
+              <a class="nav-link" href="firstPage">
+                Home
+              </a>
+            </button>
+          </li>
+
+          <li class="nav-item">
+
+
+            <div class="dropdown">
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
+                      id="dropdownMenuButton" type="button">
+                <a class="nav-link" routerLink="">
+                  Manage courses
+                </a>
+              </button>
+              <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                <a class="dropdown-item" href="student/my-schedule">My Schedule</a>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+      </div>
     </ul>
 
     <ul class="navbar-nav ml-auto">
