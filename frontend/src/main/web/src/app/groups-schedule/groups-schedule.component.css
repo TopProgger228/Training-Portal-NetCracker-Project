@@ -1,5 +1,12 @@
-td, th, title{
-  font-family: "Times New Roman", Times, serif;
+.container{
+  width: 50%;
+  margin-top: 8%;
+}
 
+label, input, select, option{
+  font-size: 20px;
+}
+
+button{
   font-size: 22px;
 }

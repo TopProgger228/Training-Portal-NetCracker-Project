@@ -2,7 +2,7 @@ package com.group3.basic.netcracker.backend.controller;
 
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.dao.impl.ScheduleDaoImpl;
-import com.group3.basic.netcracker.backend.dao.impl.TimeSlotDaoImplement;
+import com.group3.basic.netcracker.backend.dao.impl.TimeSlotDaoImpl;
 import com.group3.basic.netcracker.backend.entity.Schedule;
 import com.group3.basic.netcracker.backend.service.CourseService;
 import com.group3.basic.netcracker.backend.service.UserService;
@@ -50,8 +50,8 @@ public class GetInfoAPIs {
 
     @GetMapping("/timeslot")
     public List getTimeSlots(){
-        TimeSlotDaoImplement timeSlotDaoImplement = context.getBean(TimeSlotDaoImplement.class);
-        return timeSlotDaoImplement.listTimeSlots();
+        TimeSlotDaoImpl timeSlotDaoImpl = context.getBean(TimeSlotDaoImpl.class);
+        return timeSlotDaoImpl.listTimeSlots();
     }
 
     @GetMapping("/courses-list")
@@ -63,7 +63,7 @@ public class GetInfoAPIs {
     public ResponseEntity<?> createNewSchedule(@Valid @RequestBody Schedule schedule){
         ScheduleDao scheduleDao = context.getBean(ScheduleDaoImpl.class);
 
-        scheduleDao.createSchedule(schedule.getCourseId(), schedule.getUserId(), schedule.getTimeSlotId(), schedule.isChoosen());
+        scheduleDao.createSchedule(schedule.getUserId(), schedule.getTimeSlotId(), schedule.isChoosen());
 
         return new ResponseEntity<>(new ResponseMessage("Course created successfully!"), HttpStatus.OK);
     }
