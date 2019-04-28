@@ -1,3 +1,40 @@
-<p>
-  my-schedule works!
-</p>
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 140vh;">
+
+    <app-menu></app-menu>
+
+    <div class="container">
+      <h1>Schedule Form</h1>
+      <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
+        <div style="width: 80%;  margin: 20px auto;">
+
+          <div class="form-group">
+            <label for="course_id">Courses</label>
+            <select [(ngModel)]="timeSlotT.course_id" class="form-control" id="course_id" name="course_id">
+              <option *ngFor="let c of courses" [value]="c.id">{{c.name}} {{c.info}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="time_slot_id">Time slot</label>
+            <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id" name="time_slot_id">
+              <option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
+              </option>
+            </select>
+          </div>
+
+
+        </div>
+        <button type="submit" class="btn btn-success">
+          <!--[disabled]="!courseForm.course.valid"-->Submit
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</ng-template>

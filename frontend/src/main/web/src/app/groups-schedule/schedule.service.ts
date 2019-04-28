@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Schedule} from "./schedule";
+import {Schedules} from "./schedules";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,7 +17,7 @@ export class ScheduleService {
 
   constructor(private httpClient : HttpClient) { }
 
-  createSchedule(scheduler: Schedule): Observable<any> {
-    return this.httpClient.post<Schedule>(this.studyUrl, scheduler,httpOptions);
+  createSchedule(scheduler: Schedules): Observable<any> {
+    return this.httpClient.post<Schedules>(this.studyUrl, scheduler,httpOptions);
   }
 }
