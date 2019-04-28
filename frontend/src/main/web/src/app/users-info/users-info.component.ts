@@ -20,7 +20,7 @@ export class UsersInfoComponent implements OnInit {
 
   currentJustify = 'start';
 
-  loggedout = false;
+  loggedOut = false;
 
   constructor(private router: Router, private userService: UserService, private token: TokenStorageService) {
   }
@@ -40,17 +40,18 @@ export class UsersInfoComponent implements OnInit {
           this.students = data;
         })
     } else {
-      this.loggedout = true;
+      this.loggedOut = true;
       this.router.navigate(['auth/login']);
     };
   };
 
   logout() {
-    this.loggedout = true;
+    this.loggedOut = true;
     this.token.signOut();
     window.location.reload();
     this.router.navigate(['auth/login']);
   }
+
 
 }
 

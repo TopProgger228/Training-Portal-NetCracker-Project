@@ -7,17 +7,27 @@ public class UserForDisplay {
     private String lname;
     private String username;
     private String email;
+    private int id;
 
     public UserForDisplay() {
     }
 
     public UserForDisplay(String fname, String lname, String username,
-                          String email){
+                          String email, int id){
 
+        this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.username = username;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -27,7 +37,12 @@ public class UserForDisplay {
                 " lname='" + lname + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
+                ", id '" + id + '\'' +
                 '}';
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {

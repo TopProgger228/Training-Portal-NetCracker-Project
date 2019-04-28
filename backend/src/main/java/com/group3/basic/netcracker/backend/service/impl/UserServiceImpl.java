@@ -85,4 +85,5 @@ public class UserServiceImpl implements UserService {
     public List listUsersForDisplay(String role) {
         return userDao.listUsersForDisplay(role);
     }
+
 }

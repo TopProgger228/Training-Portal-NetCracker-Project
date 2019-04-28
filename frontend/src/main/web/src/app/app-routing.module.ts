@@ -9,8 +9,10 @@ import { UsersInfoComponent } from './users-info/users-info.component';
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 import {GroupsScheduleComponent} from "./groups-schedule/groups-schedule.component";
 import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
-import {CoursesListComponent} from "./first-page/courses-list/courses-list.component";
-import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
+import {PasswordResetComponent} from "./password-reset/password-reset.component";
+import {AddStudentComponent} from "./add-student/add-student.component";
+
+
 
 
 const routes: Routes = [
@@ -27,10 +29,6 @@ const routes: Routes = [
     component: GroupsScheduleComponent
   },
   {
-    path: 'student/my-schedule',
-    component: MyScheduleComponent
-  },
-  {
     path: 'admin/create_new_course',
     component: AddNewCourseComponent
   },
@@ -38,10 +36,17 @@ const routes: Routes = [
     path: 'admin/add-user',
     component: AddNewManagerComponent
   },
-
+  {
+    path: 'admin/add-student',
+    component: AddStudentComponent
+  },
   {
     path: 'auth/login',
     component: SignInComponent
+  },
+  {
+    path: 'password-reset',
+    component: PasswordResetComponent
   },
   {
     path: 'signup',

@@ -1,0 +1,30 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div id="bg-image">
+    <div id="bg-overlay">
+      <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+
+          <form class="text-center" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group text-center">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required
+                email />
+              <div *ngIf="f.submitted && email.invalid">
+                <div *ngIf="email.errors.required" style="font-size: 15pt">Email is required</div>
+                <div *ngIf="email.errors.email" style="font-size: 15pt">Email must be a valid email address</div>
+              </div>
+            </div>
+            <button class="btn btn-outline-secondary ">Send</button>
+            <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" style="font-size: 15pt">
+              Login failed: {{errorMessage}}
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
