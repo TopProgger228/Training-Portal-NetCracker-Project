@@ -1,8 +1,9 @@
 package com.group3.basic.netcracker.backend.service;
 
-import java.util.List;
+import java.util.ArrayList;
+import com.group3.basic.netcracker.backend.entity.Attendance;
 
 public interface AttendanceService {
 	
-	List listAttendance();
+	ArrayList<Attendance> listAttendance();
 }
