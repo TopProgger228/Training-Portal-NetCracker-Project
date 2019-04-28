@@ -21,6 +21,7 @@ import { AddNewCourseComponent } from "./add-new-course/add-new-course.component
 import {CoursesListComponent} from "./first-page/courses-list/courses-list.component";
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { AddStudentComponent } from './add-student/add-student.component';
+import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
     UsersInfoComponent,
     AddNewManagerComponent,
     GroupsScheduleComponent,
+    MyScheduleComponent,
     PasswordResetComponent,
     AddStudentComponent
   ],

@@ -11,6 +11,7 @@ import {GroupsScheduleComponent} from "./groups-schedule/groups-schedule.compone
 import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
 import {PasswordResetComponent} from "./password-reset/password-reset.component";
 import {AddStudentComponent} from "./add-student/add-student.component";
+import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 
 
 
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'admin/add-student',
     component: AddStudentComponent
+  },
+  {
+    path: 'student/my-schedule',
+    component: MyScheduleComponent
   },
   {
     path: 'auth/login',
