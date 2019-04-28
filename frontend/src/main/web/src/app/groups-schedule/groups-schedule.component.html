@@ -2,29 +2,85 @@
 </div>
 
 <ng-template #isLoggedIn>
-  <div style="height: 100vh;">
+  <div style="height: 140vh;">
 
     <app-menu></app-menu>
-    <div style="width: 80%;  margin: 20px auto;">
+    <div class="container">
+      <h1>Timeslot Form</h1>
+      <form (ngSubmit)="onSubmitT()" #timeslotForm="ngForm">
+        <div class="form-group">
+
+          <div class="form-group">
+            <label for="start_time">Start time</label>
+            <input type="time" class="form-control" id="start_time" required
+                   [(ngModel)]="timeSlotT.start_time" name="start_time"
+                   #start_time="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="end_time">End time</label>
+            <input type="time" class="form-control" id="end_time" required
+                   [(ngModel)]="timeSlotT.end_time" name="end_time"
+                   #end_time="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="week_day">Day of week</label>
+            <select [(ngModel)]="timeSlotT.week_day" class="form-control" id="week_day" name="week_day">
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+              <option>Sunday</option>
+            </select>
+          </div>
 
 
-      <td align="center">
-        <select name="select">
-          <option disabled>Choose time</option>
-          <option *ngFor="let timeslot of timeSlots">
-            {{timeslot.startTime}} {{ timeslot.endTime }} {{ timeslot.weekDay }}
-          </option>
-        </select>
-      </td>
+          <div class="form-group">
+            <label for="course_id">Courses</label>
+            <select [(ngModel)]="timeSlotT.course_id" class="form-control" id="course_id" name="course_id">
+              <option *ngFor="let c of courses" [value]="c.id">{{c.name}} {{c.info}}</option>
+            </select>
+          </div>
 
-      <div class="form-group">
-        <label for="course_id">Courses</label>
-        <select [(ngModel)]="schedule.course_id" class="form-control" id="course_id" name="course_id">
-          <option *ngFor="let c of courses" [value]="c.id">{{c.name}} {{c.info}}</option>
-        </select>
-      </div>
+        </div>
+        <button type="submit" class="btn btn-success">
+          <!--[disabled]="!courseForm.course.valid"-->Submit
+        </button>
+
+      </form>
+    </div>
 
 
+    <div class="container">
+      <h1>Schedule Form</h1>
+      <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
+        <div style="width: 80%;  margin: 20px auto;">
+
+          <div class="form-group">
+            <label for="user_id">Courses</label>
+            <select [(ngModel)]="schedule.user_id" class="form-control" id="user_id" name="user_id">
+              <option *ngFor="let c of courses" [value]="c.id">{{c.name}} {{c.info}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="course_id">Time slot</label>
+            <select [(ngModel)]="timeSlotT.course_id" class="form-control" id="course_id1" name="course_id">
+              <option *ngFor="let t of timeSlots" [value]="t.id">{{t.start_time}} {{t.end_time}} {{t.week_day}}
+              </option>
+            </select>
+          </div>
+
+
+        </div>
+        <button type="submit" class="btn btn-success">
+          <!--[disabled]="!courseForm.course.valid"-->Submit
+        </button>
+
+      </form>
     </div>
 
   </div>

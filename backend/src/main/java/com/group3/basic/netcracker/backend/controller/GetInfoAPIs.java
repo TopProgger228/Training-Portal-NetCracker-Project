@@ -54,10 +54,6 @@ public class GetInfoAPIs {
         return timeSlotDaoImpl.listTimeSlots();
     }
 
-    @GetMapping("/courses-list")
-    public List getCourses(){
-        return courseService.listCourses();
-    }
 
     @PostMapping("/create_new_schedule")
     public ResponseEntity<?> createNewSchedule(@Valid @RequestBody Schedule schedule){

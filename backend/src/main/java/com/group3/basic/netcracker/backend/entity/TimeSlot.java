@@ -1,14 +1,26 @@
 package com.group3.basic.netcracker.backend.entity;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 public class TimeSlot {
 
 	int id;
-	Time startTime;
-	Time endTime;
+	LocalTime startTime;
+	LocalTime endTime;
 	String weekDay;
 	int courseId;
+
+	public TimeSlot(int id, LocalTime startTime, LocalTime endTime, String weekDay, int courseId) {
+		this.id = id;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.weekDay = weekDay;
+		this.courseId = courseId;
+	}
+
+	public TimeSlot() {
+	}
 
 	// getter and setter methods
 	public int getId() {
@@ -23,20 +35,19 @@ public class TimeSlot {
 		this.courseId = courseId;
 	}
 
-
-	public Time getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Time time) {
-		this.startTime = time;
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
 
-	public Time getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Time endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 

@@ -1,7 +1,9 @@
-
 export class Timeslot {
-  id: number;
-  startTime: string;
-  endTime: string;
-  weekDay: string;
+
+  constructor(
+  public start_time: string,
+  public end_time: string,
+  public week_day: string,
+  public course_id: number
+  ){}
 }

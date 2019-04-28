@@ -7,7 +7,9 @@ import com.group3.basic.netcracker.backend.dao.TimeSlotDao;
 import com.group3.basic.netcracker.backend.service.TimeSlotService;
 import com.group3.basic.netcracker.backend.entity.TimeSlot;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TimeSlotServiceImpl implements TimeSlotService{
 	private final TimeSlotDao timeSlotDao;
 

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalTime;
 import java.util.List;
 
-@Service
 public interface TimeSlotService{
 
 void createTimeSlot(LocalTime startTime, LocalTime endTime, String weekDay, int courseId);
