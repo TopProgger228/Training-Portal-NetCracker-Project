@@ -35,6 +35,21 @@ public class User {
         this.manager_id = manager_id;
     }
 
+    public User(User user){
+        this.id = user.id;
+        this.username = user.username;
+        this.role = user.role;
+        this.fname = user.fname;
+        this.lname = user.lname;
+        this.email = user.email;
+        this.pass = user.pass;
+        this.created_at = user.created_at;
+        this.photo = user.photo;
+        this.manager_id = user.manager_id;
+    }
+
+
+
     @Override
     public String toString() {
         return "User{" +

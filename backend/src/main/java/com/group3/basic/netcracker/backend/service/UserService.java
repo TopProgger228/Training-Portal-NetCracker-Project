@@ -34,4 +34,5 @@ public interface UserService {
     boolean isUserExists(String username, String email);
 
     List listUsersForDisplay(String role);
+
 }
