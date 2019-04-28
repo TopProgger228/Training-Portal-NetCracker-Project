@@ -36,7 +36,7 @@ public class TimeSlotDaoImpl implements TimeSlotDao {
 
     @Override
     public List listTimeSlots() {
-        String SQL = "SELECT * FROM \"TimeSlot\"";
+        String SQL = "SELECT id, start_time, end_time, week_day, course_id FROM \"TimeSlot\"";
         List timeSlots = jdbcTemplate.query(SQL, new TimeSlotRowMapper());
         return timeSlots;
     }

@@ -7,7 +7,9 @@ import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.service.ScheduleService;
 import com.group3.basic.netcracker.backend.entity.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ScheduleServiceImpl implements ScheduleService {
 	private final ScheduleDao scheduleDao;
 

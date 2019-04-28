@@ -31,7 +31,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
     @Override
     public List listSchedule() {
-        String SQL = "SELECT * FROM \"Schedule\"";
+        String SQL = "SELECT id, user_id, time_slot_id, is_choosen FROM \"Schedule\"";
         List shedule = jdbcTemplate.query(SQL, new ScheduleRowMapper());
         return shedule;
     }
@@ -53,7 +53,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
     @Override
     public void createSchedule(int userId, int timeSlotId, boolean isChoosen) {
         String SQL = "INSERT INTO \"Schedule\" (user_id, time_slot_id, is_choosen) VALUES (?,?,?)";
-        jdbcTemplate.update(SQL,  userId, isChoosen, timeSlotId);
+        jdbcTemplate.update(SQL,  userId, timeSlotId, isChoosen);
         System.out.println("Schedule created.");
     }
 

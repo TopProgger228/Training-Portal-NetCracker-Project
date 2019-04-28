@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Timeslot} from "./timeslot";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../auth/token-storage.service";
-import {TimeSlotServiceService} from "./time-slot-service.service";
+import {TimeSlotService} from "./time-slot.service";
 import {CoursesService} from "./courses.service";
 import {Courses} from "./courses";
 import {ScheduleService} from "./schedule.service";
 import {Schedule} from "./schedule";
 import {Timeslots} from "./timeslots";
+import {GettimeslotService} from "./gettimeslot.service";
 
 @Component({
   selector: 'app-groups-schedule',
@@ -21,17 +22,17 @@ export class GroupsScheduleComponent implements OnInit {
   courses: Courses[];
   schedule = new Schedule(0,0,false);
 
-  constructor(private router: Router, private timeSlotService: TimeSlotServiceService,
+  constructor(private router: Router, private getTimeSlotService: GettimeslotService, private timeSlotService: TimeSlotService,
               private coursesService: CoursesService, private scheduleService: ScheduleService,
               private token: TokenStorageService) {
   }
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.timeSlotService.getTimeSlots()
+      this.getTimeSlotService.getTimeSlots()
         .subscribe(data => {
           this.timeSlots = data;
-        })
+        });
       this.coursesService.getCourses()
         .subscribe(data => {
           this.courses = data;

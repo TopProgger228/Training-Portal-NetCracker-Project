@@ -1,9 +1,14 @@
 package com.group3.basic.netcracker.backend.controller;
 
 
+import com.group3.basic.netcracker.backend.dao.ScheduleDao;
+import com.group3.basic.netcracker.backend.dao.impl.ScheduleDaoImpl;
 import com.group3.basic.netcracker.backend.dto.CourseForm;
+import com.group3.basic.netcracker.backend.dto.ScheduleForm;
 import com.group3.basic.netcracker.backend.dto.TimeSlotForm;
+import com.group3.basic.netcracker.backend.entity.Schedule;
 import com.group3.basic.netcracker.backend.service.CourseService;
+import com.group3.basic.netcracker.backend.service.ScheduleService;
 import com.group3.basic.netcracker.backend.service.TimeSlotService;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
@@ -27,14 +32,15 @@ public class CreateAPIs {
     private CourseService courseService;
     private UserService userService;
     private TimeSlotService timeSlotService;
+    private ScheduleService scheduleService;
 
     @Autowired
-    public CreateAPIs(CourseService courseService, UserService userService, TimeSlotService timeSlotService) {
+    public CreateAPIs(CourseService courseService, UserService userService, TimeSlotService timeSlotService, ScheduleService scheduleService) {
         this.courseService = courseService;
         this.userService = userService;
         this.timeSlotService = timeSlotService;
+        this.scheduleService = scheduleService;
     }
-
 
 
     @GetMapping("/gettrainers")
@@ -66,6 +72,20 @@ public class CreateAPIs {
                 timeSlotForm.getWeek_day(), timeSlotForm.getCourse_id());
 
         return new ResponseEntity<>(new ResponseMessage("Time slot created successfully!"), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/timeslot")
+    public List getTimeSlots(){
+        return timeSlotService.listTimeSlots();
+    }
+
+
+    @PostMapping("/create_new_schedule")
+    public ResponseEntity<?> createNewSchedule(@RequestBody ScheduleForm scheduleForm){
+
+        scheduleService.createSchedule(scheduleForm.getUser_id(), scheduleForm.getTime_slot_id(), scheduleForm.isIs_choosen());
+
+        return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
     }
 
 }

@@ -11,7 +11,7 @@ void createTimeSlot(LocalTime startTime, LocalTime endTime, String weekDay, int 
 
 TimeSlot getTimeSlotById(int id);
 
-List<TimeSlot> TimeSlots();
+List<TimeSlot> listTimeSlots();
 
 void removeTimeSlot(int id);
 

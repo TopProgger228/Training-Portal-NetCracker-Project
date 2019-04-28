@@ -29,7 +29,7 @@ public class TimeSlotServiceImpl implements TimeSlotService{
 	}
 
 	@Override
-	public List<TimeSlot> TimeSlots() {
+	public List<TimeSlot> listTimeSlots() {
 	return timeSlotDao.listTimeSlots();
 	}
 
