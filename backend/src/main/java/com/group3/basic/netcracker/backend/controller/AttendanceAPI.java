@@ -21,12 +21,14 @@ import com.group3.basic.netcracker.backend.service.AttendanceService;
 @RequestMapping("/api")
 public class AttendanceAPI {
 	private AttendanceService attendanceService;
-    /**
-     * Handle request to download an Excel document
-     */
+
 	@Autowired
-    public AttendanceAPI(AttendanceService attendanceService, ExcelAttendanceReport report) {
+    public AttendanceAPI(AttendanceService attendanceService) {
         this.attendanceService = attendanceService;
+        
+        /**
+         * Handle request to download an Excel document
+         */
     }
     @RequestMapping(value = "/attendanceExcel", method = RequestMethod.GET)
     public ModelAndView attendanceExcel() {
