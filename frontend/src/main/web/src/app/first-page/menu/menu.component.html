@@ -62,6 +62,32 @@
         </ul>
       </div>
 
+
+      <div *ngIf="this.role == 'trainer'">
+
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <button class="btn btn-default" type="button">
+              <a class="nav-link" href="firstPage">
+                Home
+              </a>
+            </button>
+          </li>
+
+          <li class="nav-item">
+            <button class="btn btn-default" type="button">
+              <a class="nav-link" href="trainer/courses-info">
+                See my courses
+              </a>
+            </button>
+          </li>
+
+        </ul>
+      </div>
+
+
+
       <div *ngIf="this.role == 'user'">
 
         <ul class="navbar-nav mr-auto">

@@ -13,6 +13,8 @@ public interface CourseDAO {
 
     List listCourses();
 
+    List listCoursesByUsername(String username);
+
     void removeCourse(int id);
 
     void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info,

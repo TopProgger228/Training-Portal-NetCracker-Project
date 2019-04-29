@@ -23,7 +23,7 @@ public class CourseDaoImpl implements CourseDAO {
 
     @Override
     public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int user_id, int qty_per_week) {
-        String SQL = "INSERT INTO \"Course\" (name, start_date, end_date, info, skill_level, user_id, qty_per_week) VALUES (?,?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO \"Course\" (name, start_date, end_date, info, skill_level, user_id, qty_per_week) VALUES (?,?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, user_id, qty_per_week);
     }
 
@@ -37,6 +37,14 @@ public class CourseDaoImpl implements CourseDAO {
     @Override
     public List listCourses() {
         String SQL = "SELECT id, name, info, user_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\"";
+        List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
+        return courses;
+    }
+
+    @Override
+    public List listCoursesByUsername(String username) {
+        String SQL = "SELECT id, name, info, user_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" " +
+                "where user_id=(select id from \"User\" where username='" + username + "')";
         List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
         return courses;
     }

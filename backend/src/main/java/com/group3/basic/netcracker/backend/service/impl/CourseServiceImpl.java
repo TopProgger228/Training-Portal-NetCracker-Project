@@ -34,6 +34,11 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
+    public List listCoursesByUsername(String username) {
+        return courseDAO.listCoursesByUsername(username);
+    }
+
+    @Override
     public void removeCourse(int id) {
         courseDAO.removeCourse(id);
     }

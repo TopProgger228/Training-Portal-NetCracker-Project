@@ -14,7 +14,7 @@ import {Trainer} from "../services/trainer";
 
 export class AddNewCourseComponent implements OnInit{
   loggedout = false;
-  course = new Course("", "", "", "", "", "",0,0);
+  course = new Course("", "", "", "", "",0,0);
   trainers: Trainer[];
 
   constructor(private router: Router, private trainerService: TrainerService, private token: TokenStorageService, private httpService : AddCourseService) {
@@ -31,9 +31,6 @@ export class AddNewCourseComponent implements OnInit{
       this.router.navigate(['auth/login']);
     };
   };
-
-  // userModel = new User('Dima', 'Pylypiuk', this.roles[0], 'user1',
-  //   'user@gmail.com', 'userpass');
 
   submitted = false;
 

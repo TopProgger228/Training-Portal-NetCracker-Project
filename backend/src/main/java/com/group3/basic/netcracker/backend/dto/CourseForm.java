@@ -15,8 +15,6 @@ public class CourseForm {
     @NotBlank
     private String skill_level;
     @NotBlank
-    private String learn_direction;
-    @NotBlank
     private int user_id;
     @NotBlank
     private int qty_per_week;
@@ -59,14 +57,6 @@ public class CourseForm {
 
     public void setSkill_level(String skill_level) {
         this.skill_level = skill_level;
-    }
-
-    public String getLearn_direction() {
-        return learn_direction;
-    }
-
-    public void setLearn_direction(String learn_direction) {
-        this.learn_direction = learn_direction;
     }
 
     public int getUser_id() {

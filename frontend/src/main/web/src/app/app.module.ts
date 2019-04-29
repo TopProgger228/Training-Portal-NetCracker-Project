@@ -12,6 +12,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { RegisterComponent } from './register/register.component';
+import { CoursesInfoComponent } from './courses-info/courses-info.component';
 
 import { UsersInfoComponent } from './users-info/users-info.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ; 
@@ -35,7 +36,8 @@ import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
     GroupsScheduleComponent,
     MyScheduleComponent,
     PasswordResetComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    CoursesInfoComponent
   ],
   imports: [
     BrowserModule,
