@@ -68,8 +68,8 @@ public class CreateAPIs {
 
         DateTimeFormatter parseFormat = new DateTimeFormatterBuilder().appendPattern("HH:mm").toFormatter();
 
-        timeSlotService.createTimeSlot(LocalTime.parse(timeSlotForm.getStartTime(), parseFormat), LocalTime.parse(timeSlotForm.getEndTime(), parseFormat),
-                timeSlotForm.getWeekDay(), timeSlotForm.getCourse_id());
+        timeSlotService.createTimeSlot(LocalTime.parse(timeSlotForm.getStart_time(), parseFormat), LocalTime.parse(timeSlotForm.getEnd_time(), parseFormat),
+                timeSlotForm.getWeek_day(), timeSlotForm.getCourse_id());
 
         return new ResponseEntity<>(new ResponseMessage("Time slot created successfully!"), HttpStatus.CREATED);
     }
