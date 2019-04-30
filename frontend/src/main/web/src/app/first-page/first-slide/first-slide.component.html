@@ -1,11 +1,11 @@
-<ngb-carousel>
-  <ng-template ngbSlide *ngFor="let oneNews of news">
-    <div>
-      <div id="bg-image">
-        <div id="bg-overlay">
-          <app-menu></app-menu>
-          <div class="container" style="height: 100vh">
-            <div class="row" style="height: 100vh">
+<div id="bg-image">
+  <div id="bg-overlay">
+    <app-menu></app-menu>
+    <ngb-carousel style="height: 90%">
+      <ng-template ngbSlide *ngFor="let oneNews of news">
+        <div>
+          <div class="container" style="height: 90vh">
+            <div class="row" style="height: 90vh">
               <div id="quote" class="col align-self-center thumbnail" style="width: 100%">
                 <h1 id="main-quote" class="display-1">{{oneNews.title}}</h1>
                 <h2 id="main-quote-context" class="display-1">{{oneNews.context}}</h2>
@@ -14,8 +14,8 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-  </ng-template>
-</ngb-carousel>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>

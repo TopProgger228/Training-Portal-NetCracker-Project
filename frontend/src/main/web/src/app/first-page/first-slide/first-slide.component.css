@@ -43,10 +43,3 @@
     background: rgba(0, 0, 0, 0.548);
 }
 
-.carousel-indicators li{
-    text-indent:0;
-    width:200px;
-    height: 40px;
-    border:none;
-    background-color: transparent;
-}
