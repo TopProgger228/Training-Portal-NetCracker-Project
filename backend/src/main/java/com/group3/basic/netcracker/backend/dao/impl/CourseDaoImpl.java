@@ -62,4 +62,13 @@ public class CourseDaoImpl implements CourseDAO {
         jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, user_id, qty_per_week, id);
     }
 
+    @Override
+    public Course getCourseByLesson(int lessonId) {
+
+        String SQL = "select c.id, c.name, c.info, c.user_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Lesson\" l on c.id = l.course_id where  l.id = ?";
+
+        return (Course) jdbcTemplate.queryForObject(SQL, new Object[] {lessonId}, new CourseRowMapper());
+
+    }
+
 }

@@ -128,6 +128,23 @@ public class UserDaoImpl implements UserDao {
         }else return false;
     }
 
+    @Override
+    public List<User> getUsersByLesson(int lessonId) {
+
+        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Group\" g on u.id = g.user_id join \"Course\" c on g.course_id = c.id join \"Lesson\" l on c.id = l.course_id where l.id = ?";
+
+        return jdbcTemplate.query(SQL, new Object[] {lessonId}, new UserRowMapper());
+    }
+
+    @Override
+    public User getTrainerByCourse(int courseId) {
+
+        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Course\" c on u.id = c.user_id where c.id = ?";
+
+        return (User) jdbcTemplate.queryForObject(SQL, new Object[] {courseId}, new UserRowMapper());
+
+    }
+
     private int isUserWithUsername(String username){
         String SQL = "SELECT COUNT(*) FROM \"User\" WHERE username = ?";
         return jdbcTemplate.queryForObject(SQL, Integer.class, username);

@@ -1,14 +1,21 @@
 package com.group3.basic.netcracker.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.group3.basic.netcracker.backend.dto.CheckLessonAttendanceDto;
+import com.group3.basic.netcracker.backend.dto.CourseAttendanceDto;
+import com.group3.basic.netcracker.backend.dto.LessonAttendanceDto;
+import com.group3.basic.netcracker.backend.dto.UserAttendanceDto;
+import com.group3.basic.netcracker.backend.entity.Course;
+import com.group3.basic.netcracker.backend.entity.Lesson;
+import com.group3.basic.netcracker.backend.service.CheckAttendanceService;
+import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.group3.basic.netcracker.backend.entity.Attendance;
-import com.group3.basic.netcracker.backend.report.ExcelAttendanceReport;
 import com.group3.basic.netcracker.backend.service.AttendanceService;
  
 /**
@@ -21,14 +28,16 @@ import com.group3.basic.netcracker.backend.service.AttendanceService;
 @RequestMapping("/api")
 public class AttendanceAPI {
 	private AttendanceService attendanceService;
+	private CheckAttendanceService checkAttendanceService;
 
 	@Autowired
-    public AttendanceAPI(AttendanceService attendanceService) {
+    public AttendanceAPI(AttendanceService attendanceService, CheckAttendanceService checkAttendanceService) {
         this.attendanceService = attendanceService;
         
         /**
          * Handle request to download an Excel document
          */
+        this.checkAttendanceService = checkAttendanceService;
     }
     @RequestMapping(value = "/attendanceExcel", method = RequestMethod.GET)
     public ModelAndView attendanceExcel() {
@@ -38,4 +47,44 @@ public class AttendanceAPI {
         // return a view which will be resolved by an excel view resolver
         return new ModelAndView("attendanceView", "listAttendance", listAttendance);
    }
+
+
+   @GetMapping("/attCourse")
+   public ResponseEntity<?> getAllCourseAttendance () {
+
+	    List<CourseAttendanceDto> list = attendanceService.getAllCourseAttendance();
+	    return ResponseEntity.ok().body(list);
+
+   }
+
+   @GetMapping("/attLesson")
+   public ResponseEntity<?> getLessonsByCourse (@RequestBody Course course) {
+
+	    List<LessonAttendanceDto> list = attendanceService.getLessonsOfCourseAttendance(course.getId());
+	    return ResponseEntity.ok().body(list);
+   }
+
+
+    @GetMapping("/attUser")
+    public ResponseEntity<?> getUsersByLesson (@RequestBody Lesson lesson) {
+
+        List<UserAttendanceDto> list = attendanceService.getUsersOfCourseAttendance(lesson.getLessonId());
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping("/fullAttCheck/{id}")
+    public ResponseEntity<?> checkFullAttendance (@PathVariable int id) {
+
+	    CheckLessonAttendanceDto checkLessonAttendanceDto = checkAttendanceService.getFullCheckAttendance(id);
+	    return ResponseEntity.ok().body(checkLessonAttendanceDto);
+    }
+
+    @PostMapping("/lessonAtt")
+    public ResponseEntity<?> changeAttendance (@RequestBody int userId, int lessonId, String status) {
+
+	    checkAttendanceService.changeLessonMissing(userId, lessonId, status);
+
+        return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
+
+    }
 }

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface CourseDAO {
+
     void createCourse(String name, LocalDate start_date, LocalDate end_date, String info,
                     String skill_level, int user_id, int qty_per_week);
 
@@ -19,4 +20,6 @@ public interface CourseDAO {
 
     void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info,
                       String skill_level, int user_id, int qty_per_week);
+
+    Course getCourseByLesson (int lessonId);
 }
