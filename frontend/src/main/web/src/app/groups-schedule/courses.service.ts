@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Courses} from "./courses";
+import {Course} from "../services/course";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,6 +18,6 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   getCourses(): Observable<any> {
-    return this.http.get<Courses>(this.coursesUrl, httpOptions);
+    return this.http.get<Course>(this.coursesUrl, httpOptions);
   }
 }

@@ -22,6 +22,14 @@
     color: rgb(236, 236, 236);
 }
 
+#main-quote-context{ font-family:georgia, serif;
+    letter-spacing:0.1em;
+    line-height:200%;
+    padding-top:11px;
+    font-size: 30pt;
+    color: rgb(233, 214, 214);
+}
+
 #author{
     font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
         font-style: normal;
@@ -34,3 +42,4 @@
 #quote{
     background: rgba(0, 0, 0, 0.548);
 }
+

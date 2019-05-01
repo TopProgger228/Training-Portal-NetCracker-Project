@@ -76,7 +76,7 @@ public class AuthRestAPIs {
         }
 
         jdbcTemplateUsersDao.createUser(signUpRequest.getUsername(),
-                "Admin",signUpRequest.getFname(),signUpRequest.getLname(), signUpRequest.getEmail(),
+                "Student",signUpRequest.getFname(),signUpRequest.getLname(), signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()), LocalDate.now(), null);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);

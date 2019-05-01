@@ -8,7 +8,6 @@ import {Courses} from "./courses";
 import {ScheduleService} from "./schedule.service";
 import {Schedule} from "./schedule";
 import {Timeslots} from "./timeslots";
-import {GettimeslotService} from "./gettimeslot.service";
 
 @Component({
   selector: 'app-groups-schedule',
@@ -22,14 +21,14 @@ export class GroupsScheduleComponent implements OnInit {
   courses: Courses[];
   schedule = new Schedule(0,0,false);
 
-  constructor(private router: Router, private getTimeSlotService: GettimeslotService, private timeSlotService: TimeSlotService,
+  constructor(private router: Router, private timeSlotService: TimeSlotService,
               private coursesService: CoursesService, private scheduleService: ScheduleService,
               private token: TokenStorageService) {
   }
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.getTimeSlotService.getTimeSlots()
+      this.timeSlotService.getTimeSlots()
         .subscribe(data => {
           this.timeSlots = data;
         });

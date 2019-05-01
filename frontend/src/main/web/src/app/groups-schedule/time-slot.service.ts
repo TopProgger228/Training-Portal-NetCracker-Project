@@ -15,11 +15,15 @@ export class TimeSlotService {
 
   private createTimeSlotsUrl = 'http://localhost:8080/api/create_new_timeslot';
 
+  private timeslotsUrl = 'http://localhost:8080/api/timeslot';
+
   constructor(private httpClient : HttpClient) { }
 
   public addTimeslot(timeslot : Timeslot){
     return this.httpClient.post<Timeslot>(this.createTimeSlotsUrl, timeslot, httpOptions);
   }
-
+  getTimeSlots(): Observable<any> {
+    return this.httpClient.get<Timeslot>(this.timeslotsUrl, httpOptions);
+  }
 
 }

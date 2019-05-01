@@ -4,29 +4,29 @@ import javax.validation.constraints.NotBlank;
 
 public class TimeSlotForm {
 
-    private String startTime;
+    private String start_time;
 
-    private String endTime;
+    private String end_time;
 
-    private String weekDay;
+    private String week_day;
 
     @NotBlank
     private int course_id;
 
-    public String getStartTime() {
-        return startTime;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getEnd_time() {
+        return end_time;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
     }
 
     public int getCourse_id() {
@@ -37,11 +37,11 @@ public class TimeSlotForm {
         this.course_id = course_id;
     }
 
-    public String getWeekDay() {
-        return weekDay;
+    public String getWeek_day() {
+        return week_day;
     }
 
-    public void setWeek_day(String weekDay) {
-        this.weekDay = weekDay;
+    public void setWeek_day(String week_day) {
+        this.week_day = week_day;
     }
 }
