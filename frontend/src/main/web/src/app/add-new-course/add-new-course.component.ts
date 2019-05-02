@@ -14,7 +14,9 @@ import {Trainer} from "../services/trainer";
 
 export class AddNewCourseComponent implements OnInit{
   loggedout = false;
-  course = new Course("", "", "", "", "",0,0);
+  //course = new Course("", "", "", "", "",0,0);
+  course = new Course(null,null,null,null,null,null,null);
+  levels = ['Junior', 'Middle', 'Senior'];
   trainers: Trainer[];
 
   constructor(private router: Router, private trainerService: TrainerService, private token: TokenStorageService, private httpService : AddCourseService) {
@@ -39,6 +41,7 @@ export class AddNewCourseComponent implements OnInit{
     this.httpService.addCourse(this.course).subscribe(
       value => {
         console.log('[POST] create course successfully', value);
+        this.router.navigate(['auth/login']);
       }, error => {
         console.log('FAIL to create course!');
       },
