@@ -35,4 +35,6 @@ public interface UserService {
 
     List listUsersForDisplay(String role);
 
+    List getStudentsOfTrainer(String username);
+
 }

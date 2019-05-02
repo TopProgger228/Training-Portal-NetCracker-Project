@@ -9,6 +9,7 @@ import { FirstSlideComponent } from './first-slide/first-slide.component';
 import { TrainersListComponent } from './trainers-list/trainers-list.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { TrainersserService } from './trainers-list/trainersser.service';
@@ -26,6 +27,7 @@ import { TrainersserService } from './trainers-list/trainersser.service';
   ],
   imports: [
     CommonModule,
+    NgbModule.forRoot(),
   ],
   exports: [
     MenuComponent,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../auth/token-storage.service";
 //import {Course} from "../../groups-schedule/course";
-import {CourseService} from "./course.service";
+import {CourseService} from "../../services/course.service";
 
 @Component({
   selector: 'app-courses-list',
@@ -21,9 +21,6 @@ export class CoursesListComponent implements OnInit {
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-
-    }
   }
 
 

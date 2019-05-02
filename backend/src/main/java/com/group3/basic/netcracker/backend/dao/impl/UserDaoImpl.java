@@ -2,9 +2,11 @@ package com.group3.basic.netcracker.backend.dao.impl;
 
 import com.group3.basic.netcracker.backend.dao.UserDao;
 import com.group3.basic.netcracker.backend.entity.User;
+import com.group3.basic.netcracker.backend.util.rowmapper.StudentRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.TrainerRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.UserForDisplayRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.UserRowMapper;
+import com.group3.basic.netcracker.backend.util.sql.Queries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -126,6 +128,29 @@ public class UserDaoImpl implements UserDao {
         if (isUserWithUsername(username) == 1 || isUserWithEmail(email) == 1){
             return true;
         }else return false;
+    }
+
+    @Override
+    public List<User> getUsersByLesson(int lessonId) {
+
+        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Group\" g on u.id = g.user_id join \"Course\" c on g.course_id = c.id join \"Lesson\" l on c.id = l.course_id where l.id = ?";
+
+        return jdbcTemplate.query(SQL, new Object[] {lessonId}, new UserRowMapper());
+    }
+
+    @Override
+    public User getTrainerByCourse(int courseId) {
+
+        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Course\" c on u.id = c.user_id where c.id = ?";
+
+        return (User) jdbcTemplate.queryForObject(SQL, new Object[] {courseId}, new UserRowMapper());
+
+    }
+
+    @Override
+    public List getStudentsOfTrainer(String username) {
+        return jdbcTemplate.query(Queries.selectAllStudentsOfTrainer,
+                new StudentRowMapper());
     }
 
     private int isUserWithUsername(String username){

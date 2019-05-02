@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 
 import com.group3.basic.netcracker.backend.dao.impl.UserDaoImpl;
+import com.group3.basic.netcracker.backend.service.ResetPasswordService;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.LoginForm;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.SignUpForm;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.JwtResponse;
@@ -37,13 +38,17 @@ public class AuthRestAPIs {
 
     private ApplicationContext context;
 
+    private ResetPasswordService resetPasswordService;
+
+
     @Autowired
     public AuthRestAPIs(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
-                        JwtProvider jwtProvider, ApplicationContext context){
+                        JwtProvider jwtProvider, ApplicationContext context, ResetPasswordService resetPasswordService){
         this.authenticationManager = authenticationManager;
         this.encoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
         this.context = context;
+        this.resetPasswordService = resetPasswordService;
     }
 
     @PostMapping("/signin")
@@ -68,18 +73,20 @@ public class AuthRestAPIs {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm info) {
         UserDaoImpl jdbcTemplateUsersDao = context.getBean(UserDaoImpl.class);
-        if (jdbcTemplateUsersDao.existsByUsername(signUpRequest.getUsername())) {
+        if (jdbcTemplateUsersDao.existsByUsername(info.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
+        System.out.println(resetPasswordService.getEmailByToken(info.getToken()));
 
-        jdbcTemplateUsersDao.createUser(signUpRequest.getUsername(),
-                "Admin",signUpRequest.getFname(),signUpRequest.getLname(), signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()), LocalDate.now(), null);
+        jdbcTemplateUsersDao.createUser(info.getUsername(),
+                "Student",info.getFname(),info.getLname(), resetPasswordService.getEmailByToken(info.getToken()),
+                encoder.encode(info.getPassword()), LocalDate.now(), null);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
     }
+
 
 }

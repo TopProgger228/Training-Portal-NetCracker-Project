@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { COURSES } from '../default-courses';
-import {StockCourses} from "../stock-courses";
+import { StockCourses } from "../stock-courses";
+import { CourseService } from '../../../services/course.service';
+import { Course } from '../../../services/course'
 
 
 @Component({
@@ -10,10 +12,15 @@ import {StockCourses} from "../stock-courses";
 })
 export class CoursesContainerComponent implements OnInit {
 
+  courses: Course[];
   coursesC: Array<StockCourses> = COURSES;
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
+    this.courseService.getLastTenCoursesList().subscribe(data => {
+      this.courses = data;
+      console.log(data);
+    })
   }
 
 }

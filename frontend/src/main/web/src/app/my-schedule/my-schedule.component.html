@@ -21,7 +21,7 @@
           <div class="form-group">
             <label for="time_slot_id">Time slot</label>
             <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id" name="time_slot_id">
-              <option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
+              <option *ngFor="let t of timeSlots" [value]="t.id">{{t.start_time}} {{t.end_time}} {{t.week_day}}
               </option>
             </select>
           </div>

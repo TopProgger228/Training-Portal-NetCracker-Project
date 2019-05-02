@@ -52,6 +52,16 @@ export class UsersInfoComponent implements OnInit {
     this.router.navigate(['auth/login']);
   }
 
+  deleteUser(id: number){
+    this.userService.delete(id).subscribe(data=>{
+      console.log(data);
+    });
+  this.reloadPage();
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
 
 }
 

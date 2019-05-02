@@ -36,4 +36,10 @@ public interface UserDao {
     void updateUserEmail(int id, String newEmail);
 
     boolean isUserExists(String username, String email);
+
+    List<User> getUsersByLesson (int lessonId);
+
+    User getTrainerByCourse (int courseId);
+
+    List getStudentsOfTrainer (String username);
 }

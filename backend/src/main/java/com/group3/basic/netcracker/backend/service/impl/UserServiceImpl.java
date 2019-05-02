@@ -86,4 +86,8 @@ public class UserServiceImpl implements UserService {
         return userDao.listUsersForDisplay(role);
     }
 
+    @Override
+    public List getStudentsOfTrainer(String username) {
+        return userDao.getStudentsOfTrainer(username);
+    }
 }

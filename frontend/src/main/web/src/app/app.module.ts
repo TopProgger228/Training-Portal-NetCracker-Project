@@ -19,10 +19,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ;
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.component';
 import { AddNewCourseComponent } from "./add-new-course/add-new-course.component";
-import {CoursesListComponent} from "./first-page/courses-list/courses-list.component";
+import {ShowStudentsComponent} from "./show-students/show-students.component";
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
+import { ManageNewsComponent } from './manage-news/manage-news.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,11 @@ import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
     GroupsScheduleComponent,
     MyScheduleComponent,
     PasswordResetComponent,
+    ManageNewsComponent,
+    //CoursesListComponent
     AddStudentComponent,
-    CoursesInfoComponent
+    CoursesInfoComponent,
+    ShowStudentsComponent
   ],
   imports: [
     BrowserModule,
