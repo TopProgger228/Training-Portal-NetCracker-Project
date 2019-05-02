@@ -4,8 +4,8 @@ import { AuthService } from '../auth/auth.service';
 import { SignUpInfo } from '../auth/signup-info';
 
 import { TokenStorageService } from '../auth/token-storage.service';
-import { Router } from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { MailSenderService } from '../services/MailSender.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,20 +16,36 @@ export class RegisterComponent implements OnInit {
   signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
+  token: string = '';
 
   roles: string[] = [];
   errorMessage = '';
 
   constructor(private authService: AuthService,
     private router: Router,
-    private tokenStorage: TokenStorageService) { }
+    private tokenStorage: TokenStorageService,
+    private route: ActivatedRoute,
+    private mailSenderService: MailSenderService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isSignedUp = true;
 
       this.router.navigate(['auth/login']);
+    } else {
+      console.log(this.route.snapshot.paramMap.keys);
+      this.route.queryParams.subscribe((params) => {
+        //check lead Id here
+        if (params['token']) {
+          this.token = params['token'];
+          console.log(this.token);
+        } else {
+          console.log('token not found in params');
+          alert("this site is not available for you");
+        }
+      });
     }
+
   }
 
   onSubmit() {
@@ -39,8 +55,8 @@ export class RegisterComponent implements OnInit {
       this.form.fname,
       this.form.lname,
       this.form.username,
-      this.form.email,
-      this.form.password);
+      this.form.password,
+      this.token);
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {

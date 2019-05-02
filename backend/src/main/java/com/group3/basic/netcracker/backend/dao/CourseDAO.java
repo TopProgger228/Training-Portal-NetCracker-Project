@@ -14,6 +14,8 @@ public interface CourseDAO {
 
     List listCourses();
 
+    List listLastTenCourses();
+
     List listCoursesByUsername(String username);
 
     void removeCourse(int id);

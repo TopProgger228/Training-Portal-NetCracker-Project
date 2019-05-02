@@ -32,7 +32,7 @@ export class AddStudentComponent implements OnInit {
   }
 
   onSubmit(){
-    this.mailSenderService.sendResetPasswordMail(this.form.email).subscribe(
+    this.mailSenderService.sendSignUpMail(this.form.email).subscribe(
       data => {
         console.log(data);
         this.router.navigate(['firstPage']);

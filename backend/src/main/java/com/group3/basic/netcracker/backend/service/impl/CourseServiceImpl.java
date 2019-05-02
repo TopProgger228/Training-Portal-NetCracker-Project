@@ -34,6 +34,11 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
+    public List listLastTenCourses() {
+        return courseDAO.listLastTenCourses();
+    }
+
+    @Override
     public List listCoursesByUsername(String username) {
         return courseDAO.listCoursesByUsername(username);
     }

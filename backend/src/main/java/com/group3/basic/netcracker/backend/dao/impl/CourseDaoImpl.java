@@ -42,6 +42,13 @@ public class CourseDaoImpl implements CourseDAO {
     }
 
     @Override
+    public List listLastTenCourses() {
+        String SQL = "SELECT id, name, info, user_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" ORDER BY id DESC fetch first 10 rows only;";
+        List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
+        return courses;
+    }
+
+    @Override
     public List listCoursesByUsername(String username) {
         String SQL = "SELECT id, name, info, user_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" " +
                 "where user_id=(select id from \"User\" where username='" + username + "')";

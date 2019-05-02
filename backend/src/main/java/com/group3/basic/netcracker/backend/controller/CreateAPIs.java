@@ -63,6 +63,11 @@ public class CreateAPIs {
         return courseService.listCourses();
     }
 
+    @GetMapping("/last-ten-courses-list")
+    public List getlastTenCourses(){
+        return courseService.listLastTenCourses();
+    }
+
     @PostMapping("/create_new_timeslot")
     public ResponseEntity<?> createNewTimeSlot(@RequestBody TimeSlotForm timeSlotForm){
 
