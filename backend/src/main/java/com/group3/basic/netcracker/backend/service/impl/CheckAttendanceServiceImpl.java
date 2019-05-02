@@ -5,11 +5,14 @@ import com.group3.basic.netcracker.backend.dao.LessonDao;
 import com.group3.basic.netcracker.backend.dao.LessonMissingDao;
 import com.group3.basic.netcracker.backend.dao.UserDao;
 import com.group3.basic.netcracker.backend.dto.CheckLessonAttendanceDto;
+import com.group3.basic.netcracker.backend.dto.LessonAttendanceDto;
 import com.group3.basic.netcracker.backend.dto.UserAttendanceDto;
 import com.group3.basic.netcracker.backend.entity.Course;
+import com.group3.basic.netcracker.backend.entity.Lesson;
 import com.group3.basic.netcracker.backend.entity.LessonMissing;
 import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.service.CheckAttendanceService;
+import com.group3.basic.netcracker.backend.util.dtomapper.LessonAttendanceDtoMapper;
 import com.group3.basic.netcracker.backend.util.dtomapper.TrainerAttendanceDtoMapper;
 import com.group3.basic.netcracker.backend.util.dtomapper.UserAttendanceDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +30,31 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     private final LessonMissingDao lessonMissingDao;
     private final TrainerAttendanceDtoMapper trainerAttendanceDtoMapper;
     private final UserAttendanceDtoMapper userAttendanceDtoMapper;
+    private final LessonAttendanceDtoMapper lessonAttendanceDtoMapper;
 
     @Autowired
-    public CheckAttendanceServiceImpl(LessonDao lessonDao, UserDao userDao, CourseDAO courseDao, LessonMissingDao lessonMissingDao, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper) {
+    public CheckAttendanceServiceImpl(LessonDao lessonDao, UserDao userDao, CourseDAO courseDao, LessonMissingDao lessonMissingDao, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper) {
         this.lessonDao = lessonDao;
         this.userDao = userDao;
         this.courseDao = courseDao;
         this.lessonMissingDao = lessonMissingDao;
         this.trainerAttendanceDtoMapper = trainerAttendanceDtoMapper;
         this.userAttendanceDtoMapper = userAttendanceDtoMapper;
+        this.lessonAttendanceDtoMapper = lessonAttendanceDtoMapper;
+    }
+
+
+    @Override
+    public List<LessonAttendanceDto> getTodayLessonsByTrainer (int trainerId) {
+
+        List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
+        for (Lesson l : lessonDao.getTodayLessonsByTrainer(trainerId)) {
+            LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
+            lad.setCourseName(courseDao.getCourseByLesson(l.getLessonId()).getName());
+            lessonAttendanceDtoList.add(lad);
+        }
+
+        return lessonAttendanceDtoList;
     }
 
     @Override

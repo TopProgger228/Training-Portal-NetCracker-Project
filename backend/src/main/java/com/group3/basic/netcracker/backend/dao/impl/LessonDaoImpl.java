@@ -27,11 +27,19 @@ public class LessonDaoImpl implements LessonDao {
     }
 
     @Override
-    public Lesson getLessonById(int lessonId) {
+    public Lesson getLessonById (int lessonId) {
 
         String SQL = "select l.id, l.is_cancel, l.start_date_time, l.course_id from \"Lesson\" l where l.id = ?";
 
         return (Lesson) jdbcTemplate.queryForObject(SQL, new Object[] {lessonId}, new LessonRowMapper());
 
+    }
+
+    @Override
+    public List<Lesson> getTodayLessonsByTrainer(int trainerId) {
+
+        String SQL = "select l.id, l.is_cancel, l.start_date_time, l.course_id from \"Lesson\" l join \"Course\" c on l.course_id = c.id where c.user_id = ? and cast(l.start_date_time as date) = cast(current_timestamp as date)";
+
+        return jdbcTemplate.query(SQL, new Object[] {trainerId}, new LessonRowMapper());
     }
 }

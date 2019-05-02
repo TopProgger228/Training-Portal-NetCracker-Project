@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class UserAttendanceDto {
 
-    int id;
-    String userFirstName;
-    String userLastName;
-    int lessonId;
-    String AttendanceStatus;
+    private int id;
+    private String userFirstName;
+    private String userLastName;
+    private int lessonId;
+    private String AttendanceStatus;
 
     public UserAttendanceDto() {
     }

@@ -6,31 +6,19 @@ import java.util.Objects;
 
 public class LessonAttendanceDto {
 
-    int lessonId;
-    boolean isCancel;
-    Date startDateTime;
+    private int lessonId;
+    private boolean isCancel;
+    private Date startDateTime;
+    private String courseName;
 
-
-    public LessonAttendanceDto() {
-    }
-
-    public LessonAttendanceDto(int lessonId, boolean isCancel, Date startDateTime) {
+    public LessonAttendanceDto(int lessonId, boolean isCancel, Date startDateTime, String courseName) {
         this.lessonId = lessonId;
         this.isCancel = isCancel;
         this.startDateTime = startDateTime;
+        this.courseName = courseName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LessonAttendanceDto that = (LessonAttendanceDto) o;
-        return lessonId == that.lessonId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lessonId);
+    public LessonAttendanceDto() {
     }
 
     public int getLessonId() {
@@ -57,4 +45,11 @@ public class LessonAttendanceDto {
         this.startDateTime = startDateTime;
     }
 
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 }

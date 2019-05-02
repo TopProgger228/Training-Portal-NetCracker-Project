@@ -5,12 +5,12 @@ import java.util.List;
 
 public class CheckLessonAttendanceDto {
 
-    int lessonId;
-    String courseName;
-    Date lessonDate;
-    boolean isCancel;
-    TrainerAttendanceDto trainer;
-    List<UserAttendanceDto> userAttendanceDtoList;
+    private int lessonId;
+    private String courseName;
+    private Date lessonDate;
+    private boolean isCancel;
+    private TrainerAttendanceDto trainer;
+    private List<UserAttendanceDto> userAttendanceDtoList;
 
     public CheckLessonAttendanceDto() {
     }

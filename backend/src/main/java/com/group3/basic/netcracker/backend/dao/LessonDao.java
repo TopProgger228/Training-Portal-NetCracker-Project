@@ -10,4 +10,6 @@ public interface LessonDao {
 
     Lesson getLessonById (int lessonId);
 
+    List<Lesson> getTodayLessonsByTrainer (int trainerId);
+
 }
