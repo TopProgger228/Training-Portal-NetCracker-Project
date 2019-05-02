@@ -41,4 +41,5 @@ public interface UserDao {
 
     User getTrainerByCourse (int courseId);
 
+    List getStudentsOfTrainer (String username);
 }

@@ -12,13 +12,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class CourseAPIs {
 
-    private ApplicationContext context;
-
     private final CourseService courseService;
 
     @Autowired
-    public CourseAPIs(ApplicationContext context, CourseService courseService){
-        this.context = context;
+    public CourseAPIs(CourseService courseService){
         this.courseService = courseService;
     }
 

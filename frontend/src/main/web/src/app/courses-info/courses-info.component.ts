@@ -16,8 +16,6 @@ export class CoursesInfoComponent implements OnInit {
 
   courses: Course[];
 
-  currentJustify = 'start';
-
   loggedOut = false;
 
   constructor(private router: Router, private courseService: CourseService, private token: TokenStorageService) {

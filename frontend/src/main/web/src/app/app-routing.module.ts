@@ -14,8 +14,7 @@ import {AddStudentComponent} from "./add-student/add-student.component";
 import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 import {ManageNewsComponent} from "./manage-news/manage-news.component";
 import {CoursesInfoComponent} from "./courses-info/courses-info.component";
-
-
+import {ShowStudentsComponent} from "./show-students/show-students.component";
 
 
 const routes: Routes = [
@@ -66,6 +65,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: RegisterComponent
+  },
+  {
+    path: 'showallstudents',
+    component: ShowStudentsComponent
   },
   {
     path: '',
