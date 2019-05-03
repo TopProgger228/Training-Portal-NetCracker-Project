@@ -13,7 +13,7 @@ public class LessonRowMapper implements RowMapper {
         lesson.setLessonId(rs.getInt("id"));
         lesson.setCourseId(rs.getInt("course_id"));
         lesson.setCancel(rs.getBoolean("is_cancel"));
-        lesson.setLessonDate(rs.getDate("start_date_time"));
+        lesson.setLessonDate(rs.getDate("lesson_date"));
         lesson.setTimeSlotId(rs.getInt("time_slot_id"));
 
         return lesson;
