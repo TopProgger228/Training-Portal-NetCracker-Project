@@ -11,7 +11,7 @@ public class LessonAttendanceDtoMapper {
 
         Lesson lesson = new Lesson();
         lesson.setLessonId(lad.getLessonId());
-        lesson.setStartDateTime(lad.getStartDateTime());
+        lesson.setLessonDate(lad.getStartDateTime());
         lesson.setCancel(lad.isCancel());
 
         return lesson;
@@ -22,7 +22,7 @@ public class LessonAttendanceDtoMapper {
         LessonAttendanceDto lad = new LessonAttendanceDto();
         lad.setLessonId(lesson.getLessonId());
         lad.setCancel(lesson.isCancel());
-        lad.setStartDateTime(lesson.getStartDateTime());
+        lad.setStartDateTime(lesson.getLessonDate());
 
         return lad;
     }

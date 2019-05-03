@@ -65,7 +65,7 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
         CheckLessonAttendanceDto checkLessonAttendanceDto = new CheckLessonAttendanceDto();
         checkLessonAttendanceDto.setLessonId(lessonId);
         checkLessonAttendanceDto.setCourseName(course.getName());
-        checkLessonAttendanceDto.setLessonDate(lessonDao.getLessonById(lessonId).getStartDateTime());
+        checkLessonAttendanceDto.setLessonDate(lessonDao.getLessonById(lessonId).getLessonDate());
         checkLessonAttendanceDto.setCancel(false);
         checkLessonAttendanceDto.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(course.getId())));
 

@@ -5,19 +5,21 @@ import java.util.Objects;
 
 public class Lesson {
 
-    int lessonId;
-    int courseId;
-    boolean isCancel;
-    Date startDateTime;
+    private int lessonId;
+    private int courseId;
+    private boolean isCancel;
+    private Date lessonDate;
+    private int timeSlotId;
 
     public Lesson() {
     }
 
-    public Lesson(int lessonId, int groupId, boolean isCancel, Date startDateTime) {
+    public Lesson(int lessonId, int groupId, boolean isCancel, Date lessonDate, int timeSlotId) {
         this.lessonId = lessonId;
         this.courseId = groupId;
         this.isCancel = isCancel;
-        this.startDateTime = startDateTime;
+        this.lessonDate = lessonDate;
+        this.timeSlotId = timeSlotId;
     }
 
     public int getLessonId() {
@@ -44,12 +46,20 @@ public class Lesson {
         isCancel = cancel;
     }
 
-    public Date getStartDateTime() {
-        return startDateTime;
+    public Date getLessonDate() {
+        return lessonDate;
     }
 
-    public void setStartDateTime(Date startDateTime) {
-        this.startDateTime = startDateTime;
+    public void setLessonDate(Date lessonDate) {
+        this.lessonDate = lessonDate;
+    }
+
+    public int getTimeSlotId() {
+        return timeSlotId;
+    }
+
+    public void setTimeSlotId(int timeSlotId) {
+        this.timeSlotId = timeSlotId;
     }
 
     @Override
