@@ -15,16 +15,18 @@ public class SignUpForm {
     private String fname;
     @NotBlank
     private String lname;
-    @NotBlank
-    private String email;
+    /*@NotBlank
+    private String email;*/
     @NotBlank
     private String password;
+    @NotBlank
+    private String token;
 
     private int id;
     private Set<String> role;
 
 
-   // private byte[] photo = null;
+    // private byte[] photo = null;
 
     public String getUsername() {
         return username;
@@ -44,8 +46,12 @@ public class SignUpForm {
         return lname;
     }
 
-    public String getEmail() {
+   /* public String getEmail() {
         return email;
+    }*/
+
+    public String getToken() {
+        return token;
     }
 
     public String getPassword() {
@@ -61,9 +67,6 @@ public class SignUpForm {
     public int getId() {
         return id;
     }
-
-
-
 
 
     public Set<String> getRole() {

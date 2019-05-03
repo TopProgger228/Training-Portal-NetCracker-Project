@@ -22,9 +22,9 @@ public class CourseDaoImpl implements CourseDAO {
     }
 
     @Override
-    public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int user_id, int qty_per_week) {
-        String SQL = "INSERT INTO \"Course\" (name, start_date, end_date, info, skill_level, user_id, qty_per_week) VALUES (?,?,?,?,?,?,?)";
-        jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, user_id, qty_per_week);
+    public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week) {
+        String SQL = "INSERT INTO \"Course\" (name, start_date, end_date, info, skill_level, trainer_id, qty_per_week) VALUES (?,?,?,?,?,?,?)";
+        jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, trainer_id, qty_per_week);
     }
 
     @Override
@@ -36,15 +36,22 @@ public class CourseDaoImpl implements CourseDAO {
 
     @Override
     public List listCourses() {
-        String SQL = "SELECT id, name, info, user_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\"";
+        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\"";
+        List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
+        return courses;
+    }
+
+    @Override
+    public List listLastTenCourses() {
+        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" ORDER BY id DESC fetch first 10 rows only;";
         List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
         return courses;
     }
 
     @Override
     public List listCoursesByUsername(String username) {
-        String SQL = "SELECT id, name, info, user_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" " +
-                "where user_id=(select id from \"User\" where username='" + username + "')";
+        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" " +
+                "where trainer_id=(select id from \"User\" where username='" + username + "')";
         List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
         return courses;
     }
@@ -57,15 +64,15 @@ public class CourseDaoImpl implements CourseDAO {
 
     @Override
     public void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info,
-                             String skill_level, int user_id, int qty_per_week) {
-        String SQL = "UPDATE \"Course\" SET name = ?, start_date = ?, end_date = ?, info = ?, skill_level = ?, user_id = ?, qty_per_week = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, user_id, qty_per_week, id);
+                             String skill_level, int trainer_id, int qty_per_week) {
+        String SQL = "UPDATE \"Course\" SET name = ?, start_date = ?, end_date = ?, info = ?, skill_level = ?, trainer_id = ?, qty_per_week = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, trainer_id, qty_per_week, id);
     }
 
     @Override
     public Course getCourseByLesson(int lessonId) {
 
-        String SQL = "select c.id, c.name, c.info, c.user_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Lesson\" l on c.id = l.course_id where  l.id = ?";
+        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Lesson\" l on c.id = l.course_id where  l.id = ?";
 
         return (Course) jdbcTemplate.queryForObject(SQL, new Object[] {lessonId}, new CourseRowMapper());
 

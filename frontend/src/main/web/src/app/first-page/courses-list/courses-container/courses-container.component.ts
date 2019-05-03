@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { COURSES } from '../default-courses';
-import {StockCourses} from "../stock-courses";
-import {CourseService} from '../../../services/course.service';
-import {Course} from '../../../services/course'
+import { StockCourses } from "../stock-courses";
+import { CourseService } from '../../../services/course.service';
+import { Course } from '../../../services/course'
 
 
 @Component({
@@ -17,10 +17,10 @@ export class CoursesContainerComponent implements OnInit {
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
- this.courseService.getCoursesList().subscribe(data =>{
-   this.courses = data;
-  console.log(data);
-})
+    this.courseService.getLastTenCoursesList().subscribe(data => {
+      this.courses = data;
+      console.log(data);
+    })
   }
 
 }

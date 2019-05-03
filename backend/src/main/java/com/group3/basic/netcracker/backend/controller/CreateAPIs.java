@@ -53,7 +53,7 @@ public class CreateAPIs {
 
         courseService.createCourse(courseForm.getName(),LocalDate.parse(courseForm.getStart_date()),LocalDate.parse(courseForm.getEnd_date()),
                 courseForm.getInfo(),courseForm.getSkill_level(),
-                courseForm.getUser_id(),courseForm.getQty_per_week());
+                courseForm.getTrainer_id(),courseForm.getQty_per_week());
 
         return new ResponseEntity<>(new ResponseMessage("Course created successfully!"), HttpStatus.CREATED);
     }
@@ -61,6 +61,11 @@ public class CreateAPIs {
     @GetMapping("/courses-list")
     public List getCourses(){
         return courseService.listCourses();
+    }
+
+    @GetMapping("/last-ten-courses-list")
+    public List getlastTenCourses(){
+        return courseService.listLastTenCourses();
     }
 
     @PostMapping("/create_new_timeslot")

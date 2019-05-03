@@ -12,9 +12,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -27,18 +29,35 @@ public class MailSenderAPIs {
 
     private ResetPasswordService resetPasswordService;
 
+    private JavaMailSender javaMailSender;
+
     @Autowired
-    public MailSenderAPIs(ApplicationContext context, UserService userService, ResetPasswordService resetPasswordService){
+    public MailSenderAPIs(ApplicationContext context, UserService userService, ResetPasswordService resetPasswordService, JavaMailSender javaMailSender){
         this.context = context;
         this.userService = userService;
         this.resetPasswordService = resetPasswordService;
+        this.javaMailSender = javaMailSender;
     }
 
 
-    @PostMapping("/resetPassword")
-    public ResponseEntity<?> sendResetPasswordMail(@RequestParam("email") String email) {
+    @PostMapping("/signup/send_email")
+    public ResponseEntity<?> sendSignUpMail(@RequestParam("email") String email) {
+        String token = UUID.randomUUID().toString();
+        resetPasswordService.createTokenForUser(email, token);
 
-            resetPasswordService.sendMail(email);
-            return new ResponseEntity<>(new ResponseMessage("Mail sent"), HttpStatus.OK);
+        javaMailSender.send(resetPasswordService.constructTokenEmail(getAppUrl(), email, token));
+        return new ResponseEntity<>(new ResponseMessage("Mail sent"), HttpStatus.OK);
     }
+
+    @PostMapping("/signup/getEmailByToken")
+    public ResponseEntity<?> getEmailByToken(@RequestParam("token") String token) {
+        System.out.println(resetPasswordService.getEmailByToken(token));
+
+        return new ResponseEntity<>(new ResponseMessage("email"), HttpStatus.OK);
+    }
+
+    private String getAppUrl(){
+        return "http://localhost:4200/";
+    }
+
 }

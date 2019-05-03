@@ -21,7 +21,7 @@
 
             <div class="dropdown">
               <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
-                id="dropdownMenuButton" type="button">
+                      id="dropdownMenuButton" type="button">
                 <a class="nav-link" routerLink="">
                   Manage users
                 </a>
@@ -35,7 +35,7 @@
 
           </li>
           <li class="nav-item">
-            <button class="btn btn-default" type="button" >
+            <button class="btn btn-default" type="button">
               <a class="nav-link" href="admin/manage-news">
                 Manage landing page
               </a>
@@ -45,7 +45,7 @@
 
             <div class="dropdown">
               <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
-                id="dropdownMenuButton" type="button">
+                      id="dropdownMenuButton" type="button">
                 <a class="nav-link" routerLink="">
                   Manage courses
                 </a>
@@ -87,7 +87,6 @@
       </div>
 
 
-
       <div *ngIf="this.role == 'user'">
 
         <ul class="navbar-nav mr-auto">
@@ -118,22 +117,60 @@
           </li>
         </ul>
       </div>
+
+      <div *ngIf="this.role == 'mng'">
+
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <button class="btn btn-default" type="button">
+              <a class="nav-link" href="firstPage">
+                Home
+              </a>
+            </button>
+          </li>
+
+          <li class="nav-item">
+
+            <div class="dropdown">
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
+                      id="dropdownMenuButton" type="button">
+                <a class="nav-link" routerLink="">
+                  Manage lists
+                </a>
+              </button>
+              <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                <a class="dropdown-item" href="student/my-schedule">Students list</a>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+
     </ul>
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <button type="button" class="btn btn-default">
-          <a class="nav-link" routerLink=""><span class=" glyphicon glyphicon-bullhorn"></span></a>
+          <a class="nav-link" routerLink="">
+            <span class=" glyphicon glyphicon-bullhorn"></span>
+          </a>
         </button>
       </li>
       <li class="nav-item">
         <button type="button" class="btn btn-default">
-          <a class="nav-link" routerLink=""><span class="glyphicon glyphicon-envelope"></span></a>
+          <a class="nav-link" routerLink="">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </a>
         </button>
       </li>
       <li class="nav-item">
-        <button (click)="logout()" class="btn btn-outline-secondary" type="button"><a
-            class="nav-link">Logout</a></button>
+        <button (click)="logout()" class="btn btn-outline-secondary" type="button">
+          <a
+            class="nav-link">Logout
+          </a>
+        </button>
       </li>
     </ul>
   </div>

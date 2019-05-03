@@ -30,15 +30,7 @@
                 <div *ngIf="username.errors.required" style="font-size: 15pt">Username is required</div>
               </div>
             </div>
-            <div class="form-group text-center">
-              <label for="email">Email</label>
-              <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required
-                email />
-              <div *ngIf="f.submitted && email.invalid">
-                <div *ngIf="email.errors.required" style="font-size: 15pt">Email is required</div>
-                <div *ngIf="email.errors.email" style="font-size: 15pt">Email must be a valid email address</div>
-              </div>
-            </div>
+            
             <div class="form-group text-center">
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password" [(ngModel)]="form.password"

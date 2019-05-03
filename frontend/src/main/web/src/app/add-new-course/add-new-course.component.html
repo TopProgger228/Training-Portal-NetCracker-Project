@@ -5,7 +5,10 @@
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" required
              [(ngModel)]="course.name" name="name"
-             #firstName="ngModel">
+             #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Course name is required!
+      </div>
     </div>
 
     <div class="form-group">
@@ -13,6 +16,9 @@
       <input type="date" class="form-control" id="start_date" required
              [(ngModel)]="course.start_date" name="start_date"
              #start_date="ngModel">
+      <div [hidden]="start_date.valid || start_date.pristine" class="alert alert-danger">
+        Start date is required!
+      </div>
 
     </div>
 
@@ -21,42 +27,71 @@
       <input type="date" class="form-control" id="end_date" required
              [(ngModel)]="course.end_date" name="end_date"
              #end_date="ngModel">
+      <div [hidden]="end_date.valid || end_date.pristine" class="alert alert-danger">
+        End date is required!
+      </div>
     </div>
 
     <div class="form-group">
       <label for="info">Info</label>
-      <input type="text" class="form-control" id="info" required
-             [(ngModel)]="course.info" name="info"
-             #info="ngModel">
+      <!--<input type="text" class="form-control" id="info" required-->
+             <!--[(ngModel)]="course.info" name="info"-->
+             <!--#info="ngModel">-->
+      <textarea cols="20" rows="5" class="form-control" id="info" required
+                [(ngModel)]="course.info" name="info"
+                #info="ngModel">
+
+      </textarea>
+      <div [hidden]="info.valid || info.pristine" class="alert alert-danger">
+        Info is required!
+      </div>
     </div>
 
     <div class="form-group">
       <label for="skill_level">Skill level</label>
-      <input type="text" class="form-control" id="skill_level" required
-             [(ngModel)]="course.skill_level" name="skill_level"
-             #skill_level="ngModel">
+      <!--<input type="text" class="form-control" id="skill_level" required-->
+             <!--[(ngModel)]="course.skill_level" name="skill_level"-->
+             <!--#skill_level="ngModel">-->
+      <select [(ngModel)]="course.skill_level" class="form-control" id="skill_level" name="skill_level">
+        <option *ngFor="let l of levels" [value]="l">{{l}}</option>
+      </select>
+      <div [hidden]="info.valid || info.pristine" class="alert alert-danger">
+        Skill level is required!
+      </div>
     </div>
 
 
     <div class="form-group">
-      <label for="user_id">Trainer</label>
-      <select [(ngModel)]="course.user_id" class="form-control" id="user_id" name="user_id">
+      <label for="trainer_id">Trainer</label>
+      <select [(ngModel)]="course.trainer_id" class="form-control" id="trainer_id" name="trainer_id"> required
         <option *ngFor="let t of trainers" [value]="t.id">{{t.fname}} {{t.lname}}</option>
       </select>
+      <!--<div [hidden]="user_id.valid || user_id.pristine" class="alert alert-danger">-->
+        <!--Trainer is required!-->
+      <!--</div>-->
+      <!--<div *ngIf="user_id.invalid" >-->
+        <!--<div *ngIf="user_id.errors.required " class="alert alert-danger">-->
+          <!--Trainer is required!-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
 
 
     <div class="form-group">
       <label for="qty_per_week">Quantity per week</label>
-      <input type="number" class="form-control" id="qty_per_week" required
+      <input type="number" class="form-control" id="qty_per_week"  min="1"
              [(ngModel)]="course.qty_per_week" name="qty_per_week"
              #qty_per_week="ngModel">
-
-
+      <!--<div *ngIf="qty_per_week.invalid && courseForm.submitted" class="alert alert-danger">-->
+        <div [hidden]="!qty_per_week.errors?.min" class="alert alert-danger">
+          Quantity of lessons > 0!
+        </div>
+      <!--</div>-->
     </div>
 
-    <button type="submit" class="btn btn-success" >
-            <!--[disabled]="!courseForm.course.valid"-->Submit</button>
-
+    <button [disabled]="!courseForm.form.valid" type="submit" class="btn btn-success" >Submit</button>
+    <!--<div *ngIf="courseForm.submitted && isCreationFailed" class="alert alert-danger" style="font-size: 15pt">-->
+      <!--Login failed: {{errorMessage}}-->
+    <!--</div>-->
   </form>
 </div>

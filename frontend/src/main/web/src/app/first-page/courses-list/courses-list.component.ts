@@ -21,9 +21,6 @@ export class CoursesListComponent implements OnInit {
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
- this.courseService.getCoursesList().subscribe(data =>{
-   console.log(data);
- })
   }
 
 

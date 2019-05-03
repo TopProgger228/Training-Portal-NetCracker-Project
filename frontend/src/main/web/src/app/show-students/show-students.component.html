@@ -1,0 +1,44 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 100vh;">
+
+    <app-menu></app-menu>
+    <div style="width: 80%;  margin: 20px auto;">
+      <ngb-tabset>
+        <ngb-tab>
+          <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">Students</span>
+          </ng-template>
+          <ng-template ngbTabContent>
+
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">E-mail</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let  student of students; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{student.username}}</td>
+                <td>{{student.fname}}</td>
+                <td>{{student.lname}}</td>
+                <td>{{student.email}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+</ng-template>

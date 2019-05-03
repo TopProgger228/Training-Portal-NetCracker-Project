@@ -34,6 +34,11 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
+    public List listLastTenCourses() {
+        return courseDAO.listLastTenCourses();
+    }
+
+    @Override
     public List listCoursesByUsername(String username) {
         return courseDAO.listCoursesByUsername(username);
     }
@@ -44,7 +49,7 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int user_id, int qty_per_week) {
-        courseDAO.updateCourse(id, name, start_date, end_date, info, skill_level, user_id, qty_per_week);
+    public void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week) {
+        courseDAO.updateCourse(id, name, start_date, end_date, info, skill_level, trainer_id, qty_per_week);
     }
 }
