@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CourseService {
     void createCourse(String name, LocalDate start_date, LocalDate end_date, String info,
-                    String skill_level, int user_id, int qty_per_week);
+                    String skill_level, int trainer_id, int qty_per_week);
 
     Course getCourseById(int id);
 
@@ -20,5 +20,5 @@ public interface CourseService {
     void removeCourse(int id);
 
     void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info,
-                      String skill_level, int user_id, int qty_per_week);
+                      String skill_level, int trainer_id, int qty_per_week);
 }

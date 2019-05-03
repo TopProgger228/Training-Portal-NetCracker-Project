@@ -15,7 +15,7 @@ public class CourseForm {
     @NotBlank
     private String skill_level;
     @NotBlank
-    private int user_id;
+    private int trainer_id;
     @NotBlank
     private int qty_per_week;
 
@@ -59,12 +59,12 @@ public class CourseForm {
         this.skill_level = skill_level;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getTrainer_id() {
+        return trainer_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setTrainer_id(int user_id) {
+        this.trainer_id = trainer_id;
     }
 
     public int getQty_per_week() {

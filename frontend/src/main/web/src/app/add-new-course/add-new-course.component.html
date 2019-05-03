@@ -62,8 +62,8 @@
 
 
     <div class="form-group">
-      <label for="user_id">Trainer</label>
-      <select [(ngModel)]="course.user_id" class="form-control" id="user_id" name="user_id"> required
+      <label for="trainer_id">Trainer</label>
+      <select [(ngModel)]="course.trainer_id" class="form-control" id="trainer_id" name="trainer_id"> required
         <option *ngFor="let t of trainers" [value]="t.id">{{t.fname}} {{t.lname}}</option>
       </select>
       <!--<div [hidden]="user_id.valid || user_id.pristine" class="alert alert-danger">-->

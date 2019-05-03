@@ -9,20 +9,20 @@ public class Course {
     private LocalDate end_date;
     private String info;
     private String skill_level;
-    private int user_id;
+    private int trainer_id;
     private int qty_per_week;
 
     public Course() {
     }
 
-    public Course(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int user_id, int qty_per_week) {
+    public Course(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week) {
         this.id = id;
         this.name = name;
         this.start_date = start_date;
         this.end_date = end_date;
         this.info = info;
         this.skill_level = skill_level;
-        this.user_id = user_id;
+        this.trainer_id = trainer_id;
         this.qty_per_week = qty_per_week;
     }
 
@@ -74,12 +74,12 @@ public class Course {
         this.skill_level = skill_level;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getTrainer_id() {
+        return trainer_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setTrainer_id(int trainer_id) {
+        this.trainer_id = trainer_id;
     }
 
     public int getQty_per_week() {
@@ -99,7 +99,7 @@ public class Course {
                 ", end_date=" + end_date +
                 ", info='" + info + '\'' +
                 ", skill_level='" + skill_level + '\'' +
-                ", user_id=" + user_id +
+                ", trainer_id=" + trainer_id +
                 ", qty_per_week=" + qty_per_week +
                 '}';
     }
