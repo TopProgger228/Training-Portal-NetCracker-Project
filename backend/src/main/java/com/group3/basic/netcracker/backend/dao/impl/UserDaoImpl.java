@@ -22,11 +22,12 @@ public class UserDaoImpl implements UserDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UserDaoImpl(JdbcTemplate jdbcTemplate){
+    public UserDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     @Override
-    public void createUser(String username, String  role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
+    public void createUser(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
         String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo) VALUES (?,?,?,?,?,?,?,?)";
 
         jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo);
@@ -45,7 +46,7 @@ public class UserDaoImpl implements UserDao {
         String SQL = "SELECT * FROM \"User\" WHERE username = ?";
         try {
             jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserRowMapper());
-        }catch(EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return false;
         }
         return true;
@@ -79,21 +80,19 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List getStudentsOfManager(String username){
-        String SQL = "SELECT username, fname, lname, email FROM \"User\" where manager_id=(select id from \"User\" where username='" + username + "')";
+    public List getStudentsOfManager(String username) {
 
-        String SQL1 = ("select u.*, man.\"Manager\" \n" +
-                "from \"User\" u\n" +
-                "join \"Group\" g on g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
-                "join (select id as m_id, username as \"Manager\" \n" +
+        String SQL = ("SELECT u.*, man.\"Manager\" \n" +
+                "FROM \"User\" u\n" +
+                "JOIN \"Group\" g ON g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
+                "JOIN (SELECT id AS m_id, username AS \"Manager\" \n" +
                 "\t\t   --Если убрать Left из join то выберем студентов с именно тем менеджером\n" +
                 "\t\t   --Так выбираем всех, и тех у которых его нету)\n" +
-                "\t\t   from \"User\") as man on man.m_id = u.manager_id\n" +
+                "\t\t   FROM \"User\") AS man ON man.m_id = u.manager_id\n" +
                 "\t\t --подставляем id менеджера, можно заменить на like и брать по юзернейму\n" +
-                "where man.\"Manager\" like '" + username+"';");
+                "WHERE man.\"Manager\" LIKE '" + username + "';");
 
-        //String SQL2
-        List Users = jdbcTemplate.query(SQL1, new UserRowMapper());
+        List Users = jdbcTemplate.query(SQL, new UserRowMapper());
         return Users;
 
     }
@@ -113,7 +112,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addMember(String username, String role, String fname, String lname,String email, String pass, LocalDate created_at) {
+    public void addMember(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at) {
         String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at) VALUES" +
                 "(?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at);
@@ -145,9 +144,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean isUserExists(String username, String email) {
-        if (isUserWithUsername(username) == 1 || isUserWithEmail(email) == 1){
+        if (isUserWithUsername(username) == 1 || isUserWithEmail(email) == 1) {
             return true;
-        }else return false;
+        } else return false;
     }
 
     @Override
@@ -155,7 +154,7 @@ public class UserDaoImpl implements UserDao {
 
         String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Group\" g on u.id = g.user_id join \"Course\" c on g.course_id = c.id join \"Lesson\" l on c.id = l.course_id where l.id = ?";
 
-        return jdbcTemplate.query(SQL, new Object[] {lessonId}, new UserRowMapper());
+        return jdbcTemplate.query(SQL, new Object[]{lessonId}, new UserRowMapper());
     }
 
     @Override
@@ -163,7 +162,7 @@ public class UserDaoImpl implements UserDao {
 
         String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Course\" c on u.id = c.user_id where c.id = ?";
 
-        return (User) jdbcTemplate.queryForObject(SQL, new Object[] {courseId}, new UserRowMapper());
+        return (User) jdbcTemplate.queryForObject(SQL, new Object[]{courseId}, new UserRowMapper());
 
     }
 
@@ -172,12 +171,12 @@ public class UserDaoImpl implements UserDao {
         return jdbcTemplate.query(Queries.selectAllStudentsOfTrainer, new StudentRowMapper());
     }
 
-    private int isUserWithUsername(String username){
+    private int isUserWithUsername(String username) {
         String SQL = "SELECT COUNT(*) FROM \"User\" WHERE username = ?";
         return jdbcTemplate.queryForObject(SQL, Integer.class, username);
     }
 
-    private int isUserWithEmail(String email){
+    private int isUserWithEmail(String email) {
         String SQL = "SELECT COUNT(*) FROM \"User\" WHERE email = ?";
         return jdbcTemplate.queryForObject(SQL, Integer.class, email);
     }
