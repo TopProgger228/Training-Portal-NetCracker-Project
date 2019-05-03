@@ -24,6 +24,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { AddStudentComponent } from './add-student/add-student.component';
 import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 import { ManageNewsComponent } from './manage-news/manage-news.component';
+import { StudentsInfoComponent } from './students-info/students-info.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { ManageNewsComponent } from './manage-news/manage-news.component';
     //CoursesListComponent
     AddStudentComponent,
     CoursesInfoComponent,
-    ShowStudentsComponent
+    StudentsInfoComponent,
+    ShowStudentsComponent,
+    StudentsInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 import {ManageNewsComponent} from "./manage-news/manage-news.component";
 import {CoursesInfoComponent} from "./courses-info/courses-info.component";
 import {ShowStudentsComponent} from "./show-students/show-students.component";
+import {StudentsInfoComponent} from "./students-info/students-info.component";
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'trainer/courses-info',
     component: CoursesInfoComponent
+  },
+  {
+    path: 'manager/students-info',
+    component: StudentsInfoComponent
   },
   {
     path: 'admin/groups-schedule',
