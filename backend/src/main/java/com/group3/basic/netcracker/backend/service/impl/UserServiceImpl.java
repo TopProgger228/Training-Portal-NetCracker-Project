@@ -90,4 +90,9 @@ public class UserServiceImpl implements UserService {
     public List getStudentsOfTrainer(String username) {
         return userDao.getStudentsOfTrainer(username);
     }
+
+    @Override
+    public List getStudentsOfManager(String username){
+        return userDao.getStudentsOfManager(username);
+    }
 }

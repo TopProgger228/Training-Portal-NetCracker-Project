@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {CourseService} from "../services/course.service";
 import {TokenStorageService} from "../auth/token-storage.service";
 import {StudentService} from "../services/student.service";
+import {Student} from "../services/student";
 
 @Component({
   selector: 'app-students-info',
@@ -12,7 +13,8 @@ import {StudentService} from "../services/student.service";
 })
 export class StudentsInfoComponent implements OnInit {
 
-  courses: Course[];
+  //courses: Course[];
+  students: Student[];
 
   loggedOut = false;
 
@@ -21,9 +23,9 @@ export class StudentsInfoComponent implements OnInit {
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.studentService.getStudents(this.token.getUsername())
+      this.studentService.getStudentsOfManager(this.token.getUsername())
         .subscribe(data => {
-          this.courses = data;
+          this.students = data;
         })
     } else {
       this.loggedOut = true;

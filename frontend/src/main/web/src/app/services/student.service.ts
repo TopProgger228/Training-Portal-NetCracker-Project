@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class StudentService {
   url = 'http://localhost:8080/attendees/info?username=';
-  infourl = 'http://localhost:8080/manager/students-info?username=';
+  infourl = 'http://localhost:8080/api/manager/students-info?username=';
 
   constructor(private httpClient : HttpClient) { }
 

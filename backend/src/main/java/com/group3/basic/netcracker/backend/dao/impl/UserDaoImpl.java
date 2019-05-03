@@ -79,6 +79,26 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public List getStudentsOfManager(String username){
+        String SQL = "SELECT username, fname, lname, email FROM \"User\" where manager_id=(select id from \"User\" where username='" + username + "')";
+
+        String SQL1 = ("select u.*, man.\"Manager\" \n" +
+                "from \"User\" u\n" +
+                "join \"Group\" g on g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
+                "join (select id as m_id, username as \"Manager\" \n" +
+                "\t\t   --Если убрать Left из join то выберем студентов с именно тем менеджером\n" +
+                "\t\t   --Так выбираем всех, и тех у которых его нету)\n" +
+                "\t\t   from \"User\") as man on man.m_id = u.manager_id\n" +
+                "\t\t --подставляем id менеджера, можно заменить на like и брать по юзернейму\n" +
+                "where man.\"Manager\" like '" + username+"';");
+
+        //String SQL2
+        List Users = jdbcTemplate.query(SQL1, new UserRowMapper());
+        return Users;
+
+    }
+
+    @Override
     public void removeUser(int id) {
         String SQL = "DELETE FROM \"User\" WHERE id = ?";
         jdbcTemplate.update(SQL, id);
@@ -149,8 +169,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List getStudentsOfTrainer(String username) {
-        return jdbcTemplate.query(Queries.selectAllStudentsOfTrainer,
-                new StudentRowMapper());
+        return jdbcTemplate.query(Queries.selectAllStudentsOfTrainer, new StudentRowMapper());
     }
 
     private int isUserWithUsername(String username){

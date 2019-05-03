@@ -37,4 +37,6 @@ public interface UserService {
 
     List getStudentsOfTrainer(String username);
 
+    List getStudentsOfManager(String username);
+
 }
