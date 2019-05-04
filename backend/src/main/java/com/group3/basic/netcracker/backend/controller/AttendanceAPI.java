@@ -13,6 +13,7 @@ import com.group3.basic.netcracker.backend.util.authorization.message.response.R
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.group3.basic.netcracker.backend.entity.Attendance;
@@ -33,21 +34,16 @@ public class AttendanceAPI {
 	@Autowired
     public AttendanceAPI(AttendanceService attendanceService, CheckAttendanceService checkAttendanceService) {
         this.attendanceService = attendanceService;
-        
-        /**
-         * Handle request to download an Excel document
-         */
         this.checkAttendanceService = checkAttendanceService;
     }
-    @RequestMapping(value = "/attendanceExcel", method = RequestMethod.GET)
-    public ModelAndView attendanceExcel() {
-        // take some data
-        List<Attendance> listAttendance = new ArrayList<Attendance>();
-        listAttendance = attendanceService.listAttendance();
-        // return a view which will be resolved by an excel view resolver
-        return new ModelAndView("attendanceView", "listAttendance", listAttendance);
-   }
-
+    /**
+     * Handle request to download an Excel document
+     */
+        @RequestMapping(value = "/attendanceExcel", method = RequestMethod.GET)
+        public String attendance(Model model) {
+            model.addAttribute("attendance", attendanceService.listAttendance());
+            return "";
+        }
 
    @GetMapping("/attCourse")
    public ResponseEntity<?> getAllCourseAttendance () {
