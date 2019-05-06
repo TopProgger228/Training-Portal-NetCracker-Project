@@ -4,6 +4,7 @@ import com.group3.basic.netcracker.backend.dao.UsersTokenDao;
 import com.group3.basic.netcracker.backend.entity.UsersToken;
 import com.group3.basic.netcracker.backend.util.rowmapper.UsersTokenRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +39,31 @@ public class UsersTokenDaoImpl implements UsersTokenDao {
     }
 
 
+    @Override
+    public int getIdByEmail(String email){
 
+        String SQL = "SELECT * FROM \"UsersToken\" WHERE email = '" + email + "';";
+        UsersToken usersToken;
+        try {
+             usersToken = (UsersToken) jdbcTemplate.queryForObject(SQL, new Object[]{}, new UsersTokenRowMapper());
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+        return usersToken.getId();
+    }
+
+    @Override
+    public void replaceTokenById(int id, String token, Date expiryDate){
+        try {
+            String SQL = "UPDATE \"UsersToken\" SET token = ?, expiry_date = ? WHERE id = ?";
+
+            jdbcTemplate.update(SQL, token, new java.sql.Date(expiryDate.getTime()).toLocalDate(), id);
+            System.out.println("UsersToken successfully created.\n" + "\nToken: " + token + "\nExpiration date: ");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }

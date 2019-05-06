@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 
 import com.group3.basic.netcracker.backend.dao.impl.UserDaoImpl;
-import com.group3.basic.netcracker.backend.service.ResetPasswordService;
+import com.group3.basic.netcracker.backend.service.UsersTokenService;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.LoginForm;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.SignUpForm;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.JwtResponse;
@@ -38,34 +38,34 @@ public class AuthRestAPIs {
 
     private ApplicationContext context;
 
-    private ResetPasswordService resetPasswordService;
+    private UsersTokenService usersTokenService;
 
 
     @Autowired
     public AuthRestAPIs(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
-                        JwtProvider jwtProvider, ApplicationContext context, ResetPasswordService resetPasswordService){
+                        JwtProvider jwtProvider, ApplicationContext context, UsersTokenService usersTokenService) {
         this.authenticationManager = authenticationManager;
         this.encoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
         this.context = context;
-        this.resetPasswordService = resetPasswordService;
+        this.usersTokenService = usersTokenService;
     }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
-        try{
+        try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String jwt = jwtProvider.generateJwtToken(authentication);
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+            String jwt = jwtProvider.generateJwtToken(authentication);
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username or Password is wrong!"),
                     HttpStatus.BAD_REQUEST);
@@ -79,14 +79,26 @@ public class AuthRestAPIs {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
-        System.out.println(resetPasswordService.getEmailByToken(info.getToken()));
+        System.out.println(usersTokenService.getEmailByToken(info.getToken()));
 
         jdbcTemplateUsersDao.createUser(info.getUsername(),
-                "Student",info.getFname(),info.getLname(), resetPasswordService.getEmailByToken(info.getToken()),
+                "Student", info.getFname(), info.getLname(), usersTokenService.getEmailByToken(info.getToken()),
                 encoder.encode(info.getPassword()), LocalDate.now(), null);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
     }
 
+
+    @PostMapping("/reset_password")
+    public ResponseEntity<?> resetPassword(@RequestParam("email") String email, @RequestParam("password") String password) {
+        UserDaoImpl jdbcTemplateUsersDao = context.getBean(UserDaoImpl.class);
+        if (!jdbcTemplateUsersDao.existsByEmail(email)) {
+            return new ResponseEntity<>(new ResponseMessage("Fail -> User does not exist!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+        jdbcTemplateUsersDao.resetPassword(email, encoder.encode(password));
+
+        return new ResponseEntity<>(new ResponseMessage("User password reset successfully!"), HttpStatus.OK);
+    }
 
 }

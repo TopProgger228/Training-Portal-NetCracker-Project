@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FirstPageModule } from './first-page/first-page.module';
@@ -20,11 +20,12 @@ import { AddNewManagerComponent } from './add-new-manager/add-new-manager.compon
 import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.component';
 import { AddNewCourseComponent } from "./add-new-course/add-new-course.component";
 import {ShowStudentsComponent} from "./show-students/show-students.component";
-import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { AddStudentComponent } from './add-student/add-student.component';
+import { AddStudentMailSenderComponent } from './mail-sender/add-student';
 import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 import { ManageNewsComponent } from './manage-news/manage-news.component';
 import { StudentsInfoComponent } from './students-info/students-info.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
 
 @NgModule({
   declarations: [
@@ -37,14 +38,15 @@ import { StudentsInfoComponent } from './students-info/students-info.component';
     AddNewManagerComponent,
     GroupsScheduleComponent,
     MyScheduleComponent,
-    PasswordResetComponent,
     ManageNewsComponent,
     //CoursesListComponent
-    AddStudentComponent,
+    AddStudentMailSenderComponent,
     CoursesInfoComponent,
     StudentsInfoComponent,
     ShowStudentsComponent,
-    StudentsInfoComponent
+    StudentsInfoComponent,
+    ResetPasswordComponent,
+    PasswordResetMailSenderComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,10 @@ import { StudentsInfoComponent } from './students-info/students-info.component';
     FirstPageModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

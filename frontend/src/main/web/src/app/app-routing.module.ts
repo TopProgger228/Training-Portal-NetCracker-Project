@@ -9,13 +9,15 @@ import { UsersInfoComponent } from './users-info/users-info.component';
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 import {GroupsScheduleComponent} from "./groups-schedule/groups-schedule.component";
 import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
-import {PasswordResetComponent} from "./password-reset/password-reset.component";
-import {AddStudentComponent} from "./add-student/add-student.component";
+import {AddStudentMailSenderComponent} from "./mail-sender/add-student";
 import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
 import {ManageNewsComponent} from "./manage-news/manage-news.component";
 import {CoursesInfoComponent} from "./courses-info/courses-info.component";
 import {ShowStudentsComponent} from "./show-students/show-students.component";
 import {StudentsInfoComponent} from "./students-info/students-info.component";
+import {ResetPasswordComponent} from "./reset-password/reset-password.component";
+import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
+
 
 
 const routes: Routes = [
@@ -49,7 +51,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/add-student',
-    component: AddStudentComponent
+    component: AddStudentMailSenderComponent
   },
   {
     path: 'admin/manage-news',
@@ -64,12 +66,16 @@ const routes: Routes = [
     component: SignInComponent
   },
   {
-    path: 'password-reset',
-    component: PasswordResetComponent
+    path: 'auth/reset-password',
+    component: PasswordResetMailSenderComponent
   },
   {
     path: 'signup',
     component: RegisterComponent
+  },
+  {
+    path: 'password_reset',
+    component: ResetPasswordComponent
   },
   {
     path: 'showallstudents',

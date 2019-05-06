@@ -34,3 +34,7 @@ button{
     color: rgb(173, 173, 173);
     margin: auto
   }
+
+a{
+    font-size: 14px;
+}

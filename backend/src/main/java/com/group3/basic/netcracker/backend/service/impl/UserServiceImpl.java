@@ -95,4 +95,9 @@ public class UserServiceImpl implements UserService {
     public List getStudentsOfManager(String username){
         return userDao.getStudentsOfManager(username);
     }
+
+    @Override
+    public boolean existByEmail(String email){
+        return userDao.existsByEmail(email);
+    }
 }

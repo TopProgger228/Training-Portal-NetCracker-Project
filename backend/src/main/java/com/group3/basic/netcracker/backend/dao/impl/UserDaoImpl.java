@@ -36,6 +36,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void resetPassword(String email, String pass) {
+        String SQL = "UPDATE \"User\" SET  pass = ? WHERE email = ?";
+        jdbcTemplate.update(SQL,  pass, email);
+        System.out.println("User with email: " + email + " successfully updated.");
+    }
+
+    @Override
     public User getUserById(int id) {
         String SQL = "SELECT * FROM \"User\" WHERE id = ?";
         User user = (User) jdbcTemplate.queryForObject(SQL, new Object[]{id}, new UserRowMapper());
@@ -46,6 +53,17 @@ public class UserDaoImpl implements UserDao {
         String SQL = "SELECT * FROM \"User\" WHERE username = ?";
         try {
             jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        String SQL = "SELECT * FROM \"User\" WHERE email = ?";
+        try {
+            jdbcTemplate.queryForObject(SQL, new Object[]{email}, new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return false;
         }

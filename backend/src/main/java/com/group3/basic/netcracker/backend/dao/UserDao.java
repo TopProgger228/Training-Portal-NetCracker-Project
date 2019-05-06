@@ -10,6 +10,9 @@ public interface UserDao {
     void createUser(String username, String  role, String fname, String lname,
                     String email, String pass, LocalDate created_at, byte[] photo);
 
+
+    void resetPassword(String email, String pass);
+
     User getUserById(int id);
 
     List listUsers();
@@ -36,6 +39,8 @@ public interface UserDao {
     void updateUserEmail(int id, String newEmail);
 
     boolean isUserExists(String username, String email);
+
+    boolean existsByEmail(String email);
 
     List<User> getUsersByLesson (int lessonId);
 
