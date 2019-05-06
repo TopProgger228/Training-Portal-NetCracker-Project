@@ -198,7 +198,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List getStudentsOfTrainer(String username) {
-        return jdbcTemplate.query(Queries.selectAllStudentsOfTrainer, new StudentRowMapper());
+        String SQL = "SELECT u.* AS Student, t.trainer AS Trainer FROM \"User\" u \n" +
+                "JOIN \"Group\" g ON g.user_id = u.id JOIN \"Course\" c ON c.id = g.course_id \n" +
+                "LEFT JOIN (SELECT c.id AS course, u.username AS trainer FROM \"User\" u JOIN \"Course\" c ON c.trainer_id = u.id) AS t ON t.course = course_id \n" +
+                "WHERE t.trainer LIKE '" + username + "';";
+        return jdbcTemplate.query(SQL, new StudentRowMapper());
     }
 
     private int isUserWithUsername(String username) {
