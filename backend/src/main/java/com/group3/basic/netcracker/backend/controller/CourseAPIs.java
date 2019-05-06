@@ -27,12 +27,4 @@ public class CourseAPIs {
 
         return courseService.listCoursesByUsername(username);
     }
-
-    //@GetMapping("/coursesinfo/getcourses/getstudents") //тут выводим студентов курса
-
-    @GetMapping("/coursesinfo/getcourses/getstudents/getmanagers")
-    public List getManagers(@RequestParam("username") String username){
-
-        return userService.getManagerOfStudent(username);
-    }
 }
