@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.controller;
 
 import com.group3.basic.netcracker.backend.service.CourseService;
+import com.group3.basic.netcracker.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +14,25 @@ import java.util.List;
 public class CourseAPIs {
 
     private final CourseService courseService;
+    private final UserService userService;
 
     @Autowired
-    public CourseAPIs(CourseService courseService){
+    public CourseAPIs(CourseService courseService, UserService userService){
         this.courseService = courseService;
+        this.userService = userService;
     }
 
     @GetMapping("/coursesinfo/getcourses")
     public List getTrainers(@RequestParam("username") String username){
 
         return courseService.listCoursesByUsername(username);
+    }
+
+    //@GetMapping("/coursesinfo/getcourses/getstudents") //тут выводим студентов курса
+
+    @GetMapping("/coursesinfo/getcourses/getstudents/getmanagers")
+    public List getManagers(@RequestParam("username") String username){
+
+        return userService.getManagerOfStudent(username);
     }
 }

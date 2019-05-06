@@ -1,30 +1,28 @@
 package com.group3.basic.netcracker.backend.util.schedulefunction;
 
-import java.sql.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.stereotype.Service;
+import javax.sql.DataSource;
 
+
+@Service
 public class ScheduleGenerate {
-    private final String url = "jdbc:postgresql://178.128.252.215/training";
-    private final String user = "deploy";
-    private final String password = "secret";
+        @Autowired
+        private DataSource dataSource;
 
-    public Connection connect() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
-    }
-    //Method selects the most popular timeslots and generates a schedule by sql function
-    public int generateSchedule(int course) {
-        int result = 1;
-        try (Connection conn = this.connect();
-             CallableStatement callSchedule = conn.prepareCall("{ ? = call schedule_setter( ? ) }")) {
-            callSchedule.registerOutParameter(1, Types.INTEGER);
-            callSchedule.setInt(2, course);
-            callSchedule.execute();
-            result = callSchedule.getInt(1);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        public void generateSchedule(int course) {
+            JdbcTemplate template = new JdbcTemplate(dataSource);
+            SimpleJdbcCall call = new SimpleJdbcCall(template)
+                    .withFunctionName("schedule_chooser");
+
+            SqlParameterSource paramMap = new MapSqlParameterSource()
+                    .addValue("course", course);
+
+            Integer result = call.executeFunction(Integer.class, paramMap);
+            System.out.println(result);
         }
-        System.out.println("Schedule for course " + course + " has been choosen");
-        return result;
     }
-
-
-}

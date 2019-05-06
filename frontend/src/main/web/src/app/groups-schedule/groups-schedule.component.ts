@@ -70,6 +70,24 @@ export class GroupsScheduleComponent implements OnInit {
       });
   }
 
+  // public static compareTime(time1: Date, time2: Time): number
+  // {
+  //   // With Date object we can compare dates them using the >, <, <= or >=.
+  //   // The ==, !=, ===, and !== operators require to use date.getTime(),
+  //   // so we need to create a new instance of Date with 'new Date()'
+  //   let d1 = new Date(time1); let d2 = new Time(time2);
+  //
+  //   // Check if the dates are equal
+  //   let same = d1.getTime() === d2.getTime();
+  //   if (same) return 0;
+  //
+  //   // Check if the first is greater than second
+  //   if (d1 > d2) return 1;
+  //
+  //   // Check if the first is less than second
+  //   if (d1 < d2) return -1;
+  // }
+
   logout() {
     this.loggedout = true;
     this.token.signOut();

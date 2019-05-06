@@ -100,8 +100,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List getStudentsOfManager(String username) {
 
-        String SQL = ("SELECT u.*, man.\"Manager\" \n" +
-                "FROM \"User\" u\n" +
+        String SQL = ("SELECT u.*, man.\"Manager\" " +
+                "FROM \"User\" AS u" +
                 "JOIN \"Group\" g ON g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
                 "JOIN (SELECT id AS m_id, username AS \"Manager\" \n" +
                 "\t\t   --Если убрать Left из join то выберем студентов с именно тем менеджером\n" +
@@ -113,6 +113,18 @@ public class UserDaoImpl implements UserDao {
         List Users = jdbcTemplate.query(SQL, new UserRowMapper());
         return Users;
 
+    }
+
+    @Override
+    public List getManagerOfStudent(String username) {
+        String SQL = "SELECT u.*, man.\"Manager\" " +
+                "FROM \"User\" AS u" +
+                "JOIN (SELECT id AS m_id, username AS \"Manager\" " +
+                "\t\t FROM \"User\") AS man ON man.m_id = u.manager_id " +
+                "\t\t WHERE u.username LIKE '" + username + "';";
+
+        List Users = jdbcTemplate.query(SQL, new UserRowMapper());
+        return Users;
     }
 
     @Override

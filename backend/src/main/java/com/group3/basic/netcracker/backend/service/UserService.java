@@ -41,4 +41,6 @@ public interface UserService {
 
     boolean existByEmail(String email);
 
+    List getManagerOfStudent(String username);
+
 }
