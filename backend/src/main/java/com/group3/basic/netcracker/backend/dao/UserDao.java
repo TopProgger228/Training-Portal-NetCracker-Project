@@ -43,5 +43,7 @@ public interface UserDao {
 
     List getStudentsOfTrainer (String username);
 
-    List getStudentsOfManager (String username); //???
+    List getStudentsOfManager (String username);
+
+    List getManagerOfStudent(String username);
 }

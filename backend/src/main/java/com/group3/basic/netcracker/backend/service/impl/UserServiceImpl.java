@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao){
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(int id, String username, String  role, String fname, String lname,
+    public void updateUser(int id, String username, String role, String fname, String lname,
                            String email, String pass, LocalDate created_at, byte[] photo) {
         userDao.updateUser(id, username, role, fname, lname, email, pass, created_at, photo);
     }
@@ -92,7 +92,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List getStudentsOfManager(String username){
+    public List getStudentsOfManager(String username) {
         return userDao.getStudentsOfManager(username);
+    }
+
+    @Override
+    public List getManagerOfStudent(String username) {
+        return userDao.getManagerOfStudent(username);
     }
 }
