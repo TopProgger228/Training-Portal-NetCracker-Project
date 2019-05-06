@@ -78,7 +78,7 @@ const routes: Routes = [
     component: ResetPasswordComponent
   },
   {
-    path: 'showallstudents',
+    path: 'trainer/students-info',
     component: ShowStudentsComponent
   },
   {
