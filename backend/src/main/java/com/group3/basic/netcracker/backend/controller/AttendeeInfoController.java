@@ -22,9 +22,4 @@ public class AttendeeInfoController {
         return service.getStudentsOfTrainer(username);
     }
 
-    @GetMapping("infoman")
-    public List getManagersInfo(@RequestParam("username") String username){
-        return service.getManagerOfStudent(username);
-    }
-
 }

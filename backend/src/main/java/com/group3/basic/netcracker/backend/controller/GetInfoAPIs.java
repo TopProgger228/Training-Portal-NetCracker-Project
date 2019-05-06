@@ -52,4 +52,9 @@ public class GetInfoAPIs {
     public List getStudentsOfManager(@RequestParam("username") String username){
         return userService.getStudentsOfManager(username);
     }
+
+    @GetMapping("managerinfo")
+    public List getManagersInfo(@RequestParam("username") String username){
+        return userService.getManagerOfStudent(username);
+    }
 }
