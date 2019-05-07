@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
-import {Course} from "../services/course";
-import {CourseService} from "../services/course.service";
+import { Course } from "../services/course";
+import { CourseService } from "../services/course.service";
 
 
 @Component({
@@ -23,10 +23,17 @@ export class CoursesInfoComponent implements OnInit {
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.courseService.getCourses(this.token.getUsername())
-        .subscribe(data => {
-          this.courses = data;
-        })
+      this.token.getAuthorities().every(role => {
+        if (role === 'Trainer') {
+          this.courseService.getCourses(this.token.getUsername())
+            .subscribe(data => {
+              this.courses = data;
+            })
+        } else {
+          this.router.navigate(['firstPage']);
+        }
+        return false;
+      });
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);

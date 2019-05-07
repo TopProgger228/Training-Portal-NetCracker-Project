@@ -11,25 +11,35 @@ import { Router } from '@angular/router';
 export class AddStudentMailSenderComponent implements OnInit {
 
   form: any = {};
-  loggedout = false;
+  loggedOut = false;
   
   @Input()
   resetPassword: boolean;
 
   constructor(private mailSenderService: MailSenderService,
     private router: Router,
-    private tokenStorage: TokenStorageService) { }
+    private token: TokenStorageService) { }
 
   ngOnInit() {
-    if (!this.tokenStorage.getToken()) {
-      this.loggedout = true;
+    if (!this.token.getToken()) {
+      if (this.token.getToken()) {
+      this.token.getAuthorities().every(role => {
+        if (role === 'Admin') {
+        } else {
+          this.router.navigate(['firstPage']);
+        }
+        return false;
+      });
+    } else {
+      this.loggedOut = true;
       this.router.navigate(['auth/login']);
+    };
     };
   }
 
   logout() {
-    this.loggedout = true;
-    this.tokenStorage.signOut();
+    this.loggedOut = true;
+    this.token.signOut();
     window.location.reload();
     this.router.navigate(['auth/login']);
   }

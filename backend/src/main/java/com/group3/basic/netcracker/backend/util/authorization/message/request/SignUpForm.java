@@ -15,12 +15,10 @@ public class SignUpForm {
     private String fname;
     @NotBlank
     private String lname;
-    /*@NotBlank
-    private String email;*/
     @NotBlank
     private String password;
     @NotBlank
-    private String token;
+    private String email;
 
     private int id;
     private Set<String> role;
@@ -46,12 +44,8 @@ public class SignUpForm {
         return lname;
     }
 
-   /* public String getEmail() {
+    public String getEmail() {
         return email;
-    }*/
-
-    public String getToken() {
-        return token;
     }
 
     public String getPassword() {

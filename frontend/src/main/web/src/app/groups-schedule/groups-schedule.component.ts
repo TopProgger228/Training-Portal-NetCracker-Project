@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Timeslot} from "./timeslot";
-import {Router} from "@angular/router";
-import {TokenStorageService} from "../auth/token-storage.service";
-import {TimeSlotService} from "./time-slot.service";
-import {CoursesService} from "./courses.service";
-import {Courses} from "./courses";
-import {ScheduleService} from "./schedule.service";
-import {Schedule} from "./schedule";
-import {Timeslots} from "./timeslots";
+import { Component, OnInit } from '@angular/core';
+import { Timeslot } from "./timeslot";
+import { Router } from "@angular/router";
+import { TokenStorageService } from "../auth/token-storage.service";
+import { TimeSlotService } from "./time-slot.service";
+import { CoursesService } from "./courses.service";
+import { Courses } from "./courses";
+import { ScheduleService } from "./schedule.service";
+import { Schedule } from "./schedule";
+import { Timeslots } from "./timeslots";
 
 @Component({
   selector: 'app-groups-schedule',
@@ -17,25 +17,32 @@ import {Timeslots} from "./timeslots";
 export class GroupsScheduleComponent implements OnInit {
   loggedout = false;
   timeSlots: Timeslots[];
-  timeSlotT = new Timeslot("", "", "",0);
+  timeSlotT = new Timeslot("", "", "", 0);
   courses: Courses[];
-  schedule = new Schedule(0,0,false);
+  schedule = new Schedule(0, 0, false);
 
   constructor(private router: Router, private timeSlotService: TimeSlotService,
-              private coursesService: CoursesService, private scheduleService: ScheduleService,
-              private token: TokenStorageService) {
+    private coursesService: CoursesService, private scheduleService: ScheduleService,
+    private token: TokenStorageService) {
   }
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.timeSlotService.getTimeSlots()
-        .subscribe(data => {
-          this.timeSlots = data;
-        });
-      this.coursesService.getCourses()
-        .subscribe(data => {
-          this.courses = data;
-        })
+      this.token.getAuthorities().every(role => {
+        if (role === 'Admin') {
+          this.timeSlotService.getTimeSlots()
+            .subscribe(data => {
+              this.timeSlots = data;
+            });
+          this.coursesService.getCourses()
+            .subscribe(data => {
+              this.courses = data;
+            })
+        } else {
+          this.router.navigate(['firstPage']);
+        }
+        return false;
+      });
     } else {
       this.loggedout = true;
       this.router.navigate(['auth/login']);
@@ -44,7 +51,7 @@ export class GroupsScheduleComponent implements OnInit {
 
   submitted = false;
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.schedule);
     this.scheduleService.createSchedule(this.schedule).subscribe(
       value => {
@@ -57,7 +64,7 @@ export class GroupsScheduleComponent implements OnInit {
       });
   }
 
-  onSubmitT(){
+  onSubmitT() {
     console.log(this.timeSlotT);
     this.timeSlotService.addTimeslot(this.timeSlotT).subscribe(
       value => {

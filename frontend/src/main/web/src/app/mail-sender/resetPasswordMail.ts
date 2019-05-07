@@ -13,32 +13,35 @@ export class PasswordResetMailSenderComponent implements OnInit {
   form: any = {};
   loggedout = false;
 
-  
+
   isLoginFailed = false;
   errorMessage = '';
 
   constructor(private mailSenderService: MailSenderService,
     private router: Router,
-    private tokenStorage: TokenStorageService) { }
+    private token: TokenStorageService) { }
 
   ngOnInit() {
+    if (this.token.getToken()) {
+      this.router.navigate(['firstPage']);
+    }
   }
 
 
-  onSubmit(){
-      this.mailSenderService.sendResetPasswordMail(this.form.email).subscribe(
-        data => {
-          console.log(data);
-          //this.router.navigate(['auth/login']);
+  onSubmit() {
+    this.mailSenderService.sendResetPasswordMail(this.form.email).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['auth/login']);
 
         this.isLoginFailed = false;
-        },
-        error => {
-          console.log(error);
+      },
+      error => {
+        console.log(error);
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
-        }
-      );
-    }
+      }
+    );
+  }
 
 }
