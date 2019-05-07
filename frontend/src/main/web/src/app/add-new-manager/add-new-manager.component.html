@@ -60,7 +60,7 @@
         <div class="form-group">
           <label for="password">Password</label>
           <input #password="ngModel" [(ngModel)]="userModel.password" class="form-control" id="password" name="password"
-            required type="password">
+            required minlength="6" type="password">
 
           <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
             Password is required!

@@ -217,10 +217,32 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List getStudentsOfTrainer(String username) {
-        String SQL = "SELECT u.* AS Student, t.trainer AS Trainer FROM \"User\" u \n" +
-                "JOIN \"Group\" g ON g.user_id = u.id JOIN \"Course\" c ON c.id = g.course_id \n" +
-                "LEFT JOIN (SELECT c.id AS course, u.username AS trainer FROM \"User\" u JOIN \"Course\" c ON c.trainer_id = u.id) AS t ON t.course = course_id \n" +
-                "WHERE t.trainer LIKE '" + username + "';";
+//        String SQL = "SELECT u.* AS Student, t.trainer AS Trainer FROM \"User\" u \n" +
+//                "JOIN \"Group\" g ON g.user_id = u.id JOIN \"Course\" c ON c.id = g.course_id \n" +
+//                "LEFT JOIN (SELECT c.id AS course, u.username AS trainer FROM \"User\" u JOIN \"Course\" c ON c.trainer_id = u.id) AS t ON t.course = course_id \n" +
+//                "WHERE t.trainer LIKE '" + username + "';";
+        String SQL = "select u.*,\n" +
+                "         coalesce(man.manager, null) as \"Manager\",\n" +
+                "\t\t STRING_AGG(cr.course, ', ') as \"Course\",  man.man_fname as \"ManagerFname\", \n" +
+                "\t\t man.man_lname as \"ManagerLname\", man.man_mail as \"ManagerMail\"\n" +
+                "from \"User\" u\n" +
+                "join \"Group\" g on g.user_id = u.id\n" +
+                "join \"Course\" c on c.id = g.course_id\n" +
+                "left join (select c.id as course_id, u.username as trainer\n" +
+                "\t  from \"User\" u \n" +
+                "\t\t   join \"Course\" c on c.trainer_id = u.id) as t on t.course_id = g.course_id\n" +
+                "\t\t   left join (select id, fname as man_fname, lname as man_lname, \n" +
+                "\t\t\t\t\t  email as man_mail, username as manager\n" +
+                "\t\t\t\t from \"User\" ) as man on man.id = u.manager_id\n" +
+                "\t\t   join (select c.id, c.name as course, g.user_id as student\n" +
+                "\t\t\t\t\t   from \"Course\" c\n" +
+                "\t\t\t\t\t   join \"Group\" g on g.course_id = c.id \n" +
+                "\t\t\t\t       ) as cr on cr.student = u.id\n" +
+                "\t\t    where t.trainer like '" + username + "'\n" +
+                "\t\t\tgroup by u.username, u.fname, u.lname, u.email, u.pass,\n" +
+                "\t\t\tu.created_at, u.photo, u.id, man.manager,man.man_fname, \n" +
+                "\t\t\tman.man_lname, man.man_mail\n" +
+                "\t\t\torder by username;";
         return jdbcTemplate.query(SQL, new StudentRowMapper());
     }
 
