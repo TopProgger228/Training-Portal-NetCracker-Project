@@ -19,23 +19,30 @@ export class ManageNewsComponent implements OnInit {
   loggedOut = false;
   EditRow: number = -1;
   addNewNews: boolean = false;
-  newNews: News = {'id': 0, 'title': '', 'createDate': '', 'context': '', 'isActive': true};
+  newNews: News = { 'id': 0, 'title': '', 'createDate': '', 'context': '', 'isActive': true };
 
 
   constructor(private router: Router, private newsService: NewsService, private token: TokenStorageService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.newsService.getNews().subscribe(
-        data => {
-          this.news = data;
-          console.log(this.news);
+      this.token.getAuthorities().every(role => {
+        if (role === 'Admin') {
+          this.newsService.getNews().subscribe(
+            data => {
+              this.news = data;
+              console.log(this.news);
+            }
+          )
+        } else {
+          this.router.navigate(['firstPage']);
         }
-      )
+        return false;
+      });
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);
-    }
+    };
   }
 
   setEditRow(rowid: number) {
@@ -59,7 +66,7 @@ export class ManageNewsComponent implements OnInit {
 
   createNewNews() {
     console.log(this.newNews);
-    this.newsService.createNews( this.newNews.title,  this.newNews.context, this.newNews.isActive.toString()).subscribe(
+    this.newsService.createNews(this.newNews.title, this.newNews.context, this.newNews.isActive.toString()).subscribe(
       data => {
         console.log(data);
       },
@@ -70,7 +77,7 @@ export class ManageNewsComponent implements OnInit {
     this.addNewNews = false;
 
   }
-  setNewNews(){
+  setNewNews() {
     this.addNewNews = true;
 
     console.log(this.addNewNews);

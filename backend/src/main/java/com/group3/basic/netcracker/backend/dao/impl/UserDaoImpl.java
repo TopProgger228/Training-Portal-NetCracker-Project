@@ -102,8 +102,7 @@ public class UserDaoImpl implements UserDao {
 
         String SQL = ("SELECT u.*, man.\"Manager\" \n" +
                 "FROM \"User\" u\n" +
-                "JOIN \"Group\" g ON g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
-                "LEFT JOIN (SELECT id AS m_id, username AS \"Manager\" \n" +
+                "JOIN (SELECT id AS m_id, username AS \"Manager\" \n" +
                 "\t\t   --Если убрать Left из join то выберем студентов с именно тем менеджером\n" +
                 "\t\t   --Так выбираем всех, и тех у которых его нету)\n" +
                 "\t\t   FROM \"User\") AS man ON man.m_id = u.manager_id\n" +

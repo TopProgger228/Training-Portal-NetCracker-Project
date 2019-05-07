@@ -6,6 +6,7 @@ import { SignUpInfo } from '../auth/signup-info';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MailSenderService } from '../services/MailSender.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   token: string = '';
+  email: string = 'email';
 
   roles: string[] = [];
   errorMessage = '';
@@ -24,9 +26,9 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService,
     private router: Router,
     private tokenStorage: TokenStorageService,
-    private route: ActivatedRoute,
-    private mailSenderService: MailSenderService) { }
-
+    private mailSenderService: MailSenderService,
+    private route: ActivatedRoute) { }
+ 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isSignedUp = true;
@@ -44,6 +46,19 @@ export class RegisterComponent implements OnInit {
           alert("this site is not available for you");
         }
       });
+
+      this.mailSenderService.getEmailByToken(this.token).subscribe(
+        data => {
+          console.log(data);
+          if (data.partialText) {
+            this.email = data.partialText;
+          }
+        },
+        error => {
+          console.log(error);
+        })
+      console.log(this.email);
+
     }
 
   }
@@ -56,7 +71,7 @@ export class RegisterComponent implements OnInit {
       this.form.lname,
       this.form.username,
       this.form.password,
-      this.token);
+      this.email);
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
