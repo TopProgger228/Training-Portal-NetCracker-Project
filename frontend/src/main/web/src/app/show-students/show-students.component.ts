@@ -44,7 +44,8 @@ export class ShowStudentsComponent implements OnInit {
     this.router.navigate(['auth/login']);
   };
 
-  onGetClick() {
+  onGetClick(id: number) {
+    this.studentService.getStudentById(id);
     this.router.navigate(['manager/profile']);
   }
 }

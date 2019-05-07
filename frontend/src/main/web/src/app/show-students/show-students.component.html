@@ -16,9 +16,18 @@
         </div>
 
         <h3 style="margin-top: 10px;">E-mail: {{student.email}}</h3>
-
+        <div class=" row justify-content-center">
+          <div *ngFor="let manager of student.username">
+            <div class="row ">
+              <div class="col-7">
+                <h1>{{manager.fname}} {{manager.lname}}</h1>
+              </div>
+            </div>
+            <h3 style="margin-top: 10px;">E-mail: {{manager.email}}</h3>
+          </div>
+        </div>
         <h3 style="margin-top: 10px;">Manager profile:
-          <button type="button" class="btn btn-info" (click)="onGetClick()">Open profile</button>
+          <button type="button" class="btn btn-info" (click)="onGetClick(student.id)" [routerLink]="['details', student.id]">Open profile</button>
         </h3>
       </div>
 
