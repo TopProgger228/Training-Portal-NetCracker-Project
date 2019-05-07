@@ -13,6 +13,7 @@ const httpOptions = {
 export class StudentService {
   url = 'http://localhost:8080/attendees/info?username=';
   infourl = 'http://localhost:8080/api/manager/students-info?username=';
+  geturl = 'http://localhost:8080/api/showcorrectmanager?id=';
 
   constructor(private httpClient : HttpClient) { }
 
@@ -21,5 +22,9 @@ export class StudentService {
   }
   getStudentsOfManager(username : string) : Observable<any>{
     return this.httpClient.get<Student>(this.infourl + username, httpOptions);
+  }
+
+  getStudentById(id: number): Observable<any> {
+    return this.httpClient.delete(this.geturl + id, httpOptions);
   }
 }
