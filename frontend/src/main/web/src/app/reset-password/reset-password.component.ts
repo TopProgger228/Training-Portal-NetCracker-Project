@@ -24,56 +24,61 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private tokenStorage: TokenStorageService,
-    private route: ActivatedRoute, 
-    private formBuilder: FormBuilder, 
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private mailSenderService: MailSenderService,
     private authService: AuthService) {
     this.passwordFormGroup = this.formBuilder.group({
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required]
     }, {
-      validator: PasswordValidator.validate.bind(this)
-    });
+        validator: PasswordValidator.validate.bind(this)
+      });
     this.passwordResetFormGroup = this.formBuilder.group({
       passwordFormGroup: this.passwordFormGroup
     });
-   }
+  }
 
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      //check lead Id here
-      if (params['token']) {
-        this.token = params['token'];
-        console.log(this.token);
-      } else {
-        console.log('token not found in params');
-        alert("this site is not available for you");
-      }
-    });
+    if (this.tokenStorage.getToken()) {
+      this.router.navigate(['firstPage']);
+    } else {
+      this.route.queryParams.subscribe((params) => {
+        //check lead Id here
+        if (params['token']) {
+          this.token = params['token'];
+          console.log(this.token);
+        } else {
+          console.log('token not found in params');
+          alert("this site is not available for you");
+        }
+      });
 
-    this.mailSenderService.getEmailByToken(this.token).subscribe(data=>{
-      console.log(data);
-      if(data.partialText){
-        this.email = data.partialText;
-      }
-    },
-    error=>{
-      console.log(error);
-    })
+      this.mailSenderService.getEmailByToken(this.token).subscribe(data => {
+        console.log(data);
+        if (data.partialText) {
+          this.email = data.partialText;
+        }
+      },
+        error => {
+          console.log(error);
+        })
+      console.log(this.email);
 
-    console.log(this.email);
+    }
   }
   onSubmit() {
-    
+
     console.log(this.email, this.passwordFormGroup.controls.password.value);
     this.authService.resetPassword(this.email, this.passwordFormGroup.controls.password.value).subscribe(
-      data=>{
+      data => {
         console.log(data);
-    },
-    error=>{
-      console.log(error);
-    })
+      },
+      error => {
+        console.log(error);
+      })
+    this.router.navigate(['auth/login']);
   }
 
 }

@@ -22,6 +22,8 @@ export class ShowStudentsComponent implements OnInit {
 
   ngOnInit() {
     if (this.token.getToken()) {
+      this.token.getAuthorities().every(role => {
+        if (role === 'Trainer') {
       this.studentService.getStudents(this.token.getUsername())
         .subscribe(data => {
           this.students = data;
@@ -30,11 +32,15 @@ export class ShowStudentsComponent implements OnInit {
         .subscribe(data => {
           this.managers = data;
         })
+        } else {
+          this.router.navigate(['firstPage']);
+        }
+        return false;
+      });
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);
-    }
-    ;
+    };
   };
 
   logout() {
@@ -42,7 +48,7 @@ export class ShowStudentsComponent implements OnInit {
     this.token.signOut();
     window.location.reload();
     this.router.navigate(['auth/login']);
-  };
+  }
 
   onGetClick(id: number) {
     this.studentService.getStudentById(id);
