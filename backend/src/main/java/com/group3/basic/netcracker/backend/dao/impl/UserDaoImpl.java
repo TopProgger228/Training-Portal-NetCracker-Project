@@ -116,17 +116,36 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public List getManagerOfStudent(String username){
+        String SQL = "SELECT m.* FROM \"User\" AS m\n" +
+                "WHERE m.id IN (\n" +
+                "SELECT w.manager_id FROM\n" +
+                "(SELECT u.manager_id AS manager_id, t.trainer AS \"Trainer\" FROM \"User\" u \n" +
+                "                JOIN \"Group\" g ON g.user_id = u.id JOIN \"Course\" c ON c.id = g.course_id \n" +
+                "                JOIN (SELECT c.id AS course, u.username AS trainer FROM \"User\" u JOIN \"Course\" c ON c.trainer_id = u.id) \n" +
+                "AS t ON t.course = course_id \n" +
+                "--left join (SELECT id as m_id, username, fname, lname, email as \"Manager\" from \"User\") as man on man.m_id = u.manager_id\n" +
+                "                WHERE t.trainer LIKE '" + username + "') AS w);";
+        List Users = jdbcTemplate.query(SQL, new UserRowMapper());
+        return Users;
+    }
+/*
+    @Override
     public List getManagerOfStudent(String username) {
-        String SQL = "select u.*, man.\"Manager\"\n" +
-                "from \"User\" AS u\n" +
-                "join (select id as m_id, username as \"Manager\"\n" +
-                "           from \"User\") as man on man.m_id = u.manager_id\n" +
-                "         where u.username like'" + username + "';";
+        String SQL = "select u.*, man.\"Manager\" \n" +
+                "from \"User\" u\n" +
+                "join \"Group\" g on g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
+                "left join (select id as m_id, username as \"Manager\" \n" +
+                "\t\t   --Если убрать Left из join то выберем студентов с именно тем менеджером\n" +
+                "\t\t   --Так выбираем всех, и тех у которых его нету)\n" +
+                "\t\t   from \"User\") as man on man.m_id = u.manager_id\n" +
+                "\t\t --подставляем id менеджера, можно заменить на like и брать по юзернейму\n" +
+                "\t\t where man.\"Manager\" like '" + username + "';";
 
         List Users = jdbcTemplate.query(SQL, new UserRowMapper());
         return Users;
     }
-
+*/
     @Override
     public void removeUser(int id) {
         String SQL = "DELETE FROM \"User\" WHERE id = ?";

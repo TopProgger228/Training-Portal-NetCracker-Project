@@ -26,6 +26,7 @@ import { ManageNewsComponent } from './manage-news/manage-news.component';
 import { StudentsInfoComponent } from './students-info/students-info.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
+import { ManagerProfileComponent } from './manager-profile/manager-profile.component';
 
 @NgModule({
   declarations: [
@@ -44,9 +45,11 @@ import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail"
     CoursesInfoComponent,
     StudentsInfoComponent,
     ShowStudentsComponent,
+    ManagerProfileComponent,
     StudentsInfoComponent,
     ResetPasswordComponent,
-    PasswordResetMailSenderComponent
+    PasswordResetMailSenderComponent,
+    ManagerProfileComponent
   ],
   imports: [
     BrowserModule,

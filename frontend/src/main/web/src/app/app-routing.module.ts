@@ -17,6 +17,7 @@ import {ShowStudentsComponent} from "./show-students/show-students.component";
 import {StudentsInfoComponent} from "./students-info/students-info.component";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
+import {ManagerProfileComponent} from "./manager-profile/manager-profile.component";
 
 
 
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'manager/students-info',
     component: StudentsInfoComponent
+  },
+  {
+    path: 'manager/profile',
+    component: ManagerProfileComponent
   },
   {
     path: 'admin/groups-schedule',

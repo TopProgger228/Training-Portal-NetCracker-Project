@@ -14,24 +14,21 @@
             </em>
           </div>
         </div>
+
         <h3 style="margin-top: 10px;">E-mail: {{student.email}}</h3>
-        <button type="button" class="btn btn-info">Get manager</button>
-        <!--<button (click)="handleClick(manager)" *ngFor="let manager of managers" type="button">See manager</button>-->
+
+        <h3 style="margin-top: 10px;">Manager profile:
+          <button type="button" class="btn btn-info" (click)="onGetClick()">Open profile</button>
+        </h3>
       </div>
 
       <!--<div *ngFor="let manager of managers" class="col-lg-5 shadow p-3 mb-5 rounded thumbnail"-->
            <!--style="padding: 20px; margin: 30px">-->
         <!--<div class="row ">-->
           <!--<div class="col-7">-->
-            <!--<h1>{{manager.fname}} {{manager.lname}}</h1>-->
-
-            <!--<em>-->
-              <!--<h3 class="text-muted">Manager username: {{manager.username}}</h3>-->
-            <!--</em>-->
+            <!--<h3 style="margin-top: 10px;">Manager username: {{manager.username}}</h3>-->
           <!--</div>-->
-
         <!--</div>-->
-        <!--<h3 style="margin-top: 10px;">E-mail: {{manager.email}}</h3>-->
       <!--</div>-->
 
     </div>

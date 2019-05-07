@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Student} from "../services/student";
+import {Manager} from "../services/manager";
 import {Router} from "@angular/router";
 import {StudentService} from "../services/student.service";
-import {TokenStorageService} from "../auth/token-storage.service";
-import {Manager} from "../services/manager";
 import {ManagerService} from "../services/manager.service";
+import {TokenStorageService} from "../auth/token-storage.service";
 
 @Component({
-  selector: 'app-show-students',
-  templateUrl: './show-students.component.html',
-  styleUrls: ['./show-students.component.css']
+  selector: 'app-manager-profile',
+  templateUrl: './manager-profile.component.html',
+  styleUrls: ['./manager-profile.component.css']
 })
-export class ShowStudentsComponent implements OnInit {
+export class ManagerProfileComponent implements OnInit {
+
   students: Student[];
   managers: Manager[];
   loggedOut = false;
@@ -30,6 +31,7 @@ export class ShowStudentsComponent implements OnInit {
         .subscribe(data => {
           this.managers = data;
         })
+
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);
@@ -44,7 +46,4 @@ export class ShowStudentsComponent implements OnInit {
     this.router.navigate(['auth/login']);
   };
 
-  onGetClick() {
-    this.router.navigate(['manager/profile']);
-  }
 }
