@@ -32,7 +32,7 @@ export class PasswordResetMailSenderComponent implements OnInit {
     this.mailSenderService.sendResetPasswordMail(this.form.email).subscribe(
       data => {
         console.log(data);
-        //this.router.navigate(['auth/login']);
+        this.router.navigate(['auth/login']);
 
         this.isLoginFailed = false;
       },

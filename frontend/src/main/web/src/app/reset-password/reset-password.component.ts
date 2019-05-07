@@ -55,7 +55,8 @@ export class ResetPasswordComponent implements OnInit {
         }
       });
 
-      this.mailSenderService.getEmailByToken(this.token).subscribe(data => {
+      this.mailSenderService.getEmailByToken(this.token).subscribe(
+        data => {
         console.log(data);
         if (data.partialText) {
           this.email = data.partialText;
