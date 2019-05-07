@@ -100,9 +100,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List getStudentsOfManager(String username) {
 
-        String SQL = ("SELECT DISTINCT u.*, man.\"Manager\" \n" +
+        String SQL = ("SELECT u.*, man.\"Manager\" \n" +
                 "FROM \"User\" u\n" +
-                "JOIN \"Group\" g ON g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
                 "JOIN (SELECT id AS m_id, username AS \"Manager\" \n" +
                 "\t\t   --Если убрать Left из join то выберем студентов с именно тем менеджером\n" +
                 "\t\t   --Так выбираем всех, и тех у которых его нету)\n" +
