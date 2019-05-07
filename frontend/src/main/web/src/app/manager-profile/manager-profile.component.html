@@ -30,13 +30,11 @@
                       <!--Upload Image Js And Css-->
                     </div>
 
-                    <br>
-
                     <!-- /input-group -->
                   </div>
-                  <div *ngFor="let student of students; let i = index" >
+                  <div *ngFor="let student of students; let i = index">
                     <div class="col-sm-6">
-                      <h4 style="color:#00b1b1;">{{student.managerFname}} {{student.managerLname}}</h4>
+                      <h4 style="color:#00b1b1; font-size:20px">{{student.managerFname}} {{student.managerLname}}</h4>
                       <span><p>Manager</p></span>
                     </div>
                     <div class="clearfix"></div>
@@ -44,17 +42,20 @@
 
 
                     <div class="col-sm-5 col-xs-6 tital ">First Name:</div>
-                    <div class="col-sm-7 col-xs-6 "> {{student.managerFname}}</div>
+                    <div class="col-sm-7 col-xs-6 ">
+                      <h5 style="font-size:16px"> {{student.managerFname}}</h5></div>
                     <div class="clearfix"></div>
                     <div class="bot-border"></div>
 
                     <div class="col-sm-5 col-xs-6 tital ">Last Name:</div>
-                    <div class="col-sm-7"> {{student.managerLname}}</div>
+                    <div class="col-sm-7">
+                      <h6 style="font-size:16px">{{student.managerLname}}</h6></div>
                     <div class="clearfix"></div>
                     <div class="bot-border"></div>
 
                     <div class="col-sm-5 col-xs-6 tital ">E-mail:</div>
-                    <div class="col-sm-7"> {{student.managerEmail}}</div>
+                    <div class="col-sm-7">
+                      <h6 style="font-size:16px">{{student.managerEmail}}</h6></div>
                   </div>
                   <!-- /.box-body -->
                 </div>
