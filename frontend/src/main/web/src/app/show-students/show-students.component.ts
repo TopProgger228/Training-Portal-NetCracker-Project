@@ -54,4 +54,6 @@ export class ShowStudentsComponent implements OnInit {
     this.studentService.getStudentById(id);
     this.router.navigate(['manager/profile']);
   }
+
+
 }

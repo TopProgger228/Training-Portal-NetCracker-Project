@@ -7,23 +7,75 @@
     <app-menu></app-menu>
     <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"-->
     <!--id="bootstrap-css">-->
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
 
-    <div class=" row justify-content-center">
-      <div *ngFor="let manager of managers" class="col-lg-5 shadow p-3 mb-5 rounded thumbnail"
-           style="padding: 20px; margin: 30px">
-        <div class="row ">
-          <div class="col-7">
-            <h1>{{manager.fname}} {{manager.lname}}</h1>
+    <div class="container">
+      <div class="row">
 
-            <em>
-              <h3 class="text-muted">Manager username: {{manager.username}}</h3>
-            </em>
+        <div class="col-md-7 ">
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4>User Profile</h4></div>
+            <div class="panel-body">
+
+              <div class="box box-info">
+
+                <div class="box-body">
+                  <div class="col-sm-6">
+                    <div align="center"><img alt="User Pic"
+                                             src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                                             id="profile-image1" class="img-circle img-responsive">
+
+                      <input id="profile-image-upload" class="hidden" type="file">
+                      <div style="color:#999;">click here to change profile image</div>
+                      <!--Upload Image Js And Css-->
+                    </div>
+
+                    <br>
+
+                    <!-- /input-group -->
+                  </div>
+                  <div *ngFor="let student of students; let i = index" >
+                    <div class="col-sm-6">
+                      <h4 style="color:#00b1b1;">{{student.managerFname}} {{student.managerLname}}</h4>
+                      <span><p>Manager</p></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+
+
+                    <div class="col-sm-5 col-xs-6 tital ">First Name:</div>
+                    <div class="col-sm-7 col-xs-6 "> {{student.managerFname}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="col-sm-5 col-xs-6 tital ">Last Name:</div>
+                    <div class="col-sm-7"> {{student.managerLname}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="col-sm-5 col-xs-6 tital ">E-mail:</div>
+                    <div class="col-sm-7"> {{student.managerEmail}}</div>
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+
+              </div>
+
+
+            </div>
           </div>
         </div>
-        <h3 style="margin-top: 10px;">E-mail: {{manager.email}}</h3>
+        <!--скрипт для добавления фотографии-->
+        <!--<script>-->
+        <!--$(function () {-->
+        <!--$('#profile-image1').on('click', function () {-->
+        <!--$('#profile-image-upload').click();-->
+        <!--});-->
+        <!--});-->
+        <!--</script>-->
+
+
       </div>
     </div>
 
