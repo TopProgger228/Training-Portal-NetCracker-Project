@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Courses} from "../groups-schedule/courses";
 import {Observable} from "rxjs";
 import {Course} from "./course";
-import { ResponseContentType } from '@angular/http';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -17,8 +17,6 @@ export class CourseService {
   private coursesUrl = 'http://localhost:8080/api/coursesinfo/getcourses?username=';
   private courseListUrl = "http://localhost:8080/api/courses-list"
   private courseLastTenListUrl = "http://localhost:8080/api/last-ten-courses-list";
-  private attendanceReportUrl = 'http://localhost:8080/api/attendanceExcel'
-  private sessionService: any;
 
   constructor(private http: HttpClient) {
   }
@@ -37,11 +35,5 @@ export class CourseService {
 
   getLastTenCoursesList(): Observable<any> {
     return this.http.get<Course>(this.courseLastTenListUrl, httpOptions);
-  }
-  attendanceExcel(): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'responseType':  'ResponseContentType.Blob',
-        'Content-Type':  'application/vnd.ms-excel'})};
-    return this.http.get(this.attendanceReportUrl, httpOptions);
   }
 }

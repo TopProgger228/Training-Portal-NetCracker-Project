@@ -29,23 +29,7 @@ public class AttendanceAPI {
         this.attendanceService = attendanceService;
         this.checkAttendanceService = checkAttendanceService;
     }
-    /**
-     * Handle request to download an Excel document
-     */
-    @RequestMapping(value = "/attendanceExcel", method = RequestMethod.GET)
-    public void export(HttpServletResponse response) {
-        List<Attendance> attendances = attendanceService.listAttendance();
-        List<String> headers = Arrays.asList("MissingCount", "MissingUser", "Course", "Reason");
-        try {
-            response.addHeader("Content-disposition", "attachment; filename=Attendance.xlsx");
-            response.setContentType("application/vnd.ms-excel");
-            new SimpleExporter().gridExport(headers, attendances, "MissingCount, MissingUser, " +
-                    "Course, Reason", response.getOutputStream());
-            response.flushBuffer();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+
    @GetMapping("/attCourse")
    public ResponseEntity<?> getAllCourseAttendance () {
 
