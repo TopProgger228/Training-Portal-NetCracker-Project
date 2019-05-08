@@ -30,7 +30,6 @@ import { ManagerProfileComponent } from './manager-profile/manager-profile.compo
 import {TrainerLessonAttendanceComponent} from "./trainer-lesson-attendance/trainer-lesson-attendance.component";
 import {TrainerAttendanceComponent} from "./trainer-attendance/trainer-attendance.component";
 import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.component";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 
 @NgModule({
@@ -65,7 +64,6 @@ import {StudentProfileComponent} from "./student-profile/student-profile.compone
     BrowserModule,
     AppRoutingModule,
     FirstPageModule,
-    FormsModule,
     HttpClientModule,
     NgbModule,
     BrowserModule,
