@@ -27,6 +27,7 @@ import { StudentsInfoComponent } from './students-info/students-info.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
 import { ManagerProfileComponent } from './manager-profile/manager-profile.component';
+import {StudentProfileComponent} from "./student-profile/student-profile.component";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ManagerProfileComponent } from './manager-profile/manager-profile.compo
     StudentsInfoComponent,
     ResetPasswordComponent,
     PasswordResetMailSenderComponent,
-    ManagerProfileComponent
+    ManagerProfileComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,

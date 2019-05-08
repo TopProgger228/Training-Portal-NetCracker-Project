@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
 import com.group3.basic.netcracker.backend.dao.UserDao;
+import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,4 +106,7 @@ public class UserServiceImpl implements UserService {
     public List getManagerOfStudent(String username) {
         return userDao.getManagerOfStudent(username);
     }
+
+    @Override
+    public UserForDisplay getUserByUsername(String username) { return userDao.getUserByUsername(username);}
 }

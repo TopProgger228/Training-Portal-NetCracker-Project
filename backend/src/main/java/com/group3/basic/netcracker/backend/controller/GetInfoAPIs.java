@@ -3,7 +3,9 @@ package com.group3.basic.netcracker.backend.controller;
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.dao.impl.ScheduleDaoImpl;
 import com.group3.basic.netcracker.backend.dao.impl.TimeSlotDaoImpl;
+import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.Schedule;
+import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.service.CourseService;
 import com.group3.basic.netcracker.backend.service.TimeSlotService;
 import com.group3.basic.netcracker.backend.service.UserService;
@@ -62,5 +64,10 @@ public class GetInfoAPIs {
     public ResponseEntity<?> getTrueManager(@RequestParam int id){
         userService.getUserById(id);
         return new ResponseEntity<>(new ResponseMessage("Found !"), HttpStatus.OK);
+    }
+
+    @GetMapping("/manager/student-profile")
+    public UserForDisplay getStudent(@RequestParam("username") String username){
+        return userService.getUserByUsername(username);
     }
 }

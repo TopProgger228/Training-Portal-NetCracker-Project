@@ -16,6 +16,8 @@ export class UserService {
   private managersUrl = 'http://localhost:8080/api/usersinfo/managers';
   private studentsUrl = 'http://localhost:8080/api/usersinfo/students';
   private deleteUrl = 'http://localhost:8080/edit/delete?id=';
+  private studentProfileUrl = 'http://localhost:8080/api/manager/student-profile?username=';
+
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +32,9 @@ export class UserService {
   }
   delete(id: number): Observable<any> {
     return this.http.delete(this.deleteUrl + id, httpOptions);
+  }
+  getStudentProfile(username: string): Observable<any> {
+    return this.http.get<UserModel>(this.studentProfileUrl + username, httpOptions);
   }
 
 }

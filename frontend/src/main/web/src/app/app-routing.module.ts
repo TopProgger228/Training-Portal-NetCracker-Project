@@ -18,6 +18,7 @@ import {StudentsInfoComponent} from "./students-info/students-info.component";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
 import {ManagerProfileComponent} from "./manager-profile/manager-profile.component";
+import {StudentProfileComponent} from "./student-profile/student-profile.component";
 
 
 
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'trainer/students-info',
     component: ShowStudentsComponent
+  },
+  {
+    path: 'manager/student-profile/:username',
+    component: StudentProfileComponent
   },
   {
     path: '',

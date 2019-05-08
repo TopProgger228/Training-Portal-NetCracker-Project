@@ -1,12 +1,12 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
 import com.group3.basic.netcracker.backend.dao.UserDao;
+import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.util.rowmapper.StudentRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.TrainerRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.UserForDisplayRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.UserRowMapper;
-import com.group3.basic.netcracker.backend.util.sql.Queries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -46,6 +46,14 @@ public class UserDaoImpl implements UserDao {
     public User getUserById(int id) {
         String SQL = "SELECT * FROM \"User\" WHERE id = ?";
         User user = (User) jdbcTemplate.queryForObject(SQL, new Object[]{id}, new UserRowMapper());
+        return user;
+    }
+
+    @Override
+    public UserForDisplay getUserByUsername(String username) {
+        String SQL = "SELECT fname, lname, username, email, id  FROM \"User\" WHERE username = '" + username + "'";
+        UserForDisplay user =(UserForDisplay) jdbcTemplate.query(SQL, new UserForDisplayRowMapper()).get(0);
+
         return user;
     }
 

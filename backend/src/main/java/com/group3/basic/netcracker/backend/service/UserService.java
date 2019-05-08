@@ -1,5 +1,6 @@
 package com.group3.basic.netcracker.backend.service;
 
+import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.User;
 
 import java.time.LocalDate;
@@ -42,5 +43,7 @@ public interface UserService {
     boolean existByEmail(String email);
 
     List getManagerOfStudent(String username);
+
+    UserForDisplay getUserByUsername(String username);
 
 }

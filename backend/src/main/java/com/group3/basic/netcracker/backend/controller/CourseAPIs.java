@@ -23,7 +23,7 @@ public class CourseAPIs {
     }
 
     @GetMapping("/coursesinfo/getcourses")
-    public List getTrainers(@RequestParam("username") String username){
+    public List getCourses(@RequestParam("username") String username){
 
         return courseService.listCoursesByUsername(username);
     }

@@ -1,0 +1,18 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 100vh;">
+
+  <app-menu></app-menu>
+  <div class="col-lg-5 shadow p-3 mb-10 rounded thumbnail" style="width: 80%;  margin: 20px auto;">
+    <legend>Usename</legend><div class="">{{student.username}}</div>
+    <legend>First name</legend><div>{{student.fname}}</div>
+    <legend>Last name</legend><div>{{student.lname}}</div>
+    <legend>Email</legend><div>{{student.email}}</div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+</ng-template>

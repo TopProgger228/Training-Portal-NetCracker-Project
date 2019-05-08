@@ -1,5 +1,6 @@
 package com.group3.basic.netcracker.backend.dao;
 
+import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.User;
 
 import java.time.LocalDate;
@@ -51,4 +52,6 @@ public interface UserDao {
     List getStudentsOfManager (String username);
 
     List getManagerOfStudent(String username);
+
+    UserForDisplay getUserByUsername(String username);
 }
