@@ -94,9 +94,9 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
             }
         } else {
             if (isExist(userId, lessonId)) {
-                lessonMissingDao.add(userId, lessonId, reason);
-            } else {
                 lessonMissingDao.updateReason(userId, lessonId, reason);
+            } else {
+                lessonMissingDao.add(userId, lessonId, reason);
             }
         }
 

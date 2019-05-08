@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.group3.basic.netcracker.backend.dto.CourseAttendanceDto;
 import com.group3.basic.netcracker.backend.dto.LessonAttendanceDto;
+import com.group3.basic.netcracker.backend.dto.TrainerSelectorDto;
 import com.group3.basic.netcracker.backend.dto.UserAttendanceDto;
 import com.group3.basic.netcracker.backend.entity.Attendance;
 
@@ -16,5 +17,13 @@ public interface AttendanceService {
 	List<LessonAttendanceDto> getLessonsOfCourseAttendance(int courseId);
 
 	List<UserAttendanceDto> getUsersOfCourseAttendance(int lessonId);
+
+	List<CourseAttendanceDto> getCourseAttendanceByUser (int id);
+
+	List<TrainerSelectorDto> getTrainerForSelector();
+
+	List<CourseAttendanceDto> getCourseAttendanceByTrainer(int id);
+
+	List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level);
 
 }

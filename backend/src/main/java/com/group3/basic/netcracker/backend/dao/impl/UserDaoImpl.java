@@ -208,7 +208,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getTrainerByCourse(int courseId) {
 
-        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Course\" c on u.id = c.user_id where c.id = ?";
+        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Course\" c on u.id = c.trainer_id where c.id = ?";
 
         return (User) jdbcTemplate.queryForObject(SQL, new Object[]{courseId}, new UserRowMapper());
 

@@ -1,0 +1,38 @@
+<app-menu></app-menu>
+<div class="container mx-auto mt-5" style="font-size: 20px">
+  <h2 class="text-center">
+    <div class="row">
+      <div class="col-4">Course: {{class?.courseName}}</div>
+      <div class="col-4">Trainer: {{class?.trainer.firstName}} {{class?.trainer.firstName}}</div>
+      <div class="col-4">Date:  {{class?.lessonDate}}</div>
+    </div>
+  </h2>
+  <table class="table">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col-1">#</th>
+      <th scope="col-4">First name</th>
+      <th scope="col-4">Last name</th>
+      <th scope="col-2"></th>
+      <th scope="col-1" ></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let user of class?.userAttendanceDtoList; index as i">
+    <tr>
+      <th scope="row">{{i + 1}}</th>
+      <td>{{user?.userFirstName}}</td>
+      <td>{{user?.userLastName}}</td>
+      <td>
+        <select name = "select">
+          <option *ngFor="let status of statusList" >
+            {{status}}
+          </option>
+        </select>
+        {{oneStatus}}
+      </td>
+      <td><button type="button" class="btn btn-primary btn-lg" (click)="putAttendanceStatus(user.id.toString(), '6', 'Absent')">Check</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

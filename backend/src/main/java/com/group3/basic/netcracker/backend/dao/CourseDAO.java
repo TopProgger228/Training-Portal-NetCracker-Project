@@ -24,4 +24,12 @@ public interface CourseDAO {
                       String skill_level, int trainer_id, int qty_per_week);
 
     Course getCourseByLesson (int lessonId);
+
+    List<Course> getCourseByUserId (int userId);
+
+    List<Course> getCourseByTrainerId (int trainerId);
+
+    List<Course> getCourseBySkillLevel (String level);
+
+
 }

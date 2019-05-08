@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FirstPageModule } from './first-page/first-page.module';
@@ -15,7 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { CoursesInfoComponent } from './courses-info/courses-info.component';
 
 import { UsersInfoComponent } from './users-info/users-info.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ; 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap' ;
 import { AddNewManagerComponent } from './add-new-manager/add-new-manager.component';
 import { GroupsScheduleComponent } from './groups-schedule/groups-schedule.component';
 import { AddNewCourseComponent } from "./add-new-course/add-new-course.component";
@@ -27,6 +27,10 @@ import { StudentsInfoComponent } from './students-info/students-info.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
 import { ManagerProfileComponent } from './manager-profile/manager-profile.component';
+import {TrainerLessonAttendanceComponent} from "./trainer-lesson-attendance/trainer-lesson-attendance.component";
+import {TrainerAttendanceComponent} from "./trainer-attendance/trainer-attendance.component";
+import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,10 @@ import { ManagerProfileComponent } from './manager-profile/manager-profile.compo
     StudentsInfoComponent,
     ResetPasswordComponent,
     PasswordResetMailSenderComponent,
-    ManagerProfileComponent
+    ManagerProfileComponent,
+    TrainerLessonAttendanceComponent,
+    TrainerAttendanceComponent,
+    AdminAttendanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,8 +65,6 @@ import { ManagerProfileComponent } from './manager-profile/manager-profile.compo
     FormsModule,
     HttpClientModule,
     NgbModule,
-    BrowserModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders],

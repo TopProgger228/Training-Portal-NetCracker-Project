@@ -6,12 +6,10 @@ import java.util.List;
 import com.group3.basic.netcracker.backend.dao.*;
 import com.group3.basic.netcracker.backend.dto.CourseAttendanceDto;
 import com.group3.basic.netcracker.backend.dto.LessonAttendanceDto;
+import com.group3.basic.netcracker.backend.dto.TrainerSelectorDto;
 import com.group3.basic.netcracker.backend.dto.UserAttendanceDto;
 import com.group3.basic.netcracker.backend.entity.*;
-import com.group3.basic.netcracker.backend.util.dtomapper.CourseAttendanceDtoMapper;
-import com.group3.basic.netcracker.backend.util.dtomapper.LessonAttendanceDtoMapper;
-import com.group3.basic.netcracker.backend.util.dtomapper.TrainerAttendanceDtoMapper;
-import com.group3.basic.netcracker.backend.util.dtomapper.UserAttendanceDtoMapper;
+import com.group3.basic.netcracker.backend.util.dtomapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.group3.basic.netcracker.backend.service.AttendanceService;
@@ -28,9 +26,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 	private final LessonAttendanceDtoMapper lessonAttendanceDtoMapper;
 	private final UserAttendanceDtoMapper userAttendanceDtoMapper;
 	private final TrainerAttendanceDtoMapper trainerAttendanceDtoMapper;
+	private final TrainerSelectorDtoMapper trainerSelectorDtoMapper;
 
 	@Autowired
-	public AttendanceServiceImpl(AttendanceDao attendanceDao, CourseDAO courseDao, LessonDao lessonDao, UserDao userDao, LessonMissingDao lessonMissingDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper) {
+	public AttendanceServiceImpl(AttendanceDao attendanceDao, CourseDAO courseDao, LessonDao lessonDao, UserDao userDao, LessonMissingDao lessonMissingDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, TrainerSelectorDtoMapper trainerSelectorDtoMapper) {
 		this.attendanceDao = attendanceDao;
 		this.courseDao = courseDao;
 		this.lessonDao = lessonDao;
@@ -40,6 +39,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		this.lessonAttendanceDtoMapper = lessonAttendanceDtoMapper;
 		this.userAttendanceDtoMapper = userAttendanceDtoMapper;
 		this.trainerAttendanceDtoMapper = trainerAttendanceDtoMapper;
+		this.trainerSelectorDtoMapper = trainerSelectorDtoMapper;
 	}
 
 
@@ -100,10 +100,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 		    for (LessonMissing lm : lessonMissingList) {
                 if (uad.getId() == lm.getUserId()) {
                     uad.setAttendanceStatus(lm.getReason());
-                } else {
-                    uad.setAttendanceStatus("Present");
                 }
             }
+            if (uad.getAttendanceStatus() == null) {
+            	uad.setAttendanceStatus("Present");
+			}
 
 			userAttendanceDtoList.add(uad);
 
@@ -111,5 +112,75 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 		return userAttendanceDtoList;
 	}
+
+
+	@Override
+	public List<CourseAttendanceDto> getCourseAttendanceByUser(int id) {
+
+		List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
+		List<Course> courseList = courseDao.getCourseByUserId(id);
+
+		for (Course c : courseList) {
+			CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
+			cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
+
+			courseAttendanceDtoList.add(cad);
+
+		}
+
+		return courseAttendanceDtoList;
+
+	}
+
+	@Override
+	public List<TrainerSelectorDto> getTrainerForSelector() {
+
+		List<TrainerSelectorDto> trainerSelectorDtoList = new ArrayList<>();
+		List<Trainer> trainerList = userDao.getTrainers();
+		for (Trainer t : trainerList) {
+
+			trainerSelectorDtoList.add(trainerSelectorDtoMapper.toTrainerSelectorDto(t));
+
+		}
+
+		return trainerSelectorDtoList;
+	}
+
+	@Override
+	public List<CourseAttendanceDto> getCourseAttendanceByTrainer(int id) {
+
+		List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
+		List<Course> courseList = courseDao.getCourseByTrainerId(id);
+
+		for (Course c : courseList) {
+			CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
+			cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
+
+			courseAttendanceDtoList.add(cad);
+
+		}
+
+		return courseAttendanceDtoList;
+
+	}
+
+	@Override
+	public List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level) {
+
+		List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
+		List<Course> courseList = courseDao.getCourseBySkillLevel(level);
+
+		for (Course c : courseList) {
+			CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
+			cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
+
+			courseAttendanceDtoList.add(cad);
+
+		}
+
+		return courseAttendanceDtoList;
+
+	}
+
 
 }
