@@ -12,4 +12,6 @@ public interface LessonDao {
 
     List<Lesson> getTodayLessonsByTrainer (int trainerId);
 
+    List<Lesson> getTodayLessonsByTrainerUsername (String username);
+
 }

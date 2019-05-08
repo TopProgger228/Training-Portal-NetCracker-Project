@@ -13,5 +13,5 @@ public interface CheckAttendanceService {
 
     void changeLessonMissing (int userId, int lessonId, String reason);
 
-
+    List<LessonAttendanceDto> getTodayLessonsByTrainerUsername (String username);
 }

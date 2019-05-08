@@ -129,4 +129,13 @@ public class AttendanceAPI {
 
     }
 
+    @GetMapping("/getTrainerLesson/{userName}")
+    public ResponseEntity<?> getTrainerTodayLessonsUsername (@PathVariable String userName) {
+
+        List<LessonAttendanceDto> lessonAttendanceDtoList = checkAttendanceService.getTodayLessonsByTrainerUsername(userName);
+        return ResponseEntity.ok().body(lessonAttendanceDtoList);
+    }
+
+
+
 }

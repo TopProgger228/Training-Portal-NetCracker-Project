@@ -102,6 +102,20 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
 
     }
 
+    @Override
+    public List<LessonAttendanceDto> getTodayLessonsByTrainerUsername(String username) {
+
+        List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
+        for (Lesson l : lessonDao.getTodayLessonsByTrainerUsername(username)) {
+            LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
+            lad.setCourseName(courseDao.getCourseByLesson(l.getLessonId()).getName());
+            lessonAttendanceDtoList.add(lad);
+        }
+
+        return lessonAttendanceDtoList;
+    }
+
+
     private boolean isExist (int userId, int lessonId) {
 
         for (LessonMissing lm : lessonMissingDao.getLessonMissingByLesson(lessonId)) {

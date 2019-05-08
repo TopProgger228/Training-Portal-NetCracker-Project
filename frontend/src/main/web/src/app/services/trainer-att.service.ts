@@ -3,21 +3,28 @@ import {HttpClient, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Class} from "../interface/class";
 import {LessonAtt} from "../interface/lesson-att";
+import {Course} from "./course";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainerAttService {
 
-  private all_lessons_url: string = "http://localhost:8080/api/trainerLesson/165";
+  // private all_lessons_url: string = "http://localhost:8080/api/trainerLesson/165";
+  private all_lessons_url_by_username = "http://localhost:8080/api/getTrainerLesson/"
   private lesson_url: string = "http://localhost:8080/api/fullAttCheck/6";
   private check_student_url: string = "http://localhost:8080/api/lessonAtt";
 
   constructor( private http: HttpClient) { }
 
-  getLessons() {
-    return this.http.get<LessonAtt[]>(this.all_lessons_url);
+  // getLessons() {
+  //   return this.http.get<LessonAtt[]>(this.all_lessons_url);
+  // }
+
+  getLessonsByUsername(username: string): Observable<LessonAtt[]> {
+    return this.http.get<LessonAtt[]>(this.all_lessons_url_by_username + username);
   }
+
 
   getOneLesson() {
     return this.http.get<Class>(this.lesson_url);
