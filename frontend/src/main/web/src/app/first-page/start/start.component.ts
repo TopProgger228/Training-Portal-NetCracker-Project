@@ -15,8 +15,7 @@ export class StartComponent implements OnInit {
   constructor( private router: Router, private token: TokenStorageService) { }
 
   ngOnInit() {
-    if (this.token.getToken()) {
-    }else{
+    if (!this.token.getToken()) {
       this.loggedout = true;
       this.router.navigate(['auth/login']);
     };

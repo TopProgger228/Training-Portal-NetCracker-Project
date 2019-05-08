@@ -27,6 +27,10 @@ import { StudentsInfoComponent } from './students-info/students-info.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
 import { ManagerProfileComponent } from './manager-profile/manager-profile.component';
+import {TrainerLessonAttendanceComponent} from "./trainer-lesson-attendance/trainer-lesson-attendance.component";
+import {TrainerAttendanceComponent} from "./trainer-attendance/trainer-attendance.component";
+import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 
 @NgModule({
@@ -50,6 +54,10 @@ import {StudentProfileComponent} from "./student-profile/student-profile.compone
     StudentsInfoComponent,
     ResetPasswordComponent,
     PasswordResetMailSenderComponent,
+    ManagerProfileComponent,
+    TrainerLessonAttendanceComponent,
+    TrainerAttendanceComponent,
+    AdminAttendanceComponent,
     ManagerProfileComponent,
     StudentProfileComponent
   ],

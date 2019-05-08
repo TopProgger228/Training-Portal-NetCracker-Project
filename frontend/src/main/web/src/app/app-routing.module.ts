@@ -18,6 +18,9 @@ import {StudentsInfoComponent} from "./students-info/students-info.component";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
 import {ManagerProfileComponent} from "./manager-profile/manager-profile.component";
+import {TrainerLessonAttendanceComponent} from "./trainer-lesson-attendance/trainer-lesson-attendance.component";
+import {TrainerAttendanceComponent} from "./trainer-attendance/trainer-attendance.component";
+import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.component";
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 
 
@@ -86,6 +89,18 @@ const routes: Routes = [
   {
     path: 'trainer/students-info',
     component: ShowStudentsComponent
+  },
+  {
+    path: 'trainer/check-attendance',
+    component: TrainerAttendanceComponent
+  },
+  {
+    path: 'trainer/check-lesson-attendance',
+    component: TrainerLessonAttendanceComponent
+  },
+  {
+    path: 'admin/all-attendance',
+    component: AdminAttendanceComponent
   },
   {
     path: 'manager/student-profile/:username',

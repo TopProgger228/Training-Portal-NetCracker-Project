@@ -1,0 +1,14 @@
+<app-menu></app-menu>
+<div class="container mx-auto mt-5">
+  <h2 class="text-center" style="font-size: 30px">Your lessons for today</h2>
+  <div class="list-group " *ngFor="let lesson of lessonList" style="font-size: 20px">
+    <a href="trainer/check-lesson-attendance" class="list-group-item list-group-item-action mt-2">
+      <div class="row">
+        <div class="col-1">{{lesson.lessonId}}</div>
+        <div class="col-7">{{lesson.courseName}}</div>
+        <div class="col-3">{{lesson.startDateTime}}</div>
+        <div class="col-1">{{lesson.cancel}}</div>
+      </div>
+    </a>
+  </div>
+</div>

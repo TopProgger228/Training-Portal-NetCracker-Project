@@ -3,13 +3,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import com.group3.basic.netcracker.backend.dto.CheckLessonAttendanceDto;
-import com.group3.basic.netcracker.backend.dto.CourseAttendanceDto;
-import com.group3.basic.netcracker.backend.dto.LessonAttendanceDto;
-import com.group3.basic.netcracker.backend.dto.UserAttendanceDto;
-import com.group3.basic.netcracker.backend.entity.Course;
-import com.group3.basic.netcracker.backend.entity.Lesson;
+import com.group3.basic.netcracker.backend.dto.*;
 import com.group3.basic.netcracker.backend.service.CheckAttendanceService;
+import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import org.jxls.template.SimpleExporter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,18 +54,18 @@ public class AttendanceAPI {
 
    }
 
-   @GetMapping("/attLesson")
-   public ResponseEntity<?> getLessonsByCourse (@RequestBody Course course) {
+   @GetMapping("/attLesson/{id}")
+   public ResponseEntity<?> getLessonsByCourse (@PathVariable int id) {
 
-	    List<LessonAttendanceDto> list = attendanceService.getLessonsOfCourseAttendance(course.getId());
+	    List<LessonAttendanceDto> list = attendanceService.getLessonsOfCourseAttendance(id);
 	    return ResponseEntity.ok().body(list);
    }
 
 
-    @GetMapping("/attUser")
-    public ResponseEntity<?> getUsersByLesson (@RequestBody Lesson lesson) {
+    @GetMapping("/attUser/{id}")
+    public ResponseEntity<?> getUsersByLesson (@PathVariable int id) {
 
-        List<UserAttendanceDto> list = attendanceService.getUsersOfCourseAttendance(lesson.getLessonId());
+        List<UserAttendanceDto> list = attendanceService.getUsersOfCourseAttendance(id);
         return ResponseEntity.ok().body(list);
     }
 
@@ -88,11 +84,58 @@ public class AttendanceAPI {
     }
 
     @PostMapping("/lessonAtt")
-    public ResponseEntity<?> changeAttendance (@RequestBody int userId, int lessonId, String status) {
+    public ResponseEntity<?> changeAttendance (@RequestParam("userId") String userId,
+                                               @RequestParam("lessonId") String lessonId,
+                                               @RequestParam("status") String status) {
 
-	    checkAttendanceService.changeLessonMissing(userId, lessonId, status);
-
-        return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
+	    checkAttendanceService.changeLessonMissing(Integer.parseInt(userId), Integer.parseInt(lessonId), status);
+        return new ResponseEntity<>(new ResponseMessage("ok!"), HttpStatus.OK);
 
     }
+
+    @GetMapping("getAllTrainer")
+    public ResponseEntity<?> getAllTrainer() {
+
+	    List<TrainerSelectorDto> list = attendanceService.getTrainerForSelector();
+
+	    return ResponseEntity.ok().body(list);
+
+    }
+
+    @GetMapping("filterCourseByUser/{id}")
+    public ResponseEntity<?> getCourseByUser(@PathVariable String id) {
+
+        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByUser(Integer.parseInt(id));
+
+        return ResponseEntity.ok().body(list);
+
+    }
+
+    @GetMapping("filterCourseByTrainer/{id}")
+    public ResponseEntity<?> getCourseByTrainer(@PathVariable int id) {
+
+        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByTrainer(id);
+
+        return ResponseEntity.ok().body(list);
+
+    }
+
+    @GetMapping("filterCourseBySkillLevel/{level}")
+    public ResponseEntity<?> getCourseBySkillLevel(@PathVariable String level) {
+
+        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceBySkillLevel(level);
+
+        return ResponseEntity.ok().body(list);
+
+    }
+
+    @GetMapping("/getTrainerLesson/{userName}")
+    public ResponseEntity<?> getTrainerTodayLessonsUsername (@PathVariable String userName) {
+
+        List<LessonAttendanceDto> lessonAttendanceDtoList = checkAttendanceService.getTodayLessonsByTrainerUsername(userName);
+        return ResponseEntity.ok().body(lessonAttendanceDtoList);
+    }
+
+
+
 }

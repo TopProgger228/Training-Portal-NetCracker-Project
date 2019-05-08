@@ -42,4 +42,12 @@ public class LessonDaoImpl implements LessonDao {
 
         return jdbcTemplate.query(SQL, new Object[] {trainerId}, new LessonRowMapper());
     }
+
+    @Override
+    public List<Lesson> getTodayLessonsByTrainerUsername(String username) {
+
+        String SQL = "select l.id, l.is_cancel, l.lesson_date, l.time_slot_id, l.course_id from \"Lesson\" l join \"Course\" c on l.course_id = c.id join \"User\" u on c.trainer_id = u.id where u.username = ? and l.lesson_date = cast(current_timestamp as date)";
+
+        return jdbcTemplate.query(SQL, new Object[] {username}, new LessonRowMapper());
+    }
 }

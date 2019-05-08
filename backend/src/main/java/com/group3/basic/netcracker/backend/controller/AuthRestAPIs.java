@@ -79,10 +79,8 @@ public class AuthRestAPIs {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
-        System.out.println(usersTokenService.getEmailByToken(info.getToken()));
-
         jdbcTemplateUsersDao.createUser(info.getUsername(),
-                "Student", info.getFname(), info.getLname(), usersTokenService.getEmailByToken(info.getToken()),
+                "Student", info.getFname(), info.getLname(), info.getEmail(),
                 encoder.encode(info.getPassword()), LocalDate.now(), null);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);

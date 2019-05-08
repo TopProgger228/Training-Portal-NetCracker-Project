@@ -94,13 +94,27 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
             }
         } else {
             if (isExist(userId, lessonId)) {
-                lessonMissingDao.add(userId, lessonId, reason);
-            } else {
                 lessonMissingDao.updateReason(userId, lessonId, reason);
+            } else {
+                lessonMissingDao.add(userId, lessonId, reason);
             }
         }
 
     }
+
+    @Override
+    public List<LessonAttendanceDto> getTodayLessonsByTrainerUsername(String username) {
+
+        List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
+        for (Lesson l : lessonDao.getTodayLessonsByTrainerUsername(username)) {
+            LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
+            lad.setCourseName(courseDao.getCourseByLesson(l.getLessonId()).getName());
+            lessonAttendanceDtoList.add(lad);
+        }
+
+        return lessonAttendanceDtoList;
+    }
+
 
     private boolean isExist (int userId, int lessonId) {
 
