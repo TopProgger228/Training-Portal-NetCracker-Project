@@ -24,7 +24,7 @@ export class ManagerProfileComponent implements OnInit {
   ngOnInit() {
     if (this.token.getToken()) {
       this.token.getAuthorities().every(role => {
-        if (role === 'Manager') {
+        //if (role === 'Manager') {
           this.studentService.getStudents(this.token.getUsername())
             .subscribe(data => {
               this.students = data;
@@ -33,9 +33,9 @@ export class ManagerProfileComponent implements OnInit {
             .subscribe(data => {
               this.managers = data;
             })
-        } else {
-          this.router.navigate(['firstPage']);
-        }
+        //} else {
+        //  this.router.navigate(['firstPage']);
+       // }
         return false;
       });
     } else {
