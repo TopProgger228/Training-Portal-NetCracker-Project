@@ -34,8 +34,8 @@ export class AdminAttService {
     return this.http.get<UserAtt[]>(this.user_url + id)
   }
 
-  filterByUser(id: string) {
-    return this.http.get<CourseAtt[]>(this.filter_by_use_url + id)
+  filterByUser(username: string) {
+    return this.http.get<CourseAtt[]>(this.filter_by_use_url + username)
   }
 
   filterByTrainer(id: number) {

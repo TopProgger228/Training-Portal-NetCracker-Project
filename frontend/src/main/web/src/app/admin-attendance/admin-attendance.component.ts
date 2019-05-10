@@ -11,6 +11,7 @@ import {TrainerSelector} from "../interface/trainer-selector";
   styleUrls: ['./admin-attendance.component.css']
 })
 export class AdminAttendanceComponent implements OnInit {
+  panelOpenState = false;
 
   courseList: CourseAtt[];
   courseListByTrainer: CourseAtt[];
@@ -83,8 +84,8 @@ export class AdminAttendanceComponent implements OnInit {
   }
 
 
-  filterByUser(id: string) {
-    this.adminService.filterByUser(id)
+  filterByUser(username: string) {
+    this.adminService.filterByUser(username)
       .subscribe(data => this.courseListByUser = data);
   }
 
@@ -98,7 +99,7 @@ export class AdminAttendanceComponent implements OnInit {
       .subscribe(data => this.courseListByLevel = data);
   }
 
-  onTrainetSelected (val: any) {
+  onTrainerSelected (val: any) {
     this.filterByTrainer(val);
     console.log(val)
   }

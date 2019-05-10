@@ -22,6 +22,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	private final LessonDao lessonDao;
 	private final UserDao userDao;
 	private final LessonMissingDao lessonMissingDao;
+	private final TimeSlotDao timeSlotDao;
 	private final CourseAttendanceDtoMapper courseAttendanceDtoMapper;
 	private final LessonAttendanceDtoMapper lessonAttendanceDtoMapper;
 	private final UserAttendanceDtoMapper userAttendanceDtoMapper;
@@ -29,13 +30,14 @@ public class AttendanceServiceImpl implements AttendanceService {
 	private final TrainerSelectorDtoMapper trainerSelectorDtoMapper;
 
 	@Autowired
-	public AttendanceServiceImpl(AttendanceDao attendanceDao, CourseDAO courseDao, LessonDao lessonDao, UserDao userDao, LessonMissingDao lessonMissingDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, TrainerSelectorDtoMapper trainerSelectorDtoMapper) {
+	public AttendanceServiceImpl(AttendanceDao attendanceDao, CourseDAO courseDao, LessonDao lessonDao, UserDao userDao, LessonMissingDao lessonMissingDao, TimeSlotDao timeSlotDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, TrainerSelectorDtoMapper trainerSelectorDtoMapper) {
 		this.attendanceDao = attendanceDao;
 		this.courseDao = courseDao;
 		this.lessonDao = lessonDao;
 		this.userDao = userDao;
         this.lessonMissingDao = lessonMissingDao;
-        this.courseAttendanceDtoMapper = courseAttendanceDtoMapper;
+		this.timeSlotDao = timeSlotDao;
+		this.courseAttendanceDtoMapper = courseAttendanceDtoMapper;
 		this.lessonAttendanceDtoMapper = lessonAttendanceDtoMapper;
 		this.userAttendanceDtoMapper = userAttendanceDtoMapper;
 		this.trainerAttendanceDtoMapper = trainerAttendanceDtoMapper;
@@ -77,7 +79,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 		List<Lesson> lessonsList = lessonDao.getLessonByCourse(courseId);
 
 		for (Lesson l : lessonsList) {
-		   lessonAttendanceDtoList.add(lessonAttendanceDtoMapper.toLessonAttendanceDto(l));
+			LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
+			lad.setStartTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getStartTime());
+			lad.setEndTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getEndTime());
+		   	lessonAttendanceDtoList.add(lad);
+
 		}
 
 		return lessonAttendanceDtoList;
@@ -115,10 +121,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 
 	@Override
-	public List<CourseAttendanceDto> getCourseAttendanceByUser(int id) {
+	public List<CourseAttendanceDto> getCourseAttendanceByUser(String username) {
 
 		List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
-		List<Course> courseList = courseDao.getCourseByUserId(id);
+		List<Course> courseList = courseDao.getCourseByUserUsername(username);
 
 		for (Course c : courseList) {
 			CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);

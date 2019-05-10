@@ -79,12 +79,20 @@ public class CourseDaoImpl implements CourseDAO {
     }
 
     @Override
-    public List<Course> getCourseByUserId(int userId) {
+    public List<Course> getCourseByUserUsername(String username) {
 
-        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id where u.id = ?";
+        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id where u.username = ?";
 
-        return jdbcTemplate.query(SQL, new Object[] {userId}, new CourseRowMapper());
+        return jdbcTemplate.query(SQL, new Object[] {username}, new CourseRowMapper());
     }
+
+//    @Override
+//    public List<Course> getCourseByUserId(int userId) {
+//
+//        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id where u.id = ?";
+//
+//        return jdbcTemplate.query(SQL, new Object[] {userId}, new CourseRowMapper());
+//    }
 
     @Override
     public List<Course> getCourseByTrainerId(int trainerId) {

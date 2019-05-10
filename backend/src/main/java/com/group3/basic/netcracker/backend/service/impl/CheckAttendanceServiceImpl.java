@@ -1,9 +1,6 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
-import com.group3.basic.netcracker.backend.dao.CourseDAO;
-import com.group3.basic.netcracker.backend.dao.LessonDao;
-import com.group3.basic.netcracker.backend.dao.LessonMissingDao;
-import com.group3.basic.netcracker.backend.dao.UserDao;
+import com.group3.basic.netcracker.backend.dao.*;
 import com.group3.basic.netcracker.backend.dto.CheckLessonAttendanceDto;
 import com.group3.basic.netcracker.backend.dto.LessonAttendanceDto;
 import com.group3.basic.netcracker.backend.dto.UserAttendanceDto;
@@ -28,16 +25,18 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     private final UserDao userDao;
     private final CourseDAO courseDao;
     private final LessonMissingDao lessonMissingDao;
+    private final TimeSlotDao timeSlotDao;
     private final TrainerAttendanceDtoMapper trainerAttendanceDtoMapper;
     private final UserAttendanceDtoMapper userAttendanceDtoMapper;
     private final LessonAttendanceDtoMapper lessonAttendanceDtoMapper;
 
     @Autowired
-    public CheckAttendanceServiceImpl(LessonDao lessonDao, UserDao userDao, CourseDAO courseDao, LessonMissingDao lessonMissingDao, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper) {
+    public CheckAttendanceServiceImpl(LessonDao lessonDao, UserDao userDao, CourseDAO courseDao, LessonMissingDao lessonMissingDao, TimeSlotDao timeSlotDao, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper) {
         this.lessonDao = lessonDao;
         this.userDao = userDao;
         this.courseDao = courseDao;
         this.lessonMissingDao = lessonMissingDao;
+        this.timeSlotDao = timeSlotDao;
         this.trainerAttendanceDtoMapper = trainerAttendanceDtoMapper;
         this.userAttendanceDtoMapper = userAttendanceDtoMapper;
         this.lessonAttendanceDtoMapper = lessonAttendanceDtoMapper;
@@ -108,6 +107,8 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
         List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
         for (Lesson l : lessonDao.getTodayLessonsByTrainerUsername(username)) {
             LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
+            lad.setStartTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getStartTime());
+            lad.setEndTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getEndTime());
             lad.setCourseName(courseDao.getCourseByLesson(l.getLessonId()).getName());
             lessonAttendanceDtoList.add(lad);
         }

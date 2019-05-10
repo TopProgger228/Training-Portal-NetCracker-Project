@@ -25,11 +25,13 @@ public interface CourseDAO {
 
     Course getCourseByLesson (int lessonId);
 
-    List<Course> getCourseByUserId (int userId);
+//    List<Course> getCourseByUserId(int userId);
 
-    List<Course> getCourseByTrainerId (int trainerId);
+    List<Course> getCourseByUserUsername(String username);
 
-    List<Course> getCourseBySkillLevel (String level);
+    List<Course> getCourseByTrainerId(int trainerId);
+
+    List<Course> getCourseBySkillLevel(String level);
 
 
 }

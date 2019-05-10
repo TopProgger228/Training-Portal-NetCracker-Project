@@ -12,22 +12,22 @@ export class TrainerAttService {
 
   // private all_lessons_url: string = "http://localhost:8080/api/trainerLesson/165";
   private all_lessons_url_by_username = "http://localhost:8080/api/getTrainerLesson/"
-  private lesson_url: string = "http://localhost:8080/api/fullAttCheck/6";
+  private lesson_url: string = "http://localhost:8080/api/fullAttCheck/";
   private check_student_url: string = "http://localhost:8080/api/lessonAtt";
 
   constructor( private http: HttpClient) { }
 
-  // getLessons() {
-  //   return this.http.get<LessonAtt[]>(this.all_lessons_url);
-  // }
-
   getLessonsByUsername(username: string): Observable<LessonAtt[]> {
+    console.log(username);
     return this.http.get<LessonAtt[]>(this.all_lessons_url_by_username + username);
   }
 
 
-  getOneLesson() {
-    return this.http.get<Class>(this.lesson_url);
+  getOneLesson(id: number) {
+    console.log(id);
+    console.log(this.lesson_url + id.toString());
+    return this.http.get<Class>(this.lesson_url + id);
+    console.log(this.lesson_url + id);
   }
 
   putAttendanceStatus(userId: string, lessonId: string, status: string): Observable<any> {

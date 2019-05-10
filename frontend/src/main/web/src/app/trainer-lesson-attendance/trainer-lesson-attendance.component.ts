@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Class} from "../interface/class";
 import {TrainerAttService} from "../services/trainer-att.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-trainer-lesson-attendance',
@@ -9,6 +10,7 @@ import {TrainerAttService} from "../services/trainer-att.service";
 })
 export class TrainerLessonAttendanceComponent implements OnInit {
 
+  id: number;
   class: Class;
   statusList: string[] = [
     "Present",
@@ -19,17 +21,22 @@ export class TrainerLessonAttendanceComponent implements OnInit {
   ]
   oneStatus: string;
 
-  constructor(private trainerServise: TrainerAttService) { }
+  constructor(private trainerService: TrainerAttService, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(param => {
+    this.id = param['id']});
+  }
 
   ngOnInit() {
 
-    this.trainerServise.getOneLesson()
+    console.log(this.id);
+    this.trainerService.getOneLesson(this.id)
       .subscribe(data => this.class = data);
+
 
   }
 
   putAttendanceStatus (userId: string, lessonId: string, status: string) {
-    this.trainerServise.putAttendanceStatus(userId, lessonId, status)
+    this.trainerService.putAttendanceStatus(userId, lessonId, status)
       .subscribe(data=>{
         console.log(data);
       });

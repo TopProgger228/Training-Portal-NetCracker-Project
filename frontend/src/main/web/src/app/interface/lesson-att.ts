@@ -3,4 +3,6 @@ export interface LessonAtt {
   startDateTime: string,
   courseName: string,
   cancel: boolean
+  startTime: string;
+  endTime: string;
 }

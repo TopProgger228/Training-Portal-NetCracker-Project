@@ -86,10 +86,10 @@ public class AttendanceAPI {
 
     }
 
-    @GetMapping("filterCourseByUser/{id}")
-    public ResponseEntity<?> getCourseByUser(@PathVariable String id) {
+    @GetMapping("filterCourseByUser/{username}")
+    public ResponseEntity<?> getCourseByUser(@PathVariable String username) {
 
-        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByUser(Integer.parseInt(id));
+        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByUser(username);
 
         return ResponseEntity.ok().body(list);
 

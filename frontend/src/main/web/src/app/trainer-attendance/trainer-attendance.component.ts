@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LessonAtt} from "../interface/lesson-att";
 import {TrainerAttService} from "../services/trainer-att.service";
 import {TokenStorageService} from "../auth/token-storage.service";
+import {NavigationExtras, Router} from "@angular/router";
 
 @Component({
   selector: 'app-trainer-attendance',
@@ -13,16 +14,22 @@ export class TrainerAttendanceComponent implements OnInit {
   public lessonList: LessonAtt[];
 
 
-  constructor(private trainerService: TrainerAttService, private token: TokenStorageService) { }
+  constructor(private trainerService: TrainerAttService, private token: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
-
-    // this.trainerService.getLessons()
-    //   .subscribe(data => this.lessonList = data);
 
     this.trainerService.getLessonsByUsername(this.token.getUsername())
       .subscribe(data => this.lessonList = data);
 
   }
 
+
+  navigate(id: number) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: id
+      }
+    }
+    this.router.navigate(['trainer/check-lesson-attendance'], navigationExtras);
+  }
 }
