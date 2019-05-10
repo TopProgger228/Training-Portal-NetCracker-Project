@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Student } from "../services/student";
-import { Manager } from "../services/manager";
-import { Router } from "@angular/router";
-import { StudentService } from "../services/student.service";
-import { ManagerService } from "../services/manager.service";
-import { TokenStorageService } from "../auth/token-storage.service";
+import {Component, OnInit} from '@angular/core';
+import {Student} from "../services/student";
+import {Manager} from "../services/manager";
+import {ActivatedRoute, Router} from "@angular/router";
+import {StudentService} from "../services/student.service";
+import {ManagerService} from "../services/manager.service";
+import {TokenStorageService} from "../auth/token-storage.service";
 
 @Component({
   selector: 'app-manager-profile',
@@ -13,31 +13,31 @@ import { TokenStorageService } from "../auth/token-storage.service";
 })
 export class ManagerProfileComponent implements OnInit {
 
-  students: Student[];
-  managers: Manager[];
+  student: Student[];
+  username: string;
+  manager: Manager[];
   loggedOut = false;
 
-  constructor(private router: Router, private studentService: StudentService, private managerService: ManagerService,
-    private token: TokenStorageService) {
+  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, private managerService: ManagerService,
+              private token: TokenStorageService) {
   }
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.token.getAuthorities().every(role => {
-        //if (role === 'Manager') {
-          this.studentService.getStudents(this.token.getUsername())
-            .subscribe(data => {
-              this.students = data;
-            })
-          this.managerService.getManagerOfStudent(this.token.getUsername())
-            .subscribe(data => {
-              this.managers = data;
-            })
-        //} else {
-        //  this.router.navigate(['firstPage']);
-       // }
-        return false;
+      //this.token.getAuthorities().every(role => {
+      //if (role === 'Manager') {
+      this.route.params.subscribe(params => {
+        this.username = params['username'];
       });
+      this.managerService.getManagerOfStudent(this.username)
+        .subscribe(data => {
+          this.manager = data;
+        });
+      //} else {
+      //  this.router.navigate(['firstPage']);
+      // }
+      return false;
+      //});
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);

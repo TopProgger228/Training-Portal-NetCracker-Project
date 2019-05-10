@@ -15,12 +15,15 @@
 
             <h4 class="text-muted">Manager: {{student.managerFname}} {{student.managerLname}}</h4>
             <h4 class="text-muted">Manager`s e-mail: {{student.managerEmail}}</h4>
+            <!--Will be deleted soon-->
+            <h4 class="text-muted">Manager`s username: {{student.managerUsername}}</h4>
+            <!--Will be deleted soon-->
           </div>
         </div>
 
         <h3 style="margin-top: 10px;">E-mail: {{student.email}}</h3>
         <h3 style="margin-top: 10px;">Manager profile:
-          <button type="button" class="btn btn-info" (click)="onGetClick()">Open profile</button>
+          <a [routerLink]="['/manager/profile', student.managerUsername]"><button type="button" class="btn btn-info" >Open profile</button></a>
         </h3>
 
       </div>
