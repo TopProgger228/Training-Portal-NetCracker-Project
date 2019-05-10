@@ -225,7 +225,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List getStudentsOfTrainer(String username) {
         String SQL = "select u.username, u.fname, u.lname, u.email, \n" +
-                "man.fname as \"ManagerFname\", man.lname as \"ManagerLname\",man.email as \"ManagerMail\"\n" +
+                "man.fname as \"ManagerFname\", man.lname as \"ManagerLname\",man.email as \"ManagerMail\", man.username as \"ManagerUsername\"\n" +
                 "from \"User\" u\n" +
                 "join \"Group\" g on g.user_id = u.id\n" +
                 "join \"Course\" c on c.id = g.course_id\n" +

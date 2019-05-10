@@ -55,15 +55,9 @@ public class GetInfoAPIs {
         return userService.getStudentsOfManager(username);
     }
 
-    @GetMapping("managerinfo")
-    public List getManagersInfo(@RequestParam("username") String username){
-        return userService.getManagerOfStudent(username);
-    }
-
-    @GetMapping("showcorrectmanager")
-    public ResponseEntity<?> getTrueManager(@RequestParam int id){
-        userService.getUserById(id);
-        return new ResponseEntity<>(new ResponseMessage("Found !"), HttpStatus.OK);
+    @GetMapping("/manager/profile")
+    public UserForDisplay getManagersInfo(@RequestParam("username") String username){
+        return userService.getUserByUsername(username);
     }
 
     @GetMapping("/manager/student-profile")

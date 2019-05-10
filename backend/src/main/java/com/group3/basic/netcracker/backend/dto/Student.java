@@ -8,6 +8,7 @@ public class Student {
     private String managerFname;
     private String managerLname;
     private String managerEmail;
+    private String managerUsername;
 
     public String getUsername() {
         return username;
@@ -63,5 +64,13 @@ public class Student {
 
     public void setManagerEmail(String managerEmail) {
         this.managerEmail = managerEmail;
+    }
+
+    public String getManagerUsername() {
+        return managerUsername;
+    }
+
+    public void setManagerUsername(String managerUsername) {
+        this.managerUsername = managerUsername;
     }
 }

@@ -17,6 +17,7 @@ public class StudentRowMapper implements RowMapper {
         student.setManagerFname(row.getString("ManagerFname"));
         student.setManagerLname(row.getString("ManagerLname"));
         student.setManagerEmail(row.getString("ManagerMail"));
+        student.setManagerUsername(row.getString("ManagerUsername"));
         return student;
     }
 }
