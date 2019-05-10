@@ -1,19 +1,19 @@
-<div class="trainers">
+ <div class="trainers">
   <br><br>
   <div *ngFor="let trainer of trainers" style="width: 90%; margin: auto;">
     <div class="col shadow p-3 mb-5 rounded" style="padding: 10px; ">
       <div class="row justify-content-center">
 
         <div class="col-2">
-          <img src="../../../assets/images/{{trainer.photo}}.jpg" class="img-circle" alt="">
+          <img src="../../../assets/images/DanielScott.jpg" class="img-circle" alt="">
         </div>
 
         <div class="col">
-          <h1>{{ trainer.name }} {{ trainer.surname }}</h1>
-          <div *ngFor="let course of trainer.readCourses">
+          <h1>{{ trainer.fname }} {{ trainer.lname}}</h1>
+          <div *ngFor="let course of trainer.courses">
             <h3 class="text-muted">{{course}}</h3>
           </div>
-          <em><h3  style="margin-top: 10px;">{{ trainer.aboutTrainerPersonality }}</h3></em>
+          <em><h3  style="margin-top: 10px;">{{ trainer.info  }}</h3></em>
         </div>
       </div>
 

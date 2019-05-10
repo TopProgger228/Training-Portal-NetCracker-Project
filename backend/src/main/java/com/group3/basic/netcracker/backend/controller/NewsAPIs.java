@@ -1,13 +1,10 @@
 package com.group3.basic.netcracker.backend.controller;
 
-
-import com.group3.basic.netcracker.backend.entity.News;
 import com.group3.basic.netcracker.backend.service.NewsService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -17,10 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class NewsAPIs {
-    NewsService newsService;
+    private NewsService newsService;
 
     @Autowired
-    NewsAPIs(NewsService newsService) {
+    public NewsAPIs(NewsService newsService) {
         this.newsService = newsService;
     }
 

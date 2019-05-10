@@ -14,6 +14,7 @@ export class CoursesContainerComponent implements OnInit {
 
   courses: Course[];
   coursesC: Array<StockCourses> = COURSES;
+
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {

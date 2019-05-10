@@ -14,12 +14,10 @@ import java.util.List;
 public class CourseAPIs {
 
     private final CourseService courseService;
-    private final UserService userService;
 
     @Autowired
-    public CourseAPIs(CourseService courseService, UserService userService){
+    public CourseAPIs(CourseService courseService){
         this.courseService = courseService;
-        this.userService = userService;
     }
 
     @GetMapping("/coursesinfo/getcourses")

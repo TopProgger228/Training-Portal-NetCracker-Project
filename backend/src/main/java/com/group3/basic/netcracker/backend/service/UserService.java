@@ -44,6 +44,10 @@ public interface UserService {
 
     List getManagerOfStudent(String username);
 
+    List getTrainersInfo();
+
+    List<String> getTrainerCourses(int id);
+
     UserForDisplay getUserByUsername(String username);
 
 }

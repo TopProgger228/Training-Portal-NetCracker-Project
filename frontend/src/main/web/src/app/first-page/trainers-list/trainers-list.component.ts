@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TrainersserService } from './trainersser.service';
+import {Component, OnInit} from '@angular/core';
+import {TrainersserService} from './trainersser.service';
+import {TrainersInfo} from "../../services/trainers-info";
 
 
 @Component({
@@ -9,13 +10,19 @@ import { TrainersserService } from './trainersser.service';
 })
 export class TrainersListComponent implements OnInit {
 
-  trainers = {};
-  
-  constructor( private MyFirstService : TrainersserService) { }
+  trainers: TrainersInfo[];
+
+  constructor(private service: TrainersserService) {
+  }
 
   ngOnInit() {
 
-    this.trainers = this.MyFirstService.getDate() 
+    this.service.getInfo().subscribe(
+      data => {
+        this.trainers = data;
+        console.log(data)
+      }
+    );
   }
 
 }

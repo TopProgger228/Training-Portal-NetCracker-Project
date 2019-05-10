@@ -54,4 +54,8 @@ public interface UserDao {
     List getManagerOfStudent(String username);
 
     UserForDisplay getUserByUsername(String username);
+
+    List getTrainersInfo();
+
+    List<String> getTrainerCourses(int id);
 }

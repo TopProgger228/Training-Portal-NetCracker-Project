@@ -108,5 +108,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserForDisplay getUserByUsername(String username) { return userDao.getUserByUsername(username);}
+    public List getTrainersInfo() {
+        return userDao.getTrainersInfo();
+    }
+
+    @Override
+    public List<String> getTrainerCourses(int id) {
+        return userDao.getTrainerCourses(id);
+    }
+
+    @Override
+    public UserForDisplay getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
+    }
 }
