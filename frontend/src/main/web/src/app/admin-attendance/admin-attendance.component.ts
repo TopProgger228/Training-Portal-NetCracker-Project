@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminAttService} from "../services/admin-att.service";
-import {UserAtt} from "../interface/user-att";
-import {LessonAtt} from "../interface/lesson-att";
-import {CourseAtt} from "../interface/course-att";
-import {TrainerSelector} from "../interface/trainer-selector";
+import { AdminAttService } from "../services/admin-att.service";
+import { UserAtt } from "../interface/user-att";
+import { LessonAtt } from "../interface/lesson-att";
+import { CourseAtt } from "../interface/course-att";
+import { TrainerSelector } from "../interface/trainer-selector";
 
 @Component({
   selector: 'app-admin-attendance',
@@ -23,6 +23,9 @@ export class AdminAttendanceComponent implements OnInit {
   choosenOneLesson: number = -1;
   isHidden: boolean[] = [];
 
+  isChooseCoursesSelected: boolean;
+  isSelectAllSelected: boolean;
+
   trainerSelector: TrainerSelector[];
   trainerSelected: number;
 
@@ -31,48 +34,57 @@ export class AdminAttendanceComponent implements OnInit {
 
   userValue: string;
 
+  selectedCourseArray: Array<{ id: any, isSelected: any }> = [];
+  selectedCoursesForReport: Array<number> = [];
 
   constructor(private adminService: AdminAttService) { }
 
-  setChoosen (id: number ){
+  setChoosen(id: number) {
     this.choosenOne = id;
     this.getLessons(id);
     this.isHiddenMethod(id);
   }
 
-  setChoosenLesson (id:number) {
+  setChoosenLesson(id: number) {
     this.choosenOneLesson = id;
   }
 
   ngOnInit() {
 
+    this.isChooseCoursesSelected = false;
+    this.isSelectAllSelected = true;
+
     this.adminService.getCourses()
       .subscribe(data => this.courseList = data);
-
-
     this.levelSelector = [
       "Beginner", "Junior", "Middle", "Master"
     ]
-
     this.adminService.getAllTrainer()
-      .subscribe(data=>this.trainerSelector = data);
+      .subscribe(data => this.trainerSelector = data);
 
     this.trainerSelected = -1;
     this.levelSelected = -1;
   }
 
-  getLessons (id: number) {
+
+  setSelectedCoursesArray() {
+    this.selectedCourseArray = [];
+    this.courseList.forEach(course => {
+      this.selectedCourseArray.push({ id: course.courseId, isSelected: true });
+    });
+  }
+  getLessons(id: number) {
     this.adminService.getLessons(id)
       .subscribe(data => this.lessonList = data);
   }
 
-  getUsers (id: number) {
+  getUsers(id: number) {
     this.adminService.getStudents(id)
       .subscribe(data => this.userList = data);
   }
 
-  isHiddenMethod (id: number) {
-    if(this.isHidden[id] == null) {
+  isHiddenMethod(id: number) {
+    if (this.isHidden[id] == null) {
       for (let i of this.isHidden) {
         i = true;
       }
@@ -85,8 +97,9 @@ export class AdminAttendanceComponent implements OnInit {
 
 
   filterByUser(username: string) {
+    console.log(username);
     this.adminService.filterByUser(username)
-      .subscribe(data => this.courseListByUser = data);
+      .subscribe(data => console.log(this.courseListByUser = data));
   }
 
   filterByTrainer(id: number) {
@@ -99,14 +112,60 @@ export class AdminAttendanceComponent implements OnInit {
       .subscribe(data => this.courseListByLevel = data);
   }
 
-  onTrainerSelected (val: any) {
+  onTrainerSelected(val: any) {
     this.filterByTrainer(val);
     console.log(val)
   }
 
-  onLevelSelected (val: any) {
+  onLevelSelected(val: any) {
     this.filterBySkillLevel(val);
     console.log(val);
   }
 
+  setSelectAll(selected: boolean) {
+    this.isSelectAllSelected = selected;
+    this.selectedCourseArray.forEach(course => {
+      course.isSelected = selected;
+    });
+  }
+
+  setChooseCousesMode() {
+    this.isChooseCoursesSelected = true;
+    this.setSelectedCoursesArray();
+    console.log(this.selectedCourseArray)
+  }
+
+  createReportByCourse() {
+    this.selectedCoursesForReport = [];
+    this.selectedCourseArray.forEach(course => {
+      if (course.isSelected)
+        this.selectedCoursesForReport.push(course.id);
+    });
+    console.log(this.selectedCoursesForReport);
+    this.adminService.createReportByCourse(this.selectedCoursesForReport)
+      .subscribe(
+      data => console.log(data),
+      error => console.log(error));
+  }
+
+  createReportByTrainer() {
+    this.adminService.createReportByTrainer(this.trainerSelected)
+    .subscribe(
+      data => console.log(data),
+      error => console.log(error))
+  }
+
+  createReportByStudent() { 
+    this.adminService.createReportByStudent(this.userValue)
+    .subscribe(
+      data => console.log(data),
+      error => console.log(error)) 
+    }
+
+  createReportByLevel() { 
+    this.adminService.createReportByLevel(this.levelSelected.toString())
+    .subscribe(
+      data => console.log(data),
+      error => console.log(error)) 
+    }
 }

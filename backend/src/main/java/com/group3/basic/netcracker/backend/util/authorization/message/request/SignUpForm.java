@@ -1,8 +1,8 @@
 package com.group3.basic.netcracker.backend.util.authorization.message.request;
 
-import java.util.Set;
 
 import javax.validation.constraints.*;
+import java.util.Set;
 
 public class SignUpForm {
     @NotBlank

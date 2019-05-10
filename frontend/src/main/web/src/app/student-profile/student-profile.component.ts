@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
-import {UserService} from "../services/user.service";
-import {UserModel} from "../services/user-model";
+import { UserService } from "../services/user.service";
+import { UserModel } from "../services/user-model";
 
 
 @Component({
@@ -24,15 +24,22 @@ export class StudentProfileComponent implements OnInit {
 
   ngOnInit() {
     if (this.token.getToken()) {
-      this.route.params.subscribe(params => {
-        this.username = params['username']; // (+) converts string 'id' to a number
+      this.token.getAuthorities().every(role => {
+        if ((role === 'Manager') || (role === 'Trainer')) {
+          this.route.params.subscribe(params => {
+            this.username = params['username']; // (+) converts string 'id' to a number
 
-        // In a real app: dispatch action to load the details here.
+            // In a real app: dispatch action to load the details here.
+          });
+          this.userService.getStudentProfile(this.username)
+            .subscribe(data => {
+              this.student = data;
+            })
+        } else {
+          this.router.navigate(['firstPage']);
+        }
+        return false;
       });
-      this.userService.getStudentProfile(this.username)
-        .subscribe(data => {
-          this.student = data;
-        })
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);

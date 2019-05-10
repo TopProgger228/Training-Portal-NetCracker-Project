@@ -5,24 +5,31 @@ import { TokenStorageService } from '../auth/token-storage.service';
 
 import { NewsService } from '../services/News.service';
 import { News } from '../services/news';
+import { Trainer } from '../services/trainer';
+import { TrainerService } from '../services/trainer.service';
 
 @Component({
-  selector: 'app-manage-news',
-  templateUrl: './manage-news.component.html',
-  styleUrls: ['./manage-news.component.css']
+  selector: 'app-manage-landing-page',
+  templateUrl: './manage-landing-page.component.html',
+  styleUrls: ['./manage-landing-page.component.css']
 })
-export class ManageNewsComponent implements OnInit {
+export class ManageLandingPageComponent implements OnInit {
 
   news: News[];
   currentNews: News;
 
+  trainers: Trainer[];
+
   loggedOut = false;
-  EditRow: number = -1;
+  EditNewsRow: number = -1;
+  EditTrainerRow: number = -1;
   addNewNews: boolean = false;
   newNews: News = { 'id': 0, 'title': '', 'createDate': '', 'context': '', 'isActive': true };
 
 
-  constructor(private router: Router, private newsService: NewsService, private token: TokenStorageService) { }
+  constructor(private router: Router, private newsService: NewsService, 
+    private token: TokenStorageService,
+    private trainerService: TrainerService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
@@ -32,6 +39,13 @@ export class ManageNewsComponent implements OnInit {
             data => {
               this.news = data;
               console.log(this.news);
+            }
+          )
+
+          this.trainerService.getTrainers().subscribe(
+            data => {
+              this.trainers = data;
+              console.log(this.trainers);
             }
           )
         } else {
@@ -45,11 +59,15 @@ export class ManageNewsComponent implements OnInit {
     };
   }
 
-  setEditRow(rowid: number) {
-    this.EditRow = rowid;
+  setEditNewsRow(rowid: number) {
+    this.EditNewsRow = rowid;
   }
 
-  updateRow(news: News) {
+  setEditTrainerRow(rowid: number) {
+    this.EditTrainerRow = rowid;
+  }
+
+  updateNewsRow(news: News) {
     console.log(news);
     this.currentNews = news;
     this.newsService.updateNews(this.currentNews.id.toString(), this.currentNews.title, this.currentNews.createDate, this.currentNews.context, this.currentNews.isActive.toString()).subscribe(
@@ -60,8 +78,24 @@ export class ManageNewsComponent implements OnInit {
         console.log(error);
       }
     );
+    this.EditNewsRow = -1;
+  }
 
-    this.EditRow = -1;
+  updateTrainerRow(trainer: Trainer) {
+    console.log(trainer);
+    this.trainerService.updateTrainerInfo(trainer).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.EditTrainerRow = -1;
+  }
+
+  createNewTrainer(){
+    this.router.navigate(['admin/add-student']);
   }
 
   createNewNews() {

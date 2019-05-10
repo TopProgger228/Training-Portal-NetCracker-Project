@@ -11,7 +11,7 @@ import {GroupsScheduleComponent} from "./groups-schedule/groups-schedule.compone
 import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
 import {AddStudentMailSenderComponent} from "./mail-sender/add-student";
 import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
-import {ManageNewsComponent} from "./manage-news/manage-news.component";
+import {ManageLandingPageComponent} from "./manage-landing-page/manage-landing-page.component";
 import {CoursesInfoComponent} from "./courses-info/courses-info.component";
 import {ShowStudentsComponent} from "./show-students/show-students.component";
 import {StudentsInfoComponent} from "./students-info/students-info.component";
@@ -64,7 +64,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/manage-news',
-    component: ManageNewsComponent
+    component: ManageLandingPageComponent
   },
   {
     path: 'student/my-schedule',
@@ -105,6 +105,10 @@ const routes: Routes = [
   {
     path: 'manager/student-profile/:username',
     component: StudentProfileComponent
+  },
+  {
+    path: '**',
+    component: StartComponent
   },
   {
     path: '',

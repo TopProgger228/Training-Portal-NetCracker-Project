@@ -88,7 +88,7 @@ public class AttendanceAPI {
 
     @GetMapping("filterCourseByUser/{username}")
     public ResponseEntity<?> getCourseByUser(@PathVariable String username) {
-
+System.out.println(username);
         List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByUser(username);
 
         return ResponseEntity.ok().body(list);
@@ -120,6 +120,32 @@ public class AttendanceAPI {
         return ResponseEntity.ok().body(lessonAttendanceDtoList);
     }
 
+
+    @PostMapping("createReport/course")
+    public ResponseEntity<?> createReportByCourse(@RequestParam("courses") int[] courses){
+        //call method from service
+        return new ResponseEntity<>(new ResponseMessage("Report on selected courses saved"), HttpStatus.OK);
+    }
+
+    @PostMapping("createReport/trainer")
+    public ResponseEntity<?> createReportByTrainer(@RequestParam("trainerId") int trainerId){
+System.out.println(trainerId);
+        //call method from service
+        return new ResponseEntity<>(new ResponseMessage("Report on trainers courses saved"), HttpStatus.OK);
+    }
+
+    @PostMapping("createReport/student")
+    public ResponseEntity<?> createReportByStudent(@RequestParam("username") String username){
+
+        //call method from service
+        return new ResponseEntity<>(new ResponseMessage("Report on students courses saved"), HttpStatus.OK);
+    }
+
+    @PostMapping("createReport/level")
+    public ResponseEntity<?> createReportByLevel(@RequestParam("level") String level){
+        //call method from service
+        return new ResponseEntity<>(new ResponseMessage("Report on courses level saved"), HttpStatus.OK);
+    }
 
 
 }

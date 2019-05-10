@@ -22,7 +22,7 @@ import { AddNewCourseComponent } from "./add-new-course/add-new-course.component
 import {ShowStudentsComponent} from "./show-students/show-students.component";
 import { AddStudentMailSenderComponent } from './mail-sender/add-student';
 import {MyScheduleComponent} from "./my-schedule/my-schedule.component";
-import { ManageNewsComponent } from './manage-news/manage-news.component';
+import {ManageLandingPageComponent} from "./manage-landing-page/manage-landing-page.component";
 import { StudentsInfoComponent } from './students-info/students-info.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {PasswordResetMailSenderComponent} from "./mail-sender/resetPasswordMail";
@@ -44,7 +44,7 @@ import {StudentProfileComponent} from "./student-profile/student-profile.compone
     AddNewManagerComponent,
     GroupsScheduleComponent,
     MyScheduleComponent,
-    ManageNewsComponent,
+    ManageLandingPageComponent,
     //CoursesListComponent
     AddStudentMailSenderComponent,
     CoursesInfoComponent,

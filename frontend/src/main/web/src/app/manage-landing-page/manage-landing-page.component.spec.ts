@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageNewsComponent } from './manage-news.component';
+import { ManageLandingPageComponent } from './manage-landing-page.component';
 
 describe('ManageNewsComponent', () => {
-  let component: ManageNewsComponent;
-  let fixture: ComponentFixture<ManageNewsComponent>;
+  let component: ManageLandingPageComponent;
+  let fixture: ComponentFixture<ManageLandingPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManageNewsComponent ]
+      declarations: [ ManageLandingPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageNewsComponent);
+    fixture = TestBed.createComponent(ManageLandingPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

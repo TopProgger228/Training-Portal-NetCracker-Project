@@ -3,25 +3,35 @@
   <h2 class="text-center" style="font-size: 30px">Courses</h2>
   <ngb-tabset style="font-size: 20px">
     <ngb-tab>
-      <ng-template ngbTabTitle ><span class="text text-secondary" style="font-size: 20px;">All</span>
+      <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">All</span>
       </ng-template>
       <ng-template ngbTabContent>
         <div class="row" style="font-weight: bold">
           <div class="col-1">#</div>
-          <div class="col-5">Name</div>
-          <div class="col-3">Skill level</div>
+          <div class="col-3">Name</div>
+          <div class="col-2">Skill level</div>
           <div class="col-3">Trainer</div>
+          <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+            *ngIf="!isChooseCoursesSelected" (click)="setChooseCousesMode()">Choose courses for report</button>
+          <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+            *ngIf="isChooseCoursesSelected" (click)="createReportByCourse()">Create report</button>
+          <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+            *ngIf="isChooseCoursesSelected && !isSelectAllSelected" (click)="setSelectAll(true)">Select all</button>
+          <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+            *ngIf="isChooseCoursesSelected && isSelectAllSelected" (click)="setSelectAll(false)">Cancel all</button>
         </div>
         <div class="list-group " *ngFor="let course of courseList; index as i">
-          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)" >
+          <a class="list-group-item list-group-item-action mt-2" role="button">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
-              <div class="col-5">{{course.name}}</div>
-              <div class="col-3">{{course.skillLevel}}</div>
-              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.firstName}}</div>
+              <div class="col-3" (click)="setChoosen(course.courseId)">{{course.name}}</div>
+              <div class="col-2">{{course.skillLevel}}</div>
+              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
+              <div class=" ml-auto" style="font-size: 18px; margin-right: 10px" *ngIf="isChooseCoursesSelected"><input
+                  type="checkbox" [(ngModel)]="selectedCourseArray[i].isSelected" /></div>
             </div>
           </a>
-          <div  *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
@@ -30,7 +40,8 @@
                 <div class="col-3 text-center">Status</div>
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
-                <a class="list-group-item list-group-item-action mt-2"  role="button" (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                <a class="list-group-item list-group-item-action mt-2" role="button"
+                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
                     <div class="col-5">{{lesson.startTime}}-{{lesson.endTime}}</div>
@@ -42,20 +53,20 @@
                   <div class="card card-body" *ngIf="userList.length !== 0">
                     <table class="table table-striped">
                       <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Status</th>
-                      </tr>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First name</th>
+                          <th scope="col">Last name</th>
+                          <th scope="col">Status</th>
+                        </tr>
                       </thead>
                       <tbody *ngFor="let user of userList; index as i">
-                      <tr>
-                        <th scope="row">{{i + 1}}</th>
-                        <td>{{user.userFirstName}}</td>
-                        <td>{{user.userLastName}}</td>
-                        <td>{{user.attendanceStatus}}</td>
-                      </tr>
+                        <tr>
+                          <th scope="row">{{i + 1}}</th>
+                          <td>{{user.userFirstName}}</td>
+                          <td>{{user.userLastName}}</td>
+                          <td>{{user.attendanceStatus}}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -77,39 +88,44 @@
       <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">By trainer</span></ng-template>
       <ng-template ngbTabContent>
         <div>
-          <select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="trainerSelected" (ngModelChange)="onTrainerSelected($event)">
-            <option *ngFor="let trainer of trainerSelector" [value]="trainer.id" >{{trainer.firstName}} {{trainer.lastName}}</option>
+          <select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="trainerSelected"
+            (ngModelChange)="onTrainerSelected($event)" placeholder="Select trainer">
+            <option *ngFor="let trainer of trainerSelector" [value]="trainer.id">{{trainer.firstName}}
+              {{trainer.lastName}}</option>
           </select>
         </div>
         <div class="row" style="font-weight: bold">
           <div class="col-1">#</div>
-          <div class="col-5">Name</div>
-          <div class="col-3">Skill level</div>
+          <div class="col-3">Name</div>
+          <div class="col-2">Skill level</div>
           <div class="col-3">Trainer</div>
+          <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+            (click)="createReportByTrainer()">Create report</button>
         </div>
         <div class="list-group " *ngFor="let course of courseListByTrainer; index as i">
-          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)" >
+          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
-              <div class="col-5">{{course.name}}</div>
-              <div class="col-3 text-center">{{course.skillLevel}}</div>
-              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.firstName}}</div>
+              <div class="col-3">{{course.name}}</div>
+              <div class="col-2 text-center">{{course.skillLevel}}</div>
+              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
             </div>
           </a>
-          <div  *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
-                <div class="col-5">Time</div>
-                <div class="col-3 text-center">Date</div>
+                <div class="col-3">Time</div>
+                <div class="col-2 text-center">Date</div>
                 <div class="col-3 text-center">Status</div>
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
-                <a class="list-group-item list-group-item-action mt-2"  role="button" (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                <a class="list-group-item list-group-item-action mt-2" role="button"
+                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
-                    <div class="col-5">{{lesson.startTime}}-{{lesson.endTime}}</div>
-                    <div class="col-3 text-center">{{lesson.startDateTime}}</div>
+                    <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
+                    <div class="col-2 text-center">{{lesson.startDateTime}}</div>
                     <div class="col-3 text-center">{{lesson.cancel}} </div>
                   </div>
                 </a>
@@ -117,20 +133,20 @@
                   <div class="card card-body" *ngIf="userList.length !== 0">
                     <table class="table table-striped">
                       <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Status</th>
-                      </tr>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First name</th>
+                          <th scope="col">Last name</th>
+                          <th scope="col">Status</th>
+                        </tr>
                       </thead>
                       <tbody *ngFor="let user of userList; index as i">
-                      <tr>
-                        <th scope="row">{{i + 1}}</th>
-                        <td>{{user.userFirstName}}</td>
-                        <td>{{user.userLastName}}</td>
-                        <td>{{user.attendanceStatus}}</td>
-                      </tr>
+                        <tr>
+                          <th scope="row">{{i + 1}}</th>
+                          <td>{{user.userFirstName}}</td>
+                          <td>{{user.userLastName}}</td>
+                          <td>{{user.attendanceStatus}}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -151,38 +167,42 @@
       <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">By student</span></ng-template>
       <ng-template ngbTabContent>
         <div class="row">
-          <input type="text" [(ngModel)]="userValue" class="col">
-          <input type="button" value="Submit" (click)="filterByUser(userValue)">
+          <input type="text" [(ngModel)]="userValue" class="col" placeholder="Type student username">
+          <button class="btn btn-outline-secondary" value="Submit" (click)="filterByUser(userValue)"
+            style="font-size: 20px">Submit</button>
         </div>
         <div class="row" style="font-weight: bold">
           <div class="col-1">#</div>
-          <div class="col-5">Name</div>
-          <div class="col-3">Skill level</div>
+          <div class="col-3">Name</div>
+          <div class="col-2">Skill level</div>
           <div class="col-3">Trainer</div>
+          <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+            (click)="createReportByStudent()">Create report</button>
         </div>
         <div class="list-group " *ngFor="let course of courseListByUser; index as i">
-          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)" >
+          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
-              <div class="col-5">{{course.name}}</div>
-              <div class="col-3 text-center">{{course.skillLevel}}</div>
-              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.firstName}}</div>
+              <div class="col-3">{{course.name}}</div>
+              <div class="col-2 text-center">{{course.skillLevel}}</div>
+              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
             </div>
           </a>
-          <div  *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
-                <div class="col-5">Time</div>
-                <div class="col-3 text-center">Date</div>
+                <div class="col-3">Time</div>
+                <div class="col-2 text-center">Date</div>
                 <div class="col-3 text-center">Status</div>
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
-                <a class="list-group-item list-group-item-action mt-2"  role="button" (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                <a class="list-group-item list-group-item-action mt-2" role="button"
+                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
-                    <div class="col-5">{{lesson.startTime}}-{{lesson.endTime}}</div>
-                    <div class="col-3 text-center">{{lesson.startDateTime}}</div>
+                    <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
+                    <div class="col-2 text-center">{{lesson.startDateTime}}</div>
                     <div class="col-3 text-center">{{lesson.cancel}} </div>
                   </div>
                 </a>
@@ -190,20 +210,20 @@
                   <div class="card card-body" *ngIf="userList.length !== 0">
                     <table class="table table-striped">
                       <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Status</th>
-                      </tr>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First name</th>
+                          <th scope="col">Last name</th>
+                          <th scope="col">Status</th>
+                        </tr>
                       </thead>
                       <tbody *ngFor="let user of userList; index as i">
-                      <tr>
-                        <th scope="row">{{i + 1}}</th>
-                        <td>{{user.userFirstName}}</td>
-                        <td>{{user.userLastName}}</td>
-                        <td>{{user.attendanceStatus}}</td>
-                      </tr>
+                        <tr>
+                          <th scope="row">{{i + 1}}</th>
+                          <td>{{user.userFirstName}}</td>
+                          <td>{{user.userLastName}}</td>
+                          <td>{{user.attendanceStatus}}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -224,38 +244,42 @@
     <ngb-tab>
       <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">By level</span></ng-template>
       <ng-template ngbTabContent>
-        <select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="levelSelected" (ngModelChange)="onLevelSelected($event)">
+        <select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="levelSelected"
+          (ngModelChange)="onLevelSelected($event)" placeholder="Select level">
           <option *ngFor="let level of levelSelector">{{level}}</option>
         </select>
         <div class="row" style="font-weight: bold">
           <div class="col-1">#</div>
-          <div class="col-5">Name</div>
-          <div class="col-3">Skill level</div>
+          <div class="col-3">Name</div>
+          <div class="col-2">Skill level</div>
           <div class="col-3">Trainer</div>
+          <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+            (click)="createReportByLevel()">Create report</button>
         </div>
         <div class="list-group " *ngFor="let course of courseListByLevel; index as i">
-          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)" >
+          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
-              <div class="col-5">{{course.name}}</div>
-              <div class="col-3 text-center">{{course.skillLevel}}</div>
-              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.firstName}}</div>
+              <div class="col-3">{{course.name}}</div>
+              <div class="col-2 text-center">{{course.skillLevel}}</div>
+              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
             </div>
           </a>
-          <div  *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
-                <div class="col-5">Time</div>
-                <div class="col-3 text-center">Date</div>
+                <div class="col-3">Time</div>
+                <div class="col-2 text-center">Date</div>
                 <div class="col-3 text-center">Status</div>
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
-                <a class="list-group-item list-group-item-action mt-2"  role="button" (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                <a class="list-group-item list-group-item-action mt-2" role="button"
+                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
-                    <div class="col-5">{{lesson.startTime}}-{{lesson.endTime}}</div>
-                    <div class="col-3 text-center">{{lesson.startDateTime}}</div>
+                    <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
+                    <div class="col-2 text-center">{{lesson.startDateTime}}</div>
                     <div class="col-3 text-center">{{lesson.cancel}} </div>
                   </div>
                 </a>
@@ -263,20 +287,20 @@
                   <div class="card card-body" *ngIf="userList.length !== 0">
                     <table class="table table-striped">
                       <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Status</th>
-                      </tr>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First name</th>
+                          <th scope="col">Last name</th>
+                          <th scope="col">Status</th>
+                        </tr>
                       </thead>
                       <tbody *ngFor="let user of userList; index as i">
-                      <tr>
-                        <th scope="row">{{i + 1}}</th>
-                        <td>{{user.userFirstName}}</td>
-                        <td>{{user.userLastName}}</td>
-                        <td>{{user.attendanceStatus}}</td>
-                      </tr>
+                        <tr>
+                          <th scope="row">{{i + 1}}</th>
+                          <td>{{user.userFirstName}}</td>
+                          <td>{{user.userLastName}}</td>
+                          <td>{{user.attendanceStatus}}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -293,20 +317,6 @@
         </div>
       </ng-template>
     </ngb-tab>
+
   </ngb-tabset>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

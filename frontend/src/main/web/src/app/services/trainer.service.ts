@@ -13,11 +13,17 @@ const httpOptions = {
 export class TrainerService {
 
   private trainersUrl = 'http://localhost:8080/api/gettrainers';
+  private updateTrainerUrl = 'http://localhost:8080/api/updateTrainer';
 
   constructor(private http: HttpClient) { }
 
   getTrainers(): Observable<any> {
     return this.http.get<Trainer>(this.trainersUrl, httpOptions);
   }
+
+  updateTrainerInfo(trainer: Trainer): Observable<any>{
+   return this.http.post(this.updateTrainerUrl, trainer, httpOptions);
+  }
+
 
 }
