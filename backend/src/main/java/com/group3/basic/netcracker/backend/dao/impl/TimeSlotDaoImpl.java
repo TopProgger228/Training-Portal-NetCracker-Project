@@ -65,9 +65,7 @@ public class TimeSlotDaoImpl implements TimeSlotDao {
 
     @Override
     public List getTimeslotsOfCourse(String name){
-        String SQL = "SELECT t.id, t.start_time, t.end_time, t.week_day FROM \"TimeSlot\" t\n" +
-                "JOIN \"Course\" c ON t.course_id = c.id\n" +
-                "WHERE c.name LIKE '"+ name +"';";
+        String SQL = "SELECT t.* FROM \"TimeSlot\" t JOIN \"Course\" c ON t.course_id = c.id WHERE c.name LIKE '"+ name +"';";
         List timeSlots = jdbcTemplate.query(SQL, new TimeSlotRowMapper());
         return timeSlots;
     }
