@@ -27,6 +27,10 @@ public class TimeSlot {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public int getCourseId() {
 		return courseId;
 	}

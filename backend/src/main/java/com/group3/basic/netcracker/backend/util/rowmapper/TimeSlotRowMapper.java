@@ -11,6 +11,7 @@ public class TimeSlotRowMapper implements RowMapper {
 	@Override
 	public TimeSlot mapRow(ResultSet row, int rowNum) throws SQLException {
 		TimeSlot timeSlot = new TimeSlot();
+		timeSlot.setId(row.getInt("id"));
 		timeSlot.setStartTime(row.getObject("start_time", LocalTime.class));
 		timeSlot.setEndTime(row.getObject("end_time", LocalTime.class));
 		timeSlot.setWeekDay(row.getString("week_day"));
