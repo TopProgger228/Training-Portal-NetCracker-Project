@@ -4,10 +4,7 @@ import com.group3.basic.netcracker.backend.dao.UserDao;
 import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.util.dtomapper.TrainersInfoDtoMapper;
-import com.group3.basic.netcracker.backend.util.rowmapper.StudentRowMapper;
-import com.group3.basic.netcracker.backend.util.rowmapper.TrainerRowMapper;
-import com.group3.basic.netcracker.backend.util.rowmapper.UserForDisplayRowMapper;
-import com.group3.basic.netcracker.backend.util.rowmapper.UserRowMapper;
+import com.group3.basic.netcracker.backend.util.rowmapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Transactional
 @Repository
@@ -52,9 +50,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Integer getIdByUsername(String username){
-        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
-        Integer userId = (Integer) jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserRowMapper());
-        return userId;
+        String SQL = "SELECT id FROM \"User\" WHERE username = ?";//"'" + username + "'";
+        User userId = (User) jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserIdRowMapper() );
+        return userId.getId();
     }
 
     @Override

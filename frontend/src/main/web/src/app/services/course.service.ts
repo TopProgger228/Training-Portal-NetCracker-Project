@@ -6,6 +6,7 @@ import {Course} from "./course";
 import {Timeslot} from "../groups-schedule/timeslot";
 import {Schedules} from "./schedules";
 import {UserModel} from "./user-model";
+import {Student} from "./student";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
