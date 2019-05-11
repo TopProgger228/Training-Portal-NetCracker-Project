@@ -73,4 +73,9 @@ public class GetInfoAPIs {
     public Course getCourse(@RequestParam("name") String name){
         return courseService.getCourseByName(name);
     }
+
+    @GetMapping("/student_id")
+    public Integer getIdByUsername(@RequestParam("username") String username){
+        return userService.getIdByUsername(username);
+    }
 }

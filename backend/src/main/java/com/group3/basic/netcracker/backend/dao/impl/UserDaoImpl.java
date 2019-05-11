@@ -51,6 +51,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public Integer getIdByUsername(String username){
+        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
+        Integer userId = (Integer) jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserRowMapper());
+        return userId;
+    }
+
+    @Override
     public UserForDisplay getUserByUsername(String username) {
         String SQL = "SELECT fname, lname, username, email, id  FROM \"User\" WHERE username = '" + username + "'";
         UserForDisplay user =(UserForDisplay) jdbcTemplate.query(SQL, new UserForDisplayRowMapper()).get(0);

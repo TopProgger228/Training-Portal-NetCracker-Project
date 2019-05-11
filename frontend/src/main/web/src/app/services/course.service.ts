@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Course} from "./course";
 import {Timeslot} from "../groups-schedule/timeslot";
 import {Schedules} from "./schedules";
+import {UserModel} from "./user-model";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,6 +23,7 @@ export class CourseService {
   private coursePageUrl = "http://localhost:8080/api/student/course-page?name=";
   private studyUrl = 'http://localhost:8080/api/create_new_schedule';
   private timeUrl = "http://localhost:8080/api/timeslot?name=";
+  private userIdUrl = "http://localhost:8080/api/student_id?username=";
 
   constructor(private http: HttpClient) {
   }
@@ -52,5 +54,9 @@ export class CourseService {
 
   createSchedule(scheduler: Schedules): Observable<any> {
     return this.http.post<Schedules>(this.studyUrl, scheduler,httpOptions);
+  }
+
+  getIdByUsername(username: string): Observable<any>{
+    return this.http.get<UserModel>(this.userIdUrl + username, httpOptions);
   }
 }

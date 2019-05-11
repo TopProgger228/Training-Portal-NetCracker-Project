@@ -16,6 +16,8 @@ public interface UserDao {
 
     User getUserById(int id);
 
+    Integer getIdByUsername(String username);
+
     List listUsers();
 
     List getTrainers();
