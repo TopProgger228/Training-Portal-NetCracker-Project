@@ -3,6 +3,7 @@ package com.group3.basic.netcracker.backend.dao.impl;
 import com.group3.basic.netcracker.backend.dao.UserDao;
 import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.User;
+import com.group3.basic.netcracker.backend.util.dtomapper.CourseAttendeeMapper;
 import com.group3.basic.netcracker.backend.util.dtomapper.TrainersInfoDtoMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.StudentRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.TrainerRowMapper;
@@ -252,6 +253,13 @@ public class UserDaoImpl implements UserDao {
     public List<String> getTrainerCourses(int id) {
         String SQL = "select name from \"Course\" where trainer_id = " + id + "";
         return jdbcTemplate.queryForList(SQL, String.class);
+    }
+
+    @Override
+    public List getStudentsByCourseName(String course) {
+        String SQL = "select fname, lname from \"User\" u join \"Group\" g\n" +
+                "on u.id = g.user_id join \"Course\" c on g.course_id = c.id where c.name = '" + course + "'";
+        return jdbcTemplate.query(SQL, new CourseAttendeeMapper());
     }
 
     private int isUserWithUsername(String username) {

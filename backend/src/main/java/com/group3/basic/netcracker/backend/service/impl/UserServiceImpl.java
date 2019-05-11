@@ -126,4 +126,9 @@ public class UserServiceImpl implements UserService {
     public UserForDisplay getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
+
+    @Override
+    public List getStudentsByCourseName(String course) {
+        return userDao.getStudentsByCourseName(course);
+    }
 }

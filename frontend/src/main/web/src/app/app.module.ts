@@ -33,6 +33,7 @@ import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 import {CoursePageComponent} from "./first-page/courses-list/course-page/course-page.component";
+import { CourseAttendeesComponent } from './course-attendees/course-attendees.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {CoursePageComponent} from "./first-page/courses-list/course-page/course-
     AdminAttendanceComponent,
     ManagerProfileComponent,
     StudentProfileComponent,
-    CoursePageComponent
+    CoursePageComponent,
+    CourseAttendeesComponent
 
   ],
   imports: [

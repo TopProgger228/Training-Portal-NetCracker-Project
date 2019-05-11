@@ -52,4 +52,6 @@ public interface UserService {
 
     UserForDisplay getUserByUsername(String username);
 
+    List getStudentsByCourseName(String course);
+
 }

@@ -11,7 +11,7 @@ import {Course} from "./course";
 export class TrainerAttService {
 
   // private all_lessons_url: string = "http://localhost:8080/api/trainerLesson/165";
-  private all_lessons_url_by_username = "http://localhost:8080/api/getTrainerLesson/"
+  private all_lessons_url_by_username = "http://localhost:8080/api/getTrainerLesson/";
   private lesson_url: string = "http://localhost:8080/api/fullAttCheck/";
   private check_student_url: string = "http://localhost:8080/api/lessonAtt";
 
@@ -27,7 +27,6 @@ export class TrainerAttService {
     console.log(id);
     console.log(this.lesson_url + id.toString());
     return this.http.get<Class>(this.lesson_url + id);
-    console.log(this.lesson_url + id);
   }
 
   putAttendanceStatus(userId: string, lessonId: string, status: string): Observable<any> {

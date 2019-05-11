@@ -60,4 +60,6 @@ public interface UserDao {
     List getTrainersInfo();
 
     List<String> getTrainerCourses(int id);
+
+    List getStudentsByCourseName(String course);
 }

@@ -1,0 +1,23 @@
+<app-menu></app-menu>
+
+<div>
+  <h2><b>{{name}} course attendees list</b></h2>
+</div>
+<div>
+  <table class="table">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col-2"><b>#</b></th>
+      <th scope="col-5"><font size="3" face="verdana">First name</font></th>
+      <th scope="col-5"><font size="3" face="verdana">Last name</font></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let attendee of attendees; index as i">
+    <tr>
+      <th scope="row"><font size="5" face="arial">{{i + 1}}</font></th>
+      <td><font size="5" face="arial">{{attendee.fname}}</font></td>
+      <td><font size="5" face="arial">{{attendee.lname}}</font></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
