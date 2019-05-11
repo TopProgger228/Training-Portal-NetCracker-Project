@@ -79,11 +79,6 @@ public class CreateAPIs {
         return new ResponseEntity<>(new ResponseMessage("Time slot created successfully!"), HttpStatus.CREATED);
     }
 
-    @GetMapping("/timeslot")
-    public List getTimeSlots(){
-        return timeSlotService.listTimeSlots();
-    }
-
 
     @PostMapping("/create_new_schedule")
     public ResponseEntity<?> createNewSchedule(@RequestBody ScheduleForm scheduleForm){

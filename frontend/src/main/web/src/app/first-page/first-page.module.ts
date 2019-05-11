@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { Routes, RouterModule } from '@angular/router';
 
 import { MenuComponent } from './menu/menu.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
@@ -13,7 +13,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { TrainersserService } from './trainers-list/trainersser.service';
+import { CoursePageComponent } from './courses-list/course-page/course-page.component';
 
+
+const routes: Routes =[
+
+  ];
 
 @NgModule({
   declarations: [
@@ -28,6 +33,7 @@ import { TrainersserService } from './trainers-list/trainersser.service';
   imports: [
     CommonModule,
     NgbModule.forRoot(),
+    [RouterModule.forRoot(routes)],
   ],
   exports: [
     MenuComponent,
@@ -36,6 +42,7 @@ import { TrainersserService } from './trainers-list/trainersser.service';
     FirstSlideComponent,
     TrainersListComponent,
     FooterComponent,
+    [RouterModule]
   ],
   providers: [TrainersserService]
 })

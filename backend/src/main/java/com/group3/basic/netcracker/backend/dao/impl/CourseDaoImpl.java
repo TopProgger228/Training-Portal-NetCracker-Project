@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
 import com.group3.basic.netcracker.backend.dao.CourseDAO;
+import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,13 @@ public class CourseDaoImpl implements CourseDAO {
     public Course getCourseById(int id) {
         String SQL = "SELECT * FROM \"Course\" WHERE id = ?";
         Course course= (Course) jdbcTemplate.queryForObject(SQL, new Object[]{id}, new CourseRowMapper());
+        return course;
+    }
+    @Override
+    public Course getCourseByName(String name) {
+        String SQL = "SELECT name, start_date, end_date, info, skill_level, trainer_id, qty_per_week, id FROM \"Course\" WHERE name = '" + name + "'";
+        Course course =(Course) jdbcTemplate.query(SQL, new CourseRowMapper()).get(0);
+
         return course;
     }
 

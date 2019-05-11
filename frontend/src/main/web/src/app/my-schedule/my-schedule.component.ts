@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Timeslots } from "../groups-schedule/timeslots";
 import { Timeslot } from "../groups-schedule/timeslot";
 import { Courses } from "../groups-schedule/courses";
-import { Schedule } from "../groups-schedule/schedule";
+import { Schedule } from "../services/schedule";
 import { Router } from "@angular/router";
 import { TimeSlotService } from "../groups-schedule/time-slot.service";
 import { CoursesService } from "../groups-schedule/courses.service";
-import { ScheduleService } from "../groups-schedule/schedule.service";
 import { TokenStorageService } from "../auth/token-storage.service";
 
 @Component({
@@ -23,7 +22,7 @@ export class MyScheduleComponent implements OnInit {
   schedule = new Schedule(0, 0, false);
 
   constructor(private router: Router, private timeSlotService: TimeSlotService,
-    private coursesService: CoursesService, private scheduleService: ScheduleService,
+    private coursesService: CoursesService,
     private token: TokenStorageService) {
   }
 
@@ -52,18 +51,6 @@ export class MyScheduleComponent implements OnInit {
 
   submitted = false;
 
-  onSubmit() {
-    console.log(this.schedule);
-    this.scheduleService.createSchedule(this.schedule).subscribe(
-      value => {
-        console.log('[POST] create schedule successfully', value);
-      }, error => {
-        console.log('FAIL to create schedule!');
-      },
-      () => {
-        console.log('POST schedule - now completed.');
-      });
-  }
 
   logout() {
     this.loggedout = true;

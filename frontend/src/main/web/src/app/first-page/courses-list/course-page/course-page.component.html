@@ -1,0 +1,33 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 140vh;">
+
+    <app-menu></app-menu>
+
+    <div class="container">
+      <h1>Schedule Form</h1>
+      <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
+        <div style="width: 80%;  margin: 20px auto;">
+
+
+          <div class="form-group">
+            <label for="time_slot_id">Time slot</label>
+            <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id" name="time_slot_id">
+              <option *ngFor="let t of timeSlots" [value]="t.id">{{t.start_time}} {{t.end_time}} {{t.week_day}}
+              </option>
+            </select>
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-success">
+          <!--[disabled]="!courseForm.course.valid"-->Submit
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</ng-template>

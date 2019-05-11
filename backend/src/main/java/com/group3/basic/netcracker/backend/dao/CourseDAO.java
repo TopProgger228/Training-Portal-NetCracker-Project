@@ -1,5 +1,6 @@
 package com.group3.basic.netcracker.backend.dao;
 
+import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.entity.Course;
 
 import java.time.LocalDate;
@@ -32,6 +33,8 @@ public interface CourseDAO {
     List<Course> getCourseByTrainerId(int trainerId);
 
     List<Course> getCourseBySkillLevel(String level);
+
+    Course getCourseByName(String name);
 
 
 }

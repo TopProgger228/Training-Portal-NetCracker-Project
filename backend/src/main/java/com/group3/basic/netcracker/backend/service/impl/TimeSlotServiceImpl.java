@@ -43,4 +43,9 @@ public class TimeSlotServiceImpl implements TimeSlotService{
      timeSlotDao.updateTimeSlot(startTime, endTime, weekDay, courseId, id);
 	}
 
+	@Override
+	public List getTimeslotsOfCourse(String name){
+		return timeSlotDao.getTimeslotsOfCourse(name);
+	}
+
 }

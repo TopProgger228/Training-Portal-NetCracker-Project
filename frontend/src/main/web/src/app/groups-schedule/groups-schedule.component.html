@@ -17,14 +17,14 @@
                 <input type="time" class="form-control" id="start_time"
                        [(ngModel)]="timeSlotT.start_time" name="start_time"
                        #start_time="ngModel" required minlength="4">
-                <div [hidden]="(start_time.value > end_time.value)" class="alert alert-danger">
+                <div [hidden]="(start_time.value < end_time.value)" class="alert alert-danger">
                   Start time is required or start time is bigger than end time
                 </div>
                 <label for="end_time">End time</label>
                 <input type="time" class="form-control" id="end_time"
                        [(ngModel)]="timeSlotT.end_time" name="end_time"
                        #end_time="ngModel" required minlength="4">
-                <div [hidden]="(start_time.value > end_time.value)" class="alert alert-danger">
+                <div [hidden]="(start_time.value < end_time.value)" class="alert alert-danger">
                   End time is required or start time is bigger than end time
                 </div>
               </div>

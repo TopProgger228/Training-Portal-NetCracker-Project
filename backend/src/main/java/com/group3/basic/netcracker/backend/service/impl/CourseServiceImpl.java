@@ -1,5 +1,6 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
+import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.service.CourseService;
 import com.group3.basic.netcracker.backend.dao.CourseDAO;
 import com.group3.basic.netcracker.backend.entity.Course;
@@ -51,5 +52,10 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week) {
         courseDAO.updateCourse(id, name, start_date, end_date, info, skill_level, trainer_id, qty_per_week);
+    }
+
+    @Override
+    public Course getCourseByName(String name){
+        return courseDAO.getCourseByName(name);
     }
 }

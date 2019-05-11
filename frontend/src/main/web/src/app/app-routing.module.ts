@@ -22,6 +22,7 @@ import {TrainerLessonAttendanceComponent} from "./trainer-lesson-attendance/trai
 import {TrainerAttendanceComponent} from "./trainer-attendance/trainer-attendance.component";
 import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.component";
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import {CoursePageComponent} from "./first-page/courses-list/course-page/course-page.component";
 
 
 
@@ -106,6 +107,11 @@ const routes: Routes = [
     path: 'manager/student-profile/:username',
     component: StudentProfileComponent
   },
+  {
+    path: 'student/course-page/:name',
+    component: CoursePageComponent
+  },
+
   {
     path: '**',
     component: StartComponent

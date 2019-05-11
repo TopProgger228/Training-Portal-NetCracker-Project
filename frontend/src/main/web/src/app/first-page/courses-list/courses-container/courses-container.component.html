@@ -2,7 +2,7 @@
     <div *ngFor="let course of courses" class="col-lg-5 shadow p-3 mb-5 rounded thumbnail" style="padding: 20px; margin: 30px">
         <div class="row ">
             <div class="col-7">
-                <h1>{{ course.name }}</h1>
+              <a [routerLink]="['/student/course-page', course.name]"><h1>{{course.name}}</h1></a>
 
                 <em>
                     <h3 class="text-muted">{{ course.skill_level }}</h3>

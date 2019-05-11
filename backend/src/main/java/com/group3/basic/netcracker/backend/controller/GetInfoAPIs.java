@@ -3,7 +3,9 @@ package com.group3.basic.netcracker.backend.controller;
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.dao.impl.ScheduleDaoImpl;
 import com.group3.basic.netcracker.backend.dao.impl.TimeSlotDaoImpl;
+import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.dto.UserForDisplay;
+import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.entity.Schedule;
 import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.service.CourseService;
@@ -27,11 +29,13 @@ public class GetInfoAPIs {
     private ApplicationContext context;
 
     private final UserService userService;
+    private final CourseService courseService;
 
     @Autowired
-    public GetInfoAPIs(ApplicationContext context, UserService userService){
+    public GetInfoAPIs(ApplicationContext context, UserService userService, CourseService courseService){
         this.context = context;
         this.userService = userService;
+        this.courseService = courseService;
     }
 
     @GetMapping("/usersinfo/trainers")
@@ -63,5 +67,10 @@ public class GetInfoAPIs {
     @GetMapping("/manager/student-profile")
     public UserForDisplay getStudent(@RequestParam("username") String username){
         return userService.getUserByUsername(username);
+    }
+
+    @GetMapping("/student/course-page")
+    public Course getCourse(@RequestParam("name") String name){
+        return courseService.getCourseByName(name);
     }
 }
