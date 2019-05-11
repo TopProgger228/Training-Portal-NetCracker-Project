@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
 import { Course } from "../services/course";
@@ -47,6 +47,14 @@ export class CoursesInfoComponent implements OnInit {
     this.router.navigate(['auth/login']);
   }
 
+  navigate(name : string){
+    let navigationExtras : NavigationExtras = {
+      queryParams : {
+        name : name
+      }
+    }
+    this.router.navigate(['trainer/check-course-students'], navigationExtras); 
+  }
 
 }
 

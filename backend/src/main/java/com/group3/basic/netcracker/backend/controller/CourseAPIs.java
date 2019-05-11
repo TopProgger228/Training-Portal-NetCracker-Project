@@ -2,6 +2,7 @@ package com.group3.basic.netcracker.backend.controller;
 
 import com.group3.basic.netcracker.backend.service.CourseService;
 import com.group3.basic.netcracker.backend.service.TimeSlotService;
+import com.group3.basic.netcracker.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +15,14 @@ public class CourseAPIs {
 
     private final CourseService courseService;
     private final TimeSlotService timeSlotService;
+    private final UserService userService;
 
     @Autowired
-    public CourseAPIs(CourseService courseService, TimeSlotService timeSlotService){
+    public CourseAPIs(CourseService courseService, TimeSlotService timeSlotService,
+                      UserService userService){
         this.courseService = courseService;
         this.timeSlotService = timeSlotService;
+        this.userService = userService;
     }
 
     @GetMapping("/coursesinfo/getcourses")
@@ -30,5 +34,10 @@ public class CourseAPIs {
     @GetMapping("/timeslot")
     public List getTimeslotsOfCourse(@RequestParam("name") String name){
         return timeSlotService.getTimeslotsOfCourse(name);
+    }
+
+    @GetMapping("/coursesinfo/getcourses/getcoursesattendee")
+    public List getCourseStudents(@RequestParam("name") String course){
+        return userService.getStudentsByCourseName(course);
     }
 }

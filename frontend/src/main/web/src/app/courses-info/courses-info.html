@@ -4,15 +4,15 @@
 <ng-template #isLoggedIn>
   <div style="height: 100vh;">
 
-  <app-menu></app-menu>
-  <div style="width: 80%;  margin: 20px auto;">
-    <ngb-tabset>
-      <ngb-tab>
-        <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">Trainers</span>
-        </ng-template>
-        <ng-template ngbTabContent>
-          <table class="table table-striped">
-            <thead>
+    <app-menu></app-menu>
+    <div style="width: 80%;  margin: 20px auto;">
+      <ngb-tabset>
+        <ngb-tab>
+          <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">Courses</span>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <table class="table table-striped">
+              <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
@@ -22,26 +22,28 @@
                 <th scope="col">Skill level</th>
                 <th scope="col">Quantity per week</th>
               </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
               <tr *ngFor="let  course of courses; index as i">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{course.name}}</td>
+                <a class="list-group-item list-group-item-action" (click)="navigate(course.name)">
+                  <td>{{course.name}}</td>
+                </a>
                 <td>{{course.start_date}}</td>
                 <td>{{course.end_date}}</td>
                 <td>{{course.info}}</td>
                 <td>{{course.skill_level}}</td>
                 <td>{{ course.qty_per_week }}</td>
               </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
 
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+
   </div>
 
-</div>
-
-<app-footer></app-footer>
+  <app-footer></app-footer>
 </ng-template>
