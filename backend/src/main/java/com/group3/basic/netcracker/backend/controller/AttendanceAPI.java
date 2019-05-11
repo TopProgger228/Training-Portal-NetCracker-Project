@@ -88,7 +88,6 @@ public class AttendanceAPI {
 
     @GetMapping("filterCourseByUser/{username}")
     public ResponseEntity<?> getCourseByUser(@PathVariable String username) {
-System.out.println(username);
         List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByUser(username);
 
         return ResponseEntity.ok().body(list);
@@ -129,7 +128,6 @@ System.out.println(username);
 
     @PostMapping("createReport/trainer")
     public ResponseEntity<?> createReportByTrainer(@RequestParam("trainerId") int trainerId){
-System.out.println(trainerId);
         //call method from service
         return new ResponseEntity<>(new ResponseMessage("Report on trainers courses saved"), HttpStatus.OK);
     }

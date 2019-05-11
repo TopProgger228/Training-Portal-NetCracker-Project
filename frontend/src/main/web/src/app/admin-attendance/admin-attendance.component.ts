@@ -19,9 +19,9 @@ export class AdminAttendanceComponent implements OnInit {
   courseListByLevel: CourseAtt[];
   lessonList: LessonAtt[];
   userList: UserAtt[];
-  choosenOne: number = -1;
+
+  choosenOneCourse: number = -1;
   choosenOneLesson: number = -1;
-  isHidden: boolean[] = [];
 
   isChooseCoursesSelected: boolean;
   isSelectAllSelected: boolean;
@@ -38,16 +38,6 @@ export class AdminAttendanceComponent implements OnInit {
   selectedCoursesForReport: Array<number> = [];
 
   constructor(private adminService: AdminAttService) { }
-
-  setChoosen(id: number) {
-    this.choosenOne = id;
-    this.getLessons(id);
-    this.isHiddenMethod(id);
-  }
-
-  setChoosenLesson(id: number) {
-    this.choosenOneLesson = id;
-  }
 
   ngOnInit() {
 
@@ -67,37 +57,48 @@ export class AdminAttendanceComponent implements OnInit {
   }
 
 
+  setChoosenCourse(id: number) {
+    if (this.choosenOneCourse === id) {
+      this.choosenOneCourse = -1;
+    } else {
+      this.choosenOneCourse = id;
+      this.getLessons(id);
+    }
+  }
+
+  setChoosenLesson(id: number) {
+    if (this.choosenOneLesson === id) {
+      this.choosenOneLesson = -1;
+    } else {
+      this.choosenOneLesson = id;
+      this.getUsers(id);
+    }
+  }
+
+  getLessons(id: number) {
+    this.lessonList = [];
+    this.adminService.getLessons(id)
+      .subscribe(data => this.lessonList = data);
+  }
+
+  getUsers(id: number) {
+    this.userList = [];
+    this.adminService.getStudents(id)
+      .subscribe(data => this.userList = data);
+  }
+
   setSelectedCoursesArray() {
     this.selectedCourseArray = [];
     this.courseList.forEach(course => {
       this.selectedCourseArray.push({ id: course.courseId, isSelected: true });
     });
   }
-  getLessons(id: number) {
-    this.adminService.getLessons(id)
-      .subscribe(data => this.lessonList = data);
-  }
-
-  getUsers(id: number) {
-    this.adminService.getStudents(id)
-      .subscribe(data => this.userList = data);
-  }
-
-  isHiddenMethod(id: number) {
-    if (this.isHidden[id] == null) {
-      for (let i of this.isHidden) {
-        i = true;
-      }
-      this.isHidden[id] = false;
-
-    } else {
-      this.isHidden[id] = !this.isHidden[id];
-    }
-  }
 
 
   filterByUser(username: string) {
     console.log(username);
+    this.choosenOneCourse = -1;
+    this.choosenOneLesson = -1;
     this.adminService.filterByUser(username)
       .subscribe(data => console.log(this.courseListByUser = data));
   }
@@ -113,11 +114,16 @@ export class AdminAttendanceComponent implements OnInit {
   }
 
   onTrainerSelected(val: any) {
+    this.choosenOneCourse = -1;
+    this.choosenOneLesson = -1;
     this.filterByTrainer(val);
     console.log(val)
   }
 
   onLevelSelected(val: any) {
+
+    this.choosenOneCourse = -1;
+    this.choosenOneLesson = -1;
     this.filterBySkillLevel(val);
     console.log(val);
   }
@@ -144,28 +150,28 @@ export class AdminAttendanceComponent implements OnInit {
     console.log(this.selectedCoursesForReport);
     this.adminService.createReportByCourse(this.selectedCoursesForReport)
       .subscribe(
-      data => console.log(data),
-      error => console.log(error));
+        data => console.log(data),
+        error => console.log(error));
   }
 
   createReportByTrainer() {
     this.adminService.createReportByTrainer(this.trainerSelected)
-    .subscribe(
-      data => console.log(data),
-      error => console.log(error))
+      .subscribe(
+        data => console.log(data),
+        error => console.log(error))
   }
 
-  createReportByStudent() { 
+  createReportByStudent() {
     this.adminService.createReportByStudent(this.userValue)
-    .subscribe(
-      data => console.log(data),
-      error => console.log(error)) 
-    }
+      .subscribe(
+        data => console.log(data),
+        error => console.log(error))
+  }
 
-  createReportByLevel() { 
+  createReportByLevel() {
     this.adminService.createReportByLevel(this.levelSelected.toString())
-    .subscribe(
-      data => console.log(data),
-      error => console.log(error)) 
-    }
+      .subscribe(
+        data => console.log(data),
+        error => console.log(error))
+  }
 }

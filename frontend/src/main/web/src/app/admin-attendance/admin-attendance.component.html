@@ -24,14 +24,14 @@
           <a class="list-group-item list-group-item-action mt-2" role="button">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
-              <div class="col-3" (click)="setChoosen(course.courseId)">{{course.name}}</div>
+              <div class="col-3" (click)="setChoosenCourse(course.courseId)">{{course.name}}</div>
               <div class="col-2">{{course.skillLevel}}</div>
               <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
               <div class=" ml-auto" style="font-size: 18px; margin-right: 10px" *ngIf="isChooseCoursesSelected"><input
                   type="checkbox" [(ngModel)]="selectedCourseArray[i].isSelected" /></div>
             </div>
           </a>
-          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf="course.courseId === choosenOneCourse">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
@@ -41,7 +41,7 @@
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
                 <a class="list-group-item list-group-item-action mt-2" role="button"
-                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                  (click)="setChoosenLesson(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
                     <div class="col-5">{{lesson.startTime}}-{{lesson.endTime}}</div>
@@ -89,7 +89,7 @@
       <ng-template ngbTabContent>
         <div>
           <select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="trainerSelected"
-            (ngModelChange)="onTrainerSelected($event)" placeholder="Select trainer">
+            (ngModelChange)="onTrainerSelected($event)">
             <option *ngFor="let trainer of trainerSelector" [value]="trainer.id">{{trainer.firstName}}
               {{trainer.lastName}}</option>
           </select>
@@ -103,7 +103,7 @@
             (click)="createReportByTrainer()">Create report</button>
         </div>
         <div class="list-group " *ngFor="let course of courseListByTrainer; index as i">
-          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)">
+          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosenCourse(course.courseId)">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
               <div class="col-3">{{course.name}}</div>
@@ -111,7 +111,7 @@
               <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
             </div>
           </a>
-          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf="course.courseId === choosenOneCourse">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
@@ -121,7 +121,7 @@
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
                 <a class="list-group-item list-group-item-action mt-2" role="button"
-                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                  (click)="setChoosenLesson(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
                     <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
@@ -180,7 +180,7 @@
             (click)="createReportByStudent()">Create report</button>
         </div>
         <div class="list-group " *ngFor="let course of courseListByUser; index as i">
-          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)">
+          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosenCourse(course.courseId)">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
               <div class="col-3">{{course.name}}</div>
@@ -188,7 +188,7 @@
               <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
             </div>
           </a>
-          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf="course.courseId === choosenOneCourse">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
@@ -198,7 +198,7 @@
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
                 <a class="list-group-item list-group-item-action mt-2" role="button"
-                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                  (click)="setChoosenLesson(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
                     <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
@@ -245,7 +245,7 @@
       <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">By level</span></ng-template>
       <ng-template ngbTabContent>
         <select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="levelSelected"
-          (ngModelChange)="onLevelSelected($event)" placeholder="Select level">
+          (ngModelChange)="onLevelSelected($event)" >
           <option *ngFor="let level of levelSelector">{{level}}</option>
         </select>
         <div class="row" style="font-weight: bold">
@@ -257,7 +257,7 @@
             (click)="createReportByLevel()">Create report</button>
         </div>
         <div class="list-group " *ngFor="let course of courseListByLevel; index as i">
-          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosen(course.courseId)">
+          <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosenCourse(course.courseId)">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
               <div class="col-3">{{course.name}}</div>
@@ -265,7 +265,7 @@
               <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
             </div>
           </a>
-          <div *ngIf=" !isHidden[course.courseId] && course.courseId === choosenOne">
+          <div *ngIf="course.courseId === choosenOneCourse">
             <div class="card card-body" *ngIf="lessonList.length !== 0">
               <div class="row" style="font-weight: bold">
                 <div class="col-1">#</div>
@@ -275,7 +275,7 @@
               </div>
               <div class="list-group " *ngFor="let lesson of lessonList; index as i">
                 <a class="list-group-item list-group-item-action mt-2" role="button"
-                  (click)="setChoosenLesson(lesson.lessonId); getUsers(lesson.lessonId)">
+                  (click)="setChoosenLesson(lesson.lessonId)">
                   <div class="row">
                     <div class="col-1">{{i + 1}}</div>
                     <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
