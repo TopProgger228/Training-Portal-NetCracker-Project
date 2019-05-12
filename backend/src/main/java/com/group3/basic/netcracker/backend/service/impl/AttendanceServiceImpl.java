@@ -1,9 +1,7 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.group3.basic.netcracker.backend.dao.*;
 import com.group3.basic.netcracker.backend.dto.*;
@@ -55,18 +53,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<CourseAttendanceDto> getAllCourseAttendance() {
 
-        List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
         List<Course> courseList = courseDao.listCourses();
 
-        for (Course c : courseList) {
-            CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
-            cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
-
-            courseAttendanceDtoList.add(cad);
-
-        }
-
-        return courseAttendanceDtoList;
+        return getCourseAttendanceDtoList(courseList);
     }
 
 
@@ -93,6 +82,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
         List<Lesson> lessonsList = lessonDao.getLessonByCourse(courseId);
+        Date date = new Date();
 
         for (Lesson l : lessonsList) {
             List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByLesson(l.getLessonId());
@@ -100,17 +90,17 @@ public class AttendanceServiceImpl implements AttendanceService {
             lad.setStartTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getStartTime());
             lad.setEndTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getEndTime());
 
+
             for (LessonMissing lm : lessonMissingList) {
                 if (userId == lm.getUserId()) {
                     lad.setAttStatus(lm.getReason());
                 }
             }
-            if (lad.getAttStatus() == null) {
+            if (lad.getAttStatus() == null & lad.getStartDateTime().compareTo(date) < 0) {
                 lad.setAttStatus("Present");
             }
             lessonAttendanceDtoList.add(lad);
         }
-
         return lessonAttendanceDtoList;
     }
 
@@ -147,35 +137,24 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<CourseAttendanceDto> getCourseAttendanceByUser(String username) {
 
-        List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
         List<Course> courseList = courseDao.getCourseByUserUsername(username);
 
-        for (Course c : courseList) {
-            CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
-            cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
-
-            courseAttendanceDtoList.add(cad);
-
-        }
-
-        return courseAttendanceDtoList;
+        return getCourseAttendanceDtoList(courseList);
 
     }
 
     @Override
     public List<CourseAttendanceDto> getCourseAttendanceByUserId(int userId) {
 
-        List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
         List<Course> courseList = courseDao.getCourseByUserId(userId);
+        List<CourseAttendanceDto> listDto = getCourseAttendanceDtoList(courseList);
 
-        for (Course c : courseList) {
-            CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
-            cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
-            courseAttendanceDtoList.add(cad);
-
+        for (CourseAttendanceDto cad : listDto) {
+            int missingLessonCount = lessonMissingDao.getMissingLessonCountByUserAndCourse(cad.getCourseId(), userId);
+            cad.setPresentLessonCount(cad.getFinishedLessonCount() - missingLessonCount);
         }
+        return listDto;
 
-        return courseAttendanceDtoList;
     }
 
     @Override
@@ -195,36 +174,18 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<CourseAttendanceDto> getCourseAttendanceByTrainer(int id) {
 
-        List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
         List<Course> courseList = courseDao.getCourseByTrainerId(id);
 
-        for (Course c : courseList) {
-            CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
-            cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
-
-            courseAttendanceDtoList.add(cad);
-
-        }
-
-        return courseAttendanceDtoList;
+        return getCourseAttendanceDtoList(courseList);
 
     }
 
     @Override
     public List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level) {
 
-        List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
-        List<Course> courseList = courseDao.getCourseBySkillLevel(level);
+       List<Course> courseList = courseDao.getCourseBySkillLevel(level);
 
-        for (Course c : courseList) {
-            CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
-            cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
-
-            courseAttendanceDtoList.add(cad);
-
-        }
-
-        return courseAttendanceDtoList;
+       return getCourseAttendanceDtoList(courseList);
 
     }
 
@@ -270,6 +231,23 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
 
         return dtoList;
+    }
+
+    private List<CourseAttendanceDto> getCourseAttendanceDtoList(List<Course> courseList) {
+
+        List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
+
+        for (Course c : courseList) {
+            CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
+            cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
+            cad.setTotalLessonCount(lessonDao.getLessonCountInCourse(c.getId()));
+            cad.setFinishedLessonCount(lessonDao.getLessonCountInCourseTillToday(c.getId()));
+
+            courseAttendanceDtoList.add(cad);
+        }
+
+        return courseAttendanceDtoList;
+
     }
 
 

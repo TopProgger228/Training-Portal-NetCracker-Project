@@ -68,4 +68,12 @@ public class LessonMissingDaoImpl implements LessonMissingDao {
         String SQL = "update \"LessonMissing\" set reason = ? where user_id = ? and lesson_id = ?";
         jdbcTemplate.update(SQL, reason, userId, lessonId);
     }
+
+    @Override
+    public int getMissingLessonCountByUserAndCourse(int courseId, int userId) {
+
+        String SQL = "select count(lm.id) from \"LessonMissing\" lm left join \"Lesson\" l on lm.lesson_id = L.id left join \"Course\" c on l.course_id = c.id where c.id =? and lm.user_id = ?";
+
+        return jdbcTemplate.queryForObject(SQL, new Object[] {courseId, userId}, Integer.class);
+    }
 }

@@ -12,8 +12,8 @@ export class UserAttCourseListComponent implements OnInit {
 
   @Input('courseAtt') public course: CourseAtt;
   @Input('index') public index: number;
-  @Input('totalLessonCount') public totalLessonCount: number;
-  @Input('presentLessonCount') public presentLessonCount: number;
+  // @Input('totalLessonCount') public totalLessonCount: number;
+  // @Input('presentLessonCount') public presentLessonCount: number;
   @Input('userId') public userId: number;
   lessonList: LessonAtt[];
 
@@ -32,6 +32,7 @@ export class UserAttCourseListComponent implements OnInit {
 
   isHidden(){
     this.hide = !this.hide;
+    console.log(this.course)
   }
 
 }

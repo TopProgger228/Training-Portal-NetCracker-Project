@@ -29,7 +29,7 @@
 <div *ngIf="!hide">
   <div class="list-group " *ngFor="let course of courseList; index as i" style="font-size: 20px">
     <a class="list-group-item list-group-item-action mt-2">
-      <app-user-att-course-list [index]="i" [courseAtt]="course" [totalLessonCount]="user.totalLessonCount" [presentLessonCount]="statusList.get('Present')" [userId]="user.id"></app-user-att-course-list>
+      <app-user-att-course-list [index]="i" [courseAtt]="course" [userId]="user.id"></app-user-att-course-list>
     </a>
   </div>
 </div>

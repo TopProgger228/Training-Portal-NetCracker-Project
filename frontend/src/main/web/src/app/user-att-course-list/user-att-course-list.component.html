@@ -3,7 +3,7 @@
   <div class="col">{{course.name}}</div>
   <div class="col">{{course.skillLevel}}</div>
   <div class="col">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
-  <div class="col">{{presentLessonCount}}/{{totalLessonCount}}</div>
+  <div class="col">{{course.presentLessonCount}}/{{course.finishedLessonCount}}/{{course.totalLessonCount}}</div>
 </div>
 <div *ngIf="!hide">
   <div class="list-group " *ngFor="let lesson of lessonList; index as i" style="font-size: 20px">

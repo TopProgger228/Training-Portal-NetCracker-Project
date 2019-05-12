@@ -16,4 +16,9 @@ public interface LessonDao {
 
     int getLessonCountTillTodayByStudent(int userId);
 
+    int getLessonCountInCourseTillToday(int courseId);
+
+    int getLessonCountInCourse(int courseId);
+
+
 }

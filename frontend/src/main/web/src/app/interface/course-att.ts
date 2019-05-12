@@ -5,4 +5,7 @@ export interface CourseAtt {
   name: string,
   skillLevel: string,
   trainer: TrainerAtt
+  totalLessonCount: number,
+  presentLessonCount: number,
+  finishedLessonCount: number
 }
