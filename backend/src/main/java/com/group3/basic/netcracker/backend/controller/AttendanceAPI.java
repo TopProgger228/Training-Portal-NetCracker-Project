@@ -2,12 +2,10 @@ package com.group3.basic.netcracker.backend.controller;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
 import com.group3.basic.netcracker.backend.dto.*;
 import com.group3.basic.netcracker.backend.service.CheckAttendanceService;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
-import org.jxls.template.SimpleExporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

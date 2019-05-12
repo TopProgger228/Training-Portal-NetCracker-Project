@@ -27,7 +27,7 @@ public class Reporter {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Map<String, Object>> createReportByCourse(int[] coursesId) throws SQLException {
+    public List<Map<String, Object>> queryReportByCourse(int[] coursesId) throws SQLException {
         String sql = "select count(lm.id) as missing, u.username as student, lm.reason as reason \n" +
                 "     from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
                 " left join \"Group\" g on u.id = g.user_id \n" +
@@ -40,6 +40,10 @@ public class Reporter {
             System.out.println(row.get("missing") + " " + row.get("student") + " " + row.get("reason"));
        } return list;
     }
+    public void createReportByCourse(int[] courses) throws SQLException {
+        generateReport(queryReportByCourse(courses));
+    }
+
     public void generateReport(List<Map<String, Object>> mapList) throws SQLException {
         //Blank workbook
         XSSFWorkbook workbook = new XSSFWorkbook();
