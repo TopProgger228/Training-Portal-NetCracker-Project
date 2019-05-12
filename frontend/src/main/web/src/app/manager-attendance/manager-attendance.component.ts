@@ -11,7 +11,7 @@ import {ManagerUserAtt} from "../interface/manager-user-att";
 export class ManagerAttendanceComponent implements OnInit {
 
   managerUserList: ManagerUserAtt[] = [];
-  statusList: [Map<string, number>] = [];
+  statusList: any[] = [];
 
   constructor(private managerAttService: ManagerAttService, private token: TokenStorageService) {
     this.managerAttService.getManagerUserByUsername(this.token.getUsername())

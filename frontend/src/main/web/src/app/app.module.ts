@@ -69,7 +69,7 @@ import { LessonAttComponent } from './lesson-att/lesson-att.component';
     ManagerAttendanceComponent,
     OneStudetMngAttComponent,
     UserAttCourseListComponent,
-    LessonAttComponent
+    LessonAttComponent,
     StudentProfileComponent,
     CoursePageComponent,
     CourseAttendeesComponent
