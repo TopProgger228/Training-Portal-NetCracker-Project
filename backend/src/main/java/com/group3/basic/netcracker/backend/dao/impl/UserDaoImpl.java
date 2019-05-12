@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Integer getIdByUsername(String username){
-        String SQL = "SELECT id FROM \"User\" WHERE username = ?";//"'" + username + "'";
+        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
         User userId = (User) jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserIdRowMapper() );
         return userId.getId();
     }
@@ -258,6 +258,18 @@ public class UserDaoImpl implements UserDao {
         String SQL = "select fname, lname from \"User\" u join \"Group\" g\n" +
                 "on u.id = g.user_id join \"Course\" c on g.course_id = c.id where c.name = '" + course + "'";
         return jdbcTemplate.query(SQL, new CourseAttendeeMapper());
+    }
+
+    @Override
+    public void insertTrainerInfo(int id, String info) {
+        String SQL = "INSERT INTO \"trainersinfo\" VALUES (?, ?)";
+        jdbcTemplate.update(SQL, id, info);
+    }
+
+    @Override
+    public int getId(String username) {
+        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, username);
     }
 
     private int isUserWithUsername(String username) {

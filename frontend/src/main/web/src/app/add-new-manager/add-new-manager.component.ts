@@ -14,8 +14,9 @@ export class AddNewManagerComponent {
   roles = ['Trainer', 'Manager'];
 
   loggedOut = false;
+
   userModel = new User('', '', this.roles[0], '',
-    '', '');
+    '', '', '');
 
   constructor(private router: Router, private token: TokenStorageService, private httpService: AddMemberService) {
 

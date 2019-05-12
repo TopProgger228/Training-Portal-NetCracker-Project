@@ -131,4 +131,14 @@ public class UserServiceImpl implements UserService {
     public List getStudentsByCourseName(String course) {
         return userDao.getStudentsByCourseName(course);
     }
+
+    @Override
+    public void insertTrainerInfo(int id, String info) {
+        userDao.insertTrainerInfo(id, info);
+    }
+
+    @Override
+    public int getId(String username) {
+        return userDao.getId(username);
+    }
 }

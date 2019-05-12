@@ -62,4 +62,8 @@ public interface UserDao {
     List<String> getTrainerCourses(int id);
 
     List getStudentsByCourseName(String course);
+
+    void insertTrainerInfo(int id, String info);
+
+    int getId(String username);
 }

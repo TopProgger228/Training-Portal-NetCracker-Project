@@ -37,6 +37,17 @@
           </select>
         </div>
 
+        <div class="form-group" *ngIf="userModel.role === 'Trainer'">
+          <label for="trainers_info">Information about trainer</label>
+          <input #info="ngModel" [(ngModel)]="userModel.info" class="form-control" id="trainers_info"
+                 name="trainersInfo"
+                 required type="text">
+
+          <div [hidden]="info.valid || info.pristine" class="alert alert-danger">
+            Trainer`s information is required!
+          </div>
+        </div>
+
         <div class="form-group">
           <label for="username">Username</label>
           <input #username="ngModel" [(ngModel)]="userModel.username" class="form-control" id="username" name="username"

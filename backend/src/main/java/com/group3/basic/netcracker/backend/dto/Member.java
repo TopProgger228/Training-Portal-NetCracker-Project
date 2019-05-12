@@ -22,6 +22,8 @@ public class Member {
     @NotBlank
     private String password;
 
+    private String info;
+
 
     public String getUsername() {
         return username;
@@ -69,5 +71,13 @@ public class Member {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }

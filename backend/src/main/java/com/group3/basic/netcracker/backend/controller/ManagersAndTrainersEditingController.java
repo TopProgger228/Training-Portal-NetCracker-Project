@@ -34,6 +34,12 @@ public class ManagersAndTrainersEditingController {
             userService.addMember(member.getUsername(), member.getRole(),
                     member.getFname(), member.getLname(), member.getEmail(),
                     encoder.encode(member.getPassword()), LocalDate.now());
+
+            if (member.getRole().equals("Trainer")){
+                int id = userService.getId(member.getUsername());
+                userService.insertTrainerInfo(id, member.getInfo());
+            }
+
             return new ResponseEntity<> (new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
         }
     }

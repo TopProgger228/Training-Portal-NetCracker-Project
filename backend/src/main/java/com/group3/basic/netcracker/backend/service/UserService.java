@@ -54,4 +54,8 @@ public interface UserService {
 
     List getStudentsByCourseName(String course);
 
+    void insertTrainerInfo(int id, String info);
+
+    int getId(String username);
+
 }
