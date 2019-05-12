@@ -2,32 +2,40 @@
 </div>
 
 <ng-template #isLoggedIn>
-  <div style="height: 140vh;">
-
-    <app-menu></app-menu>
-
-    <div class="container">
-      <h1>Schedule Form</h1>
-      <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
-        <div style="width: 80%;  margin: 20px auto;">
 
 
-          <div class="form-group">
-            <label for="time_slot_id">Time slot</label>
-            <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id" name="time_slot_id">
-              <option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
-              </option>
-            </select>
+  <app-menu></app-menu>
+  <div id="bg-image">
+    <div id="bg-overlay">
+      <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+
+          <div class="container">
+            <h1>Schedule Form</h1>
+            <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
+              <div style="width: 80%;  margin: 20px auto;">
+
+
+                <div class="form-group">
+                  <label for="time_slot_id">Time slot</label>
+                  <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id"
+                          name="time_slot_id">
+                    <option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
+                    </option>
+                  </select>
+                </div>
+
+              </div>
+              <button type="submit" class="btn btn-success">
+                <!--[disabled]="!courseForm.course.valid"-->Submit
+              </button>
+
+            </form>
           </div>
-
         </div>
-        <button type="submit" class="btn btn-success">
-          <!--[disabled]="!courseForm.course.valid"-->Submit
-        </button>
-
-      </form>
+      </div>
     </div>
-
   </div>
+
   <app-footer></app-footer>
 </ng-template>

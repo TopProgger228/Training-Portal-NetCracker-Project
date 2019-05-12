@@ -124,6 +124,10 @@ const routes: Routes = [
     component: CoursePageComponent
   },
   {
+    path: '**',
+    component: StartComponent
+  },
+  {
     path: '',
     redirectTo: 'auth/login',
     pathMatch: 'full'
