@@ -38,6 +38,7 @@ import { ManagerAttendanceComponent } from './manager-attendance/manager-attenda
 import { OneStudetMngAttComponent } from './one-studet-mng-att/one-studet-mng-att.component';
 import { UserAttCourseListComponent } from './user-att-course-list/user-att-course-list.component';
 import { LessonAttComponent } from './lesson-att/lesson-att.component';
+import { OneCheckAttItemComponent } from './one-check-att-item/one-check-att-item.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { LessonAttComponent } from './lesson-att/lesson-att.component';
     LessonAttComponent,
     StudentProfileComponent,
     CoursePageComponent,
-    CourseAttendeesComponent
+    CourseAttendeesComponent,
+    OneCheckAttItemComponent
 
   ],
   imports: [

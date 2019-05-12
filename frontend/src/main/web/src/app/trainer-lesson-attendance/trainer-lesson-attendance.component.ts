@@ -12,15 +12,7 @@ export class TrainerLessonAttendanceComponent implements OnInit {
 
   id: number;
   class: Class;
-  statusList: string[] = [
-    "Present",
-    "Absent due to business trip",
-    "Absent without reason",
-    "Absent due to sick leave",
-    "Absent due to project activities"
-  ]
 
-  selectedStatus:  string = "Present";
 
   constructor(private trainerService: TrainerAttService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(param => {
@@ -34,20 +26,6 @@ export class TrainerLessonAttendanceComponent implements OnInit {
       .subscribe(data => this.class = data);
 
 
-
-    // for (const {item, index} of this.class.userAttendanceDtoList.map((item, index) => ({ item, index }))) {
-    //   this.selectedStatus[index] = "Present";
-    // }
-
-
   }
-
-  putAttendanceStatus (userId: string, lessonId: string, status: string) {
-    this.trainerService.putAttendanceStatus(userId, lessonId, status)
-      .subscribe(data=>{
-        console.log(data);
-      });
-  }
-
 
 }
