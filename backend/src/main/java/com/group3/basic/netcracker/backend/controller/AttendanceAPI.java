@@ -2,7 +2,6 @@ package com.group3.basic.netcracker.backend.controller;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
 import com.group3.basic.netcracker.backend.dto.*;
 import com.group3.basic.netcracker.backend.service.CheckAttendanceService;
 import com.group3.basic.netcracker.backend.service.UserService;
