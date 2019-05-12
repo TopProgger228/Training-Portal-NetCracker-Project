@@ -7,12 +7,16 @@ import {Timeslots} from "../../../groups-schedule/timeslots";
 import {Schedule} from "../../../services/schedule";
 import {UserModel} from "../../../services/user-model";
 import {Student} from "../../../services/student";
+import {debounceTime} from "rxjs/operators";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-course-page',
   templateUrl: './course-page.component.html',
   styleUrls: ['./course-page.component.css']
 })
+
+
 export class CoursePageComponent implements OnInit {
 
   course: Course[];
@@ -22,6 +26,10 @@ export class CoursePageComponent implements OnInit {
   userId : number;
   timeSlots: Timeslots[];
   schedule = new Schedule(0, 0, false);
+
+  private _success = new Subject<string>();
+  successMessage: string;
+
 
   constructor(private route: ActivatedRoute, private router: Router, private courseService: CourseService,
               private token: TokenStorageService) {
@@ -55,12 +63,15 @@ export class CoursePageComponent implements OnInit {
           console.log('User id1', this.userId)
           this.schedule = new Schedule(this.userId, 0, false);
         });
-      console.log('Username', this.token.getUsername())
+      console.log('Username', this.token.getUsername());
 
+      this._success.subscribe((message) => this.successMessage = message);
+      this._success.pipe(
+        debounceTime(10000)
+      ).subscribe(() => this.successMessage = null);
     }
 
   }
-
 
   onSubmit() {
     console.log(this.schedule);
@@ -73,6 +84,10 @@ export class CoursePageComponent implements OnInit {
       () => {
         console.log('POST schedule - now completed.');
       });
+  }
+
+  public changeSuccessMessage() {
+    this._success.next(`Your schedule saved successfully.`);
   }
 
 }

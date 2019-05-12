@@ -1,0 +1,54 @@
+#bg-image{
+  background: url('../course-page/schedule_background.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
+#bg-overlay{
+  background: rgba(189, 189, 189, 0.473);
+  background-size: cover;
+
+  height: 100vh;
+
+}
+
+form{ font-family:georgia, serif;
+  letter-spacing:0.1em;
+  padding-top:11px;
+  font-size: 30pt;
+  color: rgb(173, 173, 173);
+  background: rgba(58, 58, 58, 0.699);
+  width: 70%;
+
+  padding: 10px;
+
+}
+
+input{
+  width: 80%;
+  margin: auto;
+
+  font-size: 20pt;
+}
+
+select{
+  width: 80%;
+  height: 15%;
+  margin: auto;
+
+  font-size: 15pt;
+}
+
+ngb-alert{
+  font-size: 20px;
+  position : center;
+  margin: auto;
+}
+
+button{
+  font-size: 35px;
+  color: rgb(173, 173, 173);
+  margin: auto;
+  position : center;
+}
+

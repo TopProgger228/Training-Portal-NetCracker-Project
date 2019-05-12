@@ -17,7 +17,7 @@
 
 
                 <div class="form-group">
-                  <label for="time_slot_id">Time slot</label>
+                  <label for="time_slot_id">Choose desirable time</label>
                   <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id"
                           name="time_slot_id">
                     <option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
@@ -26,11 +26,10 @@
                 </div>
 
               </div>
-              <button type="submit" class="btn btn-success">
-                <!--[disabled]="!courseForm.course.valid"-->Submit
-              </button>
-
+              <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+              <button type="submit"  class="btn btn-success" (click)="changeSuccessMessage()">Submit</button>
             </form>
+
           </div>
         </div>
       </div>
