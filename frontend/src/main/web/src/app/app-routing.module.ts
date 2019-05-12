@@ -119,7 +119,10 @@ const routes: Routes = [
     path: 'manager/student-att',
     component: ManagerAttendanceComponent
   },
-
+  {
+    path: 'student/course-page/:name',
+    component: CoursePageComponent
+  },
   {
     path: '',
     redirectTo: 'auth/login',

@@ -28,7 +28,8 @@ const routes: Routes =[
     CoursesContainerComponent,
     FirstSlideComponent,
     TrainersListComponent,
-    FooterComponent
+    FooterComponent,
+    //CoursePageComponent
   ],
   imports: [
     CommonModule,
