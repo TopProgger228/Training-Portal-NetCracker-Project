@@ -119,6 +119,29 @@ public class AttendanceAPI {
         return ResponseEntity.ok().body(lessonAttendanceDtoList);
     }
 
+    @GetMapping("/getManagerUserAtt/{userName}")
+    public ResponseEntity<?> getStudentAttendanceForManagerByUsername (@PathVariable String userName) {
+
+        List<StudentAttendanceForManagerDto> studentAttendanceForManagerDtoList = attendanceService.getStudentAttendanceForManagerDto(userName);
+        return ResponseEntity.ok().body(studentAttendanceForManagerDtoList);
+    }
+
+
+    @GetMapping("getCourseByUserId/{userId}")
+    public ResponseEntity<?> getCourseByUserId(@PathVariable int userId) {
+
+        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByUserId(userId);
+
+        return ResponseEntity.ok().body(list);
+
+    }
+
+    @GetMapping("/getCourseLessonsForOneUser/{courseId}/{userId}")
+    public ResponseEntity<?> getLessonsByCourseUser (@PathVariable int courseId, @PathVariable int userId) {
+
+        List<LessonAttendanceDto> list = attendanceService.getLessonsOfCourseAttendanceByUser(courseId, userId);
+        return ResponseEntity.ok().body(list);
+    }
 
     @PostMapping("createReport/course")
     public ResponseEntity<?> createReportByCourse(@RequestParam("courses") int[] courses){

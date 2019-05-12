@@ -2,9 +2,10 @@ package com.group3.basic.netcracker.backend.util.dtomapper;
 
 import com.group3.basic.netcracker.backend.dto.TrainerAttendanceDto;
 import com.group3.basic.netcracker.backend.entity.User;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class TrainerAttendanceDtoMapper {
 
     public TrainerAttendanceDto toTrainerAttendanceDto (User user) {

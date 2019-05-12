@@ -1,0 +1,14 @@
+<div class="row" (click) = "isHidden()">
+  <div class="col">{{index + 1}}</div>
+  <div class="col">{{course.name}}</div>
+  <div class="col">{{course.skillLevel}}</div>
+  <div class="col">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
+  <div class="col">{{presentLessonCount}}/{{totalLessonCount}}</div>
+</div>
+<div *ngIf="!hide">
+  <div class="list-group " *ngFor="let lesson of lessonList; index as i" style="font-size: 20px">
+    <a class="list-group-item list-group-item-action mt-2">
+      <app-lesson-att [lesson]="lesson" [index]="i"></app-lesson-att>
+    </a>
+  </div>
+</div>

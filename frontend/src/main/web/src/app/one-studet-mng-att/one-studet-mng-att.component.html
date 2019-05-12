@@ -1,0 +1,35 @@
+<div style="display: flex; font-size: 16px" (click) = "isHidden()">
+  <div style="flex-grow: 2">
+    <div>Username: {{user.userName}}</div>
+    <div>First name: {{user.firstName}}</div>
+    <div>Last name: {{user.lastName}}</div>
+    <div>Total lessons: {{user.totalLessonCount}}</div>
+  </div>
+  <div style="flex-grow: 3">
+    <table class="table table-bordered" style="text-align: center">
+      <thead>
+        <tr>
+          <td>Present</td>
+          <td>Absent without reason</td>
+          <td>Absent due to business trip</td>
+          <td>Absent due to sick leave</td>
+          <td>Absent due to project activities</td>
+        </tr>
+      </thead>
+      <tbody>
+        <td>{{statusList.get("Present")}}</td>
+        <td>{{statusList.get("Absent without reason")}}</td>
+        <td>{{statusList.get("Absent due to business trip")}}</td>
+        <td>{{statusList.get("Absent due to sick leave")}}</td>
+        <td>{{statusList.get("Absent due to project activities")}}</td>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="!hide">
+  <div class="list-group " *ngFor="let course of courseList; index as i" style="font-size: 20px">
+    <a class="list-group-item list-group-item-action mt-2">
+      <app-user-att-course-list [index]="i" [courseAtt]="course" [totalLessonCount]="user.totalLessonCount" [presentLessonCount]="statusList.get('Present')" [userId]="user.id"></app-user-att-course-list>
+    </a>
+  </div>
+</div>

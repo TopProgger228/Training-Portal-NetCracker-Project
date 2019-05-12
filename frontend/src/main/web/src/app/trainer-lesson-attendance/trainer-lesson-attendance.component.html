@@ -23,14 +23,13 @@
       <td>{{user?.userFirstName}}</td>
       <td>{{user?.userLastName}}</td>
       <td>
-        <select name = "select">
+        <select [(ngModel)]="selectedStatus" >
           <option *ngFor="let status of statusList" >
             {{status}}
           </option>
         </select>
-        {{oneStatus}}
       </td>
-      <td><button type="button" class="btn btn-primary btn-lg" (click)="putAttendanceStatus(user.id.toString(), '6', 'Absent')">Check</button></td>
+      <td><button type="button" class="btn btn-primary btn-lg" (click)="putAttendanceStatus(user.id.toString(), id.toString(), selectedStatus)">Check</button></td>
     </tr>
     </tbody>
   </table>

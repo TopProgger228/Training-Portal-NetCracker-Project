@@ -18,14 +18,11 @@ export class TrainerAttService {
   constructor( private http: HttpClient) { }
 
   getLessonsByUsername(username: string): Observable<LessonAtt[]> {
-    console.log(username);
     return this.http.get<LessonAtt[]>(this.all_lessons_url_by_username + username);
   }
 
 
   getOneLesson(id: number) {
-    console.log(id);
-    console.log(this.lesson_url + id.toString());
     return this.http.get<Class>(this.lesson_url + id);
   }
 

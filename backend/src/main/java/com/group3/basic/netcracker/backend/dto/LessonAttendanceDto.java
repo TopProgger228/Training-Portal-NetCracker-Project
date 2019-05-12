@@ -11,17 +11,27 @@ public class LessonAttendanceDto {
     private LocalTime startTime;
     private LocalTime endTime;
     private String courseName;
+    private String attStatusForOneStudent;
 
-    public LessonAttendanceDto(int lessonId, boolean isCancel, Date startDateTime, LocalTime startTime, LocalTime endTime, String courseName) {
+    public LessonAttendanceDto(int lessonId, boolean isCancel, Date startDateTime, LocalTime startTime, LocalTime endTime, String courseName, String attStatusForOneStudent) {
         this.lessonId = lessonId;
         this.isCancel = isCancel;
         this.startDateTime = startDateTime;
         this.startTime = startTime;
         this.endTime = endTime;
         this.courseName = courseName;
+        this.attStatusForOneStudent = attStatusForOneStudent;
     }
 
     public LessonAttendanceDto() {
+    }
+
+    public String getAttStatus() {
+        return attStatusForOneStudent;
+    }
+
+    public void setAttStatus(String attStatusForOneStudent) {
+        this.attStatusForOneStudent = attStatusForOneStudent;
     }
 
     public LocalTime getStartTime() {

@@ -113,7 +113,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List getStudentsOfManager(String username) {
+    public List<User> getStudentsOfManager(String username) {
 
         String SQL = ("SELECT u.*, man.\"Manager\" \n" +
                 "FROM \"User\" u\n" +
@@ -121,7 +121,7 @@ public class UserDaoImpl implements UserDao {
                 "\t\t   FROM \"User\") AS man ON man.m_id = u.manager_id\n" +
                 "\t\t WHERE man.\"Manager\" LIKE '" + username + "';");
 
-        List Users = jdbcTemplate.query(SQL, new UserRowMapper());
+        List<User> Users = jdbcTemplate.query(SQL, new UserRowMapper());
         return Users;
 
     }

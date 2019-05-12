@@ -50,4 +50,12 @@ public class LessonDaoImpl implements LessonDao {
 
         return jdbcTemplate.query(SQL, new Object[] {username}, new LessonRowMapper());
     }
+
+    @Override
+    public int getLessonCountTillTodayByStudent(int userId) {
+
+        String SQL = "select count(l.id) from \"Lesson\" l join \"Course\" c on l.course_id = c.id join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id join \"TimeSlot\" ts on l.time_slot_id = ts.id where u.id = ? and l.lesson_date <= cast(current_timestamp as date)";
+
+        return jdbcTemplate.queryForObject(SQL, new Object[] {userId}, Integer.class);
+    }
 }

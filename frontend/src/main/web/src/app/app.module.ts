@@ -34,6 +34,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 import {CoursePageComponent} from "./first-page/courses-list/course-page/course-page.component";
 import { CourseAttendeesComponent } from './course-attendees/course-attendees.component';
+import { ManagerAttendanceComponent } from './manager-attendance/manager-attendance.component';
+import { OneStudetMngAttComponent } from './one-studet-mng-att/one-studet-mng-att.component';
+import { UserAttCourseListComponent } from './user-att-course-list/user-att-course-list.component';
+import { LessonAttComponent } from './lesson-att/lesson-att.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,11 @@ import { CourseAttendeesComponent } from './course-attendees/course-attendees.co
     TrainerAttendanceComponent,
     AdminAttendanceComponent,
     ManagerProfileComponent,
+    StudentProfileComponent,
+    ManagerAttendanceComponent,
+    OneStudetMngAttComponent,
+    UserAttCourseListComponent,
+    LessonAttComponent
     StudentProfileComponent,
     CoursePageComponent,
     CourseAttendeesComponent

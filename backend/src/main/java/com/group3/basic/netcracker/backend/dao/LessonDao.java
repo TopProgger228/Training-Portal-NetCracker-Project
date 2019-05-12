@@ -6,12 +6,14 @@ import java.util.List;
 
 public interface LessonDao {
 
-    List<Lesson> getLessonByCourse (int courseId);
+    List<Lesson> getLessonByCourse(int courseId);
 
-    Lesson getLessonById (int lessonId);
+    Lesson getLessonById(int lessonId);
 
-    List<Lesson> getTodayLessonsByTrainer (int trainerId);
+    List<Lesson> getTodayLessonsByTrainer(int trainerId);
 
-    List<Lesson> getTodayLessonsByTrainerUsername (String username);
+    List<Lesson> getTodayLessonsByTrainerUsername(String username);
+
+    int getLessonCountTillTodayByStudent(int userId);
 
 }
