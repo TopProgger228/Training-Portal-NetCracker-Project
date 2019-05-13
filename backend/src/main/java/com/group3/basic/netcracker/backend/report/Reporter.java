@@ -9,32 +9,38 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static com.group3.basic.netcracker.backend.report.ReportDataSource.getDataSource;
 
 @Transactional
 @Repository
 @Service
 public class Reporter {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private static DataSource dataSource;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public List<Map<String, Object>> queryReportByCourse(int[] coursesId) throws SQLException {
-        String sql = "select count(lm.id) as missing, u.username as student, lm.reason as reason \n" +
-                "     from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
-                " left join \"Group\" g on u.id = g.user_id \n" +
-                " join \"Course\" c on c.id = g.course_id \n" +
-                " where c.id in (" + coursesId + ") \n" +
-                "                group by u.username, lm.reason, c.name\n";
-        List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
+    public List<Map<String, Object>> queryReportByCourse(int[] courses) throws SQLException {
+        dataSource = getDataSource();
+        // JdbcTemplate template = new JdbcTemplate(dataSource); // constructor
+        JdbcTemplate template = new JdbcTemplate();
+        template.setDataSource(dataSource);
+        String g = Arrays.toString(courses).substring(1).replaceFirst("]", "").replace("[", "");
+        String sql = "select count(lm.id) as missing, \n" +
+                "u.username as student, lm.reason as reason \n" +
+                "      from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
+                "       left join \"Group\" g on u.id = g.user_id \n" +
+                "       join \"Course\" c on c.id = g.course_id \n" +
+                "         where c.id in (" + g + ") \n" +
+                "         group by u.username, lm.reason, c.name";
+        List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Missing students list-------");
         for (Map<String, Object> row : list) {
             System.out.println(row.get("missing") + " " + row.get("student") + " " + row.get("reason"));
@@ -52,32 +58,23 @@ public class Reporter {
         //This data needs to be written (Object[])
         List<Map<String, Object>> data = mapList;
 
-
         //Iterate over data and write to sheet
-        while (data.listIterator().hasNext()) {
-        Set<String> keyset = data.listIterator().next().keySet();
-        int rownum = 0;
-        for (String key : keyset)
-        {
-            Row row = sheet.createRow(rownum++);
-            int n = 0;
-            while (data.listIterator().next().entrySet().iterator().hasNext()) {
-                n++;
+            Set<String> keyset = data.listIterator().next().keySet();
+            int rownum = 0;
+            for (String key : keyset) {
+                Row row = sheet.createRow(rownum++);
+                int n = 0;
+
+                Object[] objArr = new Object[n];
+                int cellnum = 0;
+                for (Object obj : objArr) {
+                    Cell cell = row.createCell(cellnum++);
+                    if (obj instanceof String)
+                        cell.setCellValue((String) obj);
+                    else if (obj instanceof Integer)
+                        cell.setCellValue((Integer) obj);
+                }
             }
-            Object [] objArr = new Object[n];
-            for ( int i = 0; i < n; i++) {
-                objArr[n] = data.listIterator().next().entrySet().iterator().next().getValue();
-            }
-            int cellnum = 0;
-            for (Object obj : objArr)
-            {
-                Cell cell = row.createCell(cellnum++);
-                if(obj instanceof String)
-                    cell.setCellValue((String)obj);
-                else if(obj instanceof Integer)
-                    cell.setCellValue((Integer)obj);
-            }
-        }
         try
         {
             //Write the workbook in file system
@@ -90,5 +87,5 @@ public class Reporter {
         {
             e.printStackTrace();
         }
-    } }
+    }
 }
