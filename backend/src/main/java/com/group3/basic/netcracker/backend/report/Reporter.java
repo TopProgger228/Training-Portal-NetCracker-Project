@@ -57,15 +57,18 @@ public class Reporter {
         XSSFSheet sheet = workbook.createSheet("Attendance report");
         //This data needs to be written (Object[])
         List<Map<String, Object>> data = mapList;
-
+        int n = 0;
+        Object[] objArr = new Object[n];
+        while (data.listIterator().next().entrySet().iterator().hasNext()) {
+            objArr[n] = data.listIterator().next().entrySet().iterator().next().getValue();
+            n++;
+        }
         //Iterate over data and write to sheet
             Set<String> keyset = data.listIterator().next().keySet();
             int rownum = 0;
             for (String key : keyset) {
                 Row row = sheet.createRow(rownum++);
-                int n = 0;
 
-                Object[] objArr = new Object[n];
                 int cellnum = 0;
                 for (Object obj : objArr) {
                     Cell cell = row.createCell(cellnum++);
