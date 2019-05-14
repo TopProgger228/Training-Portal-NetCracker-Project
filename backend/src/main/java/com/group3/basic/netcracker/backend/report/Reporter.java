@@ -1,7 +1,8 @@
 package com.group3.basic.netcracker.backend.report;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import com.sun.corba.se.spi.ior.ObjectKey;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,70 +26,138 @@ import static com.group3.basic.netcracker.backend.report.ReportDataSource.getDat
 @Repository
 @Service
 public class Reporter {
-    private static DataSource dataSource;
+    @Autowired
+    private DataSource dataSource = getDataSource();
+    JdbcTemplate template = new JdbcTemplate(dataSource);
 
-    public List<Map<String, Object>> queryReportByCourse(int[] courses) throws SQLException {
-        dataSource = getDataSource();
-        // JdbcTemplate template = new JdbcTemplate(dataSource); // constructor
-        JdbcTemplate template = new JdbcTemplate();
-        template.setDataSource(dataSource);
-        String g = Arrays.toString(courses).substring(1).replaceFirst("]", "").replace("[", "");
-        String sql = "select count(lm.id) as missing, \n" +
-                "u.username as student, lm.reason as reason \n" +
-                "      from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
-                "       left join \"Group\" g on u.id = g.user_id \n" +
-                "       join \"Course\" c on c.id = g.course_id \n" +
-                "         where c.id in (" + g + ") \n" +
-                "         group by u.username, lm.reason, c.name";
-        List<Map<String, Object>> list = template.queryForList(sql);
-        System.out.println("------Missing students list-------");
-        for (Map<String, Object> row : list) {
-            System.out.println(row.get("missing") + " " + row.get("student") + " " + row.get("reason"));
-       } return list;
-    }
     public void createReportByCourse(int[] courses) throws SQLException {
         generateReport(queryReportByCourse(courses));
     }
 
-    public void generateReport(List<Map<String, Object>> mapList) throws SQLException {
+    public void createReportByTrainer(int trainerId) throws SQLException {
+        generateReport(queryReportByTrainer(trainerId));
+    }
+
+    public void createReportByStudent(String username) throws SQLException {
+        generateReport(queryReportByStudent(username));
+    }
+
+    public void createReportByLevel(String level) throws SQLException {
+        generateReport(queryReportByLevel(level));
+    }
+
+    public void generateReport(List<Map<String, Object>> data) throws SQLException {
         //Blank workbook
         XSSFWorkbook workbook = new XSSFWorkbook();
         //Create a blank sheet
         XSSFSheet sheet = workbook.createSheet("Attendance report");
-        //This data needs to be written (Object[])
-        List<Map<String, Object>> data = mapList;
-        int n = 0;
-        Object[] objArr = new Object[n];
-        while (data.listIterator().next().entrySet().iterator().hasNext()) {
-            objArr[n] = data.listIterator().next().entrySet().iterator().next().getValue();
-            n++;
-        }
         //Iterate over data and write to sheet
-            Set<String> keyset = data.listIterator().next().keySet();
-            int rownum = 0;
-            for (String key : keyset) {
-                Row row = sheet.createRow(rownum++);
-
-                int cellnum = 0;
-                for (Object obj : objArr) {
-                    Cell cell = row.createCell(cellnum++);
-                    if (obj instanceof String)
-                        cell.setCellValue((String) obj);
-                    else if (obj instanceof Integer)
-                        cell.setCellValue((Integer) obj);
-                }
-            }
-        try
-        {
+        Set<String> keyset = data.listIterator().next().keySet();
+        int rownum = 0;
+        int cellnum = 0;
+        Row row = sheet.createRow(rownum++);
+        for (String key : keyset) {
+            System.out.println((key));
+            Cell cell = row.createCell(cellnum++);
+            cell.setCellValue((String) key);
+            sheet.autoSizeColumn(cell.getColumnIndex());
+            setFont(workbook, sheet);
+        }
+        Row nexRow = sheet.createRow(rownum++);
+        int nexCellnum = 0;
+        for (Map.Entry<String, Object> entry : data.listIterator().next().entrySet()) {
+            Cell cell = nexRow.createCell(nexCellnum++);
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+            cell.setCellValue(entry.getKey() + ": " + entry.getValue());
+            sheet.autoSizeColumn(cell.getColumnIndex());
+            setFont(workbook, sheet);
+        }
+        try {
             //Write the workbook in file system
             FileOutputStream out = new FileOutputStream(new File("D:\\report.xlsx"));
             workbook.write(out);
             out.close();
             System.out.println("Report written successfully.");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public List<Map<String, Object>> queryReportByTrainer(int trainerId) throws SQLException {
+
+        String sql = "select count(lm.id) as \"MissingQty\", \n" +
+                "                u.username as \"Student\", lm.reason as \"Reason\"\n" +
+                "                from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
+                "                join \"Group\" g on u.id = g.user_id \n" +
+                "                join \"Course\" c on c.id = g.course_id\n" +
+                "\t\t\t\tjoin (select id, username from \"User\") as t on t.id = c.trainer_id\n" +
+                "                  where t.id in (" + trainerId + ") \n" +
+                "                  group by u.username, lm.reason, c.name, t.username,t.id";
+        List<Map<String, Object>> list = template.queryForList(sql);
+        return getList(list);
+    }
+
+    public List<Map<String, Object>> queryReportByCourse(int[] courses) throws SQLException {
+        String g = Arrays.toString(courses).substring(1).replaceFirst("]", "").replace("[", "");
+        String sql = "select count(lm.id) as \"MissingQty\", \n" +
+                "              u.username as \"Student\", lm.reason as \"Reason\" \n" +
+                "               from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
+                "                left join \"Group\" g on u.id = g.user_id \n" +
+                "                join \"Course\" c on c.id = g.course_id \n" +
+                "                 where c.id in ("+ g +") \n" +
+                "                 group by u.username, lm.reason, c.name";
+        List<Map<String, Object>> list = template.queryForList(sql);
+        System.out.println("------Attendance by courses-------");
+        return getList(list);
+    }
+
+    public List<Map<String, Object>> queryReportByStudent(String username) throws SQLException {
+        String sql = "select count(lm.id) as \"MissingQty\", \n" +
+                "coalesce(u.fname || ' ' || u.lname, '')\n" +
+                "as \"Student\", crs.\"Course\", lm.reason as \"Reason\" \n" +
+                "from \"LessonMissing\" lm \n" +
+                "join \"User\" u on u.id = lm.user_id\n" +
+                "join (select c.id, c.name as \"Course\", g.user_id\n" +
+                "\t from \"Course\" c\n" +
+                "\t join \"Group\" g on g.course_id = c.id) as crs on crs.user_id = u.id \n" +
+                "where u.username like '" + username + "'\n" +
+                "group by u.fname, u.lname, crs.\"Course\", lm.reason\n";
+        List<Map<String, Object>> list = template.queryForList(sql);
+        System.out.println("------Attendance by student-------");
+        return getList(list);
+    }
+    public List<Map<String, Object>> queryReportByLevel(String level) throws SQLException {
+        String sql = "select count(lm.id) as \"MissingQty\", \n" +
+                "coalesce(u.fname || ' ' || u.lname, '')\n" +
+                "as \"Student\", crs.\"Course\", lm.reason as \"Reason\" \n" +
+                "from \"LessonMissing\" lm \n" +
+                "join \"User\" u on u.id = lm.user_id\n" +
+                "join (select c.id, c.name as \"Course\",\n" +
+                "\t g.user_id, c.skill_level\n" +
+                "\t from \"Course\" c\n" +
+                "\t join \"Group\" g on g.course_id = c.id) as crs on crs.user_id = u.id \n" +
+                "where crs.skill_level like '%" + level + "%'\n" +
+                "group by crs.\"Course\", u.fname, u.lname, lm.reason";
+        List<Map<String, Object>> list = template.queryForList(sql);
+        System.out.println("------Attendance by level-------");
+        return getList(list);
+    }
+    public void setFont(Workbook wb, XSSFSheet sheet) {
+        CellStyle style = wb.createCellStyle();//Create style
+        Font font = wb.createFont();//Create font
+        font.setColor(HSSFColor.GREEN.index);
+        font.setFontName("Arial");
+        font.setBoldweight(Font.BOLDWEIGHT_NORMAL);
+        style.setFont(font);
+
+        for (int i = 0; i < sheet.getRow(0).getLastCellNum(); i++)
+            sheet.getRow(0).getCell(i).setCellStyle(style);
+    }
+    public List<Map<String, Object>> getList(List<Map<String, Object>> list) {
+        for (Map<String, Object> item : list) {
+            System.out.println(item);
+        }
+        return list;
     }
 }
