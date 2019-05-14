@@ -32,8 +32,7 @@
                 <td>{{ schedule.timeslotEnd_time }}</td>
                 <td>{{ schedule.timeslotWeek_day }}</td>
                 <td>
-                  <button type="submit"  class="btn btn-success">Finish schedule
-                    <!--(click)=""-->
+                  <button type="submit"  class="btn btn-success" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
                     <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
                   </button>
                 </td>

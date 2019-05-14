@@ -13,6 +13,8 @@ public interface CourseDAO {
 
     Course getCourseById(int id);
 
+    Integer getIdByCourseName(String name);
+
     List listCourses();
 
     List listLastTenCourses();

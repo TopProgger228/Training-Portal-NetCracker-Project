@@ -93,12 +93,12 @@ public class CreateAPIs {
         return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
     }
 
-    @PostMapping("/is_choosen")
-    public ResponseEntity<?> scheduleGenerate(@RequestBody ScheduleWithInfo scheduleWithInfo){
+    @GetMapping("/is_choosen")
+    public void scheduleGenerate(@RequestBody ScheduleWithInfo scheduleWithInfo){
 
         scheduleService.generateSchedule(scheduleWithInfo.getCourseId());
 
-        return new ResponseEntity<>(new ResponseMessage("Schedule formed successfully!"), HttpStatus.OK);
+        //return new ResponseEntity<>(new ResponseMessage("Schedule formed successfully!"), HttpStatus.OK);
     }
 
 }

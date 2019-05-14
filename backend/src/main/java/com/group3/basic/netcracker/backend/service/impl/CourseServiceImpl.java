@@ -30,6 +30,12 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
+
+    public Integer getIdByCourseName(String name){
+        return courseDAO.getIdByCourseName(name);
+    }
+
+    @Override
     public List listCourses() {
         return courseDAO.listCourses();
     }

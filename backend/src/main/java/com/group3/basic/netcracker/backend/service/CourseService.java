@@ -12,6 +12,8 @@ public interface CourseService {
 
     Course getCourseById(int id);
 
+    Integer getIdByCourseName(String name);
+
     List listCourses();
 
     List listLastTenCourses();

@@ -87,4 +87,9 @@ public class GetInfoAPIs {
     public List listScheduleWithCourseAndTimeSlotAndUser(){
         return scheduleService.listScheduleWithCourseAndTimeSlotAndUser();
     }
+
+    @GetMapping("/course_id")
+    public Integer getIdByCourseName(@RequestParam("name") String name){
+        return courseService.getIdByCourseName(name);
+    }
 }
