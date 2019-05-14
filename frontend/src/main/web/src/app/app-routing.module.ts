@@ -25,6 +25,7 @@ import {StudentProfileComponent} from "./student-profile/student-profile.compone
 import {ManagerAttendanceComponent} from "./manager-attendance/manager-attendance.component";
 import {CoursePageComponent} from "./first-page/courses-list/course-page/course-page.component";
 import {CourseAttendeesComponent} from "./course-attendees/course-attendees.component";
+import {ScheduleInfoComponent} from "./schedule-info/schedule-info.component";
 
 
 
@@ -122,6 +123,10 @@ const routes: Routes = [
   {
     path: 'student/course-page/:name',
     component: CoursePageComponent
+  },
+  {
+    path: 'admin/schedule-info',
+    component: ScheduleInfoComponent
   },
   {
     path: '**',

@@ -6,6 +6,7 @@ import java.util.TreeMap;
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.entity.Schedule;
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleRowMapper;
+import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleWithInfoRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -34,6 +35,17 @@ public class ScheduleDaoImpl implements ScheduleDao {
         String SQL = "SELECT id, user_id, time_slot_id, is_choosen FROM \"Schedule\"";
         List shedule = jdbcTemplate.query(SQL, new ScheduleRowMapper());
         return shedule;
+    }
+
+    @Override
+    public List listScheduleWithCourseAndTimeSlotAndUser(){
+        String SQL = "select  C2.name, u.fname, u.lname, TS.start_time, TS.end_time, TS.week_day from \"Schedule\" s\n" +
+                "join \"User\" U on s.user_id = U.id\n" +
+                "join \"TimeSlot\" TS on s.time_slot_id = TS.id\n" +
+                "join \"Course\" C2 on TS.course_id = C2.id\n" +
+                "order by C2.name, TS.week_day, TS.start_time";
+        List schedule = jdbcTemplate.query(SQL, new ScheduleWithInfoRowMapper());
+        return schedule;
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.entity.Schedule;
 import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.service.CourseService;
+import com.group3.basic.netcracker.backend.service.ScheduleService;
 import com.group3.basic.netcracker.backend.service.TimeSlotService;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
@@ -30,12 +31,15 @@ public class GetInfoAPIs {
 
     private final UserService userService;
     private final CourseService courseService;
+    private final ScheduleService scheduleService;
 
     @Autowired
-    public GetInfoAPIs(ApplicationContext context, UserService userService, CourseService courseService){
+    public GetInfoAPIs(ApplicationContext context, UserService userService, CourseService courseService,
+                       ScheduleService scheduleService){
         this.context = context;
         this.userService = userService;
         this.courseService = courseService;
+        this.scheduleService = scheduleService;
     }
 
     @GetMapping("/usersinfo/trainers")
@@ -77,5 +81,10 @@ public class GetInfoAPIs {
     @GetMapping("/student_id")
     public Integer getIdByUsername(@RequestParam("username") String username){
         return userService.getIdByUsername(username);
+    }
+
+    @GetMapping("/scheduleinfo")
+    public List listScheduleWithCourseAndTimeSlotAndUser(){
+        return scheduleService.listScheduleWithCourseAndTimeSlotAndUser();
     }
 }

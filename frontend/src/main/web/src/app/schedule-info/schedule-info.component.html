@@ -1,0 +1,52 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 100vh;">
+
+    <app-menu></app-menu>
+    <div style="width: 80%;  margin: 20px auto;">
+      <ngb-tabset>
+        <ngb-tab>
+          <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">Schedule</span>
+          </ng-template>
+          <ng-template ngbTabContent>
+
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name of Course</th>
+                <th scope="col">Student</th>
+                <th scope="col">Start time</th>
+                <th scope="col">End time</th>
+                <th scope="col">Week day</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let schedule of info; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{schedule.courseName}}</td>
+                <td>{{schedule.studentFname}} {{schedule.studentLname}}</td>
+                <td>{{ schedule.timeslotStart_time }}</td>
+                <td>{{ schedule.timeslotEnd_time }}</td>
+                <td>{{ schedule.timeslotWeek_day }}</td>
+                <td>
+                  <button *ngIf="!addNewNews" type="button" class="btn btn-default btn-lg float-rigth">
+                    <!--(click)=""-->
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+</ng-template>

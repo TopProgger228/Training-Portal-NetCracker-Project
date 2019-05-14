@@ -43,4 +43,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 		scheduleDao.updateSchedule(userId, timeSlotId, isChoosen, id);
 	}
 
+	@Override
+	public List listScheduleWithCourseAndTimeSlotAndUser(){
+		return scheduleDao.listScheduleWithCourseAndTimeSlotAndUser();
+	}
+
 }

@@ -39,6 +39,7 @@ import { OneStudetMngAttComponent } from './one-studet-mng-att/one-studet-mng-at
 import { UserAttCourseListComponent } from './user-att-course-list/user-att-course-list.component';
 import { LessonAttComponent } from './lesson-att/lesson-att.component';
 import { OneCheckAttItemComponent } from './one-check-att-item/one-check-att-item.component';
+import { ScheduleInfoComponent } from './schedule-info/schedule-info.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { OneCheckAttItemComponent } from './one-check-att-item/one-check-att-ite
     StudentProfileComponent,
     CoursePageComponent,
     CourseAttendeesComponent,
-    OneCheckAttItemComponent
+    OneCheckAttItemComponent,
+    ScheduleInfoComponent
 
   ],
   imports: [
