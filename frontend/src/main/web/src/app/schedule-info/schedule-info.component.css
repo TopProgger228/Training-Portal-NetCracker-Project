@@ -3,3 +3,9 @@ td, th, title{
 
   font-size: 22px;
 }
+button{
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  margin: auto;
+  position : center;
+}

@@ -15,6 +15,9 @@ import com.group3.basic.netcracker.backend.util.authorization.message.response.R
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -86,6 +89,14 @@ public class CreateAPIs {
         scheduleService.createSchedule(scheduleForm.getUser_id(), scheduleForm.getTime_slot_id(), scheduleForm.isIs_choosen());
 
         return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
+    }
+
+    @PostMapping("/is_choosen")
+    public ResponseEntity<?> scheduleGenerate(@RequestBody ScheduleForm scheduleForm){
+
+        //cheduleService.generateSchedule();
+
+        return new ResponseEntity<>(new ResponseMessage("Schedule formed successfully!"), HttpStatus.OK);
     }
 
 }

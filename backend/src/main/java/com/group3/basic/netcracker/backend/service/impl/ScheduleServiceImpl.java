@@ -48,4 +48,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return scheduleDao.listScheduleWithCourseAndTimeSlotAndUser();
 	}
 
+	@Override
+	public void generateSchedule(int course){
+		scheduleDao.generateSchedule(course);
+	}
+
 }

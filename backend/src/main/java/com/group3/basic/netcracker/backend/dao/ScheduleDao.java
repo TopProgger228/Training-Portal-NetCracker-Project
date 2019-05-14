@@ -14,4 +14,5 @@ public interface ScheduleDao {
 	void createSchedule(int userId, int timeSlotId, boolean isChoosen);
 	void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id);
 	List listScheduleWithCourseAndTimeSlotAndUser();
+	void generateSchedule(int course);
 }

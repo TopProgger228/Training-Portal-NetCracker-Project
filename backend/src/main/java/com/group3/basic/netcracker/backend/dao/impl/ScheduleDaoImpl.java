@@ -9,6 +9,9 @@ import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleWithInfoRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,6 +70,18 @@ public class ScheduleDaoImpl implements ScheduleDao {
         String SQL = "INSERT INTO \"Schedule\" (user_id, time_slot_id, is_choosen) VALUES (?,?,?)";
         jdbcTemplate.update(SQL,  userId, timeSlotId, isChoosen);
         System.out.println("Schedule created.");
+    }
+
+    @Override
+    public void generateSchedule(int course) {
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate)
+                .withFunctionName("schedule_chooser");
+
+        SqlParameterSource paramMap = new MapSqlParameterSource()
+                .addValue("course", course);
+
+        Integer result = call.executeFunction(Integer.class, paramMap);
+        System.out.println(result);
     }
 
 }
