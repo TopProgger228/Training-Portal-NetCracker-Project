@@ -40,6 +40,7 @@ import { UserAttCourseListComponent } from './user-att-course-list/user-att-cour
 import { LessonAttComponent } from './lesson-att/lesson-att.component';
 import { OneCheckAttItemComponent } from './one-check-att-item/one-check-att-item.component';
 import { ScheduleInfoComponent } from './schedule-info/schedule-info.component';
+import {ToasterService} from "./services/toaster.service";
 
 @NgModule({
   declarations: [
@@ -89,7 +90,7 @@ import { ScheduleInfoComponent } from './schedule-info/schedule-info.component';
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

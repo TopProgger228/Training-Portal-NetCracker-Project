@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {UserAtt} from "../interface/user-att";
 import {TrainerAttService} from "../services/trainer-att.service";
+import {ToasterService} from "../services/toaster.service";
 
 @Component({
   selector: 'app-one-check-att-item',
@@ -22,16 +23,37 @@ export class OneCheckAttItemComponent implements OnInit {
 
   selectedStatus:  string = "Present";
 
-  constructor(private trainerService: TrainerAttService) { }
+  constructor(private trainerService: TrainerAttService, private toasterService: ToasterService) { }
 
   ngOnInit() {
   }
 
   putAttendanceStatus (userId: string, lessonId: string, status: string) {
     this.trainerService.putAttendanceStatus(userId, lessonId, status)
-      .subscribe(data=>{
-        console.log(data);
-      });
+      .subscribe(()=>{
+      },
+        () =>{
+          this.error(this.user.userFirstName, this.user.userLastName)
+        },
+        ()=>{
+          this.success(this.user.userFirstName, this.user.userLastName);
+        });
+  }
+
+  check(userId: string, lessonId: string, status: string) {
+    this.putAttendanceStatus(userId,lessonId, status);
+  }
+
+  success(firstName: string, lastName: string) {
+    this.toasterService.Success("Check",firstName + " " + lastName + " is checked!");
+  }
+
+  info() {
+    this.toasterService.Info("Success");
+  }
+
+  error(firstName: string, lastName: string) {
+    this.toasterService.Error("Error!",firstName + " " + lastName + " is not checked");
   }
 
 }

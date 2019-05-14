@@ -71,7 +71,7 @@ public class AttendanceAPI {
                                                @RequestParam("status") String status) {
 
 	    checkAttendanceService.changeLessonMissing(Integer.parseInt(userId), Integer.parseInt(lessonId), status);
-        return new ResponseEntity<>(new ResponseMessage("ok!"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("Present"), HttpStatus.OK);
 
     }
 
