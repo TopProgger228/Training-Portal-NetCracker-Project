@@ -5,8 +5,8 @@ import { TokenStorageService } from '../auth/token-storage.service';
 
 import { NewsService } from '../services/News.service';
 import { News } from '../services/news';
-import { Trainer } from '../services/trainer';
-import { TrainerService } from '../services/trainer.service';
+import { TrainersInfo } from '../services/trainers-info';
+import { TrainersserService } from '../first-page/trainers-list/trainersser.service';
 
 @Component({
   selector: 'app-manage-landing-page',
@@ -18,8 +18,8 @@ export class ManageLandingPageComponent implements OnInit {
   news: News[];
   currentNews: News;
 
-  trainers: Trainer[];
-
+  trainers: TrainersInfo[];
+  updateMessage: string = null;
   loggedOut = false;
   EditNewsRow: number = -1;
   EditTrainerRow: number = -1;
@@ -27,9 +27,9 @@ export class ManageLandingPageComponent implements OnInit {
   newNews: News = { 'id': 0, 'title': '', 'createDate': '', 'context': '', 'isActive': true };
 
 
-  constructor(private router: Router, private newsService: NewsService, 
+  constructor(private router: Router, private newsService: NewsService,
     private token: TokenStorageService,
-    private trainerService: TrainerService) { }
+    private trainerService: TrainersserService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
@@ -42,7 +42,7 @@ export class ManageLandingPageComponent implements OnInit {
             }
           )
 
-          this.trainerService.getTrainers().subscribe(
+          this.trainerService.getInfo().subscribe(
             data => {
               this.trainers = data;
               console.log(this.trainers);
@@ -72,30 +72,43 @@ export class ManageLandingPageComponent implements OnInit {
     this.currentNews = news;
     this.newsService.updateNews(this.currentNews.id.toString(), this.currentNews.title, this.currentNews.createDate, this.currentNews.context, this.currentNews.isActive.toString()).subscribe(
       data => {
-        console.log(data);
+        this.setupdateMessage(data);
       },
       error => {
-        console.log(error);
+        this.setErrorMessage();
       }
     );
     this.EditNewsRow = -1;
   }
 
-  updateTrainerRow(trainer: Trainer) {
+  setupdateMessage(data: any){
+    if (data.body) {
+      if (data.statusText === "OK")
+        this.updateMessage = "Updated successfully";
+      else this.updateMessage = "Something going wrong, try later";
+    } 
+    else this.updateMessage = "Connection lost, try later";
+  }
+
+  setErrorMessage(){
+    this.updateMessage = "Error, try later";
+  }
+
+  updateTrainerRow(trainer: TrainersInfo) {
     console.log(trainer);
     this.trainerService.updateTrainerInfo(trainer).subscribe(
       data => {
-        console.log(data);
+        this.setupdateMessage(data);
       },
       error => {
-        console.log(error);
+        this.setErrorMessage();
       }
     );
     this.EditTrainerRow = -1;
   }
 
-  createNewTrainer(){
-    this.router.navigate(['admin/add-student']);
+  createNewTrainer() {
+    this.router.navigate(['admin/add-user']);
   }
 
   createNewNews() {

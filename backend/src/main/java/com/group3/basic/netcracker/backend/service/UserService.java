@@ -23,6 +23,10 @@ public interface UserService {
     void updateUser(int id, String username, String role, String fname, String lname,
                     String email, String pass, LocalDate created_at, byte[] photo);
 
+    void updateTrainerInfo(int id, String info);
+
+    void updateName(int id, String fname, String lname);
+
     void addMember(String username, String role, String fname, String lname,
                    String email, String pass, LocalDate created_at);
 

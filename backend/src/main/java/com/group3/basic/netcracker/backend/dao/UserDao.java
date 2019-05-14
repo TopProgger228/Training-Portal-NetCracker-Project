@@ -27,6 +27,10 @@ public interface UserDao {
     void updateUser(int id, String username, String  role, String fname, String lname,
                     String email, String pass, LocalDate created_at, byte[] photo);
 
+    void updateName(int id, String fname, String lname);
+
+    void updateTrainerInfo(int id, String info);
+
     List listUsersForDisplay(String role);
 
     void addMember(String username, String role, String fname,

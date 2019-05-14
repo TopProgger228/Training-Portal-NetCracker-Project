@@ -58,6 +58,6 @@ export class CourseService {
   }
 
   getIdByUsername(username: string): Observable<any>{
-    return this.http.get<UserModel>(this.userIdUrl + username, httpOptions);
+    return this.http.get<number>(this.userIdUrl + username, httpOptions);
   }
 }

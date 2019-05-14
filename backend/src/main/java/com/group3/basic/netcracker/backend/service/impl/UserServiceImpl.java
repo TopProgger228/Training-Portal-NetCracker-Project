@@ -58,6 +58,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateTrainerInfo(int id, String info) {
+        userDao.updateTrainerInfo(id, info);
+    }
+
+    @Override
+    public void updateName(int id, String fname, String lname) {
+        userDao.updateName(id, fname, lname);
+    }
+
+    @Override
     public void addMember(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at) {
         userDao.addMember(username, role, fname, lname, email, pass, created_at);
     }

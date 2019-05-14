@@ -9,6 +9,7 @@ import com.group3.basic.netcracker.backend.util.rowmapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -169,6 +170,21 @@ public class UserDaoImpl implements UserDao {
         String SQL = "UPDATE \"User\" SET username = ?, role = ?, fname = ?, lname = ?, email = ?, pass = ?, created_at = ?, photo = ? WHERE id = ?";
         jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo, id);
         System.out.println("User with id: " + username + " successfully updated.");
+    }
+
+    @Override
+    public void updateName(int id, String fname, String lname) {
+        String SQL = "UPDATE \"User\" SET fname = ?, lname = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, fname, lname, id);
+        System.out.println("User with id: " + id + " successfully updated.");
+    }
+
+    @Override
+    public void updateTrainerInfo(int id, String info){
+
+        String SQL = "UPDATE \"trainersinfo\" SET info = ? WHERE trainer_id = ?";
+        jdbcTemplate.update(SQL, info, id);
+        System.out.println("Trainer info with id: " + id + " successfully updated.");
     }
 
     @Override

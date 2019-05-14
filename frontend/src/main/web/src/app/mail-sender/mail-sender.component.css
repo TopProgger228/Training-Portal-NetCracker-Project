@@ -1,37 +1,26 @@
-#bg-image{
-    background: url('../../assets/images/background.jpg');
-    background-size: cover;
-    height: 100vh;
-}
+.container{
+    width: 50%;
+    margin-top: 8%;
+  }
+  
+  label, input, select, option{
+    font-size: 24px;
+    margin: 15px;
+  }
 
-#bg-overlay{
-    background: rgba(189, 189, 189, 0.473);
-    background-size: cover;
-   
-    height: 100vh;
+  a{
+    font-size: 14px;
+  }
+  
+  button{
+    font-size: 26px;
+    margin: 15px;
+  }
 
-}
 
-form{ font-family:georgia, serif;
-    letter-spacing:0.1em;
-    padding-top:11px;
-    font-size: 35pt;
-    color: rgb(173, 173, 173);
-    background: rgba(58, 58, 58, 0.699);
-    width: 60%;
-
-    padding: 10px;
-}
-
-input{
-    width: 80%;
+ngb-alert{
+    font-size: 20px;
+    position : center;
     margin: auto;
-
-    font-size: 20pt;
-}
-
-button{
-    font-size: 35px;
-    color: rgb(173, 173, 173);
-    margin: auto
+    width: 100%;
   }

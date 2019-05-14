@@ -17,7 +17,7 @@ export class CoursesInfoComponent implements OnInit {
   courses: Course[];
 
   loggedOut = false;
-
+id: number
   constructor(private router: Router, private courseService: CourseService, private token: TokenStorageService) {
   }
 
