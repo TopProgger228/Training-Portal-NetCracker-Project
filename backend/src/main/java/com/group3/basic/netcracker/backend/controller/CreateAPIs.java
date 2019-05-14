@@ -5,6 +5,7 @@ import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.dao.impl.ScheduleDaoImpl;
 import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.dto.ScheduleForm;
+import com.group3.basic.netcracker.backend.dto.ScheduleWithInfo;
 import com.group3.basic.netcracker.backend.dto.TimeSlotForm;
 import com.group3.basic.netcracker.backend.entity.Schedule;
 import com.group3.basic.netcracker.backend.service.CourseService;
@@ -38,7 +39,8 @@ public class CreateAPIs {
     private ScheduleService scheduleService;
 
     @Autowired
-    public CreateAPIs(CourseService courseService, UserService userService, TimeSlotService timeSlotService, ScheduleService scheduleService) {
+    public CreateAPIs(CourseService courseService, UserService userService, TimeSlotService timeSlotService,
+                      ScheduleService scheduleService) {
         this.courseService = courseService;
         this.userService = userService;
         this.timeSlotService = timeSlotService;
@@ -92,9 +94,9 @@ public class CreateAPIs {
     }
 
     @PostMapping("/is_choosen")
-    public ResponseEntity<?> scheduleGenerate(@RequestBody ScheduleForm scheduleForm){
+    public ResponseEntity<?> scheduleGenerate(@RequestBody ScheduleWithInfo scheduleWithInfo){
 
-        //cheduleService.generateSchedule();
+        scheduleService.generateSchedule(scheduleWithInfo.getCourseId());
 
         return new ResponseEntity<>(new ResponseMessage("Schedule formed successfully!"), HttpStatus.OK);
     }

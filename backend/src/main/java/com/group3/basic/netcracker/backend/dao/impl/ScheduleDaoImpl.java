@@ -42,10 +42,13 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
     @Override
     public List listScheduleWithCourseAndTimeSlotAndUser(){
-        String SQL = "select  C2.name, u.fname, u.lname, TS.start_time, TS.end_time, TS.week_day from \"Schedule\" s\n" +
+        String SQL = "select C2.id, C2.name, replace(cast(replace(cast(replace(cast(string_agg(U.fname || ' '\n" +
+                "|| U.lname, ', ') as varchar),'{' ,'')as text), '}','') as varchar),'\"', '')\n" +
+                "as \"Students\", TS.start_time, TS.end_time, TS.week_day from \"Schedule\" s\n" +
                 "join \"User\" U on s.user_id = U.id\n" +
                 "join \"TimeSlot\" TS on s.time_slot_id = TS.id\n" +
                 "join \"Course\" C2 on TS.course_id = C2.id\n" +
+                "group by C2.id, C2.name,TS.start_time, TS.end_time, TS.week_day\n" +
                 "order by C2.name, TS.week_day, TS.start_time";
         List schedule = jdbcTemplate.query(SQL, new ScheduleWithInfoRowMapper());
         return schedule;

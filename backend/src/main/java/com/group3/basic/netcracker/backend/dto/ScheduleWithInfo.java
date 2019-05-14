@@ -1,12 +1,20 @@
 package com.group3.basic.netcracker.backend.dto;
 
 public class ScheduleWithInfo {
+    private int courseId;
     private String courseName;
-    private String studentFname;
-    private String studentLname;
+    private String allStudents;
     private String timeslotStart_time;
     private String timeslotEnd_time;
     private String timeslotWeek_day;
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
 
     public String getCourseName() {
         return courseName;
@@ -16,20 +24,12 @@ public class ScheduleWithInfo {
         this.courseName = courseName;
     }
 
-    public String getStudentFname() {
-        return studentFname;
+    public String getAllStudents() {
+        return allStudents;
     }
 
-    public void setStudentFname(String studentFname) {
-        this.studentFname = studentFname;
-    }
-
-    public String getStudentLname() {
-        return studentLname;
-    }
-
-    public void setStudentLname(String studentLname) {
-        this.studentLname = studentLname;
+    public void setAllStudents(String allStudents) {
+        this.allStudents = allStudents;
     }
 
     public String getTimeslotStart_time() {

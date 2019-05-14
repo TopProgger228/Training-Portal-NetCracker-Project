@@ -11,9 +11,9 @@ public class ScheduleWithInfoRowMapper implements RowMapper {
     @Override
     public ScheduleWithInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
         ScheduleWithInfo scheduleWithInfo = new ScheduleWithInfo();
+        scheduleWithInfo.setCourseId(rs.getInt("id"));
         scheduleWithInfo.setCourseName(rs.getString("name"));
-        scheduleWithInfo.setStudentFname(rs.getString("fname"));
-        scheduleWithInfo.setStudentLname(rs.getString("lname"));
+        scheduleWithInfo.setAllStudents(rs.getString("Students"));
         scheduleWithInfo.setTimeslotStart_time(rs.getString("start_time"));
         scheduleWithInfo.setTimeslotEnd_time(rs.getString("end_time"));
         scheduleWithInfo.setTimeslotWeek_day(rs.getString("week_day"));

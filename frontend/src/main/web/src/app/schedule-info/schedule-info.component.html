@@ -17,7 +17,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name of Course</th>
-                <th scope="col">Student</th>
+                <th scope="col">Students</th>
                 <th scope="col">Start time</th>
                 <th scope="col">End time</th>
                 <th scope="col">Week day</th>
@@ -27,7 +27,7 @@
               <tr *ngFor="let schedule of info; index as i">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{schedule.courseName}}</td>
-                <td>{{schedule.studentFname}} {{schedule.studentLname}}</td>
+                <td>{{schedule.allStudents}}</td>
                 <td>{{ schedule.timeslotStart_time }}</td>
                 <td>{{ schedule.timeslotEnd_time }}</td>
                 <td>{{ schedule.timeslotWeek_day }}</td>

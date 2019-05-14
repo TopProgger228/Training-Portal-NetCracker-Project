@@ -1,7 +1,7 @@
 export class ScheduleMod {
+  courseId: number;
   courseName: string;
-  studentFname: string;
-  studentLname: string;
+  allStudents: string;
   timeslotStart_time: string;
   timeslotEnd_time: string;
   timeslotWeek_day: string;
