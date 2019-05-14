@@ -11,8 +11,11 @@ import { Router } from '@angular/router';
 export class AddStudentMailSenderComponent implements OnInit {
 
   form: any = {};
+
+  sentMessage: string = null;
   loggedOut = false;
-  
+
+  nextPage: string = "Go to laning page -->";
   @Input()
   resetPassword: boolean;
 
@@ -21,8 +24,8 @@ export class AddStudentMailSenderComponent implements OnInit {
     private token: TokenStorageService) { }
 
   ngOnInit() {
-    if (!this.token.getToken()) {
-      if (this.token.getToken()) {
+
+    if (this.token.getToken()) {
       this.token.getAuthorities().every(role => {
         if (role === 'Admin') {
         } else {
@@ -34,7 +37,7 @@ export class AddStudentMailSenderComponent implements OnInit {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);
     };
-    };
+
   }
 
   logout() {
@@ -44,20 +47,27 @@ export class AddStudentMailSenderComponent implements OnInit {
     this.router.navigate(['auth/login']);
   }
 
-  onSubmit(){
-    if(this.resetPassword){
+  onSubmit() {
+    if (this.resetPassword) {
 
-    }else{
+    } else {
       this.mailSenderService.sendSignUpMail(this.form.email).subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['firstPage']);
+        this.setSentMessage(data);
         },
         error => {
           console.log(error);
         }
       );
     }
+  }
+  setSentMessage(data: any) {
+    if (data.body) {
+      if (data.statusText === "OK") this.sentMessage = "Mail sent successfully";
+      else this.sentMessage = "Something going wrong, try later";
+    }
+    else this.sentMessage = "Mail does not sent yet";
   }
 
 }

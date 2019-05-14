@@ -33,9 +33,9 @@ public class UsersTokenDaoImpl implements UsersTokenDao {
 
     @Override
     public String getEmailByToken(String token){
-        String SQL = "SELECT * FROM \"UsersToken\" WHERE token = '" + token + "';";
-        UsersToken usersToken = (UsersToken) jdbcTemplate.query(SQL, new UsersTokenRowMapper()).get(0);
-        return usersToken.getEmail();
+        String SQL = "SELECT email FROM \"UsersToken\" WHERE token = '" + token + "';";
+        String email = (String) jdbcTemplate.queryForObject(SQL, new Object[]{}, String.class);
+        return email;
     }
 
 

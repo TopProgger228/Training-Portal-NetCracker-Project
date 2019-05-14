@@ -3,3 +3,10 @@ td, th, title, input{
 align-self: auto;
   font-size: 22px;
 }
+
+ngb-alert{
+  font-size: 20px;
+  position : center;
+  margin: auto;
+  width: 100%;
+}

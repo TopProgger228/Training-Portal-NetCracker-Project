@@ -3,10 +3,19 @@ package com.group3.basic.netcracker.backend.dto;
 import java.util.List;
 
 public class TrainerInfo {
+    private int id;
     private String fname;
     private String lname;
     private String info;
     private List<String> courses;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFname() {
         return fname;

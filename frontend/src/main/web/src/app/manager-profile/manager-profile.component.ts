@@ -29,6 +29,8 @@ export class ManagerProfileComponent implements OnInit {
       this.route.params.subscribe(params => {
         this.username = params['username'];
       });
+
+      console.log(this.username);
       this.managerService.getManagerOfStudent(this.username)
         .subscribe(data => {
           this.manager = data;
