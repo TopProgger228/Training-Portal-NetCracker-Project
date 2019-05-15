@@ -27,6 +27,7 @@
   </div>
 </div>
 <div *ngIf="!hide">
+  <app-spinner *ngIf="isLoading"></app-spinner>
   <div class="list-group " *ngFor="let course of courseList; index as i" style="font-size: 20px">
     <a class="list-group-item list-group-item-action mt-2">
       <app-user-att-course-list [index]="i" [courseAtt]="course" [userId]="user.id"></app-user-att-course-list>
