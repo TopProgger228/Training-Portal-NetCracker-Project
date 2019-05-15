@@ -13,6 +13,7 @@
     <div class="col-3">Last name</div>
     <div class="col-5"></div>
   </div>
+  <app-spinner *ngIf="isLoading"></app-spinner>
   <div *ngFor="let user of class?.userAttendanceDtoList; index as i">
     <app-one-check-att-item [lessonId]="class.lessonId" [userAtt]="user" [index]="i"></app-one-check-att-item>
   </div>
