@@ -21,6 +21,7 @@
                 <th scope="col">Start time</th>
                 <th scope="col">End time</th>
                 <th scope="col">Week day</th>
+                <th scope="col">Finished schedule</th>
               </tr>
               </thead>
               <tbody>
@@ -31,6 +32,8 @@
                 <td>{{ schedule.timeslotStart_time }}</td>
                 <td>{{ schedule.timeslotEnd_time }}</td>
                 <td>{{ schedule.timeslotWeek_day }}</td>
+                <td><input disabled type="checkbox" [checked]="schedule.isChoosen == 't'" ></td>
+                <!--<input type="checkbox" [checked]="schedule.isChoosen" >-->
                 <td>
                   <button type="submit"  class="btn btn-success" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
                     <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->

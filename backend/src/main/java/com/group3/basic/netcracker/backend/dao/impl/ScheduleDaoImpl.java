@@ -1,7 +1,6 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
 import java.util.List;
-import java.util.TreeMap;
 
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.entity.Schedule;
@@ -15,10 +14,15 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
+
 @Transactional
 @Repository
 public class ScheduleDaoImpl implements ScheduleDao {
     private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Autowired
     public ScheduleDaoImpl(JdbcTemplate jdbcTemplate) {
@@ -42,13 +46,13 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
     @Override
     public List listScheduleWithCourseAndTimeSlotAndUser(){
-        String SQL = "select C2.id, C2.name, replace(cast(replace(cast(replace(cast(string_agg(U.fname || ' '\n" +
+        String SQL = "select C2.id, C2.name, s.is_choosen, replace(cast(replace(cast(replace(cast(string_agg(U.fname || ' '\n" +
                 "|| U.lname, ', ') as varchar),'{' ,'')as text), '}','') as varchar),'\"', '')\n" +
                 "as \"Students\", TS.start_time, TS.end_time, TS.week_day from \"Schedule\" s\n" +
                 "join \"User\" U on s.user_id = U.id\n" +
                 "join \"TimeSlot\" TS on s.time_slot_id = TS.id\n" +
                 "join \"Course\" C2 on TS.course_id = C2.id\n" +
-                "group by C2.id, C2.name,TS.start_time, TS.end_time, TS.week_day\n" +
+                "group by C2.id, C2.name,TS.start_time, TS.end_time, TS.week_day, s.is_choosen\n" +
                 "order by C2.name, TS.week_day, TS.start_time";
         List schedule = jdbcTemplate.query(SQL, new ScheduleWithInfoRowMapper());
         return schedule;
@@ -78,7 +82,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
     @Override
     public void generateSchedule(int course) {
         SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate)
-                .withFunctionName("schedule_chooser");
+                .withFunctionName("schedule_setter");
 
         SqlParameterSource paramMap = new MapSqlParameterSource()
                 .addValue("course", course);

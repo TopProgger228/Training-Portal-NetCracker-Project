@@ -5,6 +5,7 @@ export class ScheduleMod {
   timeslotStart_time: string;
   timeslotEnd_time: string;
   timeslotWeek_day: string;
+  isChoosen: string;
 
 
   constructor(courseId: number) {
@@ -18,4 +19,6 @@ export class ScheduleMod {
   get courseName(): string {
     return this._courseName;
   }
+
+
 }

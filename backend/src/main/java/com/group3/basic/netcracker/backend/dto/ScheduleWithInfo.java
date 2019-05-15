@@ -7,6 +7,7 @@ public class ScheduleWithInfo {
     private String timeslotStart_time;
     private String timeslotEnd_time;
     private String timeslotWeek_day;
+    private String isChoosen;
 
     public int getCourseId() {
         return courseId;
@@ -54,5 +55,13 @@ public class ScheduleWithInfo {
 
     public void setTimeslotWeek_day(String timeslotWeek_day) {
         this.timeslotWeek_day = timeslotWeek_day;
+    }
+
+    public String getIsChoosen() {
+        return isChoosen;
+    }
+
+    public void setIsChoosen(String isChoosen) {
+        this.isChoosen = isChoosen;
     }
 }

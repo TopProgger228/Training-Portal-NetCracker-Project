@@ -17,6 +17,7 @@ public class ScheduleWithInfoRowMapper implements RowMapper {
         scheduleWithInfo.setTimeslotStart_time(rs.getString("start_time"));
         scheduleWithInfo.setTimeslotEnd_time(rs.getString("end_time"));
         scheduleWithInfo.setTimeslotWeek_day(rs.getString("week_day"));
+        scheduleWithInfo.setIsChoosen(rs.getString("is_choosen"));
         return scheduleWithInfo;
     }
 }

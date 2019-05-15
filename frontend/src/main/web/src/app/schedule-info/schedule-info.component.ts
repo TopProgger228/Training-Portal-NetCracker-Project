@@ -25,6 +25,7 @@ export class ScheduleInfoComponent implements OnInit {
           this.scheduleService.getScheduleInfo()
             .subscribe(data => {
               this.info = data;
+              console.log('This record = ', this.info)
             })
         }else {
           this.router.navigate(['firstPage']);
@@ -44,6 +45,15 @@ export class ScheduleInfoComponent implements OnInit {
     this.scheduleService.isChoosen(id).subscribe(data => {
       console.log(data);
     });
+    this.reloadPage();
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
+
+  checkboxChanged(event) {
+    console.log(event.checked);
   }
 
   logout() {
