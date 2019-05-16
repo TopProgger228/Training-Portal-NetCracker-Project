@@ -1,23 +1,31 @@
 <app-menu></app-menu>
 
-<div>
-  <h2><b>{{name}} course attendees list</b></h2>
-</div>
-<div>
-  <table class="table">
-    <thead class="thead-light">
-    <tr>
-      <th scope="col-2"><b>#</b></th>
-      <th scope="col-5"><font size="3" face="verdana">First name</font></th>
-      <th scope="col-5"><font size="3" face="verdana">Last name</font></th>
-    </tr>
-    </thead>
-    <tbody *ngFor="let attendee of attendees; index as i">
-    <tr>
-      <th scope="row"><font size="5" face="arial">{{i + 1}}</font></th>
-      <td><font size="5" face="arial">{{attendee.fname}}</font></td>
-      <td><font size="5" face="arial">{{attendee.lname}}</font></td>
-    </tr>
-    </tbody>
-  </table>
+<div style="height: 100vh;">
+  <div style="width: 80%;  margin: 20px auto;">
+    <ngb-tabset>
+      <ngb-tab>
+        <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">
+          {{name}} course attendees</span>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First name</th>
+              <th scope="col">Last name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let attendee of attendees; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{attendee.fname}}</td>
+              <td>{{attendee.lname}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
 </div>
