@@ -26,8 +26,8 @@
               <tbody>
               <tr *ngFor="let  course of courses; index as i">
                 <th scope="row">{{ i + 1 }}</th>
-                <td><a class="list-group-item list-group-item-action" (click)="navigate(course.name)">
-                  {{course.name}}</a></td>
+                <td><a class="list-group-item list-group-item-action" title="Click to see attendees"
+                       (click)="navigate(course.name)">{{course.name}}</a></td>
                 <td>{{course.start_date}}</td>
                 <td>{{course.end_date}}</td>
                 <td>{{course.info}}</td>
