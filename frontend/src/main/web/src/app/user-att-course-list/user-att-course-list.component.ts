@@ -12,21 +12,19 @@ export class UserAttCourseListComponent implements OnInit {
 
   @Input('courseAtt') public course: CourseAtt;
   @Input('index') public index: number;
-  // @Input('totalLessonCount') public totalLessonCount: number;
-  // @Input('presentLessonCount') public presentLessonCount: number;
   @Input('userId') public userId: number;
   lessonList: LessonAtt[];
 
   hide: boolean = true;
 
-
+  isLoading: boolean = true;
 
   constructor(private managerService: ManagerAttService) { }
 
   ngOnInit() {
 
     this.managerService.getLessonsForOneUser(this.course.courseId, this.userId)
-      .subscribe(data=>this.lessonList = data);
+      .subscribe(data=>{this.lessonList = data; this.isLoading = false});
 
   }
 
