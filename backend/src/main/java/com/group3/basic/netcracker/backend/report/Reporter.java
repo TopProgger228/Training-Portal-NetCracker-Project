@@ -23,7 +23,6 @@ import java.util.Set;
 import static com.group3.basic.netcracker.backend.report.ReportDataSource.getDataSource;
 
 @Transactional
-@Repository
 @Service
 public class Reporter {
     @Autowired
@@ -63,15 +62,20 @@ public class Reporter {
             sheet.autoSizeColumn(cell.getColumnIndex());
             setFont(workbook, sheet);
         }
-        Row nexRow = sheet.createRow(rownum++);
-        int nexCellnum = 0;
-        for (Map.Entry<String, Object> entry : data.listIterator().next().entrySet()) {
-            Cell cell = nexRow.createCell(nexCellnum++);
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-            cell.setCellValue(entry.getKey() + ": " + entry.getValue());
-            sheet.autoSizeColumn(cell.getColumnIndex());
-            setFont(workbook, sheet);
+
+        for (Map<String, Object> map : data) {
+            Row nexRow = sheet.createRow(rownum++);
+           int nexCellnum = 0;
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                Cell cell = nexRow.createCell(nexCellnum++);
+                cell.setCellValue(" " +value);
+                sheet.autoSizeColumn(cell.getColumnIndex());
+                setFont(workbook, sheet);
+            }
         }
+
         try {
             //Write the workbook in file system
             FileOutputStream out = new FileOutputStream(new File("D:\\report.xlsx"));
@@ -95,7 +99,7 @@ public class Reporter {
                 "                  where t.id in (" + trainerId + ") \n" +
                 "                  group by u.username, lm.reason, c.name, t.username,t.id";
         List<Map<String, Object>> list = template.queryForList(sql);
-        return getList(list);
+        return list;
     }
 
     public List<Map<String, Object>> queryReportByCourse(int[] courses) throws SQLException {
@@ -109,7 +113,7 @@ public class Reporter {
                 "                 group by u.username, lm.reason, c.name";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by courses-------");
-        return getList(list);
+        return list;
     }
 
     public List<Map<String, Object>> queryReportByStudent(String username) throws SQLException {
@@ -125,7 +129,7 @@ public class Reporter {
                 "group by u.fname, u.lname, crs.\"Course\", lm.reason\n";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by student-------");
-        return getList(list);
+        return list;
     }
     public List<Map<String, Object>> queryReportByLevel(String level) throws SQLException {
         String sql = "select count(lm.id) as \"MissingQty\", \n" +
@@ -141,7 +145,7 @@ public class Reporter {
                 "group by crs.\"Course\", u.fname, u.lname, lm.reason";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by level-------");
-        return getList(list);
+        return list;
     }
     public void setFont(Workbook wb, XSSFSheet sheet) {
         CellStyle style = wb.createCellStyle();//Create style
@@ -153,11 +157,5 @@ public class Reporter {
 
         for (int i = 0; i < sheet.getRow(0).getLastCellNum(); i++)
             sheet.getRow(0).getCell(i).setCellStyle(style);
-    }
-    public List<Map<String, Object>> getList(List<Map<String, Object>> list) {
-        for (Map<String, Object> item : list) {
-            System.out.println(item);
-        }
-        return list;
     }
 }
