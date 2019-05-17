@@ -14,10 +14,7 @@ import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.group3.basic.netcracker.backend.report.ReportDataSource.getDataSource;
 
@@ -98,6 +95,7 @@ public class Reporter {
                 "                  where t.id in (" + trainerId + ") \n" +
                 "                  group by u.username, lm.reason, c.name, t.username,t.id";
         List<Map<String, Object>> list = template.queryForList(sql);
+        list = isResultEmpty(list);
         return list;
     }
 
@@ -112,6 +110,7 @@ public class Reporter {
                 "                 group by u.username, lm.reason, c.name";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by courses-------");
+        list = isResultEmpty(list);
         return list;
     }
 
@@ -128,6 +127,7 @@ public class Reporter {
                 "group by u.fname, u.lname, crs.\"Course\", lm.reason\n";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by student-------");
+        list = isResultEmpty(list);
         return list;
     }
     public List<Map<String, Object>> queryReportByLevel(String level) throws SQLException {
@@ -144,6 +144,7 @@ public class Reporter {
                 "group by crs.\"Course\", u.fname, u.lname, lm.reason";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by level-------");
+        list = isResultEmpty(list);
         return list;
     }
     public void setFont(Workbook wb, XSSFSheet sheet) {
@@ -157,4 +158,15 @@ public class Reporter {
         for (int i = 0; i < sheet.getRow(0).getLastCellNum(); i++)
             sheet.getRow(0).getCell(i).setCellStyle(style);
     }
+    // Check if result set empty - write some result
+    public List<Map<String, Object>> isResultEmpty(List<Map<String, Object>> list) {
+        if(list.isEmpty()) {
+            Object obj = "";
+            String result = "Result set is empty";
+            Map<String, Object> objectMap = new TreeMap<String, Object>();
+            objectMap.put(result, obj);
+            list.add(objectMap);
+        }
+        return list;
+   }
 }
