@@ -103,7 +103,7 @@ public class Reporter {
 
     public List<Map<String, Object>> queryReportByCourse(int[] courses) throws SQLException {
         String g = Arrays.toString(courses).substring(1).replaceFirst("]", "").replace("[", "");
-        String sql = "select count(lm.id) as \"MissingQty\", \n" +
+        String sql = "select c.name as \"Course\", count(lm.id) as \"MissingQty\", \n" +
                 "              u.username as \"Student\", lm.reason as \"Reason\" \n" +
                 "               from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
                 "                left join \"Group\" g on u.id = g.user_id \n" +
