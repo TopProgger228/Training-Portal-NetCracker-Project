@@ -1,11 +1,8 @@
 export class ScheduleMod {
   private _courseId: number;
   private _courseName: string;
-  allStudents: string;
-  timeslotStart_time: string;
-  timeslotEnd_time: string;
-  timeslotWeek_day: string;
-  isChoosen: string;
+  countVoted: number;
+  isScheduled: string;
 
 
   constructor(courseId: number) {

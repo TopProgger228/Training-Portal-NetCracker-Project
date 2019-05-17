@@ -12,12 +12,9 @@ public class ScheduleWithInfoRowMapper implements RowMapper {
     public ScheduleWithInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
         ScheduleWithInfo scheduleWithInfo = new ScheduleWithInfo();
         scheduleWithInfo.setCourseId(rs.getInt("id"));
-        scheduleWithInfo.setCourseName(rs.getString("name"));
-        scheduleWithInfo.setAllStudents(rs.getString("Students"));
-        scheduleWithInfo.setTimeslotStart_time(rs.getString("start_time"));
-        scheduleWithInfo.setTimeslotEnd_time(rs.getString("end_time"));
-        scheduleWithInfo.setTimeslotWeek_day(rs.getString("week_day"));
-        scheduleWithInfo.setIsChoosen(rs.getString("is_choosen"));
+        scheduleWithInfo.setCourseName(rs.getString("courseName"));
+        scheduleWithInfo.setCountVoted(rs.getInt("countVoted"));
+        scheduleWithInfo.setIsScheduled(rs.getString("isScheduled"));
         return scheduleWithInfo;
     }
 }

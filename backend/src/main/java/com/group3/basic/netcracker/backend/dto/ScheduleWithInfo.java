@@ -3,11 +3,8 @@ package com.group3.basic.netcracker.backend.dto;
 public class ScheduleWithInfo {
     private int courseId;
     private String courseName;
-    private String allStudents;
-    private String timeslotStart_time;
-    private String timeslotEnd_time;
-    private String timeslotWeek_day;
-    private String isChoosen;
+    private int countVoted;
+    private String isScheduled;
 
     public int getCourseId() {
         return courseId;
@@ -25,43 +22,19 @@ public class ScheduleWithInfo {
         this.courseName = courseName;
     }
 
-    public String getAllStudents() {
-        return allStudents;
+    public int getCountVoted() {
+        return countVoted;
     }
 
-    public void setAllStudents(String allStudents) {
-        this.allStudents = allStudents;
+    public void setCountVoted(int countVoted) {
+        this.countVoted = countVoted;
     }
 
-    public String getTimeslotStart_time() {
-        return timeslotStart_time;
+    public String getIsScheduled() {
+        return isScheduled;
     }
 
-    public void setTimeslotStart_time(String timeslotStart_time) {
-        this.timeslotStart_time = timeslotStart_time;
-    }
-
-    public String getTimeslotEnd_time() {
-        return timeslotEnd_time;
-    }
-
-    public void setTimeslotEnd_time(String timeslotEnd_time) {
-        this.timeslotEnd_time = timeslotEnd_time;
-    }
-
-    public String getTimeslotWeek_day() {
-        return timeslotWeek_day;
-    }
-
-    public void setTimeslotWeek_day(String timeslotWeek_day) {
-        this.timeslotWeek_day = timeslotWeek_day;
-    }
-
-    public String getIsChoosen() {
-        return isChoosen;
-    }
-
-    public void setIsChoosen(String isChoosen) {
-        this.isChoosen = isChoosen;
+    public void setIsScheduled(String isScheduled) {
+        this.isScheduled = isScheduled;
     }
 }

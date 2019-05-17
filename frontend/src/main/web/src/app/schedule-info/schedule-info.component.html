@@ -17,25 +17,22 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name of Course</th>
-                <th scope="col">Students</th>
-                <th scope="col">Start time</th>
-                <th scope="col">End time</th>
-                <th scope="col">Week day</th>
-                <th scope="col">Finished schedule</th>
+                <th scope="col">Quantity of students</th>
+                <th scope="col">Status of schedule</th>
+                <!--<th scope="col">End time</th>-->
+                <!--<th scope="col">Week day</th>-->
+                <!--<th scope="col">Finished schedule</th>-->
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let schedule of info; index as i">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{schedule.courseName}}</td>
-                <td>{{schedule.allStudents}}</td>
-                <td>{{ schedule.timeslotStart_time }}</td>
-                <td>{{ schedule.timeslotEnd_time }}</td>
-                <td>{{ schedule.timeslotWeek_day }}</td>
-                <td><input disabled type="checkbox" [checked]="schedule.isChoosen == 't'" ></td>
+                <td>{{schedule.countVoted}}</td>
+                <td><input disabled type="checkbox" [checked]="schedule.isScheduled == 'Schedule has been set'" ></td>
                 <!--<input type="checkbox" [checked]="schedule.isChoosen" >-->
                 <td>
-                  <button type="submit"  class="btn btn-success" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
+                  <button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
                     <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
                   </button>
                 </td>
