@@ -46,7 +46,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
     @Override
     public List listScheduleWithCourseAndTimeSlotAndUser(){
-        String SQL = "select distinct c.id,c.name as \"courseName\", count(sc.id) as \"countVoted\",\n" +
+        String SQL = "select c.id,c.name as \"courseName\", count(sc.id) as \"countVoted\",\n" +
                 "case when coalesce(cast(t.choose as varchar), 'Not set yet') = 'true'\n" +
                 "then 'Schedule has been set' else 'Not set yet' end as \"isScheduled\"\n" +
                 "from \"Course\" c\n" +

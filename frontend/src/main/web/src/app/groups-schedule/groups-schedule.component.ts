@@ -29,10 +29,6 @@ export class GroupsScheduleComponent implements OnInit {
     if (this.token.getToken()) {
       this.token.getAuthorities().every(role => {
         if (role === 'Admin') {
-          this.timeSlotService.getTimeSlots()
-            .subscribe(data => {
-              this.timeSlots = data;
-            });
           this.coursesService.getCourses()
             .subscribe(data => {
               this.courses = data;

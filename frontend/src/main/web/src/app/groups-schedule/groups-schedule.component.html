@@ -6,8 +6,10 @@
   <app-menu></app-menu>
   <div id="bg-image">
     <div id="bg-overlay">
-      <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
+      <div class="container">
+          <h1 class="text-center text-white">Timeslot Form</h1>
+        <br>
+        <br>
           <!--<h1>Timeslot Form</h1>-->
           <form (ngSubmit)="onSubmitT()" #timeslotForm="ngForm">
             <div class="form-group">
@@ -39,7 +41,7 @@
               <div class="form-group">
                 <label for="week_day">Day of week</label>
                 <select [(ngModel)]="timeSlotT.week_day" class="form-control" id="week_day" name="week_day">
-                  <option>Monday</option>
+                  <option value="" selected>Monday</option>
                   <option>Tuesday</option>
                   <option>Wednesday</option>
                   <option>Thursday</option>
@@ -57,7 +59,7 @@
               <div class="form-group">
                 <label for="course_id">Courses</label>
                 <select [(ngModel)]="timeSlotT.course_id" class="form-control" id="course_id" name="course_id">
-                  <option *ngFor="let c of courses" [value]="c.id">{{c.name}} {{c.info}}</option>
+                  <option *ngFor="let c of courses" [value]="c.id" [selected]="c.name">{{c.name}}</option>
                   <!--<div [hidden]="course_id == 0" class="alert alert-danger">-->
                     <!--Course is required!-->
                   <!--</div>-->
@@ -70,7 +72,7 @@
 
           </form>
         </div>
-      </div>
+
     </div>
   </div>
 

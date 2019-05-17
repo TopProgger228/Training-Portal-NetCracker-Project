@@ -4,29 +4,31 @@
   height: 100vh;
 }
 
-#bg-overlay{
-  background: rgba(189, 189, 189, 0.473);
-  background-size: cover;
+/*#bg-overlay{*/
+  /*background: rgba(189, 189, 189, 0.473);*/
+  /*background-size: cover;*/
 
-  height: 100vh;
+  /*height: 100vh;*/
 
+/*}*/
+
+.container{
+  width: 50%;
+  margin-top: 2%;
 }
 
-form{ font-family:georgia, serif;
-  letter-spacing:0.1em;
-  padding-top:11px;
-  font-size: 30pt;
-  color: rgb(173, 173, 173);
-  background: rgba(58, 58, 58, 0.699);
-  width: 60%;
-
-  padding: 10px;
-}
 
 label, input, select, option{
+
   font-size: 20px;
 }
 
 button{
   font-size: 22px;
+}
+
+.alert{
+  font-family: Times, serif;
+  letter-spacing:normal;
+  font-size: 16px;
 }
