@@ -1,6 +1,5 @@
 package com.group3.basic.netcracker.backend.report;
 
-import com.sun.corba.se.spi.ior.ObjectKey;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -27,7 +26,7 @@ import static com.group3.basic.netcracker.backend.report.ReportDataSource.getDat
 public class Reporter {
     @Autowired
     private DataSource dataSource = getDataSource();
-    JdbcTemplate template = new JdbcTemplate(dataSource);
+    private JdbcTemplate template = new JdbcTemplate(dataSource);
 
     public void createReportByCourse(int[] courses) throws SQLException {
         generateReport(queryReportByCourse(courses));

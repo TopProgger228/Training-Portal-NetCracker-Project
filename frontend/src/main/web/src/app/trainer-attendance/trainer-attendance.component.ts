@@ -12,14 +12,14 @@ import {NavigationExtras, Router} from "@angular/router";
 export class TrainerAttendanceComponent implements OnInit {
 
   public lessonList: LessonAtt[];
-
+  isLoading: boolean = true;
 
   constructor(private trainerService: TrainerAttService, private token: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
 
     this.trainerService.getLessonsByUsername(this.token.getUsername())
-      .subscribe(data => this.lessonList = data);
+      .subscribe(data => {this.lessonList = data; this.isLoading = false});
 
   }
 

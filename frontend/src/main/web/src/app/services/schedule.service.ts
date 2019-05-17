@@ -5,7 +5,8 @@ import {ScheduleMod} from "./schedule-mod";
 import {Schedule} from "./schedule";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -16,7 +17,7 @@ export class ScheduleService {
 
   private scheduleUrl = 'http://localhost:8080/api/scheduleinfo';
   private courseIdUrl = "http://localhost:8080/api/course_id?name=";
-  private isChoosenUrl = 'http://localhost:8080/api/is_choosen';
+  private isChoosenUrl = 'http://localhost:8080/api/is_choosen?id=';
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +30,7 @@ export class ScheduleService {
   }
 
   isChoosen(id: number): Observable<any> {
-    return this.http.patch<Schedule>(this.isChoosenUrl + id, httpOptions);
+    return this.http.get<Schedule>(this.isChoosenUrl + id, httpOptions);
   }
 
 }

@@ -12,10 +12,11 @@ export class ManagerAttendanceComponent implements OnInit {
 
   managerUserList: ManagerUserAtt[] = [];
   statusList: any[] = [];
+  isLoading: boolean = true;
 
   constructor(private managerAttService: ManagerAttService, private token: TokenStorageService) {
     this.managerAttService.getManagerUserByUsername(this.token.getUsername())
-      .subscribe(data=> {this.managerUserList = data; this.init()});
+      .subscribe(data=> {this.managerUserList = data; this.init(); this.isLoading = false});
   }
 
   ngOnInit() {
@@ -35,6 +36,7 @@ export class ManagerAttendanceComponent implements OnInit {
   addParameter(index:number, key: string, value: number) {
     this.statusList[index].set(key, value);
   }
+
 
 
 

@@ -12,6 +12,7 @@ export class TrainerLessonAttendanceComponent implements OnInit {
 
   id: number;
   class: Class;
+  isLoading: boolean = true;
 
 
   constructor(private trainerService: TrainerAttService, private route: ActivatedRoute) {
@@ -23,7 +24,7 @@ export class TrainerLessonAttendanceComponent implements OnInit {
 
     console.log(this.id);
     this.trainerService.getOneLesson(this.id)
-      .subscribe(data => this.class = data);
+      .subscribe(data => {this.class = data; this.isLoading = false});
 
 
   }

@@ -21,7 +21,7 @@ public class LessonDaoImpl implements LessonDao {
     @Override
     public List<Lesson> getLessonByCourse(int courseId) {
 
-        String SQL = "select l.id, l.is_cancel, l.lesson_date, l.time_slot_id, l.course_id from \"Lesson\" l join \"Course\" c on l.course_id = c.id where c.id = ?";
+        String SQL = "select l.id, l.is_cancel, l.lesson_date, l.time_slot_id, l.course_id from \"Lesson\" l join \"Course\" c on l.course_id = c.id where c.id = ? order by l.lesson_date";
 
         return jdbcTemplate.query(SQL, new Object[] {courseId}, new LessonRowMapper());
     }
@@ -54,7 +54,7 @@ public class LessonDaoImpl implements LessonDao {
     @Override
     public int getLessonCountTillTodayByStudent(int userId) {
 
-        String SQL = "select count(l.id) from \"Lesson\" l join \"Course\" c on l.course_id = c.id join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id join \"TimeSlot\" ts on l.time_slot_id = ts.id where u.id = ? and l.lesson_date <= cast(current_timestamp as date)";
+        String SQL = "select count(l.id) from \"Lesson\" l join \"Course\" c on l.course_id = c.id join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id join \"TimeSlot\" ts on l.time_slot_id = ts.id where u.id = ? and l.lesson_date <= cast(current_timestamp as date) and (l.is_cancel = false or l.is_cancel is null)";
 
         return jdbcTemplate.queryForObject(SQL, new Object[] {userId}, Integer.class);
     }
@@ -62,7 +62,7 @@ public class LessonDaoImpl implements LessonDao {
     @Override
     public int getLessonCountInCourseTillToday(int courseId) {
 
-        String SQL = "select count(l.id) from \"Lesson\" l join \"Course\" c on l.course_id = c.id where c.id = ? and l.lesson_date < cast(current_timestamp as date)";
+        String SQL = "select count(l.id) from \"Lesson\" l join \"Course\" c on l.course_id = c.id where c.id = ? and l.lesson_date <= cast(current_timestamp as date) and (l.is_cancel = false or l.is_cancel is null)";
 
         return jdbcTemplate.queryForObject(SQL, new Object[] {courseId}, Integer.class);
     }

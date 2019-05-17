@@ -41,6 +41,7 @@ import { LessonAttComponent } from './lesson-att/lesson-att.component';
 import { OneCheckAttItemComponent } from './one-check-att-item/one-check-att-item.component';
 import { ScheduleInfoComponent } from './schedule-info/schedule-info.component';
 import {ToasterService} from "./services/toaster.service";
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {ToasterService} from "./services/toaster.service";
     CoursePageComponent,
     CourseAttendeesComponent,
     OneCheckAttItemComponent,
-    ScheduleInfoComponent
+    ScheduleInfoComponent,
+    SpinnerComponent
 
   ],
   imports: [

@@ -4,6 +4,7 @@ import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.dao.impl.ScheduleDaoImpl;
 import com.group3.basic.netcracker.backend.dao.impl.TimeSlotDaoImpl;
 import com.group3.basic.netcracker.backend.dto.CourseForm;
+import com.group3.basic.netcracker.backend.dto.ScheduleWithInfo;
 import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.entity.Schedule;
@@ -91,5 +92,13 @@ public class GetInfoAPIs {
     @GetMapping("/course_id")
     public Integer getIdByCourseName(@RequestParam("name") String name){
         return courseService.getIdByCourseName(name);
+    }
+
+    @GetMapping("/is_choosen")
+    public void scheduleGenerate(@RequestParam("id") Integer id){
+
+        scheduleService.generateSchedule(id);
+
+        //return new ResponseEntity<>(new ResponseMessage("Schedule formed successfully!"), HttpStatus.OK);
     }
 }

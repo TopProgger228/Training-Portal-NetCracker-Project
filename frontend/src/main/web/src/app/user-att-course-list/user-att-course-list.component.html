@@ -6,6 +6,7 @@
   <div class="col">{{course.presentLessonCount}}/{{course.finishedLessonCount}}/{{course.totalLessonCount}}</div>
 </div>
 <div *ngIf="!hide">
+  <app-spinner *ngIf="isLoading"></app-spinner>
   <div class="list-group " *ngFor="let lesson of lessonList; index as i" style="font-size: 20px">
     <a class="list-group-item list-group-item-action mt-2">
       <app-lesson-att [lesson]="lesson" [index]="i"></app-lesson-att>

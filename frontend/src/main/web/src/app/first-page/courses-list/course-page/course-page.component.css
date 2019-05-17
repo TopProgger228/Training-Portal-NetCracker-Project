@@ -1,5 +1,5 @@
 #bg-image{
-  background: url('../course-page/schedule_background.jpg');
+  background: url('../../../../assets/images/schedule_background.jpg');
   background-size: cover;
   height: 100vh;
 }

@@ -16,6 +16,7 @@ export class OneStudetMngAttComponent implements OnInit {
   courseList: CourseAtt[];
 
   hide: boolean = true;
+  isLoading: boolean = true;
 
   constructor(private managerService: ManagerAttService) {
 
@@ -23,7 +24,7 @@ export class OneStudetMngAttComponent implements OnInit {
 
   ngOnInit() {
     this.managerService.getCourseByUserId(this.user.id)
-      .subscribe(data=>this.courseList = data);
+      .subscribe(data=>{this.courseList = data; this.isLoading = false});
   }
 
   isHidden() {

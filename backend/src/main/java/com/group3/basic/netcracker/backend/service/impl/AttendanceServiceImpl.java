@@ -96,7 +96,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                     lad.setAttStatus(lm.getReason());
                 }
             }
-            if (lad.getAttStatus() == null & lad.getStartDateTime().compareTo(date) < 0) {
+            if (lad.getAttStatus() == null & lad.getStartDateTime().compareTo(date) < 0 & l.isCancel() != true) {
                 lad.setAttStatus("Present");
             }
             lessonAttendanceDtoList.add(lad);
