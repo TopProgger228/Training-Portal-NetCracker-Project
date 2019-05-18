@@ -101,13 +101,16 @@ public class Reporter {
 
     public List<Map<String, Object>> queryReportByCourse(int[] courses) throws SQLException {
         String g = Arrays.toString(courses).substring(1).replaceFirst("]", "").replace("[", "");
-        String sql = "select c.name as \"Course\", count(lm.id) as \"MissingQty\", \n" +
-                "              u.username as \"Student\", lm.reason as \"Reason\" \n" +
-                "               from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
-                "                left join \"Group\" g on u.id = g.user_id \n" +
-                "                join \"Course\" c on c.id = g.course_id \n" +
-                "                 where c.id in ("+ g +") \n" +
-                "                 group by u.username, lm.reason, c.name";
+        String sql = "select c.name as \"Course\", \n" +
+                "coalesce(cast(count(lm.id) as varchar), ', ', u.fname) as \"MissingQty\",\n" +
+                "coalesce(u.username,'Anyone missing') as \"Student\", \n" +
+                "coalesce(lm.reason, '') \"Reason\"\n" +
+                "from \"Course\" c\n" +
+                "left join \"Lesson\" l on l.course_id = c.id \n" +
+                "left join \"LessonMissing\" lm on l.id = lm.lesson_id\n" +
+                "left join \"User\" u on u.id = lm.user_id\n" +
+                "where c.id in (" + g + ")\n" +
+                "group by c.name, c.id, lm.reason, u.username, u.fname";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by courses-------");
         list = isResultEmpty(list);
