@@ -17,8 +17,7 @@ export class RegisterComponent implements OnInit {
   signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
-  token: string = '';
-  email: string = 'email';
+  email: string = 'Loading...';
 
   roles: string[] = [];
   errorMessage = '';
@@ -39,26 +38,24 @@ export class RegisterComponent implements OnInit {
       this.route.queryParams.subscribe((params) => {
         //check lead Id here
         if (params['token']) {
-          this.token = params['token'];
-          console.log(this.token);
+          console.log(params['token']);
+          this.mailSenderService.getEmailByToken(params['token']).subscribe(
+            data => {
+              console.log(data);
+              if (data.partialText) {
+                this.email = data.partialText;
+              }
+            },
+            error => {
+              console.log(error);
+            })
+          console.log(this.email);
+    
         } else {
           console.log('token not found in params');
           alert("this site is not available for you");
         }
       });
-
-      this.mailSenderService.getEmailByToken(this.token).subscribe(
-        data => {
-          console.log(data);
-          if (data.partialText) {
-            this.email = data.partialText;
-          }
-        },
-        error => {
-          console.log(error);
-        })
-      console.log(this.email);
-
     }
 
   }
