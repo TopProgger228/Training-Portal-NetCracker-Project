@@ -1,30 +1,28 @@
 <nav id="menubar" class="navbar navbar-expand-lg navbar-light " style="margin-bottom: 0px">
   <div class="navbar-collapse collapse ">
 
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto align-items-center">
       <li>
         <span class="text-secondary" style="font-size: 25px;">Signed in as {{this.role}}</span>
       </li>
-      <div *ngIf="this.role == 'admin'">
+      <div *ngIf="this.role === 'admin'">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="firstPage">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
                 Home
-              </a>
-            </button>
+              </button>
+            </a>
           </li>
 
           <li class="nav-item">
 
             <div class="dropdown">
-              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
-                      id="dropdownMenuButton" type="button">
-                <a class="nav-link" routerLink="">
-                  Manage users
-                </a>
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default text-secondary"
+                data-toggle="dropdown" id="dropdownMenuButton" type="button">
+                Manage users
               </button>
               <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
                 <a class="dropdown-item " href="admin/add-user">Add trainers/managers</a>
@@ -36,7 +34,7 @@
           </li>
           <li class="nav-item">
             <button class="btn btn-default" type="button">
-              <a class="nav-link" href="admin/manage-news">
+              <a class="nav-link text-secondary" href="admin/manage-news">
                 Manage landing page
               </a>
             </button>
@@ -44,11 +42,9 @@
           <li class="nav-item">
 
             <div class="dropdown">
-              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
-                      id="dropdownMenuButton" type="button">
-                <a class="nav-link" routerLink="">
-                  Manage courses
-                </a>
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default text-secondary"
+                data-toggle="dropdown" id="dropdownMenuButton" type="button">
+                Manage courses
               </button>
               <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
                 <a class="dropdown-item" href="admin/create_new_course">Create new course</a>
@@ -63,67 +59,63 @@
       </div>
 
 
-      <div *ngIf="this.role == 'trainer'">
+      <div *ngIf="this.role === 'trainer'">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="firstPage">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
                 Home
-              </a>
-            </button>
+              </button>
+            </a>
           </li>
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="trainer/courses-info">
+            <a class="nav-link" href="trainer/courses-info">
+              <button class="btn btn-default text-secondary" type="button">
                 See my courses
-              </a>
-            </button>
+              </button>
+            </a>
           </li>
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="trainer/students-info">
+            <a class="nav-link" href="trainer/students-info">
+              <button class="btn btn-default text-secondary" type="button">
                 See my students
-              </a>
-            </button>
+              </button>
+            </a>
           </li>
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="trainer/check-attendance">
+            <a class="nav-link" href="trainer/check-attendance">
+              <button class="btn btn-default text-secondary" type="button">
                 Check attendance
-              </a>
-            </button>
+              </button>
+            </a>
           </li>
 
         </ul>
       </div>
 
 
-      <div *ngIf="this.role == 'user'">
+      <div *ngIf="this.role === 'user'">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="firstPage">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
                 Home
-              </a>
-            </button>
+              </button>
+            </a>
           </li>
 
           <li class="nav-item">
-
-
             <div class="dropdown">
-              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
-                      id="dropdownMenuButton" type="button">
-                <a class="nav-link" routerLink="">
-                  Manage courses
-                </a>
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default  text-secondary" data-toggle="dropdown"
+                id="dropdownMenuButton" type="button">
+                Manage courses
               </button>
               <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
                 <a class="dropdown-item" href="student/my-schedule">My Schedule</a>
@@ -131,43 +123,40 @@
             </div>
 
           </li>
+
+          
         </ul>
       </div>
 
-      <div *ngIf="this.role == 'mng'">
+      <div *ngIf="this.role === 'mng'">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="firstPage">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
                 Home
-              </a>
-            </button>
-          </li>
-
-          <li class="nav-item">
-
-            <div class="dropdown">
-              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default" data-toggle="dropdown"
-                      id="dropdownMenuButton" type="button">
-                <a class="nav-link" routerLink="">
-                  Manage lists
-                </a>
               </button>
-              <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
-                <a class="dropdown-item" href="manager/students-info">Students list</a>
-              </div>
-            </div>
+            </a>
+          </li>
+
+          <li class="nav-item">
+
+
+            <a class="nav-link" href="manager/students-info">
+              <button class="btn btn-default text-secondary" type="button">
+                Students list
+              </button>
+            </a>
 
           </li>
 
           <li class="nav-item">
-            <button class="btn btn-default" type="button">
-              <a class="nav-link" href="manager/student-att">
+            <a class="nav-link" href="manager/student-att">
+              <button class="btn btn-default text-secondary" type="button">
                 Attendance
-              </a>
-            </button>
+              </button>
+            </a>
           </li>
         </ul>
       </div>
@@ -176,25 +165,11 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <button type="button" class="btn btn-default">
-          <a class="nav-link" routerLink="">
-            <span class=" glyphicon glyphicon-bullhorn"></span>
-          </a>
-        </button>
-      </li>
-      <li class="nav-item">
-        <button type="button" class="btn btn-default">
-          <a class="nav-link" routerLink="">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </a>
-        </button>
-      </li>
-      <li class="nav-item">
-        <button (click)="logout()" class="btn btn-outline-secondary" type="button">
-          <a
-            class="nav-link">Logout
-          </a>
-        </button>
+          <button (click)="logout()" class="btn btn-outline-secondary text-secondary" type="button">
+        <a class="nav-link">
+            Logout
+        </a>
+          </button>
       </li>
     </ul>
   </div>
