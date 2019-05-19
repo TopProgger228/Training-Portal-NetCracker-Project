@@ -20,4 +20,6 @@ public interface TimeSlotDao {
     TimeSlot getTimeSlotByLessonId(int id);
 
     List getTimeslotsOfCourse(String name);
+
+    boolean isTimeslotExists(LocalTime of, LocalTime of2, String weekDay, int courseId);
 }

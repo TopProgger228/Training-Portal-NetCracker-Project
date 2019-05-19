@@ -9,6 +9,7 @@ import {UserModel} from "../../../services/user-model";
 import {Student} from "../../../services/student";
 import {debounceTime} from "rxjs/operators";
 import {Subject} from "rxjs";
+import {ToasterService} from "../../../services/toaster.service";
 
 @Component({
   selector: 'app-course-page',
@@ -23,7 +24,7 @@ export class CoursePageComponent implements OnInit {
   student: UserModel[];
   name: string;
   username: string;
-  userId : number;
+  userId: number;
   timeSlots: Timeslots[];
   schedule = new Schedule(0, 0, false);
 
@@ -32,7 +33,7 @@ export class CoursePageComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private router: Router, private courseService: CourseService,
-              private token: TokenStorageService) {
+              private token: TokenStorageService, private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -60,15 +61,17 @@ export class CoursePageComponent implements OnInit {
       this.courseService.getIdByUsername(this.token.getUsername())
         .subscribe(data => {
           this.userId = data;
-          console.log('User id1', this.userId)
+          console.log('User id1', this.userId);
           this.schedule = new Schedule(this.userId, 0, false);
         });
       console.log('Username', this.token.getUsername());
 
-      this._success.subscribe((message) => this.successMessage = message);
-      this._success.pipe(
-        debounceTime(10000)
-      ).subscribe(() => this.successMessage = null);
+        this._success.subscribe((message) => this.successMessage = message);
+        this._success.pipe(
+          debounceTime(10000)
+        ).subscribe(() => this.successMessage = null);
+
+
     }
 
   }

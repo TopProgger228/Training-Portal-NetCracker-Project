@@ -1,16 +1,17 @@
 package com.group3.basic.netcracker.backend.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class TimeSlotForm {
 
-    private String start_time;
-
-    private String end_time;
-
-    private String week_day;
-
     @NotBlank
+    private String start_time;
+    @NotBlank
+    private String end_time;
+    @NotBlank
+    private String week_day;
+    @NotNull
     private int course_id;
 
     public String getStart_time() {

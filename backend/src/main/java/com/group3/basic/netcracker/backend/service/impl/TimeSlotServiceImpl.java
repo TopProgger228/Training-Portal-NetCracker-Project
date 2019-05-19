@@ -24,6 +24,11 @@ public class TimeSlotServiceImpl implements TimeSlotService{
 	}
 
 	@Override
+	public boolean isTimeslotExists(LocalTime of, LocalTime of2, String weekDay, int courseId){
+		return timeSlotDao.isTimeslotExists(of, of2, weekDay, courseId);
+	}
+
+	@Override
 	public TimeSlot getTimeSlotById(int id) {
 		return timeSlotDao.getTimeSlotById(id);
 	}

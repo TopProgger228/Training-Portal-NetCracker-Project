@@ -76,4 +76,32 @@ public class TimeSlotDaoImpl implements TimeSlotDao {
 	        jdbcTemplate.update(SQL, of, of2, weekDay, courseId );
 	        System.out.println("TimeSlot created.");
 	}
+
+    @Override
+    public boolean isTimeslotExists(LocalTime of, LocalTime of2, String weekDay, int courseId) {
+        if (isTimeslotWithStartTime(of) == 1 && isTimeslotWithEndTime(of2) == 1 &&
+        isTimeslotWithWeekDay(weekDay) == 1 && isTimeslotWithCourseId(courseId) == 1) {
+            return true;
+        } else return false;
+    }
+
+    private int isTimeslotWithStartTime(LocalTime startTime) {
+        String SQL = "SELECT COUNT(*) FROM \"TimeSlot\" WHERE start_time = ?";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, startTime);
+    }
+
+    private int isTimeslotWithEndTime(LocalTime endTime) {
+        String SQL = "SELECT COUNT(*) FROM \"TimeSlot\" WHERE end_time = ?";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, endTime);
+    }
+
+    private int isTimeslotWithWeekDay(String weekDay) {
+        String SQL = "SELECT COUNT(*) FROM \"TimeSlot\" WHERE week_day = ?";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, weekDay);
+    }
+
+    private int isTimeslotWithCourseId(int courseId) {
+        String SQL = "SELECT COUNT(*) FROM \"TimeSlot\" WHERE course_id = ?";
+        return jdbcTemplate.queryForObject(SQL, Integer.class, courseId);
+    }
 }

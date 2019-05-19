@@ -10,6 +10,8 @@ public interface TimeSlotService {
 
     void createTimeSlot(LocalTime startTime, LocalTime endTime, String weekDay, int courseId);
 
+    boolean isTimeslotExists(LocalTime of, LocalTime of2, String weekDay, int courseId);
+
     TimeSlot getTimeSlotById(int id);
 
     List<TimeSlot> listTimeSlots();
