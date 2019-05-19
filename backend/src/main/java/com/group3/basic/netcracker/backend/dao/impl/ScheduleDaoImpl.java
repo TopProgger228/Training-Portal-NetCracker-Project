@@ -79,10 +79,12 @@ public class ScheduleDaoImpl implements ScheduleDao {
     }
 
     @Override
-    public void createSchedule(int userId, int timeSlotId, boolean isChoosen) {
+    public void createSchedule(int userId, int[] timeSlotId, boolean isChoosen) {
         String SQL = "INSERT INTO \"Schedule\" (user_id, time_slot_id, is_choosen) VALUES (?,?,?)";
-        jdbcTemplate.update(SQL,  userId, timeSlotId, isChoosen);
-        System.out.println("Schedule created.");
+        for (int i = 0; i < timeSlotId.length; i++) {
+            jdbcTemplate.update(SQL,  userId, timeSlotId[i], isChoosen);
+            System.out.println("Schedule"+ i +"created.");
+        }
     }
 
     @Override

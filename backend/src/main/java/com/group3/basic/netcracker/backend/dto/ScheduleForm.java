@@ -7,7 +7,7 @@ public class ScheduleForm {
     @NotBlank
     private int user_id;
     @NotBlank
-    private int time_slot_id;
+    private int[] time_slot_id;
 
     private boolean is_choosen;
 
@@ -19,11 +19,11 @@ public class ScheduleForm {
         this.user_id = user_id;
     }
 
-    public int getTime_slot_id() {
+    public int[] getTime_slot_id() {
         return time_slot_id;
     }
 
-    public void setTime_slot_id(int time_slot_id) {
+    public void setTime_slot_id(int[] time_slot_id) {
         this.time_slot_id = time_slot_id;
     }
 
