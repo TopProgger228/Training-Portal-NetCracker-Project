@@ -6,40 +6,29 @@ declare var toastr: any;
 export class ToasterService {
 
   constructor() {
-
     this.setting();
-
   }
+
 
   Success(title: string, message?: string) {
 
-    toastr.success(title, message).css(
-      "font-size", "16px"
-    )
+    toastr.success(title, message).css("font-size", "16px");
 
   }
 
   Warning(title: string, message?: string) {
 
-    toastr.warning(title, message).css(
-      "font-size", "16px"
-    )
+    toastr.warning(title, message).css("font-size", "16px");
 
   }
 
   Error(title: string, message?: string) {
-
-    toastr.error(title, message).css(
-      "font-size", "16px"
-    )
+    toastr.error(title, message).css("font-size", "16px");
 
   }
 
   Info(message: string) {
-
-    toastr.info(message).css(
-      "font-size", "16px"
-    )
+    toastr.info(message).css("font-size", "16px");
 
   }
 
@@ -49,7 +38,7 @@ export class ToasterService {
       "closeButton": false,
       "debug": false,
       "newestOnTop": false,
-      "progressBar": false,
+      "progressBar": true,
       "positionClass": "toast-bottom-right",
       "preventDuplicates": false,
       "onclick": null,
@@ -60,9 +49,8 @@ export class ToasterService {
       "showEasing": "swing",
       "hideEasing": "linear",
       "showMethod": "fadeIn",
-      "hideMethod": "fadeOut",
-
-    }
+      "hideMethod": "fadeOut"
+    };
 
   }
 

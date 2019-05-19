@@ -1,40 +1,28 @@
 <div *ngIf="loggedOut; else isLoggedIn">
 </div>
-
 <ng-template #isLoggedIn>
 
+  <div style="height: 100%; min-height: 100vh">
+    <app-menu></app-menu>
+    <div id="bg-image">
+      <div id="bg-overlay">
+        <div class="container">
 
-  <app-menu></app-menu>
-  <div id="bg-image">
-    <div id="bg-overlay">
-      <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
+          <h1>Schedule Form</h1>
+          <br>
+          <br>
+          <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
+            <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id"
+                    name="time_slot_id" multiple>
+              <option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
+              </option>
+            </select>
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          </form>
 
-          <div class="container">
-            <h1>Schedule Form</h1>
-            <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
-              <div style="width: 80%;  margin: 20px auto;">
-
-
-                <div class="form-group">
-                  <label for="time_slot_id">Choose desirable time</label>
-                  <select [(ngModel)]="schedule.time_slot_id" class="form-control" id="time_slot_id"
-                          name="time_slot_id">
-                    <option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
-                    </option>
-                  </select>
-                </div>
-
-              </div>
-              <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
-              <button type="submit"  class="btn btn-success" (click)="changeSuccessMessage()">Submit</button>
-            </form>
-
-          </div>
         </div>
       </div>
     </div>
   </div>
-
   <app-footer></app-footer>
 </ng-template>

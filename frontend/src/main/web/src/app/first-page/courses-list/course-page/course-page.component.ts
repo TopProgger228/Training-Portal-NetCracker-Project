@@ -6,8 +6,6 @@ import {Course} from "../../../services/course";
 import {Timeslots} from "../../../groups-schedule/timeslots";
 import {Schedule} from "../../../services/schedule";
 import {UserModel} from "../../../services/user-model";
-import {Student} from "../../../services/student";
-import {debounceTime} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {ToasterService} from "../../../services/toaster.service";
 
@@ -29,7 +27,6 @@ export class CoursePageComponent implements OnInit {
   schedule = new Schedule(0, 0, false);
 
   private _success = new Subject<string>();
-  successMessage: string;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private courseService: CourseService,
@@ -65,15 +62,23 @@ export class CoursePageComponent implements OnInit {
           this.schedule = new Schedule(this.userId, 0, false);
         });
       console.log('Username', this.token.getUsername());
-
+/*
         this._success.subscribe((message) => this.successMessage = message);
         this._success.pipe(
           debounceTime(10000)
         ).subscribe(() => this.successMessage = null);
-
+*/
 
     }
 
+  }
+
+  success() {
+    this.toasterService.Success("You chose your desirable time successfully");
+  }
+
+  error() {
+    this.toasterService.Error("Error!", "Please choose time correctly");
   }
 
   onSubmit() {
@@ -83,9 +88,11 @@ export class CoursePageComponent implements OnInit {
         console.log('[POST] create schedule successfully', value);
       }, error => {
         console.log('FAIL to create schedule!');
+        this.error();
       },
       () => {
         console.log('POST schedule - now completed.');
+        this.success();
       });
   }
 
