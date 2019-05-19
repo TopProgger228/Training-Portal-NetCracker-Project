@@ -101,16 +101,17 @@ public class Reporter {
 
     public List<Map<String, Object>> queryReportByCourse(int[] courses) throws SQLException {
         String g = Arrays.toString(courses).substring(1).replaceFirst("]", "").replace("[", "");
-        String sql = "select c.name as \"Course\", \n" +
-                "coalesce(cast(count(lm.id) as varchar), ', ', u.fname) as \"MissingQty\",\n" +
-                "coalesce(u.username,'Anyone missing') as \"Student\", \n" +
-                "coalesce(lm.reason, '') \"Reason\"\n" +
-                "from \"Course\" c\n" +
-                "left join \"Lesson\" l on l.course_id = c.id \n" +
-                "left join \"LessonMissing\" lm on l.id = lm.lesson_id\n" +
-                "left join \"User\" u on u.id = lm.user_id\n" +
-                "where c.id in (" + g + ")\n" +
-                "group by c.name, c.id, lm.reason, u.username, u.fname";
+        String sql = "select c.name as \"Course\",\n" +
+                "                coalesce(cast(l.id as text), 'Any lesson') as \"Lesson\", \n" +
+                "                coalesce(u.username,'Anyone missing') as \"Student\",             \n" +
+                "                coalesce(lm.reason, '') \"Reason\"\n" +
+                "                from \"Course\" c\n" +
+                "                left join \"Lesson\" l on l.course_id = c.id\n" +
+                "                left join \"LessonMissing\" lm on l.id = lm.lesson_id\n" +
+                "                left join \"User\" u on u.id = lm.user_id\n" +
+                "                where c.id in (select id from \"Course\")\n" +
+                "                group by c.name, c.id, l.id, lm.reason, u.username, u.fname\n" +
+                "\t\t\t\torder by c.name";
         List<Map<String, Object>> list = template.queryForList(sql);
         System.out.println("------Attendance by courses-------");
         list = isResultEmpty(list);
