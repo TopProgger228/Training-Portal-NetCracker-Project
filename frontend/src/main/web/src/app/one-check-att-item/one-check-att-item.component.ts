@@ -30,8 +30,7 @@ export class OneCheckAttItemComponent implements OnInit {
 
   putAttendanceStatus (userId: string, lessonId: string, status: string) {
     this.trainerService.putAttendanceStatus(userId, lessonId, status)
-      .subscribe(()=>{
-      },
+      .subscribe(()=>{},
         () =>{
           this.error(this.user.userFirstName, this.user.userLastName)
         },

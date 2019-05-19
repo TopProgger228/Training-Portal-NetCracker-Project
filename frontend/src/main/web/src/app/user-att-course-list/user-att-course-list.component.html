@@ -1,9 +1,9 @@
 <div class="row" (click) = "isHidden()">
-  <div class="col">{{index + 1}}</div>
-  <div class="col">{{course.name}}</div>
-  <div class="col">{{course.skillLevel}}</div>
-  <div class="col">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
-  <div class="col">{{course.presentLessonCount}}/{{course.finishedLessonCount}}/{{course.totalLessonCount}}</div>
+  <div class="col-1">{{index + 1}}</div>
+  <div class="col-3">{{course.name}}</div>
+  <div class="col-2">{{course.skillLevel}}</div>
+  <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
+  <div class="col-3" style="text-align: center">{{course.presentLessonCount}}/{{course.finishedLessonCount}}/{{course.totalLessonCount}}</div>
 </div>
 <div *ngIf="!hide">
   <app-spinner *ngIf="isLoading"></app-spinner>
