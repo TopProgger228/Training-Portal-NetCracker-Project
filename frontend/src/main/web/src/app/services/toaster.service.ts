@@ -13,25 +13,33 @@ export class ToasterService {
 
   Success(title: string, message?: string) {
 
-    toastr.success(title, message)
+    toastr.success(title, message).css(
+      "font-size", "16px"
+    )
 
   }
 
   Warning(title: string, message?: string) {
 
-    toastr.warning(title, message)
+    toastr.warning(title, message).css(
+      "font-size", "16px"
+    )
 
   }
 
   Error(title: string, message?: string) {
 
-    toastr.error(title, message)
+    toastr.error(title, message).css(
+      "font-size", "16px"
+    )
 
   }
 
   Info(message: string) {
 
-    toastr.info(message)
+    toastr.info(message).css(
+      "font-size", "16px"
+    )
 
   }
 
@@ -52,7 +60,8 @@ export class ToasterService {
       "showEasing": "swing",
       "hideEasing": "linear",
       "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
+      "hideMethod": "fadeOut",
+
     }
 
   }
