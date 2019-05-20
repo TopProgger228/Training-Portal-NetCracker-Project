@@ -8,6 +8,8 @@ import {Schedule} from "../../../services/schedule";
 import {UserModel} from "../../../services/user-model";
 import {Subject} from "rxjs";
 import {ToasterService} from "../../../services/toaster.service";
+import {FormBuilder, FormControl, FormGroup, NgModel} from "@angular/forms";
+import {MatSelect} from "@angular/material";
 
 @Component({
   selector: 'app-course-page',
@@ -55,6 +57,7 @@ export class CoursePageComponent implements OnInit {
           this.timeSlots = data;
         });
 
+
       this.courseService.getIdByUsername(this.token.getUsername())
         .subscribe(data => {
           this.userId = data;
@@ -68,9 +71,17 @@ export class CoursePageComponent implements OnInit {
           debounceTime(10000)
         ).subscribe(() => this.successMessage = null);
 */
-
     }
 
+  }
+
+  selectAll(select: NgModel, values) {
+    select.update.emit(values);
+  }
+
+
+  deselectAll(select: NgModel) {
+    select.update.emit([]);
   }
 
   success() {

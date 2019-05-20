@@ -42,6 +42,8 @@ import { OneCheckAttItemComponent } from './one-check-att-item/one-check-att-ite
 import { ScheduleInfoComponent } from './schedule-info/schedule-info.component';
 import {ToasterService} from "./services/toaster.service";
 import { SpinnerComponent } from './spinner/spinner.component';
+import {MatButtonModule, MatFormField, MatListModule, MatSelectModule} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -84,13 +86,17 @@ import { SpinnerComponent } from './spinner/spinner.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FirstPageModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatListModule,
+    MatButtonModule
   ],
   providers: [httpInterceptorProviders, ToasterService],
   bootstrap: [AppComponent]

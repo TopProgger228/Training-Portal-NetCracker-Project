@@ -20,6 +20,14 @@ label, input, select, option{
   font-size: 20px;
 }
 
+mat-select, mat-list-item, mat-option, mat-form-field{
+  font-size: 20px;
+}
+
+mat-form-field{
+  width: 70%;
+}
+
 button{
   font-size: 22px;
 }

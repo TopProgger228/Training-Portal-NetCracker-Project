@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ScheduleService} from "../services/schedule.service";
 import {TokenStorageService} from "../auth/token-storage.service";
@@ -9,14 +9,16 @@ import {ScheduleMod} from "../services/schedule-mod";
   templateUrl: './schedule-info.component.html',
   styleUrls: ['./schedule-info.component.css']
 })
-export class ScheduleInfoComponent implements OnInit {
+export class ScheduleInfoComponent implements OnInit, OnChanges {
 
+  @Input('isScheduled')
   info: ScheduleMod[];
+
   name: string;
   loggedOut = false;
 
-
-  constructor(private router: Router, private scheduleService: ScheduleService, private token: TokenStorageService) { }
+  constructor(private router: Router, private scheduleService: ScheduleService, private token: TokenStorageService) {
+  }
 
   ngOnInit() {
     if (this.token.getToken()) {
@@ -27,7 +29,7 @@ export class ScheduleInfoComponent implements OnInit {
               this.info = data;
               console.log('This record = ', this.info)
             })
-        }else {
+        } else {
           this.router.navigate(['firstPage']);
         }
         return false;
@@ -38,7 +40,21 @@ export class ScheduleInfoComponent implements OnInit {
     };
   };
 
-  OnSubmitSchedule(id: number){
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('Alert from child component, on change in parent component.');
+    // console.log(changes);
+    // const isScheduledValue = changes['isScheduled'];
+    // for (let schedule of this.info) {
+    //   if (isScheduledValue.currentValue === 'Schedule has been set') {
+    //     schedule.isScheduled == 'Schedule has been set';
+    //   }
+    //   else {
+    //     schedule.isScheduled == 'Not set yet';
+    //   }
+    // }
+  }
+
+  OnSubmitSchedule(id: number) {
     /*console.log('Local record = ', this.info);
     let result = this.info.map(({ courseId }) => courseId);
     console.log('Current id1 = ', result);*/

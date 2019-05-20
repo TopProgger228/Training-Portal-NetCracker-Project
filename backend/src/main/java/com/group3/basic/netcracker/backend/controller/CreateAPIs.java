@@ -92,8 +92,12 @@ public class CreateAPIs {
     @PostMapping("/create_new_schedule")
     public ResponseEntity<?> createNewSchedule(@RequestBody ScheduleForm scheduleForm) {
 
-        scheduleService.createSchedule(scheduleForm.getUser_id(), scheduleForm.getTime_slot_id(), scheduleForm.isIs_choosen());
+        if (scheduleForm.getTime_slot_id().length == 0){
+            return new ResponseEntity<>(new ResponseMessage("Chosen Timeslot == null"), HttpStatus.BAD_REQUEST);
+        }else{
+            scheduleService.createSchedule(scheduleForm.getUser_id(), scheduleForm.getTime_slot_id(), scheduleForm.isIs_choosen());
 
-        return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
+        }
     }
 }

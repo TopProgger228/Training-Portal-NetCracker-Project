@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.filter-option > .mat-pseudo-checkbox {
+  display: none !important;
+}
+
+.filter-sidenav .mat-list-item-content {
+  padding: 0 10px !important;
+  font-size: 0.875rem !important;
+}
+
+.filter-sidenav .mat-select-trigger {
+  font-size: 1rem !important;
+}
