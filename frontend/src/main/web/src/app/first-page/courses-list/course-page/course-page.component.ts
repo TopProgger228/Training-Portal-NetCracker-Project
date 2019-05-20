@@ -74,7 +74,7 @@ export class CoursePageComponent implements OnInit {
   }
 
   success() {
-    this.toasterService.Success("You chose your desirable time successfully");
+    this.toasterService.Success("Success","Your schedule was formed successfully");
   }
 
   error() {

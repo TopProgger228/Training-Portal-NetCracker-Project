@@ -8,6 +8,7 @@ import { Courses } from "./courses";
 import { Schedule } from "../services/schedule";
 import { Timeslots } from "./timeslots";
 import * as Util from "util";
+import {ToasterService} from "../services/toaster.service";
 
 @Component({
   selector: 'app-groups-schedule',
@@ -24,8 +25,7 @@ export class GroupsScheduleComponent implements OnInit {
   schedule = new Schedule(0, 0, false);
 
   constructor(private router: Router, private timeSlotService: TimeSlotService,
-    private coursesService: CoursesService,
-    private token: TokenStorageService) {
+    private coursesService: CoursesService, private token: TokenStorageService, private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -49,7 +49,13 @@ export class GroupsScheduleComponent implements OnInit {
 
   submitted = false;
 
+  success() {
+    this.toasterService.Success("Success","Your schedule was formed successfully");
+  }
 
+  error() {
+    this.toasterService.Error("Error!", "Please choose time correctly");
+  }
 
   onSubmitT() {
     console.log(this.timeSlotT);
@@ -59,9 +65,11 @@ export class GroupsScheduleComponent implements OnInit {
         console.log('[POST] create timeslot successfully', value);
       }, error => {
         console.log('FAIL to create timeslot!');
+        this.error();
       },
       () => {
         console.log('POST timeslot - now completed.');
+        this.success();
       });
   }
   
@@ -73,13 +81,5 @@ export class GroupsScheduleComponent implements OnInit {
     this.router.navigate(['auth/login']);
   }
 
-  setSentMessage(data: any) {
-    if (data.body) {
-      if (data.statusText === "OK") this.sentMessage = "Mail sent successfully";
-      else if (data.statusText === "BAD_REQUEST") this.sentMessage = "User does not exist"
-      else this.sentMessage = "Something going wrong, try later";
-    }
-    else this.sentMessage = "Mail does not sent yet";
-  }
 
 }
