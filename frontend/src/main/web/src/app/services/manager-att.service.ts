@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {ManagerUserAtt} from "../interface/manager-user-att";
 import {CourseAtt} from "../interface/course-att";
 import {LessonAtt} from "../interface/lesson-att";
+import {MngCourse} from "../interface/mng-course";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class ManagerAttService {
 
   private get_manager_user_att: string = "http://localhost:8080/api/getManagerUserAtt/";
   private get_course_by_user_id: string = "http://localhost:8080/api/getCourseByUserId/";
-  private get_lessons_for_one_user: string = "http://localhost:8080/api/getCourseLessonsForOneUser/"
+  private get_lessons_for_one_user: string = "http://localhost:8080/api/getCourseLessonsForOneUser/";
+
+  data: Observable<MngCourse[]>;
+  mngCourse: MngCourse[];
 
   constructor( private http: HttpClient) { }
 
