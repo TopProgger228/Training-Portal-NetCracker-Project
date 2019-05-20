@@ -20,6 +20,7 @@
           <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
             *ngIf="isChooseCoursesSelected && isSelectAllSelected" (click)="setSelectAll(false)">Cancel all</button>
         </div>
+        <app-spinner *ngIf="isLoading"></app-spinner>
         <div class="list-group " *ngFor="let course of courseList; index as i">
           <a class="list-group-item list-group-item-action mt-2" role="button">
             <div class="row">
@@ -98,17 +99,18 @@
           <div class="col-1">#</div>
           <div class="col-3">Name</div>
           <div class="col-2">Skill level</div>
-          <div class="col-3">Trainer</div>
+          <!--<div class="col-3">Trainer</div>-->
           <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
             (click)="createReportByTrainer()">Create report</button>
         </div>
+        <app-spinner *ngIf="isLoadingTrainer"></app-spinner>
         <div class="list-group " *ngFor="let course of courseListByTrainer; index as i">
           <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosenCourse(course.courseId)">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
               <div class="col-3">{{course.name}}</div>
               <div class="col-2 text-center">{{course.skillLevel}}</div>
-              <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
+              <!--<div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>-->
             </div>
           </a>
           <div *ngIf="course.courseId === choosenOneCourse">
@@ -179,6 +181,7 @@
           <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
             (click)="createReportByStudent()">Create report</button>
         </div>
+        <app-spinner *ngIf="isLoadingUser"></app-spinner>
         <div class="list-group " *ngFor="let course of courseListByUser; index as i">
           <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosenCourse(course.courseId)">
             <div class="row">
@@ -256,6 +259,7 @@
           <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
             (click)="createReportByLevel()">Create report</button>
         </div>
+        <app-spinner *ngIf="isLoadingLevel"></app-spinner>
         <div class="list-group " *ngFor="let course of courseListByLevel; index as i">
           <a class="list-group-item list-group-item-action mt-2" role="button" (click)="setChoosenCourse(course.courseId)">
             <div class="row">

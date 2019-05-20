@@ -7,4 +7,8 @@ public interface Queries {
             "            JOIN \"Course\" c ON c.id = g.course_id \n" +
             "            LEFT JOIN (SELECT c.id AS course, u.username AS trainer from \"User\" u JOIN \"Course\" c\n" +
             "            ON c.trainer_id = u.id) AS t on t.course = course_id WHERE t.trainer LIKE 'yaTrainer'";
+
+
+
+
 }

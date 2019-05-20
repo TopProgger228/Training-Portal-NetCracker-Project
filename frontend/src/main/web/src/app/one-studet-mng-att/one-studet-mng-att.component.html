@@ -1,13 +1,16 @@
-<div style="display: flex; font-size: 16px" (click) = "isHidden()">
-  <div style="flex-grow: 2">
-    <div>Username: {{user.userName}}</div>
-    <div>First name: {{user.firstName}}</div>
-    <div>Last name: {{user.lastName}}</div>
-    <div>Total lessons: {{user.totalLessonCount}}</div>
-  </div>
-  <div style="flex-grow: 3">
-    <table class="table table-bordered" style="text-align: center">
-      <thead>
+<mat-expansion-panel>
+  <mat-expansion-panel-header style="min-height: max-content">
+    <mat-panel-title style="min-width: 20%">
+      <div>
+        <div>Username: {{user.userName}}</div>
+        <div>First name: {{user.firstName}}</div>
+        <div>Last name: {{user.lastName}}</div>
+        <div>Total lessons: {{user.totalLessonCount}}</div>
+      </div>
+    </mat-panel-title>
+    <mat-panel-description>
+      <table class="table table-bordered" style="text-align: center">
+        <thead>
         <tr>
           <td>Present</td>
           <td>Absent without reason</td>
@@ -15,29 +18,22 @@
           <td>Absent due to sick leave</td>
           <td>Absent due to project activities</td>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <td>{{statusList.get("Present")}}</td>
         <td>{{statusList.get("Absent without reason")}}</td>
         <td>{{statusList.get("Absent due to business trip")}}</td>
         <td>{{statusList.get("Absent due to sick leave")}}</td>
         <td>{{statusList.get("Absent due to project activities")}}</td>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div *ngIf="!hide">
-  <app-spinner *ngIf="isLoading"></app-spinner>
-  <div class="row" (click) = "isHidden()">
-    <div class="col-1">#</div>
-    <div class="col-3">Course</div>
-    <div class="col-2">Skill level</div>
-    <div class="col-3">Trainer</div>
-    <div class="col-3" style="text-align: right">Present/Finish/All lessons</div>
-  </div>
-  <div class="list-group " *ngFor="let course of courseList; index as i" style="font-size: 20px">
+        </tbody>
+      </table>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <div class="list-group " *ngFor="let course of courseList; index as i" style="font-size: 14px">
     <a class="list-group-item list-group-item-action mt-2">
       <app-user-att-course-list [index]="i" [courseAtt]="course" [userId]="user.id"></app-user-att-course-list>
     </a>
   </div>
-</div>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+</mat-expansion-panel>

@@ -37,6 +37,11 @@ export class AdminAttendanceComponent implements OnInit {
   selectedCourseArray: Array<{ id: any, isSelected: any }> = [];
   selectedCoursesForReport: Array<number> = [];
 
+  isLoading: boolean = true;
+  isLoadingTrainer: boolean = false;
+  isLoadingUser: boolean = false;
+  isLoadingLevel: boolean = false;
+
   constructor(private adminService: AdminAttService) { }
 
   ngOnInit() {
@@ -45,7 +50,7 @@ export class AdminAttendanceComponent implements OnInit {
     this.isSelectAllSelected = true;
 
     this.adminService.getCourses()
-      .subscribe(data => this.courseList = data);
+      .subscribe(data => {this.courseList = data; this.isLoading = false});
     this.levelSelector = [
       "Beginner", "Junior", "Middle", "Master"
     ]
@@ -96,24 +101,26 @@ export class AdminAttendanceComponent implements OnInit {
 
 
   filterByUser(username: string) {
+    this.isLoadingUser = true;
     console.log(username);
     this.choosenOneCourse = -1;
     this.choosenOneLesson = -1;
     this.adminService.filterByUser(username)
-      .subscribe(data => console.log(this.courseListByUser = data));
+      .subscribe(data => {this.courseListByUser = data; this.isLoadingUser = false});
   }
 
   filterByTrainer(id: number) {
     this.adminService.filterByTrainer(id)
-      .subscribe(data => this.courseListByTrainer = data);
+      .subscribe(data => {this.courseListByTrainer = data; this.isLoadingTrainer = false});
   }
 
   filterBySkillLevel(level: string) {
     this.adminService.filterBySkillLevel(level)
-      .subscribe(data => this.courseListByLevel = data);
+      .subscribe(data => {this.courseListByLevel = data; this.isLoadingLevel = false});
   }
 
   onTrainerSelected(val: any) {
+    this.isLoadingTrainer = true;
     this.choosenOneCourse = -1;
     this.choosenOneLesson = -1;
     this.filterByTrainer(val);
@@ -121,7 +128,7 @@ export class AdminAttendanceComponent implements OnInit {
   }
 
   onLevelSelected(val: any) {
-
+    this.isLoadingLevel = true;
     this.choosenOneCourse = -1;
     this.choosenOneLesson = -1;
     this.filterBySkillLevel(val);
