@@ -71,17 +71,16 @@ public class Reporter {
                 setFont(workbook, sheet);
             }
         }
-
+        String userDirectoryString = System.getProperty("user.home");
         try {
             //Write the workbook in file system
-            FileOutputStream out = new FileOutputStream(new File("D:\\report.xlsx"));
+            FileOutputStream out = new FileOutputStream(new File(userDirectoryString + "\\report.xlsx"));
             workbook.write(out);
             out.close();
             System.out.println("Report written successfully.");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public List<Map<String, Object>> queryReportByTrainer(int trainerId) throws SQLException {
