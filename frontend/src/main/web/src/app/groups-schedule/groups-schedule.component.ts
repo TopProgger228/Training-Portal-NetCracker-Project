@@ -50,11 +50,11 @@ export class GroupsScheduleComponent implements OnInit {
   submitted = false;
 
   success() {
-    this.toasterService.Success("Success","Your schedule was formed successfully");
+    this.toasterService.Success("Success","Timeslot was formed successfully");
   }
 
   error() {
-    this.toasterService.Error("Error!", "Please choose time correctly");
+    this.toasterService.Error("Error!", "Timeslot already exists");
   }
 
   onSubmitT() {

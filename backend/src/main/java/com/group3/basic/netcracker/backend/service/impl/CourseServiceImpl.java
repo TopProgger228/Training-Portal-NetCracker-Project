@@ -1,9 +1,11 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
 import com.group3.basic.netcracker.backend.dto.CourseForm;
+import com.group3.basic.netcracker.backend.dto.CourseWithTrainer;
 import com.group3.basic.netcracker.backend.service.CourseService;
 import com.group3.basic.netcracker.backend.dao.CourseDAO;
 import com.group3.basic.netcracker.backend.entity.Course;
+import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,4 +66,10 @@ public class CourseServiceImpl implements CourseService{
     public Course getCourseByName(String name){
         return courseDAO.getCourseByName(name);
     }
+
+    @Override
+    public List<CourseWithTrainerRowMapper> getCoursesWithTrainerByUsername(String username){
+        return courseDAO.getCoursesWithTrainerByUsername(username);
+    };
+
 }

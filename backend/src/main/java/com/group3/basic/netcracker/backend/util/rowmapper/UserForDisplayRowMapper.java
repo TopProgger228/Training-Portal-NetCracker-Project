@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.util.rowmapper;
 
 import com.group3.basic.netcracker.backend.dto.UserForDisplay;
+import com.group3.basic.netcracker.backend.util.file.ImageConverter;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

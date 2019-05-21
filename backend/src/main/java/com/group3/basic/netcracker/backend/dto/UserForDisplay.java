@@ -8,18 +8,20 @@ public class UserForDisplay {
     private String username;
     private String email;
     private int id;
+    private String photo;
 
     public UserForDisplay() {
     }
 
     public UserForDisplay(String fname, String lname, String username,
-                          String email, int id){
+                          String email, int id, String photo){
 
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.username = username;
         this.email = email;
+        this.photo = photo;
     }
 
     public int getId() {
@@ -73,5 +75,11 @@ public class UserForDisplay {
         return email;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
 
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 }

@@ -1,8 +1,10 @@
+import {Input} from "@angular/core";
+
 export class ScheduleMod {
   private _courseId: number;
   private _courseName: string;
   countVoted: number;
-  isScheduled: string;
+  private _isScheduled: string;
 
 
   constructor(courseId: number) {
@@ -18,4 +20,11 @@ export class ScheduleMod {
   }
 
 
+  get isScheduled(): string {
+    return this._isScheduled;
+  }
+
+  set isScheduled(value: string) {
+    this._isScheduled = value;
+  }
 }

@@ -1,0 +1,96 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn >
+  <div style="height: 100%; min-height: 100vh">
+
+    <app-menu></app-menu>
+
+    <div class="container mt-5">
+      <div class="row">
+
+        <div class="center-block col-md-7 ">
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4>User Profile</h4><button  *ngIf="EditProfile === false" type="button"  class="btn m-0 h6" (click)="setEditUser()">Edit Profile</button ></div>
+            <div class="panel-body">
+
+              <div class="box box-info">
+
+                <div class="box-body">
+                  <div class="col-sm-6">
+                    <div align="center"><img *ngIf="hasPhoto" alt="User Pic"
+                                             [src]="user.photo"
+                                             id="profile-image" class="img-circle img-responsive">
+                                        <img *ngIf="!hasPhoto" alt="User Pic"
+                                             src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                                             id="profile-image1" class="img-circle img-responsive">
+
+
+                      <input id="profile-image-upload" class="hidden" type="file">
+                      <button type="button"  class="btn m-0 h6" style="color:#999;" (click)="fileInput.click();save=true">click here to change profile image</button>
+                      <div style="display:none" class="form-group  text-center">
+                        <label >Photo</label>
+                        <input #fileInput type="file" (change)="onFileChanged($event)"
+                        class="form-control" name="photo" />
+                      </div>
+                      <div *ngIf="save">
+                        <button type="button" class="mt-1 btn btn-secondary" (click)="uploadPhoto()">
+                          <span class="" aria-hidden="true" >Save photo</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <h4 style="color:#00b1b1; font-size:20px">{{user.fname}} {{user.lname}}</h4>
+                    <span><p>{{this.token.getAuthorities()[0]}}</p></span>
+                  </div>
+                  <div class="clearfix"></div>
+                  <hr style="margin:5px 0 5px 0;">
+
+                  <div class="col-sm-5 col-xs-6 tital ">Username:</div>
+                  <div class="col-sm-7 col-xs-6 ">
+                    <h5 *ngIf="EditProfile === false" style="font-size:16px"> {{user.username}}</h5>
+                    <div *ngIf="EditProfile === true"><input type="text" [(ngModel)]="user.username"></div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+                  <div class="col-sm-5 col-xs-6 tital ">First Name:</div>
+                  <div class="col-sm-7 col-xs-6 ">
+                    <h5 *ngIf="EditProfile === false" style="font-size:16px"> {{user.fname}}</h5>
+                    <div *ngIf="EditProfile === true"><input type="text" [(ngModel)]="user.fname"></div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+                  <div class="col-sm-5 col-xs-6 tital ">Last Name:</div>
+                  <div class="col-sm-7">
+                    <h6 *ngIf="EditProfile === false" style="font-size:16px">{{user.lname}}</h6>
+                    <div *ngIf="EditProfile === true"><input type="text" [(ngModel)]="user.lname"></div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+                  <div class="col-sm-5 col-xs-6 tital ">E-mail:</div>
+                  <div class="col-sm-7">
+                    <h6 *ngIf="EditProfile === false" style="font-size:16px">{{user.email}}</h6>
+                    <div *ngIf="EditProfile === true"><input type="text" [(ngModel)]="user.email"></div>
+                  </div>
+
+                  <div *ngIf="EditProfile === true">
+                    <button type="button" class="mt-5 btn btn-secondary" (click)="updateUser(user)">
+                      <span class="" aria-hidden="true" >Save profile</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-user-courses *ngIf="this.token.getAuthorities()[0] == 'Student'"></app-user-courses>
+  <app-footer></app-footer>
+</ng-template>

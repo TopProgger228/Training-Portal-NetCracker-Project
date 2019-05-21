@@ -92,7 +92,17 @@ public class CreateAPIs {
     @PostMapping("/create_new_schedule")
     public ResponseEntity<?> createNewSchedule(@RequestBody ScheduleForm scheduleForm) {
 
-        scheduleService.createSchedule(scheduleForm.getUser_id(), scheduleForm.getTime_slot_id(), scheduleForm.isIs_choosen());
+        if (scheduleForm.getTime_slot_id().length == 0){
+            return new ResponseEntity<>(new ResponseMessage("Schedule wasn't chosen"), HttpStatus.BAD_REQUEST);
+        }
+
+        Integer[] tempReturnArray = scheduleService.isScheduleExists(scheduleForm.getUser_id(), scheduleForm.getTime_slot_id(), scheduleForm.isIs_choosen());
+
+        if (tempReturnArray == null) {
+            return new ResponseEntity<>(new ResponseMessage("All schedules already exists"), HttpStatus.OK);
+        } else {
+            scheduleService.createSchedule(scheduleForm.getUser_id(), tempReturnArray, scheduleForm.isIs_choosen());
+        }
 
         return new ResponseEntity<>(new ResponseMessage("Schedule created successfully!"), HttpStatus.OK);
     }

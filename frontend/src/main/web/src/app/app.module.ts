@@ -32,6 +32,7 @@ import {TrainerAttendanceComponent} from "./trainer-attendance/trainer-attendanc
 import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.component";
 import { ReactiveFormsModule } from '@angular/forms';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {CoursePageComponent} from "./first-page/courses-list/course-page/course-page.component";
 import { CourseAttendeesComponent } from './course-attendees/course-attendees.component';
 import { ManagerAttendanceComponent } from './manager-attendance/manager-attendance.component';
@@ -42,6 +43,10 @@ import { OneCheckAttItemComponent } from './one-check-att-item/one-check-att-ite
 import { ScheduleInfoComponent } from './schedule-info/schedule-info.component';
 import {ToasterService} from "./services/toaster.service";
 import { SpinnerComponent } from './spinner/spinner.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatButtonModule, MatListModule, MatSelectModule } from "@angular/material";
+import {MatExpansionModule} from '@angular/material/expansion'
+import {UserCoursesComponent} from "./user-profile/user-courses/user-courses.component";
 
 @NgModule({
   declarations: [
@@ -69,6 +74,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     TrainerAttendanceComponent,
     AdminAttendanceComponent,
     ManagerProfileComponent,
+    UserProfileComponent,
     StudentProfileComponent,
     ManagerAttendanceComponent,
     OneStudetMngAttComponent,
@@ -79,18 +85,24 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CourseAttendeesComponent,
     OneCheckAttItemComponent,
     ScheduleInfoComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    UserCoursesComponent
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FirstPageModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatListModule,
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [httpInterceptorProviders, ToasterService],
   bootstrap: [AppComponent]

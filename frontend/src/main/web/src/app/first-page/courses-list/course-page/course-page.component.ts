@@ -8,6 +8,8 @@ import {Schedule} from "../../../services/schedule";
 import {UserModel} from "../../../services/user-model";
 import {Subject} from "rxjs";
 import {ToasterService} from "../../../services/toaster.service";
+import {FormBuilder, FormControl, FormGroup, NgModel} from "@angular/forms";
+import {MatSelect} from "@angular/material";
 
 @Component({
   selector: 'app-course-page',
@@ -25,7 +27,7 @@ export class CoursePageComponent implements OnInit {
   userId: number;
   timeSlots: Timeslots[];
   schedule = new Schedule(0, 0, false);
-
+  myIdArray: any[];
   private _success = new Subject<string>();
 
 
@@ -40,7 +42,7 @@ export class CoursePageComponent implements OnInit {
       this.route.params.subscribe(params => {
         this.name = params['name']; // (+) converts string 'id' to a number
         this.username = params['username'];
-        console.log('Name', this.name)
+        console.log('Name', this.name);
         console.log('Username', this.token.getUsername())
         // In a real app: dispatch action to load the details here.
       });
@@ -53,7 +55,11 @@ export class CoursePageComponent implements OnInit {
       this.courseService.getTimeSlots(this.name)
         .subscribe(data => {
           this.timeSlots = data;
+          console.log('This schedule = ', this.timeSlots);
+          this.myIdArray = this.timeSlots.map(({ id }) => id);
+          console.log('Current id1 = ', this.myIdArray);
         });
+
 
       this.courseService.getIdByUsername(this.token.getUsername())
         .subscribe(data => {
@@ -68,9 +74,17 @@ export class CoursePageComponent implements OnInit {
           debounceTime(10000)
         ).subscribe(() => this.successMessage = null);
 */
-
     }
 
+  }
+
+  selectAll(select: NgModel, values) {
+    select.update.emit(values);
+  }
+
+
+  deselectAll(select: NgModel) {
+    select.update.emit([]);
   }
 
   success() {
