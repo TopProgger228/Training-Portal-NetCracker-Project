@@ -5,12 +5,18 @@
   <div style="height: 100%;  min-height: 100vh">
 
   <app-menu></app-menu>
-  <div class="col-lg-5 shadow p-3 mb-10 rounded thumbnail" style="width: 80%;  margin: 20px auto;">
-    <legend>Usename</legend><div class="">{{student.username}}</div>
-    <legend>First name</legend><div>{{student.fname}}</div>
-    <legend>Last name</legend><div>{{student.lname}}</div>
-    <legend>Email</legend><div>{{student.email}}</div>
-  </div>
+    <div class="row">
+      <div class="col-lg-5 shadow p-3 mb-5 rounded thumbnaild-flex center-block" style="width: 80%;  margin: 20px auto;">
+        <legend class="h1">Usename</legend>
+        <div class="h3">{{student.username}}</div>
+        <legend class="h1">First name</legend>
+        <div class="h3">{{student.fname}}</div>
+        <legend class="h1">Last name</legend>
+        <div class="h3">{{student.lname}}</div>
+        <legend class="h1">Email</legend>
+        <div class="h3">{{student.email}}</div>
+      </div>
+    </div>
 
 </div>
 

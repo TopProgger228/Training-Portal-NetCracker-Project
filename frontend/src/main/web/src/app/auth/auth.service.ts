@@ -26,11 +26,19 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.SignInUrl, credentials, httpOptions);
   }
 
-  signUp(info: SignUpInfo): Observable<string> { 
+  signUp(info: SignUpInfo): Observable<any> {
+    // const req = new HttpRequest('POST',this.SignUpUrl , info, {
+    //   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    //   reportProgress: true,
+    //   responseType: 'text',
+    //   params: new HttpParams().set("filename", info.photo.name)
+    //     .set("fileExtension", info.photo.name.slice((info.photo.name.lastIndexOf(".") - 1 >>> 0) + 2)),
+    // });
+    // return this.http.request(req);
     return this.http.post<string>(this.SignUpUrl, info, httpOptions);
   }
 
-  resetPassword(email: string, password: string): Observable<any> { 
+  resetPassword(email: string, password: string): Observable<any> {
     const req = new HttpRequest('POST', this.ResetPasswordUrl, null, {
       reportProgress: true,
       responseType: 'text',

@@ -7,6 +7,7 @@ import {Timeslot} from "../groups-schedule/timeslot";
 import {Schedules} from "./schedules";
 import {UserModel} from "./user-model";
 import {Student} from "./student";
+import {HttpParams, HttpRequest} from "../../../node_modules/@angular/common/http";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,6 +26,7 @@ export class CourseService {
   private studyUrl = 'http://localhost:8080/api/create_new_schedule';
   private timeUrl = "http://localhost:8080/api/timeslot?name=";
   private userIdUrl = "http://localhost:8080/api/student_id?username=";
+  private studentCoursesUrl = "http://localhost:8080/api/studentCourses";
 
   constructor(private http: HttpClient) {
   }
@@ -59,5 +61,13 @@ export class CourseService {
 
   getIdByUsername(username: string): Observable<any>{
     return this.http.get<number>(this.userIdUrl + username, httpOptions);
+  }
+
+  getStudentCoursesByUsername(username: string): Observable<any>{
+    const req = new HttpRequest('GET', this.studentCoursesUrl , null, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      params: new HttpParams().set('username', username),
+    });
+    return this.http.request(req);
   }
 }

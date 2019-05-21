@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(String username, String role, String fname, String lname,
-                           String email, String pass, LocalDate created_at, byte[] photo) {
+                           String email, String pass, LocalDate created_at, String photo) {
         userDao.createUser(username, role, fname, lname, email, pass, created_at, photo);
     }
 
@@ -52,9 +52,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(int id, String username, String  role, String fname, String lname,
-                           String email, String pass, LocalDate created_at, byte[] photo) {
-        userDao.updateUser(id, username, role, fname, lname, email, pass, created_at, photo);
+    public void updateUser(int id, String username, String fname, String lname,
+                           String email) {
+        userDao.updateUser(id, username, fname, lname, email);
     }
 
     @Override
@@ -150,5 +150,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getId(String username) {
         return userDao.getId(username);
+    }
+
+    @Override
+    public int updatePhoto(String username, String filepath) {
+        return userDao.updatePhoto(username, filepath);
+    }
+
+    @Override
+    public String getPhotoByUsername(String username){
+        return userDao.getPhotoByUsername(username);
     }
 }

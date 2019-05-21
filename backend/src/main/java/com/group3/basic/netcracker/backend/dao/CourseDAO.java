@@ -2,6 +2,7 @@ package com.group3.basic.netcracker.backend.dao;
 
 import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.entity.Course;
+import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -38,5 +39,6 @@ public interface CourseDAO {
 
     Course getCourseByName(String name);
 
+    List<CourseWithTrainerRowMapper> getCoursesWithTrainerByUsername(String username);
 
 }
