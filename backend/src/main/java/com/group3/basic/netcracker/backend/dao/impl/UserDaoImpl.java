@@ -27,15 +27,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void createUser(String username, String role, String fname, String lname,
-                           String email, String pass, LocalDate created_at, byte[] photo) {
-//        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo) VALUES (?,?,?,?,?,?,?,?)";
-
-        jdbcTemplate.update(UserDaoQueries.createUserQuery,
-                username, role, fname, lname, email, pass, created_at, photo);
-    }
-
-    @Override
     public void resetPassword(String email, String pass) {
 //        String SQL = "UPDATE \"User\" SET  pass = ? WHERE email = ?";
         jdbcTemplate.update(UserDaoQueries.resetPasswordQuery,  pass, email);
@@ -59,8 +50,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public UserForDisplay getUserByUsername(String username) {
-        String SQL = "SELECT fname, lname, username, email, id  FROM \"User\" WHERE username = '" + username + "'";
-        UserForDisplay user =(UserForDisplay) jdbcTemplate.query(SQL, new UserForDisplayRowMapper()).get(0);
+        String SQL = "SELECT fname, lname, username, email, id , photo FROM \"User\" WHERE username = '" + username + "'";
+        UserForDisplay user =(UserForDisplay) jdbcTemplate.query(SQL, new UserProfileRowMapper()).get(0);
 
         return user;
     }
@@ -150,11 +141,33 @@ public class UserDaoImpl implements UserDao {
         System.out.println("User with id: " + id + " successfully removed");
     }
 
+
+
     @Override
-    public void updateUser(int id, String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
-        String SQL = "UPDATE \"User\" SET username = ?, role = ?, fname = ?, lname = ?, email = ?, pass = ?, created_at = ?, photo = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo, id);
-        System.out.println("User with id: " + username + " successfully updated.");
+    public void createUser(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, String photo) {
+        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo) VALUES (?,?,?,?,?,?,?,?)";
+
+        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo);
+        System.out.println("User successfully created.\nUsername: " + username + ";\nFirst name: " +
+                fname + ";\nLast name: " + lname + "\nEmail: " + email + "\nPassword: " + pass + "\nCreated at: " + created_at + "\nPhoto: " + photo);
+    }
+
+    @Override
+    public void updateUser(int id, String username, String fname, String lname, String email) {
+        String SQL = "UPDATE \"User\" SET username = ?, fname = ?, lname = ?, email = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, username, fname, lname, email, id);
+    }
+
+    @Override
+    public int updatePhoto(String username, String filepath) {
+        String SQL = "UPDATE \"User\" SET photo = ? WHERE username = ?";
+        return jdbcTemplate.update(SQL, filepath, username);
+    }
+
+    @Override
+    public String getPhotoByUsername(String username){
+        String SQL = "SELECT photo FROM \"User\" WHERE username = ?";
+        return jdbcTemplate.queryForObject(SQL, String.class, username);
     }
 
     @Override
