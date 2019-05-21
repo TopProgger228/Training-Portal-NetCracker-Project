@@ -17,7 +17,7 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
 
   name: string;
   loggedOut = false;
-
+  myCountVoted: any[];
   constructor(private router: Router, private scheduleService: ScheduleService, private token: TokenStorageService,
               private toasterService: ToasterService) {
   }
@@ -30,6 +30,8 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
             .subscribe(data => {
               this.info = data;
               console.log('This record = ', this.info)
+              this.myCountVoted = this.info.map(({countVoted}) => countVoted);
+              console.log('CountVotedArray = ', this.myCountVoted);
             })
         } else {
           this.router.navigate(['firstPage']);
@@ -71,7 +73,13 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
       },
       () => {
         console.log('isChoosen == true.');
-        this.reloadPage();
+        this.scheduleService.getScheduleInfo()
+          .subscribe(data => {
+            this.info = data;
+            console.log('This record = ', this.info)
+          })
+        this.success()
+        //this.reloadPage();
       });
   }
 

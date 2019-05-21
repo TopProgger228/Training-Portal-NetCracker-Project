@@ -32,9 +32,20 @@
                 <td><input disabled type="checkbox" [checked]="schedule.isScheduled == 'Schedule has been set'" ></td>
                 <!--<input type="checkbox" [checked]="schedule.isChoosen" >-->
                 <td>
-                  <button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
-                    <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
-                  </button>
+
+                  <div *ngIf="schedule.countVoted==0;then thenBlock else elseBlock">
+                  </div>
+                  <ng-template #thenBlock>
+                    <button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)" disabled>Finish schedule
+                      <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
+                    </button>
+                  </ng-template>
+                  <ng-template #elseBlock>
+                    <button  type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
+                      <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
+                    </button>
+                  </ng-template>
+
                 </td>
               </tr>
               </tbody>
