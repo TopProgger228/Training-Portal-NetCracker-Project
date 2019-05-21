@@ -4,6 +4,7 @@ import { AddMemberService } from "../services/add-member.service";
 
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
+import {AddNewManagerTrainerToasterService} from "../services/add-new-manager-trainer-toaster.service";
 
 @Component({
   selector: 'app-add-new-manager',
@@ -18,7 +19,8 @@ export class AddNewManagerComponent {
   userModel = new User('', '', this.roles[0], '',
     '', '', '');
 
-  constructor(private router: Router, private token: TokenStorageService, private httpService: AddMemberService) {
+  constructor(private router: Router, private token: TokenStorageService,
+              private httpService: AddMemberService, private toaster : AddNewManagerTrainerToasterService) {
 
   }
 
@@ -44,12 +46,24 @@ export class AddNewManagerComponent {
         console.log('[POST] create user successfully', value);
       }, error => {
         console.log('FAIL to create user!');
+        this.error();
       },
       () => {
         console.log('POST user - now completed.');
+        this.success();
+        this.router.navigate(['firstPage']);
       });
   }
 
+  success(){
+    this.toaster.UserCreated("Success!",
+      this.userModel.role + " " + this.userModel.fname + " " + this.userModel.lname + " " +
+    "created!");
+  }
+
+  error(){
+    this.toaster.Error("Error!", "User with current username or e-mail exists!")
+  }
 
   logout() {
     this.loggedOut = true;
