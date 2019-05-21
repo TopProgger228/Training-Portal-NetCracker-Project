@@ -44,7 +44,7 @@ import { ScheduleInfoComponent } from './schedule-info/schedule-info.component';
 import {ToasterService} from "./services/toaster.service";
 import { SpinnerComponent } from './spinner/spinner.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatButtonModule, MatListModule, MatSelectModule } from "@angular/material";
+import {MatButtonModule, MatInputModule, MatListModule, MatSelectModule} from "@angular/material";
 import {MatExpansionModule} from '@angular/material/expansion'
 import {UserCoursesComponent} from "./user-profile/user-courses/user-courses.component";
 
@@ -102,7 +102,8 @@ import {UserCoursesComponent} from "./user-profile/user-courses/user-courses.com
     MatSelectModule,
     MatListModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatInputModule
   ],
   providers: [httpInterceptorProviders, ToasterService],
   bootstrap: [AppComponent]
