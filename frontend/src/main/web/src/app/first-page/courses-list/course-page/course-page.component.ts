@@ -42,7 +42,7 @@ export class CoursePageComponent implements OnInit {
       this.route.params.subscribe(params => {
         this.name = params['name']; // (+) converts string 'id' to a number
         this.username = params['username'];
-        console.log('Name', this.name)
+        console.log('Name', this.name);
         console.log('Username', this.token.getUsername())
         // In a real app: dispatch action to load the details here.
       });
@@ -89,7 +89,7 @@ export class CoursePageComponent implements OnInit {
   }
 
   error() {
-    this.toasterService.Error("Error!", "Please choose time correctly");
+    this.toasterService.Error("Error!", "Timeslot already exists");
   }
 
   onSubmit() {
@@ -105,10 +105,6 @@ export class CoursePageComponent implements OnInit {
         console.log('POST schedule - now completed.');
         this.success();
       });
-  }
-
-  public changeSuccessMessage() {
-    this._success.next(`Your schedule saved successfully.`);
   }
 
 }
