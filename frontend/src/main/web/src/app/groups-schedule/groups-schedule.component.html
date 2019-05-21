@@ -7,72 +7,93 @@
   <div id="bg-image">
     <div id="bg-overlay">
       <div class="container">
-          <h1 class="text-center text-white">Timeslot Form</h1>
+        <div id="headerh1"><h1 class="text-center">Timeslot Form</h1></div>
         <br>
         <br>
-          <!--<h1>Timeslot Form</h1>-->
-          <form (ngSubmit)="onSubmitT()" #timeslotForm="ngForm">
+        <!--<h1>Timeslot Form</h1>-->
+        <form (ngSubmit)="onSubmitT()" #timeslotForm="ngForm">
+          <div class="form-group">
             <div class="form-group">
-
-              <div class="form-group">
+              <div class="24hr-example">
                 <label for="start_time">Start time</label>
-                <input type="time" class="form-control" id="start_time"
+                <input placeholder="Input start time" [ngxTimepicker]="fullTime" [format]="24"
                        [(ngModel)]="timeSlotT.start_time" name="start_time"
+                       id="start_time" readonly
                        #start_time="ngModel" required minlength="4">
+                <ngx-material-timepicker #fullTime></ngx-material-timepicker>
                 <div [hidden]="(start_time.value < end_time.value)" class="alert alert-danger">
                   Start time is required or start time is bigger than end time
                 </div>
+
+
                 <label for="end_time">End time</label>
-                <input type="time" class="form-control" id="end_time"
+                <input placeholder="Input end time" [ngxTimepicker]="fullTime2" [format]="24"
                        [(ngModel)]="timeSlotT.end_time" name="end_time"
+                       id="end_time" readonly
                        #end_time="ngModel" required minlength="4">
+                <ngx-material-timepicker #fullTime2></ngx-material-timepicker>
                 <div [hidden]="(start_time.value < end_time.value)" class="alert alert-danger">
                   End time is required or start time is bigger than end time
                 </div>
               </div>
-
-              <!--<div class="form-group">-->
-                <!---->
-                <!--&lt;!&ndash;<div [hidden]="end_time.valid || end_time.pristine || (start_time > end_time)" class="alert alert-danger">&ndash;&gt;-->
-                  <!--&lt;!&ndash;End time is required or start time is bigger than end time&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-              <!--</div>-->
-
-              <div class="form-group">
-                <label for="week_day">Day of week</label>
-                <select [(ngModel)]='timeSlotT.week_day' class="form-control" id="week_day" name="week_day">
-                  <!--<option disabled="disabled">Choose day of week</option>-->
-                  <option value='Monday'>Monday</option>
-                  <option value='Tuesday'>Tuesday</option>
-                  <option value='Wednesday'>Wednesday</option>
-                  <option value='Thursday'>Thursday</option>
-                  <option value='Friday'>Friday</option>
-                  <option value='Saturday'>Saturday</option>
-                  <option value='Sunday'>Sunday</option>
-                  <!--<div [hidden]="week_day == null" class="alert alert-danger">-->
-                    <!--Week day is required!-->
-                  <!--</div>-->
-                </select>
-
-              </div>
-
-
-              <div class="form-group">
-                <label for="course_id">Courses</label>
-                <select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="timeSlotT.course_id" id="course_id" name="course_id">
-                  <option *ngFor="let c of courses" [value]="c.id" [selected]="c.name ==true">{{c.name}}</option>
-                  <!--<div [hidden]="course_id == 0" class="alert alert-danger">-->
-                    <!--Course is required!-->
-                  <!--</div>-->
-                </select>
-
-              </div>
+              <!--<label for="end_time">End time</label>-->
+              <!--<input type="time" class="form-control" id="end_time"-->
+              <!--[(ngModel)]="timeSlotT.end_time" name="end_time"-->
+              <!--#end_time="ngModel" required minlength="4">-->
 
             </div>
-            <button [disabled]="!timeslotForm.valid" class="btn btn-secondary" type="submit">Submit</button>
 
-          </form>
-        </div>
+            <!--<div class="form-group">-->
+            <!---->
+            <!--&lt;!&ndash;<div [hidden]="end_time.valid || end_time.pristine || (start_time > end_time)" class="alert alert-danger">&ndash;&gt;-->
+            <!--&lt;!&ndash;End time is required or start time is bigger than end time&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+
+            <div class="form-group">
+              <label for="week_day">Day of week</label>
+              <mat-list-item class="primary-imenu-item" role="listitem">
+                <mat-form-field class="select-form">
+                  <mat-select [(ngModel)]='timeSlotT.week_day' class="filter-select" id="week_day" name="week_day">
+                    <!--<option disabled="disabled">Choose day of week</option>-->
+                    <mat-option value='Monday'>Monday</mat-option>
+                    <mat-option value='Tuesday'>Tuesday</mat-option>
+                    <mat-option value='Wednesday'>Wednesday</mat-option>
+                    <mat-option value='Thursday'>Thursday</mat-option>
+                    <mat-option value='Friday'>Friday</mat-option>
+                    <mat-option value='Saturday'>Saturday</mat-option>
+                    <mat-option value='Sunday' disabled>Sunday</mat-option>
+                    <!--<div [hidden]="week_day == null" class="alert alert-danger">-->
+                    <!--Week day is required!-->
+                    <!--</div>-->
+                  </mat-select>
+                </mat-form-field>
+              </mat-list-item>
+            </div>
+
+
+            <div class="form-group">
+              <label for="course_id">Courses</label>
+              <mat-list-item class="primary-imenu-item" role="listitem">
+                <mat-form-field class="select-form">
+                  <mat-select class="filter-select" style="font-size: 20px" [(ngModel)]="timeSlotT.course_id"
+                              id="course_id" name="course_id">
+                    <mat-option *ngFor="let c of courses" [value]="c.id">{{c.name}}
+                    </mat-option>
+                    <!--<div [hidden]="course_id == 0" class="alert alert-danger">-->
+                    <!--Course is required!-->
+                    <!--</div>-->
+                  </mat-select>
+                </mat-form-field>
+              </mat-list-item>
+
+            </div>
+
+          </div>
+          <button [disabled]="!timeslotForm.valid" class="btn btn-secondary" type="submit">Submit</button>
+
+        </form>
+      </div>
 
     </div>
   </div>

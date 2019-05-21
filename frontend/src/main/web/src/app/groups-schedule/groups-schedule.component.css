@@ -1,33 +1,65 @@
 #bg-image{
-  background: url('../../assets/images/background.jpg');
+  background: url('../../assets/images/sand-clock.jpg');
   background-size: cover;
   height: 100vh;
 }
 
 /*#bg-overlay{*/
-  /*background: rgba(189, 189, 189, 0.473);*/
   /*background-size: cover;*/
-
+  /**/
   /*height: 100vh;*/
 
 /*}*/
 
 .container{
   width: 50%;
-  margin-top: 2%;
 }
 
+#headerh1{
+  margin-top: 50px;
+}
 
-label, input, select, option{
-
+label, select, option{
+  width: 100%;
   font-size: 20px;
+}
+
+input{
+  margin-top: 2%;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 button{
   font-size: 22px;
 }
 
+mat-option {
+  font-size: 20px;
+}
+
+mat-select, mat-list-item{
+  font-size: 20px;
+}
+
+/*цвет текста*/
+/deep/ .mat-select-value{
+  font-weight: bolder;
+  /*color: navy;*/
+}
+
+/deep/ .mat-select-panel {
+  max-height: 50vh !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+
 .alert{
+  width: 70%;
   font-family: Times, serif;
   letter-spacing:normal;
   font-size: 16px;

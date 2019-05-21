@@ -36,12 +36,12 @@
                   <div *ngIf="schedule.countVoted==0;then thenBlock else elseBlock">
                   </div>
                   <ng-template #thenBlock>
-                    <button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)" disabled>Finish schedule
+                    <button mat-raised-button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)" disabled>Finish schedule
                       <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
                     </button>
                   </ng-template>
                   <ng-template #elseBlock>
-                    <button  type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
+                    <button mat-raised-button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
                       <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
                     </button>
                   </ng-template>
