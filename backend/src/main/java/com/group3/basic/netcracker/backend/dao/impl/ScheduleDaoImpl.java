@@ -1,5 +1,7 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
@@ -79,7 +81,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
     }
 
     @Override
-    public void createSchedule(int userId, int[] timeSlotId, boolean isChoosen) {
+    public void createSchedule(int userId, Integer[] timeSlotId, boolean isChoosen) {
         String SQL = "INSERT INTO \"Schedule\" (user_id, time_slot_id, is_choosen) VALUES (?,?,?)";
         for (int i = 0; i < timeSlotId.length; i++) {
             jdbcTemplate.update(SQL, userId, timeSlotId[i], isChoosen);
@@ -100,10 +102,23 @@ public class ScheduleDaoImpl implements ScheduleDao {
     }
 
     @Override
-    public boolean isScheduleExists(int userId, int timeSlotId, boolean isChoosen) {
-        if (isScheduleWithAllRow(userId, timeSlotId, isChoosen) >= 1) {
-            return true;
-        } else return false;
+    public Integer[] isScheduleExists(int userId, Integer[] timeSlotId, boolean isChoosen) {
+        List<Integer> list = new ArrayList<Integer>();
+
+        for (int i = 0; i < timeSlotId.length; i++) {
+            if (isScheduleWithAllRow(userId, timeSlotId[i], isChoosen) >= 1) {
+                continue;
+            } else{
+                list.add(timeSlotId[i]);
+            }
+        }
+
+        if (list.size() > 0){
+            Integer[] tempArray = new Integer[list.size()];
+            tempArray = list.toArray(tempArray);
+            return tempArray;
+        }
+        return null;
     }
 
     private int isScheduleWithAllRow(int userId, int timeSlotIdOne, boolean isChoosen) {
