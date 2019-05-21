@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ScheduleService} from "../services/schedule.service";
 import {TokenStorageService} from "../auth/token-storage.service";
 import {ScheduleMod} from "../services/schedule-mod";
+import {ToasterService} from "../services/toaster.service";
 
 @Component({
   selector: 'app-schedule-info',
@@ -17,7 +18,8 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
   name: string;
   loggedOut = false;
 
-  constructor(private router: Router, private scheduleService: ScheduleService, private token: TokenStorageService) {
+  constructor(private router: Router, private scheduleService: ScheduleService, private token: TokenStorageService,
+              private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -54,14 +56,23 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
     // }
   }
 
+  success() {
+    this.toasterService.Success("Success", "You finished creating schedule for students");
+  }
+
   OnSubmitSchedule(id: number) {
     /*console.log('Local record = ', this.info);
     let result = this.info.map(({ courseId }) => courseId);
     console.log('Current id1 = ', result);*/
     this.scheduleService.isChoosen(id).subscribe(data => {
       console.log(data);
-    });
-    this.reloadPage();
+      }, error => {
+        console.log('FAIL to finish schedule!');
+      },
+      () => {
+        console.log('isChoosen == true.');
+        this.reloadPage();
+      });
   }
 
   reloadPage() {

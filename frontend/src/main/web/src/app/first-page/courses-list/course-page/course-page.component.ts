@@ -70,6 +70,7 @@ export class CoursePageComponent implements OnInit {
             });
         } else {
           this.router.navigate(['firstPage']);
+          this.warning();
         }
         return false;
       });
@@ -91,6 +92,11 @@ export class CoursePageComponent implements OnInit {
 
   deselectAll(select: NgModel) {
     select.update.emit([]);
+  }
+
+
+  warning() {
+    this.toasterService.Warning("Warning!", "You aren't a student. You can't enter this page.");
   }
 
   success() {
