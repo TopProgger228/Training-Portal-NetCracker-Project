@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
 import { NewsService } from '../services/News.service';
+import { ToasterService } from "../services/toaster.service";
 import { News } from '../services/news';
 import { TrainersInfo } from '../services/trainers-info';
 import { TrainersserService } from '../first-page/trainers-list/trainersser.service';
@@ -29,7 +30,8 @@ export class ManageLandingPageComponent implements OnInit {
 
   constructor(private router: Router, private newsService: NewsService,
     private token: TokenStorageService,
-    private trainerService: TrainersserService) { }
+    private trainerService: TrainersserService,
+    private toasterService: ToasterService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
@@ -72,36 +74,28 @@ export class ManageLandingPageComponent implements OnInit {
     this.currentNews = news;
     this.newsService.updateNews(this.currentNews.id.toString(), this.currentNews.title, this.currentNews.createDate, this.currentNews.context, this.currentNews.isActive.toString()).subscribe(
       data => {
-        this.setupdateMessage(data);
+
+        if (data.body)
+          this.toasterService.Success("Success", "Updated successfully");
       },
       error => {
-        this.setErrorMessage();
+        this.toasterService.Error("Error!", "Try later");
       }
     );
     this.EditNewsRow = -1;
   }
 
-  setupdateMessage(data: any){
-    if (data.body) {
-      if (data.statusText === "OK")
-        this.updateMessage = "Updated successfully";
-      else this.updateMessage = "Something going wrong, try later";
-    } 
-    else this.updateMessage = "Connection lost, try later";
-  }
 
-  setErrorMessage(){
-    this.updateMessage = "Error, try later";
-  }
 
   updateTrainerRow(trainer: TrainersInfo) {
     console.log(trainer);
     this.trainerService.updateTrainerInfo(trainer).subscribe(
       data => {
-        this.setupdateMessage(data);
+        if (data.body)
+          this.toasterService.Success("Success", "Updated successfully");
       },
       error => {
-        this.setErrorMessage();
+        this.toasterService.Error("Error!", "Try later");
       }
     );
     this.EditTrainerRow = -1;

@@ -53,7 +53,6 @@ export class RegisterComponent implements OnInit {
     
         } else {
           console.log('token not found in params');
-          alert("this site is not available for you");
         }
       });
     }

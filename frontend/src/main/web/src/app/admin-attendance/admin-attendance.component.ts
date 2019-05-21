@@ -4,6 +4,7 @@ import { UserAtt } from "../interface/user-att";
 import { LessonAtt } from "../interface/lesson-att";
 import { CourseAtt } from "../interface/course-att";
 import { TrainerSelector } from "../interface/trainer-selector";
+import { ToasterService } from "../services/toaster.service";
 
 @Component({
   selector: 'app-admin-attendance',
@@ -42,7 +43,8 @@ export class AdminAttendanceComponent implements OnInit {
   isLoadingUser: boolean = false;
   isLoadingLevel: boolean = false;
 
-  constructor(private adminService: AdminAttService) { }
+  constructor(private adminService: AdminAttService,
+    private toasterService: ToasterService) { }
 
   ngOnInit() {
 
@@ -50,7 +52,7 @@ export class AdminAttendanceComponent implements OnInit {
     this.isSelectAllSelected = true;
 
     this.adminService.getCourses()
-      .subscribe(data => {this.courseList = data; this.isLoading = false});
+      .subscribe(data => { this.courseList = data; this.isLoading = false });
     this.levelSelector = [
       "Beginner", "Junior", "Middle", "Master"
     ]
@@ -106,17 +108,17 @@ export class AdminAttendanceComponent implements OnInit {
     this.choosenOneCourse = -1;
     this.choosenOneLesson = -1;
     this.adminService.filterByUser(username)
-      .subscribe(data => {this.courseListByUser = data; this.isLoadingUser = false});
+      .subscribe(data => { this.courseListByUser = data; this.isLoadingUser = false });
   }
 
   filterByTrainer(id: number) {
     this.adminService.filterByTrainer(id)
-      .subscribe(data => {this.courseListByTrainer = data; this.isLoadingTrainer = false});
+      .subscribe(data => { this.courseListByTrainer = data; this.isLoadingTrainer = false });
   }
 
   filterBySkillLevel(level: string) {
     this.adminService.filterBySkillLevel(level)
-      .subscribe(data => {this.courseListByLevel = data; this.isLoadingLevel = false});
+      .subscribe(data => { this.courseListByLevel = data; this.isLoadingLevel = false });
   }
 
   onTrainerSelected(val: any) {
@@ -157,8 +159,17 @@ export class AdminAttendanceComponent implements OnInit {
     console.log(this.selectedCoursesForReport);
     this.adminService.createReportByCourse(this.selectedCoursesForReport)
       .subscribe(
-        data => console.log(data),
-        error => console.log(error));
+        data => {
+          console.log(data);
+
+          if (data.body)
+            this.toasterService.Success("Success", "Report download successfully");
+        },
+        error => {
+          console.log(error);
+
+          this.toasterService.Error("Error!", "Http failure response");
+        });
   }
 
   createReportByTrainer() {
@@ -171,14 +182,32 @@ export class AdminAttendanceComponent implements OnInit {
   createReportByStudent() {
     this.adminService.createReportByStudent(this.userValue)
       .subscribe(
-        data => console.log(data),
-        error => console.log(error))
+        data => {
+          console.log(data);
+
+          if (data.body)
+            this.toasterService.Success("Success", "Report download successfully");
+        },
+        error => {
+          console.log(error);
+
+          this.toasterService.Error("Error!", "Http failure response");
+        });
   }
 
   createReportByLevel() {
     this.adminService.createReportByLevel(this.levelSelected.toString())
       .subscribe(
-        data => console.log(data),
-        error => console.log(error))
+        data => {
+          console.log(data);
+
+          if (data.body)
+            this.toasterService.Success("Success", "Report download successfully");
+        },
+        error => {
+          console.log(error);
+
+          this.toasterService.Error("Error!", "Http failure response");
+        });
   }
 }

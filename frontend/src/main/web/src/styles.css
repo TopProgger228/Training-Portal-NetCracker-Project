@@ -14,3 +14,7 @@
 .filter-sidenav .mat-select-trigger {
   font-size: 1rem !important;
 }
+
+body{
+  background-color: #efefef;
+}

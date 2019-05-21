@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MailSenderService } from '../services/MailSender.service';
 
+import { ToasterService } from "../services/toaster.service";
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 @Component({
@@ -21,7 +22,8 @@ export class AddStudentMailSenderComponent implements OnInit {
 
   constructor(private mailSenderService: MailSenderService,
     private router: Router,
-    private token: TokenStorageService) { }
+    private token: TokenStorageService,
+    private toasterService: ToasterService) { }
 
   ngOnInit() {
 
@@ -54,20 +56,16 @@ export class AddStudentMailSenderComponent implements OnInit {
       this.mailSenderService.sendSignUpMail(this.form.email).subscribe(
         data => {
           console.log(data);
-        this.setSentMessage(data);
+
+          if (data.body)
+            this.toasterService.Success("Success", "Mail sent successfully");
         },
         error => {
           console.log(error);
+          this.toasterService.Error("Error!", "Http failure response");
         }
       );
     }
-  }
-  setSentMessage(data: any) {
-    if (data.body) {
-      if (data.statusText === "OK") this.sentMessage = "Mail sent successfully";
-      else this.sentMessage = "Something going wrong, try later";
-    }
-    else this.sentMessage = "Mail does not sent yet";
   }
 
 }
