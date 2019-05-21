@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MailSenderService } from '../services/MailSender.service';
 
+import {ToasterService} from "../services/toaster.service";
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 @Component({
@@ -15,13 +16,13 @@ export class PasswordResetMailSenderComponent implements OnInit {
 
 
   nextPage: string = "Go to login page -->";
-  sentMessage: string = null;
   isLoginFailed = false;
   errorMessage = '';
 
   constructor(private mailSenderService: MailSenderService,
     private router: Router,
-    private token: TokenStorageService) { }
+    private token: TokenStorageService,
+    private toasterService: ToasterService) { }
 
   ngOnInit() {
     if (this.token.getToken()) {
@@ -35,12 +36,18 @@ export class PasswordResetMailSenderComponent implements OnInit {
     this.mailSenderService.sendResetPasswordMail(this.form.email).subscribe(
       data => {
         console.log(data);
-        this.setSentMessage(data);
+
+    if (data.partialText) {
+
+      console.log(data.partialText);
+        if (data.partialText === '{"message":"sent"}') this.toasterService.Success("Success","Mail sent successfully");
+        else if (data.partialText === '{"message":"not exist"}') this.toasterService.Warning("Warning", "User does not exist");
+    }
         this.isLoginFailed = false;
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
+        this.toasterService.Error("Error!", "Http failure response");
         this.isLoginFailed = true;
       }
     );
@@ -49,10 +56,9 @@ export class PasswordResetMailSenderComponent implements OnInit {
 
   setSentMessage(data: any) {
     if (data.body) {
-      if (data.statusText === "OK") this.sentMessage = "Mail sent successfully";
-      else if (data.statusText === "BAD_REQUEST") this.sentMessage = "User does not exist"
-      else this.sentMessage = "Something going wrong, try later";
+      if (data.statusText === "OK") this.toasterService.Success("Success","Mail sent successfully");
+      else if (data.statusText === "BAD_REQUEST") this.toasterService.Error("Error!", "User does not exist");
+      else this.toasterService.Error("Error!", "Something going wrong, try later");
     }
-    else this.sentMessage = "Mail does not sent yet";
   }
 }

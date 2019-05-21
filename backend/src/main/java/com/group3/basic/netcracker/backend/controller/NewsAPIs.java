@@ -39,7 +39,7 @@ public class NewsAPIs {
                                         @RequestParam("isActive") String isActive) {
         newsService.updateNews(Integer.parseInt(id), title, LocalDate.parse(createDate), context, Boolean.parseBoolean(isActive));
 
-        return new ResponseEntity<>(new ResponseMessage("News updated successfully!"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ResponseMessage("News updated successfully!"), HttpStatus.OK);
     }
 
     @PostMapping("news/createNews")

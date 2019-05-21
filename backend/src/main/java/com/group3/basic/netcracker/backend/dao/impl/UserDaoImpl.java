@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void resetPassword(String email, String pass) {
 //        String SQL = "UPDATE \"User\" SET  pass = ? WHERE email = ?";
-        jdbcTemplate.update(UserDaoQueries.resetPasswordQuery,  pass, email);
+        jdbcTemplate.update(UserDaoQueries.resetPasswordQuery, pass, email);
     }
 
     @Override
@@ -41,17 +41,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Integer getIdByUsername(String username){
+    public Integer getIdByUsername(String username) {
 //        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
         User userId = (User) jdbcTemplate.queryForObject(UserDaoQueries.getIdByUsernameQuery,
-                new Object[]{username}, new UserIdRowMapper() );
+                new Object[]{username}, new UserIdRowMapper());
         return userId.getId();
     }
 
     @Override
     public UserForDisplay getUserByUsername(String username) {
         String SQL = "SELECT fname, lname, username, email, id , photo FROM \"User\" WHERE username = '" + username + "'";
-        UserForDisplay user =(UserForDisplay) jdbcTemplate.query(SQL, new UserProfileRowMapper()).get(0);
+        UserForDisplay user = (UserForDisplay) jdbcTemplate.query(SQL, new UserProfileRowMapper()).get(0);
 
         return user;
     }
@@ -68,12 +68,17 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean existsByEmail(String email) {
-        String SQL = "SELECT * FROM \"User\" WHERE email = ?";
-        try {
+        String SQL = "SELECT count(*) FROM \"User\" WHERE email = ?";
+        System.out.println(jdbcTemplate.queryForObject(SQL, new Object[]{email}, Object.class));
+        Long count = (Long)((Object) jdbcTemplate.queryForObject(SQL, new Object[]{email}, Object.class));
+                if(count == 0)
+                    return false;
+
+        /*try {
             jdbcTemplate.queryForObject(SQL, new Object[]{email}, new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -120,7 +125,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List getManagerOfStudent(String username){
+    public List getManagerOfStudent(String username) {
         String SQL = "SELECT m.* FROM \"User\" AS m\n" +
                 "WHERE m.id IN (\n" +
                 "SELECT w.manager_id FROM\n" +
@@ -140,7 +145,6 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate.update(SQL, id);
         System.out.println("User with id: " + id + " successfully removed");
     }
-
 
 
     @Override
@@ -165,7 +169,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public String getPhotoByUsername(String username){
+    public String getPhotoByUsername(String username) {
         String SQL = "SELECT photo FROM \"User\" WHERE username = ?";
         return jdbcTemplate.queryForObject(SQL, String.class, username);
     }
@@ -178,7 +182,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateTrainerInfo(int id, String info){
+    public void updateTrainerInfo(int id, String info) {
 
         String SQL = "UPDATE \"trainersinfo\" SET info = ? WHERE trainer_id = ?";
         jdbcTemplate.update(SQL, info, id);

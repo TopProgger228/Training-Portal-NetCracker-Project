@@ -52,14 +52,13 @@ public class MailSenderAPIs {
             usersTokenService.createTokenForUser(email, token);
 
             javaMailSender.send(usersTokenService.constructPasswordResetTokenEmail(getAppUrl(), email, token));
-            return new ResponseEntity<>(new ResponseMessage("Mail sent"), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseMessage("sent"), HttpStatus.OK);
         }else{
 
-            return new ResponseEntity<>(new ResponseMessage("Fail -> User does not exist"),
-                    HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseMessage("not exist"),
+                    HttpStatus.OK);
         }
     }
-
 
     @GetMapping("/auth/signup/getEmailByToken")
     public String getEmailByToken(@RequestParam("token") String token) {

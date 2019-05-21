@@ -16,9 +16,6 @@
                 <div *ngIf="email.errors.email" style="font-size: 15pt">Email must be a valid email address</div>
               </div>
             </div>
-          
-            <ngb-alert *ngIf="sentMessage" type="success" (close)="sentMessage = null">{{ sentMessage }}
-              </ngb-alert>
             <button class="btn btn-outline-secondary ">Send</button>
             <br>
             <br>

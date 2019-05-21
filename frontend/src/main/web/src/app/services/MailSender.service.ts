@@ -14,6 +14,7 @@ export class MailSenderService {
   private signUpUrl = 'http://localhost:8080/api/signup/send_sign_up_email';
   private resetUrl = 'http://localhost:8080/api/auth/signup/send_reset_password_email';
   private getEmailByTokenURL = 'http://localhost:8080/api/auth/signup/getEmailByToken';
+  private isExistByEmailURL = 'http://localhost:8080/api/auth/signup/isExistBuEmail';
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +30,15 @@ export class MailSenderService {
 
   sendResetPasswordMail(email: string): Observable<any> {
     const req = new HttpRequest('POST', this.resetUrl, null, {
+      reportProgress: true,
+      responseType: 'text',
+      params: new HttpParams().set('email', email),
+    });
+    return this.http.request(req);
+  }
+
+  isUserExistByEmail(email: string): Observable<any> {
+    const req = new HttpRequest('POST', this.isExistByEmailURL, null, {
       reportProgress: true,
       responseType: 'text',
       params: new HttpParams().set('email', email),
