@@ -5,6 +5,7 @@ public class TrainersInfoDto {
     private String fname;
     private String lname;
     private String info;
+    private String photo;
 
     public int getId() {
         return id;
@@ -36,5 +37,13 @@ public class TrainersInfoDto {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

@@ -257,7 +257,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List getTrainersInfo() {
-        String SQL = "select id, fname, lname, t.info from \"User\" u join \"trainersinfo\" t on u.id = t.trainer_id";
+        String SQL = "select id, fname, lname, photo, t.info from \"User\" u join \"trainersinfo\" t on u.id = t.trainer_id";
         return jdbcTemplate.query(SQL, new TrainersInfoDtoMapper());
     }
 

@@ -8,6 +8,7 @@ public class TrainerInfo {
     private String lname;
     private String info;
     private List<String> courses;
+    private String photo;
 
     public int getId() {
         return id;
@@ -47,5 +48,13 @@ public class TrainerInfo {
 
     public void setCourses(List<String> courses) {
         this.courses = courses;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

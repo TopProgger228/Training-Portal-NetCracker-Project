@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TrainersserService} from './trainersser.service';
 import {TrainersInfo} from "../../services/trainers-info";
+import {DomSanitizer} from "@angular/platform-browser";
 
 
 @Component({
@@ -12,7 +13,7 @@ export class TrainersListComponent implements OnInit {
 
   trainers: TrainersInfo[];
 
-  constructor(private service: TrainersserService) {
+  constructor(private service: TrainersserService, private sanitizer : DomSanitizer) {
   }
 
   ngOnInit() {
@@ -20,7 +21,14 @@ export class TrainersListComponent implements OnInit {
     this.service.getInfo().subscribe(
       data => {
         this.trainers = data;
-        console.log(data)
+        console.log(data);
+
+        for (let i = 0; i < this.trainers.length; i++) {
+            if (this.trainers[i].photo != null){
+                this.trainers[i].photo = this.sanitizer
+                  .bypassSecurityTrustUrl('data:image/jpeg;base64,' + this.trainers[i].photo);
+            }
+        }
       }
     );
   }

@@ -37,6 +37,7 @@ public class ShowTrainersController {
             info.setLname(((TrainersInfoDto) trainersInfo.get(i)).getLname());
             info.setInfo(((TrainersInfoDto) trainersInfo.get(i)).getInfo());
             info.setCourses(service.getTrainerCourses(((TrainersInfoDto) trainersInfo.get(i)).getId()));
+            info.setPhoto(((TrainersInfoDto) trainersInfo.get(i)).getPhoto());
 
             infoList.add(info);
         }

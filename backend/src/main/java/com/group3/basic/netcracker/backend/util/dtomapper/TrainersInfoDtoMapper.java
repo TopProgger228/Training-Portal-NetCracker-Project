@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.util.dtomapper;
 
 import com.group3.basic.netcracker.backend.dto.TrainersInfoDto;
+import com.group3.basic.netcracker.backend.util.file.ImageConverter;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ public class TrainersInfoDtoMapper implements RowMapper {
         trainersInfo.setFname(row.getString("fname"));
         trainersInfo.setLname(row.getString("lname"));
         trainersInfo.setInfo(row.getString("info"));
+        trainersInfo.setPhoto(ImageConverter.convertToString(row.getString("photo")));
 
         return trainersInfo;
     }

@@ -5,7 +5,10 @@
       <div class="row justify-content-center">
 
         <div class="col-2">
-          <img src="../../../assets/images/DanielScott.jpg" class="img-circle" alt="">
+          <img *ngIf="trainer.photo != null" [src]="trainer.photo" class="img-circle trainer-img" alt="User Pic">
+          <img *ngIf="trainer.photo == null"
+                src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                class="img-circle trainer-img-default" alt="User Pic">
         </div>
 
         <div class="col">

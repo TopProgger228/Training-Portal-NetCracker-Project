@@ -4,7 +4,8 @@ export class TrainersInfo {
       public fname : string,
       public lname : string,
       public info : string,
-      public courses : Array<string>
+      public courses : Array<string>,
+      public photo : any
     ){
 
     }
