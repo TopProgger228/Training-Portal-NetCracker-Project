@@ -4,8 +4,9 @@ td, th, title{
   font-size: 22px;
 }
 button{
+
+  background-color: darkgrey;
   font-size: 18px;
-  color: rgb(255, 255, 255);
   margin: auto;
   position : center;
 }
