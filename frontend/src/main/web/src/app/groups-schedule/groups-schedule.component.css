@@ -5,21 +5,23 @@
 }
 
 /*#bg-overlay{*/
-  /*background: rgba(189, 189, 189, 0.473);*/
   /*background-size: cover;*/
-
+  /**/
   /*height: 100vh;*/
 
 /*}*/
 
 .container{
   width: 50%;
-  margin-top: 2%;
 }
 
+.header h1{
+  padding: 200%;
+  margin-top: 200px;
+
+}
 
 label, select, option{
-  margin-top: 2%;
   width: 100%;
   font-size: 20px;
 }
