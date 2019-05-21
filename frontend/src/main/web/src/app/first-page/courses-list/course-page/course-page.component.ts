@@ -42,7 +42,7 @@ export class CoursePageComponent implements OnInit {
       this.route.params.subscribe(params => {
         this.name = params['name']; // (+) converts string 'id' to a number
         this.username = params['username'];
-        console.log('Name', this.name)
+        console.log('Name', this.name);
         console.log('Username', this.token.getUsername())
         // In a real app: dispatch action to load the details here.
       });
