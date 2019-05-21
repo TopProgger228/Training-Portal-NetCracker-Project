@@ -6,16 +6,15 @@ import com.group3.basic.netcracker.backend.entity.User;
 import com.group3.basic.netcracker.backend.util.dtomapper.CourseAttendeeMapper;
 import com.group3.basic.netcracker.backend.util.dtomapper.TrainersInfoDtoMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.*;
+import com.group3.basic.netcracker.backend.util.sql.UserDaoQueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Transactional
 @Repository
@@ -28,32 +27,33 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void createUser(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo) {
-        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo) VALUES (?,?,?,?,?,?,?,?)";
+    public void createUser(String username, String role, String fname, String lname,
+                           String email, String pass, LocalDate created_at, byte[] photo) {
+//        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo) VALUES (?,?,?,?,?,?,?,?)";
 
-        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo);
-        System.out.println("User successfully created.\nUsername: " + username + ";\nFirst name: " +
-                fname + ";\nLast name: " + lname + "\nEmail: " + email + "\nPassword: " + pass + "\nCreated at: " + created_at + "\nPhoto: " + photo);
+        jdbcTemplate.update(UserDaoQueries.createUserQuery,
+                username, role, fname, lname, email, pass, created_at, photo);
     }
 
     @Override
     public void resetPassword(String email, String pass) {
-        String SQL = "UPDATE \"User\" SET  pass = ? WHERE email = ?";
-        jdbcTemplate.update(SQL,  pass, email);
-        System.out.println("User with email: " + email + " successfully updated.");
+//        String SQL = "UPDATE \"User\" SET  pass = ? WHERE email = ?";
+        jdbcTemplate.update(UserDaoQueries.resetPasswordQuery,  pass, email);
     }
 
     @Override
     public User getUserById(int id) {
-        String SQL = "SELECT * FROM \"User\" WHERE id = ?";
-        User user = (User) jdbcTemplate.queryForObject(SQL, new Object[]{id}, new UserRowMapper());
+//        String SQL = "SELECT * FROM \"User\" WHERE id = ?";
+        User user = (User) jdbcTemplate.queryForObject(UserDaoQueries.getUserByIdQuery,
+                new Object[]{id}, new UserRowMapper());
         return user;
     }
 
     @Override
     public Integer getIdByUsername(String username){
-        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
-        User userId = (User) jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserIdRowMapper() );
+//        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
+        User userId = (User) jdbcTemplate.queryForObject(UserDaoQueries.getIdByUsernameQuery,
+                new Object[]{username}, new UserIdRowMapper() );
         return userId.getId();
     }
 
@@ -87,8 +87,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User findByUsername(String username) {
-        String SQL = "SELECT * FROM \"User\" WHERE username = ?";
-        User user = (User) jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserRowMapper());
+//        String SQL = "SELECT * FROM \"User\" WHERE username = ?";
+        User user = (User) jdbcTemplate.queryForObject(UserDaoQueries.findByUsernameQuery,
+                new Object[]{username}, new UserRowMapper());
         return user;
     }
 
@@ -141,23 +142,7 @@ public class UserDaoImpl implements UserDao {
         List Users = jdbcTemplate.query(SQL, new UserRowMapper());
         return Users;
     }
-/*
-    @Override
-    public List getManagerOfStudent(String username) {
-        String SQL = "select u.*, man.\"Manager\" \n" +
-                "from \"User\" u\n" +
-                "join \"Group\" g on g.user_id = u.id -- join через группу что-бы брать только студентов\n" +
-                "left join (select id as m_id, username as \"Manager\" \n" +
-                "\t\t   --Если убрать Left из join то выберем студентов с именно тем менеджером\n" +
-                "\t\t   --Так выбираем всех, и тех у которых его нету)\n" +
-                "\t\t   from \"User\") as man on man.m_id = u.manager_id\n" +
-                "\t\t --подставляем id менеджера, можно заменить на like и брать по юзернейму\n" +
-                "\t\t where man.\"Manager\" like '" + username + "';";
 
-        List Users = jdbcTemplate.query(SQL, new UserRowMapper());
-        return Users;
-    }
-*/
     @Override
     public void removeUser(int id) {
         String SQL = "DELETE FROM \"User\" WHERE id = ?";
@@ -189,9 +174,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void addMember(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at) {
-        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at) VALUES" +
-                "(?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at);
+//        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at) VALUES" +
+//                "(?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(UserDaoQueries.addMemberQuery, username, role, fname, lname, email, pass, created_at);
     }
 
     @Override
