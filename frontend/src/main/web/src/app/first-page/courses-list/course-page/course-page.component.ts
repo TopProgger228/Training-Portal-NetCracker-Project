@@ -27,7 +27,7 @@ export class CoursePageComponent implements OnInit {
   userId: number;
   timeSlots: Timeslots[];
   schedule = new Schedule(0, 0, false);
-
+  myIdArray: any[];
   private _success = new Subject<string>();
 
 
@@ -55,6 +55,9 @@ export class CoursePageComponent implements OnInit {
       this.courseService.getTimeSlots(this.name)
         .subscribe(data => {
           this.timeSlots = data;
+          console.log('This schedule = ', this.timeSlots);
+          this.myIdArray = this.timeSlots.map(({ id }) => id);
+          console.log('Current id1 = ', this.myIdArray);
         });
 
 
