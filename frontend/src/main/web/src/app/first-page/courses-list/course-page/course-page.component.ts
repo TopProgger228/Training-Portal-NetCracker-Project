@@ -89,7 +89,7 @@ export class CoursePageComponent implements OnInit {
   }
 
   error() {
-    this.toasterService.Error("Error!", "Timeslot already exists");
+    this.toasterService.Error("Error!", "Please choose time correctly");
   }
 
   onSubmit() {
@@ -105,6 +105,10 @@ export class CoursePageComponent implements OnInit {
         console.log('POST schedule - now completed.');
         this.success();
       });
+  }
+
+  public changeSuccessMessage() {
+    this._success.next(`Your schedule saved successfully.`);
   }
 
 }
