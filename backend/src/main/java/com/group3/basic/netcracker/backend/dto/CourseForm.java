@@ -1,22 +1,14 @@
 package com.group3.basic.netcracker.backend.dto;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 public class CourseForm {
-    @NotBlank
     private String name;
-
     private String start_date;
-
     private String end_date;
-    @NotBlank
     private String info;
-    @NotBlank
     private String skill_level;
-    @NotBlank
     private int trainer_id;
-    @NotBlank
     private int qty_per_week;
 
     public String getName() {

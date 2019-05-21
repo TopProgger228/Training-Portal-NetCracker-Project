@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface UserDao {
 
-    void createUser(String username, String  role, String fname, String lname,
-                    String email, String pass, LocalDate created_at, byte[] photo);
+    void createUser(String username, String role, String fname, String lname,
+                    String email, String pass, LocalDate created_at, String photo);
 
 
     void resetPassword(String email, String pass);
@@ -24,8 +24,7 @@ public interface UserDao {
 
     void removeUser(int id);
 
-    void updateUser(int id, String username, String  role, String fname, String lname,
-                    String email, String pass, LocalDate created_at, byte[] photo);
+    void updateUser(int id, String username, String fname, String lname, String email);
 
     void updateName(int id, String fname, String lname);
 
@@ -49,13 +48,13 @@ public interface UserDao {
 
     boolean existsByEmail(String email);
 
-    List<User> getUsersByLesson (int lessonId);
+    List<User> getUsersByLesson(int lessonId);
 
-    User getTrainerByCourse (int courseId);
+    User getTrainerByCourse(int courseId);
 
-    List getStudentsOfTrainer (String username);
+    List getStudentsOfTrainer(String username);
 
-    List<User> getStudentsOfManager (String username);
+    List<User> getStudentsOfManager(String username);
 
     List getManagerOfStudent(String username);
 
@@ -70,4 +69,8 @@ public interface UserDao {
     void insertTrainerInfo(int id, String info);
 
     int getId(String username);
+
+    int updatePhoto(String username, String filepath);
+
+    String getPhotoByUsername(String username);
 }

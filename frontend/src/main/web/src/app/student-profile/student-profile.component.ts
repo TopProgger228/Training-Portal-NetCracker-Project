@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
-import { UserService } from "../services/user.service";
-import { UserModel } from "../services/user-model";
+import {UserService} from "../services/user.service";
+import {UserModel} from "../services/user-model";
 
 
 @Component({

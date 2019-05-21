@@ -61,14 +61,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
-
     this.signupInfo = new SignUpInfo(
       this.form.fname,
       this.form.lname,
       this.form.username,
       this.form.password,
-      this.email);
+      this.email,
+      //this.selectedFile
+    );
+
+    console.log(this.signupInfo);
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
@@ -77,6 +79,7 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = false;
         this.roles = this.tokenStorage.getAuthorities();
         this.router.navigate(['auth/login']);
+        //this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile);
       },
       error => {
         console.log(error);
@@ -84,7 +87,24 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+
+  // if(this.ind) {
+  //     this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile).subscribe(
+  //       data => {
+  //         console.log(data);
+  //         this.router.navigate(['auth/login']);
+  //       },
+  //       error => {
+  //         console.log(error);
+  //         this.router.navigate(['auth/login']);
+  //       }
+  //    );
+   //}
   }
+
+  // onFileChanged(event) {
+  //   this.selectedFile = event.target.files.item(0);
+  // }
 
   reloadPage() {
     window.location.reload();

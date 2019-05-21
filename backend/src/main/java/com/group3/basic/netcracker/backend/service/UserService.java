@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
     void createUser(String username, String  role, String fname, String lname,
-                    String email, String pass, LocalDate created_at, byte[] photo);
+                    String email, String pass, LocalDate created_at, String photo);
 
     User getUserById(int id);
 
@@ -20,8 +20,7 @@ public interface UserService {
 
     void removeUser(int id);
 
-    void updateUser(int id, String username, String role, String fname, String lname,
-                    String email, String pass, LocalDate created_at, byte[] photo);
+    void updateUser(int id, String username, String fname, String lname, String email);
 
     void updateTrainerInfo(int id, String info);
 
@@ -61,5 +60,10 @@ public interface UserService {
     void insertTrainerInfo(int id, String info);
 
     int getId(String username);
+
+    int updatePhoto(String username, String filepath) ;
+
+    String getPhotoByUsername(String username);
+
 
 }

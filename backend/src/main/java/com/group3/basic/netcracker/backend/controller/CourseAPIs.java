@@ -40,4 +40,10 @@ public class CourseAPIs {
     public List getCourseStudents(@RequestParam("name") String course){
         return userService.getStudentsByCourseName(course);
     }
+
+    @GetMapping("/studentCourses")
+    public List getCoursesWithTrainer(@RequestParam("username") String username){
+
+        return courseService.getCoursesWithTrainerByUsername(username);
+    }
 }

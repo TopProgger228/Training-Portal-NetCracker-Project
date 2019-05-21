@@ -22,6 +22,7 @@ import {TrainerLessonAttendanceComponent} from "./trainer-lesson-attendance/trai
 import {TrainerAttendanceComponent} from "./trainer-attendance/trainer-attendance.component";
 import {AdminAttendanceComponent} from "./admin-attendance/admin-attendance.component";
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {ManagerAttendanceComponent} from "./manager-attendance/manager-attendance.component";
 import {CoursePageComponent} from "./first-page/courses-list/course-page/course-page.component";
 import {CourseAttendeesComponent} from "./course-attendees/course-attendees.component";
@@ -47,7 +48,7 @@ const routes: Routes = [
     component: StudentsInfoComponent
   },
   {
-    path: 'manager/profile/:username',
+    path: 'manager/profile',
     component: ManagerProfileComponent
   },
   {
@@ -102,12 +103,6 @@ const routes: Routes = [
     path: 'trainer/check-lesson-attendance',
     component: TrainerLessonAttendanceComponent
   },
-
-  {
-    path: 'trainer/check-course-students',
-    component: CourseAttendeesComponent
-  },
-
   {
     path: 'admin/all-attendance',
     component: AdminAttendanceComponent
@@ -115,6 +110,10 @@ const routes: Routes = [
   {
     path: 'manager/student-profile/:username',
     component: StudentProfileComponent
+  },
+  {
+    path: 'myprofile',
+    component: UserProfileComponent
   },
   {
     path: 'manager/student-att',
