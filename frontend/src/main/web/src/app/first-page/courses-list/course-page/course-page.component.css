@@ -1,6 +1,6 @@
 #bg-image {
-  background: url('../../../../assets/images/schedule_background.jpg');
-  background-size: contain;
+  background: url('../../../../assets/images/schedule_background2.jpg');
+  background-size: cover;
   height: 100vh;
 }
 
@@ -11,9 +11,12 @@
 
 }
 
+#headerh1{
+  margin-top: 300px;
+}
+
 .container {
   width: 50%;
-  margin-top: 8%;
 }
 
 label, input, select, option {
@@ -25,10 +28,26 @@ mat-select, mat-list-item, mat-option, mat-form-field {
 }
 
 mat-form-field {
+  margin-left: 140px;
   width: 70%;
 }
 
-button {
+/deep/ .mat-select-value{
+  font-weight: bolder;
+  color: white;
+}
+
+.mat-input-placeholder{
+  font-weight: bolder;
+}
+
+button{
+  background-color: darkgrey;
+  font-size: 22px;
+}
+
+#submitButton{
+  margin-left: 140px;
   background-color: darkgrey;
   font-size: 22px;
 }
