@@ -1,33 +1,34 @@
-#bg-image{
+#bg-image {
   background: url('../../../../assets/images/schedule_background.jpg');
   background-size: contain;
   height: 100vh;
 }
 
-#bg-overlay{
+#bg-overlay {
   background-size: cover;
 
   height: 100vh;
 
 }
 
-.container{
+.container {
   width: 50%;
   margin-top: 8%;
 }
 
-label, input, select, option{
+label, input, select, option {
   font-size: 20px;
 }
 
-mat-select, mat-list-item, mat-option, mat-form-field{
+mat-select, mat-list-item, mat-option, mat-form-field {
   font-size: 20px;
 }
 
-mat-form-field{
+mat-form-field {
   width: 70%;
 }
 
-button{
+button {
+  background-color: darkgrey;
   font-size: 22px;
 }
