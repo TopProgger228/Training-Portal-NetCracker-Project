@@ -38,42 +38,49 @@ export class CoursePageComponent implements OnInit {
   ngOnInit() {
     const _this = this;
     if (this.token.getToken()) {
+      this.token.getAuthorities().every(role => {
+        if (role === 'Student') {
+          this.route.params.subscribe(params => {
+            this.name = params['name']; // (+) converts string 'id' to a number
+            this.username = params['username'];
+            console.log('Name', this.name);
+            console.log('Username', this.token.getUsername())
+            // In a real app: dispatch action to load the details here.
+          });
 
-      this.route.params.subscribe(params => {
-        this.name = params['name']; // (+) converts string 'id' to a number
-        this.username = params['username'];
-        console.log('Name', this.name);
-        console.log('Username', this.token.getUsername())
-        // In a real app: dispatch action to load the details here.
+
+          this.courseService.getCoursePage(this.name)
+            .subscribe(data => {
+              this.course = data;
+            });
+          this.courseService.getTimeSlots(this.name)
+            .subscribe(data => {
+              this.timeSlots = data;
+              console.log('This schedule = ', this.timeSlots);
+              this.myIdArray = this.timeSlots.map(({id}) => id);
+              console.log('Current id1 = ', this.myIdArray);
+            });
+
+
+          this.courseService.getIdByUsername(this.token.getUsername())
+            .subscribe(data => {
+              this.userId = data;
+              console.log('User id1', this.userId);
+              this.schedule = new Schedule(this.userId, 0, false);
+            });
+        } else {
+          this.router.navigate(['firstPage']);
+          this.warning();
+        }
+        return false;
       });
-
-
-      this.courseService.getCoursePage(this.name)
-        .subscribe(data => {
-          this.course = data;
-        });
-      this.courseService.getTimeSlots(this.name)
-        .subscribe(data => {
-          this.timeSlots = data;
-          console.log('This schedule = ', this.timeSlots);
-          this.myIdArray = this.timeSlots.map(({ id }) => id);
-          console.log('Current id1 = ', this.myIdArray);
-        });
-
-
-      this.courseService.getIdByUsername(this.token.getUsername())
-        .subscribe(data => {
-          this.userId = data;
-          console.log('User id1', this.userId);
-          this.schedule = new Schedule(this.userId, 0, false);
-        });
       console.log('Username', this.token.getUsername());
-/*
-        this._success.subscribe((message) => this.successMessage = message);
-        this._success.pipe(
-          debounceTime(10000)
-        ).subscribe(() => this.successMessage = null);
-*/
+      /*
+              this._success.subscribe((message) => this.successMessage = message);
+              this._success.pipe(
+                debounceTime(10000)
+              ).subscribe(() => this.successMessage = null);
+      */
     }
 
   }
@@ -87,8 +94,13 @@ export class CoursePageComponent implements OnInit {
     select.update.emit([]);
   }
 
+
+  warning() {
+    this.toasterService.Warning("Warning!", "You aren't a student. You can't enter this page.");
+  }
+
   success() {
-    this.toasterService.Success("Success","Your schedule was formed successfully");
+    this.toasterService.Success("Success", "Your schedule was formed successfully");
   }
 
   error() {
