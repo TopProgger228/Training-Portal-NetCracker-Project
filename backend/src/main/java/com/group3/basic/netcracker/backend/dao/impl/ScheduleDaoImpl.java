@@ -45,7 +45,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
     }
 
     @Override
-    public List listScheduleWithCourseAndTimeSlotAndUser(){
+    public List listScheduleWithCourseAndTimeSlotAndUser() {
         String SQL = "select c.id,c.name as \"courseName\", count(sc.id) as \"countVoted\",\n" +
                 "case when coalesce(cast(t.choose as varchar), 'Not set yet') = 'true'\n" +
                 "then 'Schedule has been set' else 'Not set yet' end as \"isScheduled\"\n" +
@@ -82,8 +82,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
     public void createSchedule(int userId, int[] timeSlotId, boolean isChoosen) {
         String SQL = "INSERT INTO \"Schedule\" (user_id, time_slot_id, is_choosen) VALUES (?,?,?)";
         for (int i = 0; i < timeSlotId.length; i++) {
-            jdbcTemplate.update(SQL,  userId, timeSlotId[i], isChoosen);
-            System.out.println("Schedule"+ i +"created.");
+            jdbcTemplate.update(SQL, userId, timeSlotId[i], isChoosen);
+            System.out.println("Schedule " + i + " created.");
         }
     }
 
@@ -97,6 +97,21 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
         Integer result = call.executeFunction(Integer.class, paramMap);
         System.out.println(result);
+    }
+
+    @Override
+    public boolean isScheduleExists(int userId, int timeSlotId, boolean isChoosen) {
+        if (isScheduleWithAllRow(userId, timeSlotId, isChoosen) >= 1) {
+            return true;
+        } else return false;
+    }
+
+    private int isScheduleWithAllRow(int userId, int timeSlotIdOne, boolean isChoosen) {
+        String SQL = "SELECT COUNT(*) FROM \"Schedule\" WHERE (user_id = ? AND time_slot_id = ?\n" +
+                "AND is_choosen = ?)";//порядок ВАЖЕН!!!
+        return jdbcTemplate.queryForObject(SQL, Integer.class, userId, timeSlotIdOne, isChoosen);//порядок ВАЖЕН!!!
+
+
     }
 
 }

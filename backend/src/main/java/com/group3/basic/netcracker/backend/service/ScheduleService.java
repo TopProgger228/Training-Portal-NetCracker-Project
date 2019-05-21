@@ -9,6 +9,7 @@ import java.util.TreeMap;
 public interface ScheduleService {
 	
 	void createSchedule(int userId, int[] timeSlotId, boolean isChoosen);
+	boolean isScheduleExists(int userId, int timeSlotId, boolean isChoosen);
 	Schedule getScheduleById(int id);
 	List<Schedule> Schedule();
 	void removeSchedule(int id);

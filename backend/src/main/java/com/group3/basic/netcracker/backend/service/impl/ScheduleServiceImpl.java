@@ -24,6 +24,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
+	public boolean isScheduleExists(int userId, int timeSlotId, boolean isChoosen){
+		return scheduleDao.isScheduleExists(userId, timeSlotId, isChoosen);
+	}
+
+	@Override
 	public Schedule getScheduleById(int id) {
 		return scheduleDao.getScheduleById(id);
 	}
