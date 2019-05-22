@@ -48,7 +48,7 @@ const routes: Routes = [
     component: StudentsInfoComponent
   },
   {
-    path: 'manager/profile',
+    path: 'manager/profile/:username',
     component: ManagerProfileComponent
   },
   {
