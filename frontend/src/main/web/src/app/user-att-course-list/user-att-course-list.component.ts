@@ -30,7 +30,7 @@ export class UserAttCourseListComponent implements OnInit {
 
   isHidden(){
     this.hide = !this.hide;
-    console.log(this.course)
+    console.log(this.course.name)
   }
 
 }
