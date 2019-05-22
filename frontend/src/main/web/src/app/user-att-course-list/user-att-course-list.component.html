@@ -1,9 +1,9 @@
 <div class="row" (click) = "isHidden()">
   <div class="col-1">{{index + 1}}</div>
-  <div class="col-3">{{course.name}}</div>
-  <div class="col-2">{{course.skillLevel}}</div>
-  <div class="col-3">{{course.trainer.firstName}} {{course.trainer.lastName}}</div>
-  <div class="col-3" style="text-align: center">{{course.totalLessonCount}} lesson(s)</div>
+  <div class="col-3"><span matTooltip="Course name">{{course.name}}</span></div>
+  <div class="col-2"><span matTooltip="Course skill level">{{course.skillLevel}}</span></div>
+  <div class="col-3"><span matTooltip="Trainer">{{course.trainer.firstName}} {{course.trainer.lastName}}</span></div>
+  <div class="col-3" style="text-align: center"><span matTooltip="Number of lesson in this course">{{course.totalLessonCount}} lesson(s)</span></div>
 </div>
 <div *ngIf="!hide">
   <app-spinner *ngIf="isLoading"></app-spinner>

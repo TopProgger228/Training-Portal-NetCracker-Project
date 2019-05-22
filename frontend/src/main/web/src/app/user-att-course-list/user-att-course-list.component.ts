@@ -16,7 +16,6 @@ export class UserAttCourseListComponent implements OnInit {
   lessonList: LessonAtt[];
 
   hide: boolean = true;
-  panelOpenState = false;
 
   isLoading: boolean = true;
 

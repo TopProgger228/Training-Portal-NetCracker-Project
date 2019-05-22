@@ -48,6 +48,7 @@ import {MatButtonModule, MatInputModule, MatListModule, MatSelectModule} from "@
 import {MatExpansionModule} from '@angular/material/expansion'
 import {UserCoursesComponent} from "./user-profile/user-courses/user-courses.component";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
     MatButtonModule,
     MatExpansionModule,
     MatInputModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    MatTooltipModule
   ],
   providers: [httpInterceptorProviders, ToasterService],
   bootstrap: [AppComponent]

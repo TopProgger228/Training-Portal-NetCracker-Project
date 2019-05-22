@@ -15,6 +15,6 @@
   font-size: 1rem !important;
 }
 
-body{
-  background-color: #efefef;
+body {
+  background: rgba(188, 189, 190, 0.05);
 }

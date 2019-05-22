@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col">{{index + 1}}</div>
-  <div class="col">{{lesson.startTime}}-{{lesson.endTime}}</div>
-  <div class="col">{{lesson.startDateTime}}</div>
-  <div class="col" *ngIf="isLess() && !lesson.cancel">Done</div>
-  <div class="col" *ngIf="!lesson.cancel && !isLess()">Active</div>
-  <div class="col" *ngIf="lesson.cancel">Cancel</div>
-  <div class="col" >{{lesson.attStatus}}</div>
+  <div class="col"><span matTooltip="Lesson time">{{lesson.startTime}}-{{lesson.endTime}}</span></div>
+  <div class="col"><span matTooltip="Date of the lesson">{{lesson.startDateTime}}</span></div>
+  <div class="col" *ngIf="isLess() && !lesson.cancel"><span matTooltip="Lesson has already been">Done</span></div>
+  <div class="col" *ngIf="!lesson.cancel && !isLess()"><span matTooltip="Lesson will be according to the schedule">Active</span></div>
+  <div class="col" *ngIf="lesson.cancel"><span matTooltip="Lesson has been canceled">Cancel</span></div>
+  <div class="col" ><span matTooltip="Attendance status of user">{{lesson.attStatus}}</span></div>
 </div>
