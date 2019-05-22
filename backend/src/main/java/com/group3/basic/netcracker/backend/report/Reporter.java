@@ -61,12 +61,12 @@ public class Reporter {
 
         for (Map<String, Object> map : data) {
             Row nexRow = sheet.createRow(rownum++);
-           int nexCellnum = 0;
+            int nexCellnum = 0;
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 String key = entry.getKey();
                 Object value = entry.getValue();
                 Cell cell = nexRow.createCell(nexCellnum++);
-                cell.setCellValue(" " +value);
+                cell.setCellValue(" " + value);
                 sheet.autoSizeColumn(cell.getColumnIndex());
                 setFont(workbook, sheet);
             }
@@ -133,6 +133,7 @@ public class Reporter {
         list = isResultEmpty(list);
         return list;
     }
+
     public List<Map<String, Object>> queryReportByLevel(String level) throws SQLException {
         String sql = "select count(lm.id) as \"MissingQty\", \n" +
                 "coalesce(u.fname || ' ' || u.lname, '')\n" +
@@ -150,6 +151,7 @@ public class Reporter {
         list = isResultEmpty(list);
         return list;
     }
+
     public void setFont(Workbook wb, XSSFSheet sheet) {
         CellStyle style = wb.createCellStyle();//Create style
         Font font = wb.createFont();//Create font
@@ -161,9 +163,10 @@ public class Reporter {
         for (int i = 0; i < sheet.getRow(0).getLastCellNum(); i++)
             sheet.getRow(0).getCell(i).setCellStyle(style);
     }
+
     // Check if result set empty - write some result
     public List<Map<String, Object>> isResultEmpty(List<Map<String, Object>> list) {
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             Object obj = "";
             String result = "Result set is empty";
             Map<String, Object> objectMap = new TreeMap<String, Object>();
@@ -171,5 +174,5 @@ public class Reporter {
             list.add(objectMap);
         }
         return list;
-   }
+    }
 }

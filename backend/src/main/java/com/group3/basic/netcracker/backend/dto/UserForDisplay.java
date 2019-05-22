@@ -14,7 +14,7 @@ public class UserForDisplay {
     }
 
     public UserForDisplay(String fname, String lname, String username,
-                          String email, int id, String photo){
+                          String email, int id, String photo) {
 
         this.id = id;
         this.fname = fname;

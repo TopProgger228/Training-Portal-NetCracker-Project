@@ -3,6 +3,7 @@ package com.group3.basic.netcracker.backend.util.rowmapper;
 import com.group3.basic.netcracker.backend.entity.Course;
 
 import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

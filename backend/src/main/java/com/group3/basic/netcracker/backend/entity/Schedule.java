@@ -1,10 +1,10 @@
 package com.group3.basic.netcracker.backend.entity;
 
 public class Schedule {
-    int id;
-    int userId;
-    int timeSlotId;
-    boolean isChoosen;
+    private int id;
+    private int userId;
+    private int timeSlotId;
+    private boolean isChoosen;
 
     public int getId() {
         return id;

@@ -28,13 +28,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void resetPassword(String email, String pass) {
-//        String SQL = "UPDATE \"User\" SET  pass = ? WHERE email = ?";
         jdbcTemplate.update(UserDaoQueries.resetPasswordQuery, pass, email);
     }
 
     @Override
     public User getUserById(int id) {
-//        String SQL = "SELECT * FROM \"User\" WHERE id = ?";
         User user = (User) jdbcTemplate.queryForObject(UserDaoQueries.getUserByIdQuery,
                 new Object[]{id}, new UserRowMapper());
         return user;
@@ -42,7 +40,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Integer getIdByUsername(String username) {
-//        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
         User userId = (User) jdbcTemplate.queryForObject(UserDaoQueries.getIdByUsernameQuery,
                 new Object[]{username}, new UserIdRowMapper());
         return userId.getId();
@@ -57,9 +54,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     public boolean existsByUsername(String username) {
-        String SQL = "SELECT * FROM \"User\" WHERE username = ?";
         try {
-            jdbcTemplate.queryForObject(SQL, new Object[]{username}, new UserRowMapper());
+            jdbcTemplate.queryForObject(UserDaoQueries.existsByUsernameQuery, new Object[]{username},
+                    new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return false;
         }
@@ -69,21 +66,14 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean existsByEmail(String email) {
         String SQL = "SELECT count(*) FROM \"User\" WHERE email = ?";
-        System.out.println(jdbcTemplate.queryForObject(SQL, new Object[]{email}, Object.class));
-        Long count = (Long)((Object) jdbcTemplate.queryForObject(SQL, new Object[]{email}, Object.class));
-                if(count == 0)
-                    return false;
-
-        /*try {
-            jdbcTemplate.queryForObject(SQL, new Object[]{email}, new UserRowMapper());
-        } catch (EmptyResultDataAccessException e) {
+        Long count = (Long) ((Object) jdbcTemplate.queryForObject(UserDaoQueries.existsByEmailQuery,
+                new Object[]{email}, Object.class));
+        if (count == 0)
             return false;
-        }*/
         return true;
     }
 
     public User findByUsername(String username) {
-//        String SQL = "SELECT * FROM \"User\" WHERE username = ?";
         User user = (User) jdbcTemplate.queryForObject(UserDaoQueries.findByUsernameQuery,
                 new Object[]{username}, new UserRowMapper());
         return user;
@@ -91,15 +81,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List listUsers() {
-        String SQL = "SELECT * FROM \"User\"";
-        List Users = jdbcTemplate.query(SQL, new UserRowMapper());
+        List Users = jdbcTemplate.query(UserDaoQueries.usersListQuery, new UserRowMapper());
         return Users;
     }
 
     @Override
     public List getTrainers() {
-        String SQL = "SELECT id, fname, lname, username, email FROM \"User\" where role= 'Trainer' ";
-        List trainers = jdbcTemplate.query(SQL, new TrainerRowMapper());
+        List trainers = jdbcTemplate.query(UserDaoQueries.getTrainersQuery, new TrainerRowMapper());
         return trainers;
     }
 
@@ -141,83 +129,68 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void removeUser(int id) {
-        String SQL = "DELETE FROM \"User\" WHERE id = ?";
-        jdbcTemplate.update(SQL, id);
+        jdbcTemplate.update(UserDaoQueries.removeUserQuery, id);
         System.out.println("User with id: " + id + " successfully removed");
     }
 
 
     @Override
-    public void createUser(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, String photo) {
-        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo) VALUES (?,?,?,?,?,?,?,?)";
+    public void createUser(String username, String role, String fname, String lname, String email, String pass,
+                           LocalDate created_at, String photo) {
 
-        jdbcTemplate.update(SQL, username, role, fname, lname, email, pass, created_at, photo);
-        System.out.println("User successfully created.\nUsername: " + username + ";\nFirst name: " +
-                fname + ";\nLast name: " + lname + "\nEmail: " + email + "\nPassword: " + pass + "\nCreated at: " + created_at + "\nPhoto: " + photo);
+        jdbcTemplate.update(UserDaoQueries.createUserQuery, username, role, fname, lname,
+                email, pass, created_at, photo);
     }
 
     @Override
     public void updateUser(int id, String username, String fname, String lname, String email) {
-        String SQL = "UPDATE \"User\" SET username = ?, fname = ?, lname = ?, email = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, username, fname, lname, email, id);
+        jdbcTemplate.update(UserDaoQueries.updateUserQuery, username, fname, lname, email, id);
     }
 
     @Override
     public int updatePhoto(String username, String filepath) {
-        String SQL = "UPDATE \"User\" SET photo = ? WHERE username = ?";
-        return jdbcTemplate.update(SQL, filepath, username);
+        return jdbcTemplate.update(UserDaoQueries.updatePhotoQuery, filepath, username);
     }
 
     @Override
     public String getPhotoByUsername(String username) {
-        String SQL = "SELECT photo FROM \"User\" WHERE username = ?";
-        return jdbcTemplate.queryForObject(SQL, String.class, username);
+        return jdbcTemplate.queryForObject(UserDaoQueries.getPhotoByUsername, String.class, username);
     }
 
     @Override
     public void updateName(int id, String fname, String lname) {
-        String SQL = "UPDATE \"User\" SET fname = ?, lname = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, fname, lname, id);
-        System.out.println("User with id: " + id + " successfully updated.");
+        jdbcTemplate.update(UserDaoQueries.updateName, fname, lname, id);
     }
 
     @Override
     public void updateTrainerInfo(int id, String info) {
-
-        String SQL = "UPDATE \"trainersinfo\" SET info = ? WHERE trainer_id = ?";
-        jdbcTemplate.update(SQL, info, id);
-        System.out.println("Trainer info with id: " + id + " successfully updated.");
+        jdbcTemplate.update(UserDaoQueries.updateTrainersInfo, info, id);
     }
 
     @Override
-    public void addMember(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at) {
-//        String SQL = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at) VALUES" +
-//                "(?, ?, ?, ?, ?, ?, ?)";
+    public void addMember(String username, String role, String fname, String lname, String email, String pass,
+                          LocalDate created_at) {
         jdbcTemplate.update(UserDaoQueries.addMemberQuery, username, role, fname, lname, email, pass, created_at);
     }
 
     @Override
     public void updateUserName(int id, String newUsername) {
-        String SQL = "UPDATE \"User\" SET username = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, newUsername, id);
+        jdbcTemplate.update(UserDaoQueries.updateUserName, newUsername, id);
     }
 
     @Override
     public void updateUserFirstName(int id, String newFirstName) {
-        String SQL = "UPDATE \"User\" SET fname = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, newFirstName, id);
+        jdbcTemplate.update(UserDaoQueries.updateUserFirstNameQuery, newFirstName, id);
     }
 
     @Override
     public void updateUserLastName(int id, String newLastName) {
-        String SQL = "UPDATE \"User\" SET lname = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, newLastName, id);
+        jdbcTemplate.update(UserDaoQueries.updateUserLastNameQuery, newLastName, id);
     }
 
     @Override
     public void updateUserEmail(int id, String newEmail) {
-        String SQL = "UPDATE \"User\" SET email = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, newEmail, id);
+        jdbcTemplate.update(UserDaoQueries.updateUserEmailQuery, newEmail, id);
     }
 
     @Override
@@ -229,18 +202,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getUsersByLesson(int lessonId) {
-
-        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Group\" g on u.id = g.user_id join \"Course\" c on g.course_id = c.id join \"Lesson\" l on c.id = l.course_id where l.id = ?";
-
-        return jdbcTemplate.query(SQL, new Object[]{lessonId}, new UserRowMapper());
+        return jdbcTemplate.query(UserDaoQueries.getUsersByLessonQuery, new Object[]{lessonId}, new UserRowMapper());
     }
 
     @Override
     public User getTrainerByCourse(int courseId) {
-
-        String SQL = "select u.id, u.fname, u.lname, u.username, u.email, u.role, u.created_at, u.manager_id, u.pass, u.photo from \"User\" u join \"Course\" c on u.id = c.trainer_id where c.id = ?";
-
-        return (User) jdbcTemplate.queryForObject(SQL, new Object[]{courseId}, new UserRowMapper());
+        return (User) jdbcTemplate.queryForObject(UserDaoQueries.getTrainerByCourseQuery,
+                new Object[]{courseId}, new UserRowMapper());
 
     }
 
@@ -261,8 +229,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List getTrainersInfo() {
-        String SQL = "select id, fname, lname, photo, t.info from \"User\" u join \"trainersinfo\" t on u.id = t.trainer_id";
-        return jdbcTemplate.query(SQL, new TrainersInfoDtoMapper());
+        return jdbcTemplate.query(UserDaoQueries.getTrainersInfoQuery, new TrainersInfoDtoMapper());
     }
 
     @Override
@@ -280,23 +247,19 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void insertTrainerInfo(int id, String info) {
-        String SQL = "INSERT INTO \"trainersinfo\" VALUES (?, ?)";
-        jdbcTemplate.update(SQL, id, info);
+        jdbcTemplate.update(UserDaoQueries.insertTrainerInfoQuery, id, info);
     }
 
     @Override
     public int getId(String username) {
-        String SQL = "SELECT id FROM \"User\" WHERE username = ?";
-        return jdbcTemplate.queryForObject(SQL, Integer.class, username);
+        return jdbcTemplate.queryForObject(UserDaoQueries.getIdQuery, Integer.class, username);
     }
 
     private int isUserWithUsername(String username) {
-        String SQL = "SELECT COUNT(*) FROM \"User\" WHERE username = ?";
-        return jdbcTemplate.queryForObject(SQL, Integer.class, username);
+        return jdbcTemplate.queryForObject(UserDaoQueries.isUserWithUsernameExistsQuery, Integer.class, username);
     }
 
     private int isUserWithEmail(String email) {
-        String SQL = "SELECT COUNT(*) FROM \"User\" WHERE email = ?";
-        return jdbcTemplate.queryForObject(SQL, Integer.class, email);
+        return jdbcTemplate.queryForObject(UserDaoQueries.isUserWithEmailExistsQuery, Integer.class, email);
     }
 }

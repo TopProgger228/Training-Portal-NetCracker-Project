@@ -1,6 +1,5 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.group3.basic.netcracker.backend.dao.*;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
     private final AttendanceDao attendanceDao;
-    private final CourseDAO courseDao;
+    private final CourseDao courseDao;
     private final LessonDao lessonDao;
     private final UserDao userDao;
     private final LessonMissingDao lessonMissingDao;
@@ -28,7 +27,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final StudentAttendanceForManagerDtoMapper studentAttendanceForManagerDtoMapper;
 
     @Autowired
-    public AttendanceServiceImpl(AttendanceDao attendanceDao, CourseDAO courseDao, LessonDao lessonDao, UserDao userDao, LessonMissingDao lessonMissingDao, TimeSlotDao timeSlotDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, TrainerSelectorDtoMapper trainerSelectorDtoMapper, StudentAttendanceForManagerDtoMapper studentAttendanceForManagerDtoMapper) {
+    public AttendanceServiceImpl(AttendanceDao attendanceDao, CourseDao courseDao, LessonDao lessonDao, UserDao userDao, LessonMissingDao lessonMissingDao, TimeSlotDao timeSlotDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, TrainerSelectorDtoMapper trainerSelectorDtoMapper, StudentAttendanceForManagerDtoMapper studentAttendanceForManagerDtoMapper) {
         this.attendanceDao = attendanceDao;
         this.courseDao = courseDao;
         this.lessonDao = lessonDao;
@@ -103,7 +102,6 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
         return lessonAttendanceDtoList;
     }
-
 
 
     @Override
@@ -183,9 +181,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level) {
 
-       List<Course> courseList = courseDao.getCourseBySkillLevel(level);
+        List<Course> courseList = courseDao.getCourseBySkillLevel(level);
 
-       return getCourseAttendanceDtoList(courseList);
+        return getCourseAttendanceDtoList(courseList);
 
     }
 
@@ -207,7 +205,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             Map<String, Integer> map = new HashMap<>();
             int presentLessonCount = tmp.getTotalLessonCount();
             List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByUser(u.getId());
-            if ( lessonMissingList != null && lessonMissingList.size() > 0 ) {
+            if (lessonMissingList != null && lessonMissingList.size() > 0) {
                 int count;
                 for (int i = 0; i < reasonList.length; i++) {
                     count = 0;

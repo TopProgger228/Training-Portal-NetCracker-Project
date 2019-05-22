@@ -4,7 +4,7 @@ import com.group3.basic.netcracker.backend.entity.Group;
 
 import java.util.List;
 
-public interface GroupDAO {
+public interface GroupDao {
     void createGroup(String name, int course_id);
 
     Group getGroupById(int id);

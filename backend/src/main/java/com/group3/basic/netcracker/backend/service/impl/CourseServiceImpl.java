@@ -1,9 +1,7 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
-import com.group3.basic.netcracker.backend.dto.CourseForm;
-import com.group3.basic.netcracker.backend.dto.CourseWithTrainer;
 import com.group3.basic.netcracker.backend.service.CourseService;
-import com.group3.basic.netcracker.backend.dao.CourseDAO;
+import com.group3.basic.netcracker.backend.dao.CourseDao;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +11,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class CourseServiceImpl implements CourseService{
-    private final CourseDAO courseDAO;
+public class CourseServiceImpl implements CourseService {
+    private final CourseDao courseDAO;
 
     @Autowired
-    public CourseServiceImpl(CourseDAO courseDAO) {
+    public CourseServiceImpl(CourseDao courseDAO) {
         this.courseDAO = courseDAO;
     }
 
     @Override
-    public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int user_id, int qty_per_week) {
+    public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level,
+                             int user_id, int qty_per_week) {
         courseDAO.createCourse(name, start_date, end_date, info, skill_level, user_id, qty_per_week);
     }
 
@@ -33,7 +32,7 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
 
-    public Integer getIdByCourseName(String name){
+    public Integer getIdByCourseName(String name) {
         return courseDAO.getIdByCourseName(name);
     }
 
@@ -58,18 +57,21 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week) {
+    public void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info,
+                             String skill_level, int trainer_id, int qty_per_week) {
         courseDAO.updateCourse(id, name, start_date, end_date, info, skill_level, trainer_id, qty_per_week);
     }
 
     @Override
-    public Course getCourseByName(String name){
+    public Course getCourseByName(String name) {
         return courseDAO.getCourseByName(name);
     }
 
     @Override
-    public List<CourseWithTrainerRowMapper> getCoursesWithTrainerByUsername(String username){
+    public List<CourseWithTrainerRowMapper> getCoursesWithTrainerByUsername(String username) {
         return courseDAO.getCoursesWithTrainerByUsername(username);
-    };
+    }
+
+    ;
 
 }

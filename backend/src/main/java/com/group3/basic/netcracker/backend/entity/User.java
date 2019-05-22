@@ -22,7 +22,7 @@ public class User {
     }
 
     public User(int id, String username, String role, String fname, String lname,
-                String email, String pass, LocalDate created_at, byte[] photo, int manager_id){
+                String email, String pass, LocalDate created_at, byte[] photo, int manager_id) {
         this.id = id;
         this.username = username;
         this.role = role;
@@ -35,7 +35,7 @@ public class User {
         this.manager_id = manager_id;
     }
 
-    public User(User user){
+    public User(User user) {
         this.id = user.id;
         this.username = user.username;
         this.role = user.role;
@@ -47,7 +47,6 @@ public class User {
         this.photo = user.photo;
         this.manager_id = user.manager_id;
     }
-
 
 
     @Override

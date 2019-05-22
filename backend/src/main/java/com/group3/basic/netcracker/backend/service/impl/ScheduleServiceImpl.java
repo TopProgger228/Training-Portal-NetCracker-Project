@@ -11,51 +11,51 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
-	private final ScheduleDao scheduleDao;
+    private final ScheduleDao scheduleDao;
 
-	@Autowired
-	public ScheduleServiceImpl(ScheduleDao scheduleDao) {
-		this.scheduleDao = scheduleDao;
-	}
+    @Autowired
+    public ScheduleServiceImpl(ScheduleDao scheduleDao) {
+        this.scheduleDao = scheduleDao;
+    }
 
-	@Override
-	public void createSchedule(int userId, Integer[] timeSlotId, boolean isChoosen) {
-		scheduleDao.createSchedule(userId, timeSlotId, isChoosen);
-	}
+    @Override
+    public void createSchedule(int userId, Integer[] timeSlotId, boolean isChoosen) {
+        scheduleDao.createSchedule(userId, timeSlotId, isChoosen);
+    }
 
-	@Override
-	public Integer[] isScheduleExists(int userId, Integer[] timeSlotId, boolean isChoosen){
-		return scheduleDao.isScheduleExists(userId, timeSlotId, isChoosen);
-	}
+    @Override
+    public Integer[] isScheduleExists(int userId, Integer[] timeSlotId, boolean isChoosen) {
+        return scheduleDao.isScheduleExists(userId, timeSlotId, isChoosen);
+    }
 
-	@Override
-	public Schedule getScheduleById(int id) {
-		return scheduleDao.getScheduleById(id);
-	}
+    @Override
+    public Schedule getScheduleById(int id) {
+        return scheduleDao.getScheduleById(id);
+    }
 
-	@Override
-	public List<Schedule> Schedule() {
-	return scheduleDao.listSchedule();
-	}
+    @Override
+    public List<Schedule> Schedule() {
+        return scheduleDao.listSchedule();
+    }
 
-	@Override
-	public void removeSchedule(int id) {
-		scheduleDao.removeSchedule(id);
-	}
+    @Override
+    public void removeSchedule(int id) {
+        scheduleDao.removeSchedule(id);
+    }
 
-	@Override
-	public void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id) {
-		scheduleDao.updateSchedule(userId, timeSlotId, isChoosen, id);
-	}
+    @Override
+    public void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id) {
+        scheduleDao.updateSchedule(userId, timeSlotId, isChoosen, id);
+    }
 
-	@Override
-	public List listScheduleWithCourseAndTimeSlotAndUser(){
-		return scheduleDao.listScheduleWithCourseAndTimeSlotAndUser();
-	}
+    @Override
+    public List listScheduleWithCourseAndTimeSlotAndUser() {
+        return scheduleDao.listScheduleWithCourseAndTimeSlotAndUser();
+    }
 
-	@Override
-	public void generateSchedule(int course){
-		scheduleDao.generateSchedule(course);
-	}
+    @Override
+    public void generateSchedule(int course) {
+        scheduleDao.generateSchedule(course);
+    }
 
 }

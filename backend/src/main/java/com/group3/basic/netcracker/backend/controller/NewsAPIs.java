@@ -46,7 +46,7 @@ public class NewsAPIs {
     public ResponseEntity<?> createNews(@RequestParam("title") String title,
                                         @RequestParam("context") String context,
                                         @RequestParam("isActive") String isActive) {
-        newsService.createNews( title, LocalDate.now(), context, Boolean.parseBoolean(isActive));
+        newsService.createNews(title, LocalDate.now(), context, Boolean.parseBoolean(isActive));
         return new ResponseEntity<>(new ResponseMessage("News created successfully!"), HttpStatus.CREATED);
     }
 

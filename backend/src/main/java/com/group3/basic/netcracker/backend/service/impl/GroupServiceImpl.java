@@ -1,6 +1,6 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
-import com.group3.basic.netcracker.backend.dao.GroupDAO;
+import com.group3.basic.netcracker.backend.dao.GroupDao;
 import com.group3.basic.netcracker.backend.entity.Group;
 import com.group3.basic.netcracker.backend.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,10 @@ import java.util.List;
 
 @Service
 public class GroupServiceImpl implements GroupService {
-    private final GroupDAO groupDAO;
+    private final GroupDao groupDAO;
 
     @Autowired
-    public GroupServiceImpl(GroupDAO groupDAO) {
+    public GroupServiceImpl(GroupDao groupDAO) {
         this.groupDAO = groupDAO;
     }
 
@@ -34,7 +34,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void removeGroup(int id) {
-groupDAO.removeGroup(id);
+        groupDAO.removeGroup(id);
     }
 
     @Override

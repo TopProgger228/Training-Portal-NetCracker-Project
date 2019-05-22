@@ -11,10 +11,10 @@ import java.util.List;
 
 @Service
 public class NewsServiceImpl implements NewsService {
-    NewsDao newsDao;
+    private NewsDao newsDao;
 
     @Autowired
-    public NewsServiceImpl(NewsDao newsDao){
+    public NewsServiceImpl(NewsDao newsDao) {
         this.newsDao = newsDao;
     }
 

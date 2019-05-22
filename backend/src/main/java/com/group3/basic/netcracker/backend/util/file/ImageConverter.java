@@ -1,7 +1,6 @@
 package com.group3.basic.netcracker.backend.util.file;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -21,19 +20,13 @@ public class ImageConverter {
         }
     }
 
-    public static String convertToString(String filepath){
-        //BufferedImage bImage = null;
-//            bImage = ImageIO.read(file);
-//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//            String extension = file.getName().substring(file.getName().lastIndexOf("."));
-//            ImageIO.write(bImage, extension, bos );
-
+    public static String convertToString(String filepath) {
         String encodedfile = null;
         FileInputStream fileInputStreamReader = null;
         try {
             File file = new File(filepath);
             fileInputStreamReader = new FileInputStream(file);
-            byte[] bytes = new byte[(int)file.length()];
+            byte[] bytes = new byte[(int) file.length()];
             fileInputStreamReader.read(bytes);
             encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
         } catch (FileNotFoundException e) {
@@ -46,9 +39,6 @@ public class ImageConverter {
             e.printStackTrace();
         }
 
-
         return encodedfile;
-
-            //return Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file));
     }
 }

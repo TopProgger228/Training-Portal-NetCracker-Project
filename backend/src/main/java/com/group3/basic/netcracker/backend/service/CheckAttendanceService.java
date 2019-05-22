@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface CheckAttendanceService {
 
-    List<LessonAttendanceDto> getTodayLessonsByTrainer (int trainerId);
+    List<LessonAttendanceDto> getTodayLessonsByTrainer(int trainerId);
 
-    CheckLessonAttendanceDto getFullCheckAttendance (int lessonId);
+    CheckLessonAttendanceDto getFullCheckAttendance(int lessonId);
 
-    void changeLessonMissing (int userId, int lessonId, String reason);
+    void changeLessonMissing(int userId, int lessonId, String reason);
 
-    List<LessonAttendanceDto> getTodayLessonsByTrainerUsername (String username);
+    List<LessonAttendanceDto> getTodayLessonsByTrainerUsername(String username);
 }

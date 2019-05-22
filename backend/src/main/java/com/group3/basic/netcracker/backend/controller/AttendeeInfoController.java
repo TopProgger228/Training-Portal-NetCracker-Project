@@ -18,7 +18,7 @@ public class AttendeeInfoController {
     }
 
     @GetMapping("info")
-    public List getStudentsInfo(@RequestParam("username") String username){
+    public List getStudentsInfo(@RequestParam("username") String username) {
         return service.getStudentsOfTrainer(username);
     }
 

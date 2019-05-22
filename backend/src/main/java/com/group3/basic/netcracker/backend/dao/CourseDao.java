@@ -1,13 +1,12 @@
 package com.group3.basic.netcracker.backend.dao;
 
-import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface CourseDAO {
+public interface CourseDao {
 
     void createCourse(String name, LocalDate start_date, LocalDate end_date, String info,
                     String skill_level, int trainer_id, int qty_per_week);

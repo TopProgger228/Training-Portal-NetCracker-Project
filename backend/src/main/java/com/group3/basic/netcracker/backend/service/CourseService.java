@@ -1,6 +1,5 @@
 package com.group3.basic.netcracker.backend.service;
 
-import com.group3.basic.netcracker.backend.dto.CourseForm;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
 

@@ -6,27 +6,27 @@ import com.group3.basic.netcracker.backend.dto.*;
 import com.group3.basic.netcracker.backend.entity.Attendance;
 
 public interface AttendanceService {
-	
-	List<Attendance> listAttendance();
 
-	List<CourseAttendanceDto> getAllCourseAttendance();
+    List<Attendance> listAttendance();
 
-	List<LessonAttendanceDto> getLessonsOfCourseAttendance(int courseId);
+    List<CourseAttendanceDto> getAllCourseAttendance();
 
-	List<LessonAttendanceDto> getLessonsOfCourseAttendanceByUser(int courseId, int userId);
+    List<LessonAttendanceDto> getLessonsOfCourseAttendance(int courseId);
 
-	List<UserAttendanceDto> getUsersOfCourseAttendance(int lessonId);
+    List<LessonAttendanceDto> getLessonsOfCourseAttendanceByUser(int courseId, int userId);
 
-	List<CourseAttendanceDto> getCourseAttendanceByUser (String username);
+    List<UserAttendanceDto> getUsersOfCourseAttendance(int lessonId);
 
-    List<CourseAttendanceDto> getCourseAttendanceByUserId (int userId);
+    List<CourseAttendanceDto> getCourseAttendanceByUser(String username);
 
-	List<TrainerSelectorDto> getTrainerForSelector();
+    List<CourseAttendanceDto> getCourseAttendanceByUserId(int userId);
 
-	List<CourseAttendanceDto> getCourseAttendanceByTrainer(int id);
+    List<TrainerSelectorDto> getTrainerForSelector();
 
-	List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level);
+    List<CourseAttendanceDto> getCourseAttendanceByTrainer(int id);
 
-	List<StudentAttendanceForManagerDto> getStudentAttendanceForManagerDto(String userName);
+    List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level);
+
+    List<StudentAttendanceForManagerDto> getStudentAttendanceForManagerDto(String userName);
 
 }

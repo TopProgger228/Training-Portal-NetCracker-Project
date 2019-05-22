@@ -6,23 +6,24 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Service;
+
 import javax.sql.DataSource;
 
 
 @Service
 public class ScheduleGenerate {
-        @Autowired
-        private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-        public void generateSchedule(int course) {
-            JdbcTemplate template = new JdbcTemplate(dataSource);
-            SimpleJdbcCall call = new SimpleJdbcCall(template)
-                    .withFunctionName("schedule_chooser");
+    public void generateSchedule(int course) {
+        JdbcTemplate template = new JdbcTemplate(dataSource);
+        SimpleJdbcCall call = new SimpleJdbcCall(template)
+                .withFunctionName("schedule_chooser");
 
-            SqlParameterSource paramMap = new MapSqlParameterSource()
-                    .addValue("course", course);
+        SqlParameterSource paramMap = new MapSqlParameterSource()
+                .addValue("course", course);
 
-            Integer result = call.executeFunction(Integer.class, paramMap);
-            System.out.println(result);
-        }
+        Integer result = call.executeFunction(Integer.class, paramMap);
+        System.out.println(result);
     }
+}

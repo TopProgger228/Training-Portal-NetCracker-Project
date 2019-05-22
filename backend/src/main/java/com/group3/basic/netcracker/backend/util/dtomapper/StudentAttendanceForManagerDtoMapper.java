@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StudentAttendanceForManagerDtoMapper {
 
-    public StudentAttendanceForManagerDto toStudentAttendanceForManagerDto (User user) {
+    public StudentAttendanceForManagerDto toStudentAttendanceForManagerDto(User user) {
 
         StudentAttendanceForManagerDto tmp = new StudentAttendanceForManagerDto();
         tmp.setId(user.getId());

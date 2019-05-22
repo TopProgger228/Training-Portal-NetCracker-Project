@@ -1,7 +1,6 @@
 package com.group3.basic.netcracker.backend.service;
 
 import com.group3.basic.netcracker.backend.entity.TimeSlot;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.List;

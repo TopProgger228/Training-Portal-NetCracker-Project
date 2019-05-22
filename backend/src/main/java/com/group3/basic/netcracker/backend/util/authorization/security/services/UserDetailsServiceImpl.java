@@ -2,7 +2,6 @@ package com.group3.basic.netcracker.backend.util.authorization.security.services
 
 import com.group3.basic.netcracker.backend.dao.impl.UserDaoImpl;
 import com.group3.basic.netcracker.backend.entity.User;
-import com.group3.basic.netcracker.backend.util.authorization.security.services.UserPrinciple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.userdetails.UserDetails;

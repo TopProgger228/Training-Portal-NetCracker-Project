@@ -1,6 +1,5 @@
 package com.group3.basic.netcracker.backend.dto;
 
-import java.time.LocalDate;
 
 public class CourseForm {
     private String name;
