@@ -15,9 +15,10 @@ import { Trainer } from "../services/trainer";
 export class AddNewCourseComponent implements OnInit {
   loggedout = false;
   //course = new Course("", "", "", "", "",0,0);
-  course = new Course(null, null, null, null, null, null, null);
   levels = ['Junior', 'Middle', 'Senior'];
   trainers: Trainer[];
+  course = new Course("", "", "", "", "", 0, 1);
+
 
   constructor(private router: Router, private trainerService: TrainerService, private token: TokenStorageService, private httpService: AddCourseService) {
   }
@@ -57,4 +58,3 @@ export class AddNewCourseComponent implements OnInit {
       });
   }
 }
-
