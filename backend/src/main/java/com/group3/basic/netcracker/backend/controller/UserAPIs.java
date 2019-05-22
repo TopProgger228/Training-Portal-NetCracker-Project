@@ -1,37 +1,29 @@
 package com.group3.basic.netcracker.backend.controller;
 
-import com.group3.basic.netcracker.backend.dao.impl.UserDaoImpl;
 import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import com.group3.basic.netcracker.backend.util.file.ImageConverter;
-import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class UserAPIs {
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    UserAPIs(UserService userService) {
+    public UserAPIs(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/getUser")
     public UserForDisplay getUser(@RequestParam("username") String username) {
-        UserForDisplay u = userService.getUserByUsername(username);
-        return u;
+        return userService.getUserByUsername(username);
     }
 
     @PostMapping("/updateUser")
@@ -51,25 +43,24 @@ public class UserAPIs {
                                                    @RequestParam("filename") String filename,
                                                    @RequestParam("fileExtension") String fileExtension) {
 
-        String filepath = "backend//src//main//resources//photos//"+filename;
+        String filepath = "backend//src//main//resources//photos//" + filename;
 
         if (ImageConverter.convertToImage(file, filepath, fileExtension) &&
-                userService.updatePhoto(username,filepath)>0){
+                userService.updatePhoto(username, filepath) > 0) {
             return ResponseEntity.status(HttpStatus.OK).body("Photo uploaded");
-        }else{
+        } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Photo not uploaded");
         }
     }
 
     @GetMapping(
             value = "/getPhoto"
-            //produces = MediaType.IMAGE_JPEG_VALUE
     )
-    public ResponseEntity<?> getImage(@RequestParam("username") String username) throws IOException {
+    public ResponseEntity<?> getImage(@RequestParam("username") String username) {
         try {
             String filepath = userService.getPhotoByUsername(username);
             return ResponseEntity.status(HttpStatus.OK).body(ImageConverter.convertToString(filepath));
-        }catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }

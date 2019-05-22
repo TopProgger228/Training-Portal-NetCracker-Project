@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao){
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer getIdByUsername(String username){
+    public Integer getIdByUsername(String username) {
         return userDao.getIdByUsername(username);
     }
 
@@ -68,7 +68,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addMember(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at) {
+    public void addMember(String username, String role, String fname, String lname, String email,
+                          String pass, LocalDate created_at) {
         userDao.addMember(username, role, fname, lname, email, pass, created_at);
     }
 
@@ -108,12 +109,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List getStudentsOfManager(String username){
+    public List getStudentsOfManager(String username) {
         return userDao.getStudentsOfManager(username);
     }
 
     @Override
-    public boolean existByEmail(String email){
+    public boolean existByEmail(String email) {
         return userDao.existsByEmail(email);
     }
 
@@ -158,7 +159,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getPhotoByUsername(String username){
+    public String getPhotoByUsername(String username) {
         return userDao.getPhotoByUsername(username);
     }
 }

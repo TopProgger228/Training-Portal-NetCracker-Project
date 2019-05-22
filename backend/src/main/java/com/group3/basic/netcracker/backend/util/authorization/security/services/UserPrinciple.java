@@ -48,7 +48,7 @@ public class UserPrinciple implements UserDetails {
         return id;
     }
 
-    public int getManager_id(){
+    public int getManager_id() {
         return manager_id;
     }
 
@@ -56,7 +56,6 @@ public class UserPrinciple implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
-
 
 
     private String username;
@@ -82,7 +81,7 @@ public class UserPrinciple implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
 
-    public UserPrinciple(String username, String  role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int manager_id, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrinciple(String username, String role, String fname, String lname, String email, String pass, LocalDate created_at, byte[] photo, int manager_id, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.role = role;
         this.fname = fname;
@@ -112,7 +111,6 @@ public class UserPrinciple implements UserDetails {
                 authorities
         );
     }
-
 
 
     @Override

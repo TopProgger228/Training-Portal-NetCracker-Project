@@ -15,8 +15,6 @@ public class ReportDataSource {
 
         dataSource = getDataSource();
 
-        // JdbcTemplate template = new JdbcTemplate(dataSource); // constructor
-
         JdbcTemplate template = new JdbcTemplate();
         template.setDataSource(dataSource);
 

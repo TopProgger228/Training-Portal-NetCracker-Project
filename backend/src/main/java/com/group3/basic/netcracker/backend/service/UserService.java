@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface UserService {
-    void createUser(String username, String  role, String fname, String lname,
+    void createUser(String username, String role, String fname, String lname,
                     String email, String pass, LocalDate created_at, String photo);
 
     User getUserById(int id);
@@ -61,7 +61,7 @@ public interface UserService {
 
     int getId(String username);
 
-    int updatePhoto(String username, String filepath) ;
+    int updatePhoto(String username, String filepath);
 
     String getPhotoByUsername(String username);
 

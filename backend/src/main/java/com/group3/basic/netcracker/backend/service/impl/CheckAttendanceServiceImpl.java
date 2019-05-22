@@ -23,7 +23,7 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
 
     private final LessonDao lessonDao;
     private final UserDao userDao;
-    private final CourseDAO courseDao;
+    private final CourseDao courseDao;
     private final LessonMissingDao lessonMissingDao;
     private final TimeSlotDao timeSlotDao;
     private final TrainerAttendanceDtoMapper trainerAttendanceDtoMapper;
@@ -31,7 +31,7 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     private final LessonAttendanceDtoMapper lessonAttendanceDtoMapper;
 
     @Autowired
-    public CheckAttendanceServiceImpl(LessonDao lessonDao, UserDao userDao, CourseDAO courseDao, LessonMissingDao lessonMissingDao, TimeSlotDao timeSlotDao, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper) {
+    public CheckAttendanceServiceImpl(LessonDao lessonDao, UserDao userDao, CourseDao courseDao, LessonMissingDao lessonMissingDao, TimeSlotDao timeSlotDao, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper) {
         this.lessonDao = lessonDao;
         this.userDao = userDao;
         this.courseDao = courseDao;
@@ -44,7 +44,7 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
 
 
     @Override
-    public List<LessonAttendanceDto> getTodayLessonsByTrainer (int trainerId) {
+    public List<LessonAttendanceDto> getTodayLessonsByTrainer(int trainerId) {
 
         List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
         for (Lesson l : lessonDao.getTodayLessonsByTrainer(trainerId)) {
@@ -117,7 +117,7 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     }
 
 
-    private boolean isExist (int userId, int lessonId) {
+    private boolean isExist(int userId, int lessonId) {
 
         for (LessonMissing lm : lessonMissingDao.getLessonMissingByLesson(lessonId)) {
             if (lm.getUserId() == userId) {

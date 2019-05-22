@@ -21,43 +21,43 @@ public class ManagersAndTrainersEditingController {
     private final PasswordEncoder encoder;
 
     @Autowired
-    public ManagersAndTrainersEditingController(UserService userService, PasswordEncoder encoder){
+    public ManagersAndTrainersEditingController(UserService userService, PasswordEncoder encoder) {
         this.userService = userService;
         this.encoder = encoder;
     }
 
     @PostMapping("addmember")
-    public ResponseEntity<?> addMember(@Valid @RequestBody Member member){
-        if (userService.isUserExists(member.getUsername(), member.getEmail())){
+    public ResponseEntity<?> addMember(@Valid @RequestBody Member member) {
+        if (userService.isUserExists(member.getUsername(), member.getEmail())) {
             return new ResponseEntity<>(new ResponseMessage("User exists!"), HttpStatus.BAD_REQUEST);
-        }else {
+        } else {
             userService.addMember(member.getUsername(), member.getRole(),
                     member.getFname(), member.getLname(), member.getEmail(),
                     encoder.encode(member.getPassword()), LocalDate.now());
 
-            if (member.getRole().equals("Trainer")){
+            if (member.getRole().equals("Trainer")) {
                 int id = userService.getId(member.getUsername());
                 userService.insertTrainerInfo(id, member.getInfo());
             }
 
-            return new ResponseEntity<> (new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
         }
     }
 
     @DeleteMapping("delete")
-    public ResponseEntity<?> delete(@RequestParam int id){
+    public ResponseEntity<?> delete(@RequestParam int id) {
         userService.removeUser(id);
         return new ResponseEntity<>(new ResponseMessage("Deleted!"), HttpStatus.OK);
     }
 
     @PostMapping("updateUsername")
-    public ResponseEntity<?> updateUserName(@RequestParam int id, @RequestParam String newUserName){
+    public ResponseEntity<?> updateUserName(@RequestParam int id, @RequestParam String newUserName) {
         userService.updateUserName(id, newUserName);
         return new ResponseEntity<>(new ResponseMessage("Username updated!"), HttpStatus.OK);
     }
 
     @PostMapping("updateFirstName")
-    public ResponseEntity<?> updateFirstName(@RequestParam int id, @RequestParam String newFirstName){
+    public ResponseEntity<?> updateFirstName(@RequestParam int id, @RequestParam String newFirstName) {
         userService.updateUserFirstName(id, newFirstName);
         return new ResponseEntity<>(new ResponseMessage("First name updated!"), HttpStatus.OK);
     }

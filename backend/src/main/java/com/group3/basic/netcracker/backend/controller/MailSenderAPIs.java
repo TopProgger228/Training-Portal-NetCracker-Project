@@ -3,10 +3,8 @@ package com.group3.basic.netcracker.backend.controller;
 
 import com.group3.basic.netcracker.backend.service.UsersTokenService;
 import com.group3.basic.netcracker.backend.service.UserService;
-import com.group3.basic.netcracker.backend.service.impl.UsersTokenServiceImpl;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,8 +17,6 @@ import java.util.UUID;
 @RequestMapping("/api")
 public class MailSenderAPIs {
 
-    private ApplicationContext context;
-
     private final UserService userService;
 
     private UsersTokenService usersTokenService;
@@ -28,8 +24,8 @@ public class MailSenderAPIs {
     private JavaMailSender javaMailSender;
 
     @Autowired
-    public MailSenderAPIs(ApplicationContext context, UserService userService, UsersTokenService usersTokenService, JavaMailSender javaMailSender){
-        this.context = context;
+    public MailSenderAPIs(UserService userService, UsersTokenService usersTokenService,
+                          JavaMailSender javaMailSender) {
         this.userService = userService;
         this.usersTokenService = usersTokenService;
         this.javaMailSender = javaMailSender;
@@ -53,7 +49,7 @@ public class MailSenderAPIs {
 
             javaMailSender.send(usersTokenService.constructPasswordResetTokenEmail(getAppUrl(), email, token));
             return new ResponseEntity<>(new ResponseMessage("sent"), HttpStatus.OK);
-        }else{
+        } else {
 
             return new ResponseEntity<>(new ResponseMessage("not exist"),
                     HttpStatus.OK);
@@ -65,7 +61,7 @@ public class MailSenderAPIs {
         return usersTokenService.getEmailByToken(token);
     }
 
-    private String getAppUrl(){
+    private String getAppUrl() {
         return "http://localhost:4200/";
     }
 

@@ -14,7 +14,7 @@ public class UsersTokenServiceImpl implements UsersTokenService {
 
     @Autowired
     public UsersTokenServiceImpl(UsersTokenDao usersTokenDao) {
-this.usersTokenDao = usersTokenDao;
+        this.usersTokenDao = usersTokenDao;
     }
 
     @Override
@@ -30,15 +30,16 @@ this.usersTokenDao = usersTokenDao;
     public void createTokenForUser(final String email, final String token) {
         final UsersToken myToken = new UsersToken(email, token);
         int existTokenId = usersTokenDao.getIdByEmail(email);
-        if(existTokenId > 0){
+        if (existTokenId > 0) {
             usersTokenDao.replaceTokenById(existTokenId, myToken.getToken(), myToken.getExpiryDate());
-        }else {
+        } else {
             usersTokenDao.createToken(myToken.getEmail(), myToken.getToken(), myToken.getExpiryDate());
         }
     }
 
     @Override
-    public SimpleMailMessage constructSignUpTokenEmail(final String contextPath, final String email, final String token) {
+    public SimpleMailMessage constructSignUpTokenEmail(final String contextPath, final String email,
+                                                       final String token) {
         final String url = contextPath + "/signup?token=" + token;
         final String message = "We glad to invite you to our training portal.\n For sign up click link below.";
         final String bottomMessage = "\n Keep in mind, link live only 24 hours.";
@@ -46,16 +47,19 @@ this.usersTokenDao = usersTokenDao;
     }
 
     @Override
-    public SimpleMailMessage constructPasswordResetTokenEmail(final String contextPath, final String email, final String token) {
+    public SimpleMailMessage constructPasswordResetTokenEmail(final String contextPath, final String email,
+                                                              final String token) {
         final String url = contextPath + "/password_reset?token=" + token;
         final String signInUrl = contextPath + "auth/login";
         final String message = "This is link for reset your password:";
-        final String bottomMessage = "\n Keep in mind, link live only 24 hours.\n If you remember your password try to sign in:";
-        return sendMail("Reset Password", message + " \r\n" + url + bottomMessage + " \r\n" + signInUrl, email);
+        final String bottomMessage = "\n Keep in mind, link live only 24 hours.\n If you remember your " +
+                "password try to sign in:";
+        return sendMail("Reset Password", message + " \r\n" + url + bottomMessage + " \r\n" +
+                signInUrl, email);
     }
 
     @Override
-    public String getEmailByToken(String token){
+    public String getEmailByToken(String token) {
         return usersTokenDao.getEmailByToken(token);
     }
 

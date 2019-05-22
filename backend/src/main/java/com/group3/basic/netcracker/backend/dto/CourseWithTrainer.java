@@ -3,7 +3,9 @@ package com.group3.basic.netcracker.backend.dto;
 import java.time.LocalDate;
 
 public class CourseWithTrainer {
-    public CourseWithTrainer() {};
+    public CourseWithTrainer() {
+    }
+
     public CourseWithTrainer(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int qty_per_week, String fname, String lname, String username, String email) {
         this.name = name;
         this.start_date = start_date;

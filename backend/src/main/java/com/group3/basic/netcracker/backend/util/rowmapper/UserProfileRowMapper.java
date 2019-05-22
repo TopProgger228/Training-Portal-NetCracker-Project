@@ -19,7 +19,7 @@ public class UserProfileRowMapper implements RowMapper {
         user.setUsername(row.getString("username"));
         user.setEmail(row.getString("email"));
         user.setId(row.getInt("id"));
-        user.setPhoto(ImageConverter.convertToString(row.getString("photo") ));
+        user.setPhoto(ImageConverter.convertToString(row.getString("photo")));
         return user;
     }
 }

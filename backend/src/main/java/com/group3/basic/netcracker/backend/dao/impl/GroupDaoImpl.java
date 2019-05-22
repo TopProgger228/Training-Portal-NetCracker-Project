@@ -1,6 +1,6 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
-import com.group3.basic.netcracker.backend.dao.GroupDAO;
+import com.group3.basic.netcracker.backend.dao.GroupDao;
 import com.group3.basic.netcracker.backend.entity.Group;
 import com.group3.basic.netcracker.backend.util.rowmapper.GroupRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +12,11 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class GroupDaoImpl implements GroupDAO {
+public class GroupDaoImpl implements GroupDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public GroupDaoImpl(JdbcTemplate jdbcTemplate){
+    public GroupDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -31,7 +31,8 @@ public class GroupDaoImpl implements GroupDAO {
     public Group getGroupById(int id) {
         String SQL = "SELECT * FROM \"Group\" WHERE id = ?";
         Group group = (Group) jdbcTemplate.queryForObject(SQL, new Object[]{id}, new GroupRowMapper());
-        return group;    }
+        return group;
+    }
 
     @Override
     public List listGroups() {

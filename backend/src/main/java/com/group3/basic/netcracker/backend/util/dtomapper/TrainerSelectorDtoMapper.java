@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Component
 public class TrainerSelectorDtoMapper {
 
-    public Trainer toTrainer (TrainerSelectorDto tsd) {
+    public Trainer toTrainer(TrainerSelectorDto tsd) {
 
         Trainer trainer = new Trainer();
         trainer.setId(tsd.getId());
@@ -19,7 +19,7 @@ public class TrainerSelectorDtoMapper {
 
     }
 
-    public TrainerSelectorDto toTrainerSelectorDto (Trainer trainer) {
+    public TrainerSelectorDto toTrainerSelectorDto(Trainer trainer) {
 
         TrainerSelectorDto tsd = new TrainerSelectorDto();
         tsd.setId(trainer.getId());

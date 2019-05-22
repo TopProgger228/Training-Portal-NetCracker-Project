@@ -1,7 +1,6 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
-import com.group3.basic.netcracker.backend.dao.CourseDAO;
-import com.group3.basic.netcracker.backend.dto.CourseForm;
+import com.group3.basic.netcracker.backend.dao.CourseDao;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseIdRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseRowMapper;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class CourseDaoImpl implements CourseDAO {
+public class CourseDaoImpl implements CourseDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Component
 public class TrainerAttendanceDtoMapper {
 
-    public TrainerAttendanceDto toTrainerAttendanceDto (User user) {
+    public TrainerAttendanceDto toTrainerAttendanceDto(User user) {
 
         TrainerAttendanceDto tad = new TrainerAttendanceDto();
         tad.setId(user.getId());
@@ -19,7 +19,7 @@ public class TrainerAttendanceDtoMapper {
     }
 
 
-    public User toUser (TrainerAttendanceDto tad) {
+    public User toUser(TrainerAttendanceDto tad) {
 
         User user = new User();
         user.setId(tad.getId());
