@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import javax.validation.Valid;
 
 
+import com.group3.basic.netcracker.backend.dao.UserDao;
 import com.group3.basic.netcracker.backend.dao.impl.UserDaoImpl;
+import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.LoginForm;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.SignUpForm;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.JwtResponse;
@@ -36,10 +38,12 @@ public class AuthRestAPIs {
 
     private ApplicationContext context;
 
+    private UserService userService;
 
     @Autowired
     public AuthRestAPIs(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
-                        JwtProvider jwtProvider, ApplicationContext context) {
+                        JwtProvider jwtProvider, ApplicationContext context, UserService userService) {
+        this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.encoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
@@ -62,34 +66,35 @@ public class AuthRestAPIs {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ResponseMessage("Fail -> Username or Password is wrong!"),
+            return new ResponseEntity<>(new ResponseMessage("Username or Password is wrong!"),
                     HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm info) {
-        UserDaoImpl jdbcTemplateUsersDao = context.getBean(UserDaoImpl.class);
-        if (jdbcTemplateUsersDao.existsByUsername(info.getUsername())) {
-            return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
-                    HttpStatus.BAD_REQUEST);
+        if (userService.existByUsername(info.getUsername())) {
+            return new ResponseEntity<>(new ResponseMessage("username is already taken"),
+                    HttpStatus.OK);
+        }else if (userService.existByEmail(info.getEmail())) {
+            return new ResponseEntity<>(new ResponseMessage("email is already taken"),
+                    HttpStatus.OK);
         }
-        jdbcTemplateUsersDao.createUser(info.getUsername(),
+        userService.createUser(info.getUsername(),
                 "Student", info.getFname(), info.getLname(), info.getEmail(),
                 encoder.encode(info.getPassword()), LocalDate.now(), null);
 
-        return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("registered successfully"), HttpStatus.OK);
     }
 
     @PostMapping("/reset_password")
     public ResponseEntity<?> resetPassword(@RequestParam("email") String email, @RequestParam("password") String password) {
-        UserDaoImpl jdbcTemplateUsersDao = context.getBean(UserDaoImpl.class);
-        if (!jdbcTemplateUsersDao.existsByEmail(email)) {
-            return new ResponseEntity<>(new ResponseMessage("Fail -> User does not exist!"),
-                    HttpStatus.BAD_REQUEST);
+        if (!userService.existByEmail(email)) {
+            return new ResponseEntity<>(new ResponseMessage("user does not exist"),
+                    HttpStatus.OK);
         }
-        jdbcTemplateUsersDao.resetPassword(email, encoder.encode(password));
+        userService.resetPassword(email, encoder.encode(password));
 
-        return new ResponseEntity<>(new ResponseMessage("User password reset successfully!"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("successfully"), HttpStatus.OK);
     }
 }

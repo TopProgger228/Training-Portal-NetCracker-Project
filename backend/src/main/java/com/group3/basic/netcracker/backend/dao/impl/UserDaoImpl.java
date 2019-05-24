@@ -53,14 +53,12 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+
     public boolean existsByUsername(String username) {
-        try {
-            jdbcTemplate.queryForObject(UserDaoQueries.existsByUsernameQuery, new Object[]{username},
-                    new UserRowMapper());
-        } catch (EmptyResultDataAccessException e) {
-            return false;
-        }
-        return true;
+        Long count = (Long) ((Object) jdbcTemplate.queryForObject(UserDaoQueries.existsByUsernameQuery,
+                new Object[]{username}, Object.class));
+
+        return count != 0;
     }
 
     @Override
@@ -68,10 +66,9 @@ public class UserDaoImpl implements UserDao {
         String SQL = "SELECT count(*) FROM \"User\" WHERE email = ?";
         Long count = (Long) ((Object) jdbcTemplate.queryForObject(UserDaoQueries.existsByEmailQuery,
                 new Object[]{email}, Object.class));
-        if (count == 0)
-            return false;
-        return true;
+        return count != 0;
     }
+
 
     public User findByUsername(String username) {
         User user = (User) jdbcTemplate.queryForObject(UserDaoQueries.findByUsernameQuery,

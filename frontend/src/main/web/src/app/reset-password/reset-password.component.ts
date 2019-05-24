@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PasswordValidator } from './password-validation';
+import { PasswordCompareValidator } from '../validators/password-compare-validation';
 import { AuthService } from '../auth/auth.service';
 
-
+import { ToasterService } from "../services/toaster.service";
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MailSenderService } from '../services/MailSender.service';
@@ -27,12 +27,13 @@ export class ResetPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private mailSenderService: MailSenderService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private toasterService: ToasterService) {
     this.passwordFormGroup = this.formBuilder.group({
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required]
     }, {
-        validator: PasswordValidator.validate.bind(this)
+        validator: PasswordCompareValidator.validate.bind(this)
       });
     this.passwordResetFormGroup = this.formBuilder.group({
       passwordFormGroup: this.passwordFormGroup
@@ -57,11 +58,11 @@ export class ResetPasswordComponent implements OnInit {
 
       this.mailSenderService.getEmailByToken(this.token).subscribe(
         data => {
-        console.log(data);
-        if (data.partialText) {
-          this.email = data.partialText;
-        }
-      },
+          console.log(data);
+          if (data.partialText) {
+            this.email = data.partialText;
+          }
+        },
         error => {
           console.log(error);
         })
@@ -75,11 +76,19 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(this.email, this.passwordFormGroup.controls.password.value).subscribe(
       data => {
         console.log(data);
+        if (data.partialText) {
+          console.log(data.partialText);
+          if (data.partialText === '{"message":"successfully"}') {
+            this.toasterService.Success("Success", "Password reset successfully");
+            this.router.navigate(['auth/login']);
+          }
+          else if (data.partialText === '{"message":"user does not exist"}') this.toasterService.Warning("Warning", "User does not exist");
+        }
       },
       error => {
         console.log(error);
+        this.toasterService.Error("Error!", "Http failure response");
       })
-    this.router.navigate(['auth/login']);
   }
 
 }

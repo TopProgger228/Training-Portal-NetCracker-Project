@@ -26,7 +26,7 @@ export class AddNewManagerTrainerToasterService {
       "debug": false,
       "newestOnTop": true,
       "progressBar": false,
-      "positionClass": "toast-top-center",
+      "positionClass": "toast-bottom-right",
       "preventDuplicates": true,
       "onclick": null,
       "showDuration": "300",

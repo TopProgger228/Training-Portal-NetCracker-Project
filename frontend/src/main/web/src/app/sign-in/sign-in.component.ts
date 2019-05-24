@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import {ToasterService} from "../services/toaster.service";
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { SignInInfo } from '../auth/signin-info';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,12 +16,13 @@ export class SignInComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
   roles: string[] = [];
   private loginInfo: SignInInfo;
 
   constructor(private authService: AuthService,
-    private router: Router, private tokenStorage: TokenStorageService) { }
+    private router: Router, 
+    private tokenStorage: TokenStorageService,
+    private toasterService: ToasterService) { }
 
 
   ngOnInit() {
@@ -52,7 +54,9 @@ export class SignInComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
+
+        this.toasterService.Error("Fail!", error.error.message);
+        this.form.password = null;
         this.isLoginFailed = true;
 
         this.router.navigate(['auth/login']);

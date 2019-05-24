@@ -31,10 +31,8 @@ public class ImageConverter {
             encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | UnsupportedEncodingException e) {
             System.out.println("User hasn't downloaded photo yet");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

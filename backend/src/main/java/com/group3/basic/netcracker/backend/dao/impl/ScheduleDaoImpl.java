@@ -79,15 +79,14 @@ public class ScheduleDaoImpl implements ScheduleDao {
         List<Integer> list = new ArrayList<Integer>();
 
         for (int i = 0; i < timeSlotId.length; i++) {
-            if (isScheduleWithAllRow(userId, timeSlotId[i], isChoosen) >= 1) {
-                continue;
-            } else {
+            if (isScheduleWithAllRow(userId, timeSlotId[i], isChoosen) < 1) {
                 list.add(timeSlotId[i]);
             }
         }
 
-        if (list.size() > 0) {
+        if (!list.isEmpty()) {
             Integer[] tempArray = new Integer[list.size()];
+
             tempArray = list.toArray(tempArray);
             return tempArray;
         }

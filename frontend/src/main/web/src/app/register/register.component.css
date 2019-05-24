@@ -15,7 +15,7 @@
 form{ font-family:georgia, serif;
     letter-spacing:0.1em;
     padding-top:11px;
-    font-size: 35pt;
+    font-size: 26pt;
     color: rgb(173, 173, 173);
     background: rgba(58, 58, 58, 0.699);
     width: 60%;
@@ -27,11 +27,11 @@ input{
     width: 80%;
     margin: auto;
 
-    font-size: 20pt;
+    font-size: 17pt;
 }
 
 button{
-    font-size: 35px;
+    font-size: 32px;
     color: rgb(173, 173, 173);
     margin: auto
   }

@@ -7,53 +7,66 @@
     <div id="bg-overlay">
       <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
-          <form class="text-center" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <form class="text-center" name="form" [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+
             <div class="form-group  text-center">
-              <label for="fname">Your first name</label>
-              <input type="text" class="form-control" name="fname" [(ngModel)]="form.fname" #fname="ngModel" required />
-              <div *ngIf="f.submitted && fname.invalid">
-                <div *ngIf="fname.errors.required" style="font-size: 15pt">First name is required</div>
-              </div>
+              <label for="fname">Your first name*</label>
+              <input type="text" class="form-control" name="fname" formControlName="fname" />
             </div>
+            <div *ngIf="registerFormGroup.controls.fname.errors?.required  && registerFormGroup.controls.fname.touched"
+              style="font-size: 15pt">First name is required</div>
+            <div *ngIf="registerFormGroup.errors?.fnameIsLowerCase" style="font-size: 15pt">First
+              name must be capitalize</div>
+
             <div class="form-group  text-center">
-              <label for="lname">Your last name</label>
-              <input type="text" class="form-control" name="lname" [(ngModel)]="form.lname" #lname="ngModel" required />
-              <div *ngIf="f.submitted && lname.invalid">
-                <div *ngIf="lname.errors.required" style="font-size: 15pt">Second name is required</div>
-              </div>
+              <label for="lname">Your last name*</label>
+              <input type="text" class="form-control" name="lname" formControlName="lname" />
             </div>
+            <div *ngIf="registerFormGroup.controls.lname.errors?.required  && registerFormGroup.controls.lname.touched"
+              style="font-size: 15pt">Second name is required</div>
+            <div *ngIf="registerFormGroup.errors?.lnameIsLowerCase" style="font-size: 15pt">Last
+              name must be capitalize</div>
+
             <div class="form-group text-center">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
-                required />
-              <div *ngIf="f.submitted && username.invalid">
-                <div *ngIf="username.errors.required" style="font-size: 15pt">Username is required</div>
-              </div>
+              <label for="username">Username*</label>
+              <input type="text" class="form-control" name="username" formControlName="username" />
             </div>
+            <div
+              *ngIf="registerFormGroup.controls.username.errors?.required  && registerFormGroup.controls.username.touched"
+              style="font-size: 15pt">Username is required</div>
+
             <div class="form-group text-center">
               <label for="email">Email</label>
-              <input class="form-control" type="text" name="email" value="{{this.email}}" readonly  />
+              <input class="form-control" type="text" name="email" value="{{this.email}}" readonly />
             </div>
-            <div class="form-group text-center">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="form.password"
-                #password="ngModel" required minlength="6" />
-              <div *ngIf="f.submitted && password.invalid">
-                <div *ngIf="password.errors.required" style="font-size: 15pt">Password is required</div>
-                <div *ngIf="password.errors.minlength" style="font-size: 15pt">Password must be at least 6 characters
-                </div>
+
+            <div [formGroup]="passwordFormGroup">
+              <div class="form-group text-center">
+                <label for="password">Password*</label>
+                <input class="form-control" type="password" name="password" formControlName="password" minlength="6">
+              </div>
+              <div
+                *ngIf="passwordFormGroup.controls.password.errors?.required && passwordFormGroup.controls.password.touched"
+                style="font-size: 15pt">
+                Password is required</div>
+              <div *ngIf="passwordFormGroup.controls.password.errors?.minlength" style="font-size: 15pt">Password must be
+                at least 6 characters
+              </div>
+              <div class="form-group text-center">
+                <label for="repeatPassword">Repeat Password*</label>
+                <input class="form-control" type="password" name="repeatPassword" formControlName="repeatPassword">
+              </div>
+              <div
+                *ngIf="passwordFormGroup.controls.repeatPassword.errors?.required && passwordFormGroup.controls.repeatPassword.touched"
+                style="font-size: 15pt">
+                Repeat password is required</div>
+              <div *ngIf="passwordFormGroup.errors?.doesMatchPassword" style="font-size: 15pt">Password does not match
               </div>
             </div>
-            <!--<div class="form-group  text-center">-->
-              <!--<label for="photo">Photo</label>-->
-              <!--<input type="file" (change)="onFileChanged($event)"-->
-                      <!--class="form-control" name="photo" />-->
-            <!--</div>-->
+
             <div class="form-group text-center">
-              <button class="btn btn-outline-secondary ">Register</button>
-              <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning" style="font-size: 15pt">
-                Signup failed!<br />{{errorMessage}}
-              </div>
+              <button class="btn btn-outline-secondary " type="submit"
+                [disabled]="!registerFormGroup.valid">Register</button>
             </div>
           </form>
         </div>

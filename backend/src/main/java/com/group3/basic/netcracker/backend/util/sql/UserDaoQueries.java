@@ -15,7 +15,7 @@ public interface UserDaoQueries {
 
     String findByUsernameQuery = "SELECT * FROM \"User\" WHERE username = ?";
 
-    String existsByUsernameQuery = "SELECT * FROM \"User\" WHERE username = ?";
+    String existsByUsernameQuery = "SELECT count(*) FROM \"User\" WHERE username = ?";
 
     String existsByEmailQuery = "SELECT count(*) FROM \"User\" WHERE email = ?";
 

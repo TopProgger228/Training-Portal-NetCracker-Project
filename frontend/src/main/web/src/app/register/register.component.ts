@@ -3,6 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { SignUpInfo } from '../auth/signup-info';
 
+
+import { ToasterService } from "../services/toaster.service";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UpperCaseValidator } from '../validators/upperCase-validation';
+import { PasswordCompareValidator } from '../validators/password-compare-validation';
+
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MailSenderService } from '../services/MailSender.service';
@@ -13,6 +19,9 @@ import { MailSenderService } from '../services/MailSender.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  registerFormGroup: FormGroup;
+  passwordFormGroup: FormGroup;
+
   form: any = {};
   signupInfo: SignUpInfo;
   isSignedUp = false;
@@ -20,14 +29,32 @@ export class RegisterComponent implements OnInit {
   email: string = 'Loading...';
 
   roles: string[] = [];
-  errorMessage = '';
 
   constructor(private authService: AuthService,
     private router: Router,
     private tokenStorage: TokenStorageService,
     private mailSenderService: MailSenderService,
-    private route: ActivatedRoute) { }
- 
+    private formBuilder: FormBuilder,
+    private toasterService: ToasterService,
+    private route: ActivatedRoute) {
+    this.passwordFormGroup = this.formBuilder.group({
+      password: ['', Validators.required],
+      repeatPassword: ['', Validators.required]
+    }, {
+        validator: PasswordCompareValidator.validate.bind(this)
+      });
+
+    this.registerFormGroup = this.formBuilder.group({
+      passwordFormGroup: this.passwordFormGroup,
+      fname: ['', Validators.required],
+      lname: ['', Validators.required],
+      username: ['', Validators.required],
+    },
+      {
+        validator: UpperCaseValidator.validate.bind(this)
+      });
+  }
+
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isSignedUp = true;
@@ -50,7 +77,7 @@ export class RegisterComponent implements OnInit {
               console.log(error);
             })
           console.log(this.email);
-    
+
         } else {
           console.log('token not found in params');
         }
@@ -61,10 +88,10 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.signupInfo = new SignUpInfo(
-      this.form.fname,
-      this.form.lname,
-      this.form.username,
-      this.form.password,
+      this.registerFormGroup.controls.fname.value,
+      this.registerFormGroup.controls.lname.value,
+      this.registerFormGroup.controls.username.value,
+      this.passwordFormGroup.controls.password.value,
       this.email,
       //this.selectedFile
     );
@@ -74,31 +101,39 @@ export class RegisterComponent implements OnInit {
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         console.log(data);
-        this.isSignedUp = true;
-        this.isSignUpFailed = false;
-        this.roles = this.tokenStorage.getAuthorities();
-        this.router.navigate(['auth/login']);
-        //this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile);
+          if (data.message === "registered successfully") {
+            this.toasterService.Success("Success", "User created successfully");
+            this.isSignedUp = true;
+            this.isSignUpFailed = false;
+            this.roles = this.tokenStorage.getAuthorities();
+            this.router.navigate(['auth/login']);
+          } else if (data.message === "username is already taken") {
+            this.toasterService.Warning("Warning", "User with this username is already exist, try amother one" );
+            this.isSignUpFailed = true;
+          } else if (data.message === "email is already taken") {
+            this.toasterService.Warning("Warning", "User with this email is already taken, try to reset your password");
+            this.isSignUpFailed = true;
+          }//this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile);
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
+        this.toasterService.Error("Error", "Something wrong, try later");
       }
     );
 
-  // if(this.ind) {
-  //     this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile).subscribe(
-  //       data => {
-  //         console.log(data);
-  //         this.router.navigate(['auth/login']);
-  //       },
-  //       error => {
-  //         console.log(error);
-  //         this.router.navigate(['auth/login']);
-  //       }
-  //    );
-   //}
+    // if(this.ind) {
+    //     this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile).subscribe(
+    //       data => {
+    //         console.log(data);
+    //         this.router.navigate(['auth/login']);
+    //       },
+    //       error => {
+    //         console.log(error);
+    //         this.router.navigate(['auth/login']);
+    //       }
+    //    );
+    //}
   }
 
   // onFileChanged(event) {

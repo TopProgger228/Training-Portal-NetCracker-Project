@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
  
-export class PasswordValidator {
+export class PasswordCompareValidator {
     static validate(passwordResetFormGroup: FormGroup) {
         let password = passwordResetFormGroup.controls.password.value;
         let repeatPassword = passwordResetFormGroup.controls.repeatPassword.value;

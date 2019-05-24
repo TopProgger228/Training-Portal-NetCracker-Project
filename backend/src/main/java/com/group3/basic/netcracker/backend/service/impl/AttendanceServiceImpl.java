@@ -104,7 +104,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
 
-    @Override
+
     public List<UserAttendanceDto> getUsersOfCourseAttendance(int lessonId) {
 
         List<UserAttendanceDto> userAttendanceDtoList = new ArrayList<>();

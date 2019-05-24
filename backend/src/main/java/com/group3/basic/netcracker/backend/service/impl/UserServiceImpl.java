@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
         return userDao.getTrainers();
     }
 
+    @Override
+    public void resetPassword(String email, String pass) {
+         userDao.resetPassword(email, pass);
+    }
+
 
     @Override
     public void removeUser(int id) {
@@ -116,6 +121,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existByEmail(String email) {
         return userDao.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existByUsername(String email) {
+        return userDao.existsByUsername(email);
     }
 
     @Override

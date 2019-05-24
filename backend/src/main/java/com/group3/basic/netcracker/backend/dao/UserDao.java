@@ -46,6 +46,8 @@ public interface UserDao {
 
     boolean isUserExists(String username, String email);
 
+    boolean existsByUsername(String email);
+
     boolean existsByEmail(String email);
 
     List<User> getUsersByLesson(int lessonId);

@@ -18,6 +18,8 @@ public interface UserService {
 
     List getTrainers();
 
+    void resetPassword(String email, String pass);
+
     void removeUser(int id);
 
     void updateUser(int id, String username, String fname, String lname, String email);
@@ -46,6 +48,8 @@ public interface UserService {
     List getStudentsOfManager(String username);
 
     boolean existByEmail(String email);
+
+    boolean existByUsername(String email);
 
     List getManagerOfStudent(String username);
 
