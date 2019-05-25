@@ -17,7 +17,7 @@ public interface CourseDao {
 
     List listCourses();
 
-    List listLastTenCourses();
+    List listActiveCourses();
 
     List listCoursesByUsername(String username);
 

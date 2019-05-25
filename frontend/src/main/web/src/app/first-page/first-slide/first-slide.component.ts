@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { TokenStorageService } from '../../auth/token-storage.service';
 
 import { NewsService } from '../../services/News.service';

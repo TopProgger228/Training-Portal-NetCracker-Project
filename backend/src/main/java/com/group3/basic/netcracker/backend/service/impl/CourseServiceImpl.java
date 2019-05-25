@@ -42,8 +42,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List listLastTenCourses() {
-        return courseDAO.listLastTenCourses();
+    public List listActiveCourses() {
+        return courseDAO.listActiveCourses();
     }
 
     @Override

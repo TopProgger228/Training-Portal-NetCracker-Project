@@ -6,7 +6,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-student-mail-sender',
-  templateUrl: './mail-sender.component.html',
+  templateUrl: './add-student.html',
   styleUrls: ['./mail-sender.component.css']
 })
 export class AddStudentMailSenderComponent implements OnInit {

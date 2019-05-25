@@ -3,7 +3,6 @@ import { COURSES } from '../default-courses';
 import { StockCourses } from "../stock-courses";
 import { CourseService } from '../../../services/course.service';
 import { Course } from '../../../services/course'
-import {Router} from "@angular/router";
 
 import {TokenStorageService} from "../../../auth/token-storage.service";
 
@@ -22,7 +21,7 @@ export class CoursesContainerComponent implements OnInit {
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.courseService.getLastTenCoursesList().subscribe(data => {
+    this.courseService.getActiveCoursesList().subscribe(data => {
       this.courses = data;
       console.log(data);
       console.log(this.tokenStorage);

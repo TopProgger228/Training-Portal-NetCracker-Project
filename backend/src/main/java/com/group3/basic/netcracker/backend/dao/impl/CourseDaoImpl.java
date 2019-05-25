@@ -58,9 +58,9 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public List listLastTenCourses() {
-        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" ORDER BY id DESC fetch first 10 rows only;";
-        List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
+    public List listActiveCourses() {
+        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" WHERE start_date > ? ORDER BY id DESC;";
+        List courses = jdbcTemplate.query(SQL, new Object[]{new java.sql.Date(System.currentTimeMillis())}, new CourseRowMapper());
         return courses;
     }
 

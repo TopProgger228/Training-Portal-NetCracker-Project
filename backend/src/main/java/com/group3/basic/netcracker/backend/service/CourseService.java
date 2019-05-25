@@ -16,7 +16,7 @@ public interface CourseService {
 
     List listCourses();
 
-    List listLastTenCourses();
+    List listActiveCourses();
 
     List listCoursesByUsername(String username);
 

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MailSenderService } from '../services/MailSender.service';
 
-import {ToasterService} from "../services/toaster.service";
+import { ToasterService } from "../services/toaster.service";
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-password-reset-mail-sender',
-  templateUrl: './mail-sender.component.html',
+  templateUrl: './resetPassword.html',
   styleUrls: ['./mail-sender.component.css']
 })
 export class PasswordResetMailSenderComponent implements OnInit {
@@ -26,7 +26,6 @@ export class PasswordResetMailSenderComponent implements OnInit {
 
   ngOnInit() {
     if (this.token.getToken()) {
-      console.log(this.token.getToken());
       this.router.navigate(['firstPage']);
     }
   }
@@ -37,12 +36,12 @@ export class PasswordResetMailSenderComponent implements OnInit {
       data => {
         console.log(data);
 
-    if (data.partialText) {
+        if (data.partialText) {
 
-      console.log(data.partialText);
-        if (data.partialText === '{"message":"sent"}') this.toasterService.Success("Success","Mail sent successfully");
-        else if (data.partialText === '{"message":"not exist"}') this.toasterService.Warning("Warning", "User does not exist");
-    }
+          console.log(data.partialText);
+          if (data.partialText === '{"message":"sent"}') this.toasterService.Success("Success", "Mail sent successfully");
+          else if (data.partialText === '{"message":"not exist"}') this.toasterService.Warning("Warning", "User does not exist");
+        }
         this.isLoginFailed = false;
       },
       error => {
@@ -51,14 +50,5 @@ export class PasswordResetMailSenderComponent implements OnInit {
         this.isLoginFailed = true;
       }
     );
-  }
-
-
-  setSentMessage(data: any) {
-    if (data.body) {
-      if (data.statusText === "OK") this.toasterService.Success("Success","Mail sent successfully");
-      else if (data.statusText === "BAD_REQUEST") this.toasterService.Error("Error!", "User does not exist");
-      else this.toasterService.Error("Error!", "Something going wrong, try later");
-    }
   }
 }

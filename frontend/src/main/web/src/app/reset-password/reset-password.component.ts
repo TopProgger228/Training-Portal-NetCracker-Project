@@ -20,6 +20,7 @@ export class ResetPasswordComponent implements OnInit {
 
   token: string = '';
   email: string = 'email';
+  ErrorMessage: string = 'Loading...'
 
   constructor(
     private router: Router,
@@ -60,7 +61,15 @@ export class ResetPasswordComponent implements OnInit {
         data => {
           console.log(data);
           if (data.partialText) {
+            if(data.partialText === "Time to live for url out")
+            this.ErrorMessage = data.partialText;
+            else if(data.partialText === "Current URL does not exist")
+            this.ErrorMessage = data.partialText;
+            else{
             this.email = data.partialText;
+            this.ErrorMessage = '';
+            }
+            
           }
         },
         error => {

@@ -46,4 +46,10 @@ public class CourseAPIs {
 
         return courseService.getCoursesWithTrainerByUsername(username);
     }
+
+    @GetMapping("/active-courses-list")
+    public List getActiveCourses() {
+        return courseService.listActiveCourses();
+    }
+
 }

@@ -7,67 +7,78 @@
     <div id="bg-overlay">
       <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
+
           <form class="text-center" name="form" [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
 
-            <div class="form-group  text-center">
-              <label for="fname">Your first name*</label>
-              <input type="text" class="form-control" name="fname" formControlName="fname" />
-            </div>
-            <div *ngIf="registerFormGroup.controls.fname.errors?.required  && registerFormGroup.controls.fname.touched"
-              style="font-size: 15pt">First name is required</div>
-            <div *ngIf="registerFormGroup.errors?.fnameIsLowerCase" style="font-size: 15pt">First
-              name must be capitalize</div>
-
-            <div class="form-group  text-center">
-              <label for="lname">Your last name*</label>
-              <input type="text" class="form-control" name="lname" formControlName="lname" />
-            </div>
-            <div *ngIf="registerFormGroup.controls.lname.errors?.required  && registerFormGroup.controls.lname.touched"
-              style="font-size: 15pt">Second name is required</div>
-            <div *ngIf="registerFormGroup.errors?.lnameIsLowerCase" style="font-size: 15pt">Last
-              name must be capitalize</div>
-
-            <div class="form-group text-center">
-              <label for="username">Username*</label>
-              <input type="text" class="form-control" name="username" formControlName="username" />
-            </div>
-            <div
-              *ngIf="registerFormGroup.controls.username.errors?.required  && registerFormGroup.controls.username.touched"
-              style="font-size: 15pt">Username is required</div>
-
-            <div class="form-group text-center">
-              <label for="email">Email</label>
-              <input class="form-control" type="text" name="email" value="{{this.email}}" readonly />
-            </div>
-
-            <div [formGroup]="passwordFormGroup">
-              <div class="form-group text-center">
-                <label for="password">Password*</label>
-                <input class="form-control" type="password" name="password" formControlName="password" minlength="6">
+            <div *ngIf="this.ErrorMessage == ''; else ErrorForm">
+              <div class="form-group  text-center">
+                <label for="fname">Your first name*</label>
+                <input type="text" class="form-control" name="fname" formControlName="fname" />
               </div>
               <div
-                *ngIf="passwordFormGroup.controls.password.errors?.required && passwordFormGroup.controls.password.touched"
-                style="font-size: 15pt">
-                Password is required</div>
-              <div *ngIf="passwordFormGroup.controls.password.errors?.minlength" style="font-size: 15pt">Password must be
-                at least 6 characters
-              </div>
-              <div class="form-group text-center">
-                <label for="repeatPassword">Repeat Password*</label>
-                <input class="form-control" type="password" name="repeatPassword" formControlName="repeatPassword">
+                *ngIf="registerFormGroup.controls.fname.errors?.required  && registerFormGroup.controls.fname.touched"
+                style="font-size: 15pt">First name is required</div>
+              <div *ngIf="registerFormGroup.errors?.fnameIsLowerCase" style="font-size: 15pt">First
+                name must be capitalize</div>
+
+              <div class="form-group  text-center">
+                <label for="lname">Your last name*</label>
+                <input type="text" class="form-control" name="lname" formControlName="lname" />
               </div>
               <div
-                *ngIf="passwordFormGroup.controls.repeatPassword.errors?.required && passwordFormGroup.controls.repeatPassword.touched"
-                style="font-size: 15pt">
-                Repeat password is required</div>
-              <div *ngIf="passwordFormGroup.errors?.doesMatchPassword" style="font-size: 15pt">Password does not match
+                *ngIf="registerFormGroup.controls.lname.errors?.required  && registerFormGroup.controls.lname.touched"
+                style="font-size: 15pt">Second name is required</div>
+              <div *ngIf="registerFormGroup.errors?.lnameIsLowerCase" style="font-size: 15pt">Last
+                name must be capitalize</div>
+
+              <div class="form-group text-center">
+                <label for="username">Username*</label>
+                <input type="text" class="form-control" name="username" formControlName="username" />
+              </div>
+              <div
+                *ngIf="registerFormGroup.controls.username.errors?.required  && registerFormGroup.controls.username.touched"
+                style="font-size: 15pt">Username is required</div>
+
+              <div class="form-group text-center">
+                <label for="email">Email</label>
+                <input class="form-control" type="text" name="email" value="{{this.email}}" readonly />
+              </div>
+
+              <div [formGroup]="passwordFormGroup">
+                <div class="form-group text-center">
+                  <label for="password">Password*</label>
+                  <input class="form-control" type="password" name="password" formControlName="password" minlength="6">
+                </div>
+                <div
+                  *ngIf="passwordFormGroup.controls.password.errors?.required && passwordFormGroup.controls.password.touched"
+                  style="font-size: 15pt">
+                  Password is required</div>
+                <div *ngIf="passwordFormGroup.controls.password.errors?.minlength" style="font-size: 15pt">Password must
+                  be
+                  at least 6 characters
+                </div>
+                <div class="form-group text-center">
+                  <label for="repeatPassword">Repeat Password*</label>
+                  <input class="form-control" type="password" name="repeatPassword" formControlName="repeatPassword">
+                </div>
+                <div
+                  *ngIf="passwordFormGroup.controls.repeatPassword.errors?.required && passwordFormGroup.controls.repeatPassword.touched"
+                  style="font-size: 15pt">
+                  Repeat password is required</div>
+                <div *ngIf="passwordFormGroup.errors?.doesMatchPassword" style="font-size: 15pt">Password does not match
+                </div>
+              </div>
+
+              <div class="form-group text-center">
+                <button class="btn btn-outline-secondary " type="submit"
+                  [disabled]="!registerFormGroup.valid">Register</button>
               </div>
             </div>
 
-            <div class="form-group text-center">
-              <button class="btn btn-outline-secondary " type="submit"
-                [disabled]="!registerFormGroup.valid">Register</button>
-            </div>
+          <ng-template #ErrorForm>
+            
+              {{ErrorMessage}}
+          </ng-template>
           </form>
         </div>
       </div>

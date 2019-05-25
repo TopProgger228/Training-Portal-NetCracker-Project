@@ -1,8 +1,12 @@
 .container{
     width: 50%;
-    margin-top: 8%;
+    height: 100%;
   }
   
+  form{
+    margin-top: 8%;
+  }
+
   label, input, select, option{
     font-size: 24px;
     margin: 15px;
@@ -17,10 +21,16 @@
     margin: 15px;
   }
 
+  #bg-image{
+    background: url('../../assets/images/signInBackground.jpg');
+    background-size: cover;
+    height: 100vh;
+}
 
-ngb-alert{
-    font-size: 20px;
-    position : center;
-    margin: auto;
-    width: 100%;
-  }
+#bg-overlay{
+    background: rgba(189, 189, 189, 0.473);
+    background-size: cover;
+   
+    height: 100vh;
+
+}

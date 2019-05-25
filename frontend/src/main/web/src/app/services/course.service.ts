@@ -21,7 +21,7 @@ export class CourseService {
   private createCourseUrl = 'http://localhost:8080/api/create_new_course';
   private coursesUrl = 'http://localhost:8080/api/coursesinfo/getcourses?username=';
   private courseListUrl = "http://localhost:8080/api/courses-list";
-  private courseLastTenListUrl = "http://localhost:8080/api/last-ten-courses-list";
+  private courseActiveListUrl = "http://localhost:8080/api/active-courses-list";
   private coursePageUrl = "http://localhost:8080/api/student/course-page?name=";
   private studyUrl = 'http://localhost:8080/api/create_new_schedule';
   private timeUrl = "http://localhost:8080/api/timeslot?name=";
@@ -43,8 +43,8 @@ export class CourseService {
     return this.http.get<Course>(this.courseListUrl, httpOptions);
   }
 
-  getLastTenCoursesList(): Observable<any> {
-    return this.http.get<Course>(this.courseLastTenListUrl, httpOptions);
+  getActiveCoursesList(): Observable<any> {
+    return this.http.get<Course>(this.courseActiveListUrl, httpOptions);
   }
 
   getCoursePage(name: string): Observable<any>{

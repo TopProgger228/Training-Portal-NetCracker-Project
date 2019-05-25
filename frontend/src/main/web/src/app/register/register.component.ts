@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
   signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
-  email: string = 'Loading...';
+  email: string = 'email';
+  ErrorMessage: string = 'Loading...'
 
   roles: string[] = [];
 
@@ -70,12 +71,19 @@ export class RegisterComponent implements OnInit {
             data => {
               console.log(data);
               if (data.partialText) {
-                this.email = data.partialText;
-              }
-            },
-            error => {
-              console.log(error);
-            })
+                  if (data.partialText === "Time to live for url out")
+                    this.ErrorMessage = data.partialText;
+                  else if (data.partialText === "Current URL does not exist")
+                    this.ErrorMessage = data.partialText;
+                  else {
+                    this.email = data.partialText;
+                    this.ErrorMessage = '';
+                  }
+                }
+              },
+              error => {
+                console.log(error);
+              })
           console.log(this.email);
 
         } else {
@@ -101,19 +109,19 @@ export class RegisterComponent implements OnInit {
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         console.log(data);
-          if (data.message === "registered successfully") {
-            this.toasterService.Success("Success", "User created successfully");
-            this.isSignedUp = true;
-            this.isSignUpFailed = false;
-            this.roles = this.tokenStorage.getAuthorities();
-            this.router.navigate(['auth/login']);
-          } else if (data.message === "username is already taken") {
-            this.toasterService.Warning("Warning", "User with this username is already exist, try amother one" );
-            this.isSignUpFailed = true;
-          } else if (data.message === "email is already taken") {
-            this.toasterService.Warning("Warning", "User with this email is already taken, try to reset your password");
-            this.isSignUpFailed = true;
-          }//this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile);
+        if (data.message === "registered successfully") {
+          this.toasterService.Success("Success", "User created successfully");
+          this.isSignedUp = true;
+          this.isSignUpFailed = false;
+          this.roles = this.tokenStorage.getAuthorities();
+          this.router.navigate(['auth/login']);
+        } else if (data.message === "username is already taken") {
+          this.toasterService.Warning("Warning", "User with this username is already exist, try amother one");
+          this.isSignUpFailed = true;
+        } else if (data.message === "email is already taken") {
+          this.toasterService.Warning("Warning", "User with this email is already taken, try to reset your password");
+          this.isSignUpFailed = true;
+        }//this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile);
       },
       error => {
         console.log(error);
