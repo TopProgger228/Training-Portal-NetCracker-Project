@@ -17,6 +17,8 @@ public interface ScheduleService {
 
     void removeSchedule(int id);
 
+    List getScheduleOfStudent(String username);
+
     void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id);
 
     List listScheduleWithCourseAndTimeSlotAndUser();

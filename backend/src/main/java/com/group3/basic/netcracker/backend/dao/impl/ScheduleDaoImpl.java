@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.entity.Schedule;
+import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleOfStudentRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleWithInfoRowMapper;
 import com.group3.basic.netcracker.backend.util.sql.ScheduleDaoQueries;
@@ -60,6 +61,16 @@ public class ScheduleDaoImpl implements ScheduleDao {
         for (int i = 0; i < timeSlotId.length; i++) {
             jdbcTemplate.update(ScheduleDaoQueries.createScheduleQuery, userId, timeSlotId[i], isChoosen);
         }
+    }
+
+    @Override
+    public List getScheduleOfStudent(String username){
+        String SQL = "select C2.name, TS.start_time, TS.end_time, TS.week_day, s.is_choosen from \"Schedule\" as s\n" +
+                "join \"User\" U on s.user_id = U.id\n" +
+                "join \"TimeSlot\" TS on s.time_slot_id = TS.id\n" +
+                "join \"Course\" C2 on TS.course_id = C2.id\n" +
+                "where U.username like '" + username + "'";
+        return jdbcTemplate.query(SQL, new ScheduleOfStudentRowMapper());
     }
 
     @Override

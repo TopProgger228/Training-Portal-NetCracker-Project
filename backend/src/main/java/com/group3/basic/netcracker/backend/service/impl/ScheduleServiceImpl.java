@@ -29,6 +29,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List getScheduleOfStudent(String username){
+        return scheduleDao.getScheduleOfStudent(username);
+    }
+
+    @Override
     public Schedule getScheduleById(int id) {
         return scheduleDao.getScheduleById(id);
     }

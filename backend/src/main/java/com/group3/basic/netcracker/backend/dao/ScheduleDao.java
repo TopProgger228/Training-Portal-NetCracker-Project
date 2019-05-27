@@ -15,6 +15,8 @@ public interface ScheduleDao {
 
     void createSchedule(int userId, Integer[] timeSlotId, boolean isChoosen);
 
+    List getScheduleOfStudent(String username);
+
     Integer[] isScheduleExists(int userId, Integer[] timeSlotId, boolean isChoosen);
 
     void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id);

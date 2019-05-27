@@ -88,7 +88,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     OneCheckAttItemComponent,
     ScheduleInfoComponent,
     SpinnerComponent,
-    UserCoursesComponent
+    UserCoursesComponent,
+    MyScheduleComponent
 
   ],
   imports: [

@@ -82,4 +82,9 @@ public class GetInfoAPIs {
     public void scheduleGenerate(@RequestParam("id") Integer id) {
         scheduleService.generateSchedule(id);
     }
+
+    @GetMapping("/my-schedule")
+    public List listScheduleOfStudent(@RequestParam("username") String username){
+        return scheduleService.getScheduleOfStudent(username);
+    }
 }

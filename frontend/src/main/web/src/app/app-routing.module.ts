@@ -52,6 +52,10 @@ const routes: Routes = [
     component: ManagerProfileComponent
   },
   {
+    path: 'my-schedule/:username',
+    component: MyScheduleComponent
+  },
+  {
     path: 'trainer/check-course-students',
     component: CourseAttendeesComponent
   },
