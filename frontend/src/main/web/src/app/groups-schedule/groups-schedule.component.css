@@ -41,6 +41,8 @@ mat-option {
 
 mat-select, mat-list-item{
   font-size: 20px;
+  background-color: white;
+  height: 80%;
 }
 
 /*цвет текста*/
@@ -55,6 +57,10 @@ mat-select, mat-list-item{
 
 mat-form-field {
   width: 100%;
+}
+
+/deep/ .mat-form-field-underline {
+  height: 0 !important;
 }
 
 

@@ -119,6 +119,7 @@ export class CoursePageComponent implements OnInit {
       () => {
         console.log('POST schedule - now completed.');
         this.success();
+        this.router.navigate(['student/my-schedule']);
       });
   }
 
