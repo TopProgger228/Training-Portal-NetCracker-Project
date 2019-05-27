@@ -52,7 +52,7 @@ const routes: Routes = [
     component: ManagerProfileComponent
   },
   {
-    path: 'my-schedule/:username',
+    path: 'student/my-schedule/:username',
     component: MyScheduleComponent
   },
   {
