@@ -18,6 +18,7 @@ export class ScheduleService {
   private scheduleUrl = 'http://localhost:8080/api/scheduleinfo';
   private courseIdUrl = "http://localhost:8080/api/course_id?name=";
   private isChoosenUrl = 'http://localhost:8080/api/is_choosen?id=';
+  private myScheduleUrl = "http://localhost:8080/api/student/my-schedule?username=";
 
   constructor(private http: HttpClient) { }
 
@@ -25,8 +26,8 @@ export class ScheduleService {
     return this.http.get<ScheduleMod>(this.scheduleUrl, httpOptions);
   }
 
-  getIdByCourseName(name: string): Observable<any> {
-    return this.http.get<ScheduleMod>(this.courseIdUrl + name, httpOptions);
+  getScheduleOfStudent(username: string): Observable<any>{
+    return this.http.get<number>(this.myScheduleUrl + username, httpOptions);
   }
 
   isChoosen(id: number): Observable<any> {

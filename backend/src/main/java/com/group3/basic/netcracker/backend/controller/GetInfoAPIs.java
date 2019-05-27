@@ -83,7 +83,7 @@ public class GetInfoAPIs {
         scheduleService.generateSchedule(id);
     }
 
-    @GetMapping("/my-schedule")
+    @GetMapping("/student/my-schedule")
     public List listScheduleOfStudent(@RequestParam("username") String username){
         return scheduleService.getScheduleOfStudent(username);
     }
