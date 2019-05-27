@@ -84,9 +84,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
             }
         }
 
-        if (!list.isEmpty()) {
+        if (list.size() > 0) {
             Integer[] tempArray = new Integer[list.size()];
-
             tempArray = list.toArray(tempArray);
             return tempArray;
         }
