@@ -12,17 +12,16 @@ import { Observable } from "rxjs";
 })
 export class AdminAttService {
 
-  private course_url: string = "http://localhost:8080/api/attCourse"
-  private lesson_url: string = "http://localhost:8080/api/attLesson/"
-  private user_url: string = "http://localhost:8080/api/attUser/"
-  private filter_by_use_url: string = "http://localhost:8080/api/filterCourseByUser/"
-  private filter_by_trainer_url: string = "http://localhost:8080/api/filterCourseByTrainer/"
-  private filter_by_level_url: string = "http://localhost:8080/api/filterCourseBySkillLevel/"
-  private trainer_url: string = "http://localhost:8080/api/getAllTrainer"
-  private create_report_by_course_url: string = "http://localhost:8080/api/createReport/course"
-  private create_report_by_trainer_url: string = "http://localhost:8080/api/createReport/trainer"
-  private create_report_by_student_url: string = "http://localhost:8080/api/createReport/student"
-  private create_report_by_level_url: string = "http://localhost:8080/api/createReport/level"
+  private course_url: string = "http://localhost:8080/api/attCourse";
+  private lesson_url: string = "http://localhost:8080/api/attLesson/";
+  private user_url: string = "http://localhost:8080/api/attUser/";
+  private filter_by_use_url: string = "http://localhost:8080/api/filterCourseByUser/";
+  private filter_by_trainer_username_url: string = "http://localhost:8080/api/filterCourseByTrainerUsername/";
+  private filter_by_level_url: string = "http://localhost:8080/api/filterCourseBySkillLevel/";
+  private create_report_by_course_url: string = "http://localhost:8080/api/createReport/course";
+  private create_report_by_trainer_username_url: string = "http://localhost:8080/api/createReport/trainer";
+  private create_report_by_student_url: string = "http://localhost:8080/api/createReport/student";
+  private create_report_by_level_url: string = "http://localhost:8080/api/createReport/level";
 
 
 
@@ -44,17 +43,14 @@ export class AdminAttService {
     return this.http.get<CourseAtt[]>(this.filter_by_use_url + username)
   }
 
-  filterByTrainer(id: number) {
-    return this.http.get<CourseAtt[]>(this.filter_by_trainer_url + id)
+  filterByTrainerUsername(username: string) {
+    return this.http.get<CourseAtt[]>(this.filter_by_trainer_username_url + username)
   }
 
   filterBySkillLevel(level: string) {
     return this.http.get<CourseAtt[]>(this.filter_by_level_url + level)
   }
 
-  getAllTrainer() {
-    return this.http.get<TrainerSelector[]>(this.trainer_url)
-  }
 
   createReportByCourse(courses: number[]): Observable<any> {
     let params = new HttpParams();
@@ -70,12 +66,12 @@ export class AdminAttService {
     return this.http.request(req);
   }
 
-  createReportByTrainer(trainerId: number): Observable<any> {
-    const req = new HttpRequest('POST', this.create_report_by_trainer_url, null, {
+  createReportByTrainer(trainerUsername: string): Observable<any> {
+    const req = new HttpRequest('POST', this.create_report_by_trainer_username_url, null, {
       reportProgress: true,
       responseType: 'text',
       params: new HttpParams()
-        .set('trainerId', trainerId.toString())
+        .set('trainerUsername', trainerUsername)
     });
     return this.http.request(req);
   }

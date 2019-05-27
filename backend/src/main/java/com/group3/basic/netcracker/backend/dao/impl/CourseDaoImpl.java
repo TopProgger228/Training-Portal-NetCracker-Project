@@ -112,11 +112,11 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public List<Course> getCourseByTrainerId(int trainerId) {
+    public List<Course> getCourseByTrainerUsername(String username) {
 
-        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c where c.trainer_id = ?";
+        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"User\" t on c.trainer_id = t.id where t.username = ?";
 
-        return jdbcTemplate.query(SQL, new Object[]{trainerId}, new CourseRowMapper());
+        return jdbcTemplate.query(SQL, new Object[]{username}, new CourseRowMapper());
 
     }
 

@@ -49,6 +49,15 @@ import {MatExpansionModule} from '@angular/material/expansion'
 import {UserCoursesComponent} from "./user-profile/user-courses/user-courses.component";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { OneLessonAdminAttComponent } from './admin-attendance/one-lesson-admin-att/one-lesson-admin-att.component';
+import { AllCoursesAdminAttComponent } from './admin-attendance/all-courses-admin-att/all-courses-admin-att.component';
+import { ByTrainerCoursesAdminAttComponent } from './admin-attendance/by-trainer-courses-admin-att/by-trainer-courses-admin-att.component';
+import { ByStudentCoursesAdminAttComponent } from './admin-attendance/by-student-courses-admin-att/by-student-courses-admin-att.component';
+import { ByLevelCoursesAdminAttComponent } from './admin-attendance/by-level-courses-admin-att/by-level-courses-admin-att.component';
+import { CoursesAdminAttComponent } from './admin-attendance/courses-admin-att/courses-admin-att.component';
+import { OneStudentAdminAttComponent } from './admin-attendance/one-student-admin-att/one-student-admin-att.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +98,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ScheduleInfoComponent,
     SpinnerComponent,
     UserCoursesComponent,
-    MyScheduleComponent
+    MyScheduleComponent,
+    UserCoursesComponent,
+    OneLessonAdminAttComponent,
+    AllCoursesAdminAttComponent,
+    ByTrainerCoursesAdminAttComponent,
+    ByStudentCoursesAdminAttComponent,
+    ByLevelCoursesAdminAttComponent,
+    CoursesAdminAttComponent,
+    OneStudentAdminAttComponent
 
   ],
   imports: [
@@ -108,7 +125,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatExpansionModule,
     MatInputModule,
     NgxMaterialTimepickerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [httpInterceptorProviders, ToasterService],
   bootstrap: [AppComponent]

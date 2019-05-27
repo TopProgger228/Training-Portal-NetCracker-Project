@@ -32,7 +32,7 @@ public interface CourseDao {
 
     List<Course> getCourseByUserUsername(String username);
 
-    List<Course> getCourseByTrainerId(int trainerId);
+    List<Course> getCourseByTrainerUsername(String username);
 
     List<Course> getCourseBySkillLevel(String level);
 

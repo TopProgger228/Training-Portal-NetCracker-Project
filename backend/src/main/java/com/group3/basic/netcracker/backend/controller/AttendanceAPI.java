@@ -92,10 +92,10 @@ public class AttendanceAPI {
 
     }
 
-    @GetMapping("filterCourseByTrainer/{id}")
-    public ResponseEntity<?> getCourseByTrainer(@PathVariable int id) {
+    @GetMapping("filterCourseByTrainerUsername/{username}")
+    public ResponseEntity<?> getCourseByTrainerUsername(@PathVariable String username) {
 
-        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByTrainer(id);
+        List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByTrainerUsername(username);
 
         return ResponseEntity.ok().body(list);
 
@@ -153,7 +153,7 @@ public class AttendanceAPI {
     }
 
     @PostMapping("createReport/trainer")
-    public ResponseEntity<?> createReportByTrainer(@RequestParam("trainerId") String username) {
+    public ResponseEntity<?> createReportByTrainer(@RequestParam("trainerUsername") String username) {
         try {
             reporter.createReportByTrainer(username);
             return new ResponseEntity<>(new ResponseMessage("Report on selected trainer saved"), HttpStatus.OK);
