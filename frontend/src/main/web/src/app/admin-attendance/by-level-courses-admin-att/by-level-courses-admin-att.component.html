@@ -1,0 +1,16 @@
+<select class="custom-select mr-sm-2" style="font-size: 20px" [(ngModel)]="levelSelected"
+        (ngModelChange)="onLevelSelected($event)" >
+  <option *ngFor="let level of levelSelector">{{level}}</option>
+</select>
+<div class="row" style="font-weight: bold">
+  <div class="col-1">#</div>
+  <div class="col-3">Course name</div>
+  <div class="col-2">Skill level</div>
+  <div class="col-3">Trainer</div>
+  <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+          (click)="createReportByLevel()">Create report</button>
+</div>
+<app-courses-admin-att [courseList]="courseList" [isReset]="isReset"></app-courses-admin-att>
+<app-spinner *ngIf="isLoading"></app-spinner>
+
+

@@ -1,0 +1,16 @@
+<div>
+  <div class="row">
+    <input type="text" [(ngModel)]="trainerValue" class="col" placeholder="Type trainer username">
+    <button class="btn btn-outline-secondary" value="Submit" (click)="filterByTrainerUsername(trainerValue)"
+            style="font-size: 20px">Submit</button>
+  </div>
+</div>
+<div class="row" style="font-weight: bold">
+  <div class="col-1">#</div>
+  <div class="col-3">Course name</div>
+  <div class="col-2">Skill level</div>
+  <button class="btn btn-outlet-secondary ml-auto" style="font-size: 18px; margin-right: 10px"
+           (click)="createReportByTrainer()">Create report</button>
+</div>
+<app-courses-admin-att [courseList]="courseList" [isReset]="isReset" [isTrainerColumnNeed]="false"></app-courses-admin-att>
+<app-spinner *ngIf="isLoading"></app-spinner>

@@ -16,7 +16,7 @@ export class AddStudentMailSenderComponent implements OnInit {
   sentMessage: string = null;
   loggedOut = false;
 
-  nextPage: string = "Go to laning page -->";
+  nextPage: string = "Go to landing page -->";
   @Input()
   resetPassword: boolean;
 

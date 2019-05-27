@@ -15,6 +15,8 @@ export class UserAttCourseListComponent implements OnInit {
   @Input('userId') public userId: number;
   lessonList: LessonAtt[];
 
+
+
   hide: boolean = true;
 
   isLoading: boolean = true;
@@ -22,7 +24,6 @@ export class UserAttCourseListComponent implements OnInit {
   constructor(private managerService: ManagerAttService) { }
 
   ngOnInit() {
-
     this.managerService.getLessonsForOneUser(this.course.courseId, this.userId)
       .subscribe(data=>{this.lessonList = data; this.isLoading = false});
 
@@ -34,3 +35,4 @@ export class UserAttCourseListComponent implements OnInit {
   }
 
 }
+

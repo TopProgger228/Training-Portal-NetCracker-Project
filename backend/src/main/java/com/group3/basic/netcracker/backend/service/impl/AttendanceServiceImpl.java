@@ -170,13 +170,13 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public List<CourseAttendanceDto> getCourseAttendanceByTrainer(int id) {
+    public List<CourseAttendanceDto> getCourseAttendanceByTrainerUsername(String username) {
 
-        List<Course> courseList = courseDao.getCourseByTrainerId(id);
+        List<Course> courseList = courseDao.getCourseByTrainerUsername(username);
 
         return getCourseAttendanceDtoList(courseList);
-
     }
+
 
     @Override
     public List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level) {
