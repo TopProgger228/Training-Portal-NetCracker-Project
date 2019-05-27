@@ -29,8 +29,8 @@ public class Reporter {
         generateReport(queryReportByCourse(courses));
     }
 
-    public void createReportByTrainer(int trainerId) throws SQLException {
-        generateReport(queryReportByTrainer(trainerId));
+    public void createReportByTrainer(String username) throws SQLException {
+        generateReport(queryReportByTrainer(username));
     }
 
     public void createReportByStudent(String username) throws SQLException {
@@ -83,16 +83,17 @@ public class Reporter {
         }
     }
 
-    public List<Map<String, Object>> queryReportByTrainer(int trainerId) throws SQLException {
+    public List<Map<String, Object>> queryReportByTrainer(String username) throws SQLException {
 
         String sql = "select count(lm.id) as \"MissingQty\", \n" +
-                "                u.username as \"Student\", lm.reason as \"Reason\"\n" +
-                "                from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
-                "                join \"Group\" g on u.id = g.user_id \n" +
-                "                join \"Course\" c on c.id = g.course_id\n" +
-                "\t\t\t\tjoin (select id, username from \"User\") as t on t.id = c.trainer_id\n" +
-                "                  where t.id in (" + trainerId + ") \n" +
-                "                  group by u.username, lm.reason, c.name, t.username,t.id";
+                "       u.username as \"Student\", c.name as \"Course\",\n" +
+                "\t   lm.reason as \"Reason\", t.username as \"Trainer\"\n" +
+                "       from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
+                "       join \"Group\" g on u.id = g.user_id \n" +
+                "       join \"Course\" c on c.id = g.course_id\n" +
+                "       join (select id, username from \"User\") as t on t.id = c.trainer_id\n" +
+                "              where t.username = '" + username + "' \n" +
+                "              group by u.username, lm.reason, c.name, t.username,t.id";
         List<Map<String, Object>> list = template.queryForList(sql);
         list = isResultEmpty(list);
         return list;

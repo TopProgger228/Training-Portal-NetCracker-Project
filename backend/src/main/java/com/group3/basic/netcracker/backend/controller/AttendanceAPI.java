@@ -153,9 +153,9 @@ public class AttendanceAPI {
     }
 
     @PostMapping("createReport/trainer")
-    public ResponseEntity<?> createReportByTrainer(@RequestParam("trainerId") int trainerId) {
+    public ResponseEntity<?> createReportByTrainer(@RequestParam("trainerId") String username) {
         try {
-            reporter.createReportByTrainer(trainerId);
+            reporter.createReportByTrainer(username);
             return new ResponseEntity<>(new ResponseMessage("Report on selected trainer saved"), HttpStatus.OK);
         } catch (SQLException e) {
             e.printStackTrace();
