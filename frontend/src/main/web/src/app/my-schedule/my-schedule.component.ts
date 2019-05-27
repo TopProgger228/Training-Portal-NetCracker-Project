@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Timeslots } from "../groups-schedule/timeslots";
-import { Timeslot } from "../groups-schedule/timeslot";
-import { Courses } from "../groups-schedule/courses";
 import { Schedule } from "../services/schedule";
-import { Router } from "@angular/router";
-import { TimeSlotService } from "../groups-schedule/time-slot.service";
-import { CoursesService } from "../groups-schedule/courses.service";
+import {ActivatedRoute, Router} from "@angular/router";
 import { TokenStorageService } from "../auth/token-storage.service";
+import {ToasterService} from "../services/toaster.service";
+import {ScheduleService} from "../services/schedule.service";
+import {StudentSchedule} from "../services/student-schedule";
 
 @Component({
   selector: 'app-my-schedule',
@@ -15,45 +13,45 @@ import { TokenStorageService } from "../auth/token-storage.service";
 })
 export class MyScheduleComponent implements OnInit {
 
-  loggedout = false;
-  timeSlots: Timeslots[];
-  timeSlotT = new Timeslot("", "", "", 0);
-  courses: Courses[];
-  schedule = new Schedule(0, 0, false);
+  username: string;
+  studentSchedule: StudentSchedule[];
 
-  constructor(private router: Router, private timeSlotService: TimeSlotService,
-    private coursesService: CoursesService,
-    private token: TokenStorageService) {
+  loggedOut = false;
+
+  constructor(private route: ActivatedRoute, private router: Router, private scheduleService: ScheduleService,
+              private token: TokenStorageService, private toasterService: ToasterService) {
   }
 
   ngOnInit() {
+    const _this = this;
     if (this.token.getToken()) {
       this.token.getAuthorities().every(role => {
         if (role === 'Student') {
-          this.timeSlotService.getTimeSlots()
+          this.route.params.subscribe(params => {
+            this.username = params['username'];
+            console.log('Username', this.token.getUsername())
+            // In a real app: dispatch action to load the details here.
+          });
+
+
+          this.scheduleService.getScheduleOfStudent(this.token.getUsername())
             .subscribe(data => {
-              this.timeSlots = data;
+              this.studentSchedule = data;
+              console.log(this.studentSchedule);
             });
-          this.coursesService.getCourses()
-            .subscribe(data => {
-              this.courses = data;
-            })
         } else {
           this.router.navigate(['firstPage']);
         }
         return false;
       });
     } else {
-      this.loggedout = true;
+      this.loggedOut = true;
       this.router.navigate(['auth/login']);
     };
   };
 
-  submitted = false;
-
-
   logout() {
-    this.loggedout = true;
+    this.loggedOut = true;
     this.token.signOut();
     window.location.reload();
     this.router.navigate(['auth/login']);
