@@ -1,0 +1,25 @@
+<div *ngIf="!loggedOut">
+  <div style="height: 100%;  min-height: 100vh">
+    <app-menu></app-menu>
+    <div class="container">
+
+      <form class="text-center" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group text-center">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required
+            email />
+          <div *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required" style="font-size: 15pt">Email is required</div>
+            <div *ngIf="email.errors.email" style="font-size: 15pt">Email must be a valid email address</div>
+          </div>
+        </div>
+        <button class="btn btn-outline-secondary ">Send</button>
+        <br>
+        <br>
+        <p><a href="">{{ nextPage }}</a></p>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
