@@ -61,7 +61,7 @@
         <div class="form-group">
           <label for="email">User e-mail</label>
           <input #email="ngModel" [(ngModel)]="userModel.email" class="form-control" id="email" name="email" required
-            type="text">
+            type="email">
 
           <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
             E-mail is required!

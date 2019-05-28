@@ -37,3 +37,79 @@
 2019-05-29 00:44:04.295 DEBUG 7020 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
 2019-05-29 00:44:08.905  INFO 7020 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 21.466 seconds (JVM running for 30.783)
 2019-05-29 00:44:08.950  INFO 7020 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-29
+2019-05-29 01:36:46.724  INFO 8672 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-FE3LGGP with PID 8672 (C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by TopProgger in C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-29 01:36:46.724 DEBUG 8672 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-29 01:36:46.724  INFO 8672 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-29 01:36:57.529  INFO 8672 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-29 01:36:57.529  INFO 8672 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-29 01:36:57.990  INFO 8672 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-29 01:36:58.735 DEBUG 8672 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-29 01:37:02.496  INFO 8672 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 17.952 seconds (JVM running for 28.784)
+2019-05-29 01:37:02.528  INFO 8672 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-29
+2019-05-29 01:41:34.307  INFO 8672 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-29 01:41:37.955 ERROR 8672 --- [http-nio-8080-exec-4] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 01:41:38.077 ERROR 8672 --- [http-nio-8080-exec-5] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 01:41:38.401 ERROR 8672 --- [http-nio-8080-exec-6] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 01:42:13.696 ERROR 8672 --- [http-nio-8080-exec-10] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 01:44:17.236 ERROR 8672 --- [http-nio-8080-exec-2] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 01:44:17.265 ERROR 8672 --- [http-nio-8080-exec-1] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 01:44:17.345 ERROR 8672 --- [http-nio-8080-exec-3] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 01:44:30.283  INFO 8672 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-29 01:44:34.860  INFO 8672 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-29 01:44:37.230  INFO 8672 --- [http-nio-8080-exec-5] c.g.b.n.backend.controller.AuthRestAPIs  : User authenticated!
+2019-05-29 01:44:39.231 DEBUG 8672 --- [http-nio-8080-exec-10] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 01:44:39.238 DEBUG 8672 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-29 01:44:40.254 DEBUG 8672 --- [http-nio-8080-exec-2] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-29 01:45:38.796 DEBUG 8672 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-29 01:48:10.915 DEBUG 8672 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 01:48:11.026 DEBUG 8672 --- [http-nio-8080-exec-10] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-29 01:48:11.302 DEBUG 8672 --- [http-nio-8080-exec-1] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-29 01:50:11.509  INFO 8672 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.MailSenderAPIs      : Mail sent to - dr.pain1999@gmail.com
+2019-05-29 01:50:11.790  INFO 8672 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.MailSenderAPIs      : Mail sent to - dr.pain1999@gmail.com
+2019-05-29 01:50:39.207 DEBUG 8672 --- [http-nio-8080-exec-9] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 01:50:39.270 DEBUG 8672 --- [http-nio-8080-exec-10] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-29 01:50:39.717 DEBUG 8672 --- [http-nio-8080-exec-8] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-29 01:52:42.248 DEBUG 8672 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.MailSenderAPIs      : Got email by token - 32bdf58d-d78c-4c43-9c24-192493f15c31
+2019-05-29 02:16:48.431  INFO 2828 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-FE3LGGP with PID 2828 (C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by TopProgger in C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-29 02:16:48.447 DEBUG 2828 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-29 02:16:48.447  INFO 2828 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-29 02:17:02.522  INFO 2828 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-29 02:17:02.522  INFO 2828 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-29 02:17:02.977  INFO 2828 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-29 02:17:03.762 DEBUG 2828 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-29 02:17:08.043  INFO 2828 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 23.253 seconds (JVM running for 38.672)
+2019-05-29 02:17:08.105  INFO 2828 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-29
+2019-05-29 02:21:33.040  INFO 2828 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-29 02:21:36.000 ERROR 2828 --- [http-nio-8080-exec-4] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 02:21:42.580 ERROR 2828 --- [http-nio-8080-exec-8] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 02:21:42.599 ERROR 2828 --- [http-nio-8080-exec-9] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 02:22:05.754  INFO 2828 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-29 02:22:15.743  INFO 2828 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-29 02:22:16.779  INFO 2828 --- [http-nio-8080-exec-2] c.g.b.n.backend.controller.AuthRestAPIs  : User authenticated!
+2019-05-29 02:22:17.780 DEBUG 2828 --- [http-nio-8080-exec-9] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-29 02:22:17.803 DEBUG 2828 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 02:22:18.895 DEBUG 2828 --- [http-nio-8080-exec-8] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-29 02:23:22.021  INFO 2828 --- [http-nio-8080-exec-6] b.c.ManagersAndTrainersEditingController : Controller get user - dffdfdf
+2019-05-29 02:23:22.446  INFO 2828 --- [http-nio-8080-exec-6] b.c.ManagersAndTrainersEditingController : User created with username - dffdfdf
+2019-05-29 02:23:22.787 DEBUG 2828 --- [http-nio-8080-exec-4] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 02:23:22.918 DEBUG 2828 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-29 02:23:23.259 DEBUG 2828 --- [http-nio-8080-exec-5] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-29 02:28:59.128  INFO 9676 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-FE3LGGP with PID 9676 (C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by TopProgger in C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-29 02:28:59.162 DEBUG 9676 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-29 02:28:59.166  INFO 9676 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-29 02:29:09.922  INFO 9676 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-29 02:29:09.924  INFO 9676 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-29 02:29:10.351  INFO 9676 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-29 02:29:11.009 DEBUG 9676 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-29 02:29:14.447  INFO 9676 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 18.664 seconds (JVM running for 38.859)
+2019-05-29 02:29:14.487  INFO 9676 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-29
+2019-05-29 02:33:43.825  INFO 9676 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-29 02:33:46.516 ERROR 9676 --- [http-nio-8080-exec-4] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 02:33:47.927 ERROR 9676 --- [http-nio-8080-exec-5] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 02:33:47.943 ERROR 9676 --- [http-nio-8080-exec-6] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 02:34:02.469  INFO 9676 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-29 02:34:07.517  INFO 9676 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-29 02:34:08.194  INFO 9676 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.AuthRestAPIs  : User authenticated!
+2019-05-29 02:34:09.124 DEBUG 9676 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-29 02:34:09.126 DEBUG 9676 --- [http-nio-8080-exec-5] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 02:34:10.059 DEBUG 9676 --- [http-nio-8080-exec-6] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
