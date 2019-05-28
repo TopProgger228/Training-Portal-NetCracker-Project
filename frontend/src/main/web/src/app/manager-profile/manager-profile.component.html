@@ -2,16 +2,16 @@
 </div>
 
 <ng-template #isLoggedIn>
-  <div style="height: 100%;  min-height: 100vh">
+  <div style="height: 100%; min-height: 100vh;">
 
     <app-menu></app-menu>
     <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"-->
     <!--id="bootstrap-css">-->
 
-    <div class="container">
+    <div class="container mt-5">
       <div class="row">
 
-        <div class="col-md-7 ">
+        <div class="center-block col-md-7 ">
 
           <div class="panel panel-default">
             <div class="panel-heading"><h4>User Profile</h4></div>
@@ -26,12 +26,12 @@
                                              id="profile-image1" class="img-circle img-responsive">
 
                       <input id="profile-image-upload" class="hidden" type="file">
-                      <div style="color:#999;">click here to change profile image</div>
+                      <!--<div style="color:#999;">click here to change profile image</div>-->
                       <!--Upload Image Js And Css-->
                     </div>
-
                     <!-- /input-group -->
                   </div>
+
                   <!--<div *ngFor="let student of students; let i = index">-->
                     <div class="col-sm-6">
                       <h4 style="color:#00b1b1; font-size:20px">{{manager.fname}} {{manager.lname}}</h4>

@@ -36,12 +36,12 @@
                   then thenBlock else elseBlock">
           </div>
           <ng-template #thenBlock>
-            <a [routerLink]="['/manager/profile', student.managerUsername]">
+            <a [routerLink]="['/manager/profile/', student.managerUsername || 'firstpage']">
               <button mat-raised-button type="submit" class="btn btn-secondary" disabled>Open profile</button>
             </a>
           </ng-template>
           <ng-template #elseBlock>
-            <a [routerLink]="['/manager/profile', student.managerUsername]">
+            <a [routerLink]="['/manager/profile/', student.managerUsername]">
               <button mat-raised-button type="submit" class="btn btn-secondary">Open profile</button>
             </a>
           </ng-template>
