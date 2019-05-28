@@ -8,6 +8,7 @@ import {Schedules} from "./schedules";
 import {UserModel} from "./user-model";
 import {Student} from "./student";
 import {HttpParams, HttpRequest} from "../../../node_modules/@angular/common/http";
+import {CourseForTrainer} from "../interface/course-for-trainer";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,6 +28,7 @@ export class CourseService {
   private timeUrl = "http://localhost:8080/api/timeslot?name=";
   private userIdUrl = "http://localhost:8080/api/student_id?username=";
   private studentCoursesUrl = "http://localhost:8080/api/studentCourses";
+  private get_course_by_trainer_username_url = "http://localhost:8080/api/getCoursesByTrainer/";
 
   constructor(private http: HttpClient) {
   }
@@ -69,5 +71,9 @@ export class CourseService {
       params: new HttpParams().set('username', username),
     });
     return this.http.request(req);
+  }
+
+  getCoursesForTrainerByTrainerUsername(username: string): Observable<CourseForTrainer[]> {
+    return this.http.get<CourseForTrainer[]>(this.get_course_by_trainer_username_url + username, httpOptions)
   }
 }

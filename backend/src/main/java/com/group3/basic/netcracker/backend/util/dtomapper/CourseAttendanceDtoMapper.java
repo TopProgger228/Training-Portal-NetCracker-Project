@@ -19,15 +19,4 @@ public class CourseAttendanceDtoMapper {
 
     }
 
-    public Course toCourse (CourseAttendanceDto cad) {
-
-        Course course = new Course();
-        course.setId(cad.getCourseId());
-        course.setName(course.getName());
-        course.setSkill_level(cad.getSkillLevel());
-
-        return course;
-
-    }
-
 }

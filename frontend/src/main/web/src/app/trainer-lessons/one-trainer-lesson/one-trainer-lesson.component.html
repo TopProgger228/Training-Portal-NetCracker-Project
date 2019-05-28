@@ -1,0 +1,7 @@
+<div class="row">
+  <div class="col-1">{{index + 1}}</div>
+  <div class="col-5">{{lesson.startTime}}-{{lesson.endTime}}</div>
+  <div class="col-3">{{lesson.lessonDate}}</div>
+  <div class="col-3 text-center" *ngIf="lesson.cancel"><input
+    type="checkbox" [(ngModel)]="lesson.cancel" (click)="selectCourseForReport(course.courseId)" /></div>
+</div>

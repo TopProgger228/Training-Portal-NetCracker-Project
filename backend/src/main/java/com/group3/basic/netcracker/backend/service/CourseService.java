@@ -1,5 +1,6 @@
 package com.group3.basic.netcracker.backend.service;
 
+import com.group3.basic.netcracker.backend.dto.CourseForTrainerDto;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
 
@@ -28,5 +29,7 @@ public interface CourseService {
     Course getCourseByName(String name);
 
     List<CourseWithTrainerRowMapper> getCoursesWithTrainerByUsername(String username);
+
+    List<CourseForTrainerDto> getCoursesForTrainerByTrainerUsername (String username);
 
 }

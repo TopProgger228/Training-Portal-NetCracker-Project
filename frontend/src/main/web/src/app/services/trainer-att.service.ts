@@ -10,7 +10,6 @@ import {Course} from "./course";
 })
 export class TrainerAttService {
 
-  // private all_lessons_url: string = "http://localhost:8080/api/trainerLesson/165";
   private all_lessons_url_by_username = "http://localhost:8080/api/getTrainerLesson/";
   private lesson_url: string = "http://localhost:8080/api/fullAttCheck/";
   private check_student_url: string = "http://localhost:8080/api/lessonAtt";

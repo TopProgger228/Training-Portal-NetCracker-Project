@@ -1,10 +1,13 @@
 package com.group3.basic.netcracker.backend.controller;
 
+import com.group3.basic.netcracker.backend.dto.CourseForTrainerDto;
+import com.group3.basic.netcracker.backend.dto.LessonDto;
 import com.group3.basic.netcracker.backend.service.CourseService;
 import com.group3.basic.netcracker.backend.service.TimeSlotService;
 import com.group3.basic.netcracker.backend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +58,14 @@ public class CourseAPIs {
     public List getActiveCourses() {
         log.debug("Got active courses!");
         return courseService.listActiveCourses();
+    }
+
+    @GetMapping("getCoursesByTrainer/{username}")
+    public ResponseEntity<?> getCoursesForTrainerByTrainerUsername(@PathVariable String username) {
+        List<CourseForTrainerDto> courseForTrainerDtoList = courseService.getCoursesForTrainerByTrainerUsername(username);
+
+        return ResponseEntity.ok().body(courseForTrainerDtoList);
+
     }
 
 }

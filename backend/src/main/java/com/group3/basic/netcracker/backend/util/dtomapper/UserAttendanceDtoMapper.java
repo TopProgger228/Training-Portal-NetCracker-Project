@@ -8,16 +8,6 @@ import org.springframework.stereotype.Service;
 @Component
 public class UserAttendanceDtoMapper {
 
-    public User toUser(UserAttendanceDto uad) {
-
-        User user = new User();
-        user.setId(uad.getId());
-        user.setFname(uad.getUserFirstName());
-        user.setLname(uad.getUserLastName());
-
-        return user;
-    }
-
     public UserAttendanceDto toUserAttendanceDto(User user) {
 
         UserAttendanceDto uad = new UserAttendanceDto();

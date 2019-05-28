@@ -20,5 +20,4 @@ public interface LessonDao {
 
     int getLessonCountInCourse(int courseId);
 
-
 }

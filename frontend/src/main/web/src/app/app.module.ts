@@ -58,6 +58,10 @@ import { ByStudentCoursesAdminAttComponent } from './admin-attendance/by-student
 import { ByLevelCoursesAdminAttComponent } from './admin-attendance/by-level-courses-admin-att/by-level-courses-admin-att.component';
 import { CoursesAdminAttComponent } from './admin-attendance/courses-admin-att/courses-admin-att.component';
 import { OneStudentAdminAttComponent } from './admin-attendance/one-student-admin-att/one-student-admin-att.component';
+import { TrainerLessonsComponent } from './trainer-lessons/trainer-lessons.component';
+import { OneTrainerCourseComponent } from './trainer-lessons/one-trainer-course/one-trainer-course.component';
+import { OneTrainerLessonComponent } from './trainer-lessons/one-trainer-lesson/one-trainer-lesson.component';
+import { NoDataComponent } from './no-data/no-data.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +110,11 @@ import { OneStudentAdminAttComponent } from './admin-attendance/one-student-admi
     ByStudentCoursesAdminAttComponent,
     ByLevelCoursesAdminAttComponent,
     CoursesAdminAttComponent,
-    OneStudentAdminAttComponent
+    OneStudentAdminAttComponent,
+    TrainerLessonsComponent,
+    OneTrainerCourseComponent,
+    OneTrainerLessonComponent,
+    NoDataComponent
 
   ],
   imports: [
