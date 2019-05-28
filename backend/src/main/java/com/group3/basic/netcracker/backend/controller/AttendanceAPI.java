@@ -1,10 +1,9 @@
 package com.group3.basic.netcracker.backend.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.group3.basic.netcracker.backend.dto.*;
-import com.group3.basic.netcracker.backend.report.Reporter;
+import com.group3.basic.netcracker.backend.service.impl.ReporterServiceImpl;
 import com.group3.basic.netcracker.backend.service.CheckAttendanceService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,49 +18,50 @@ import com.group3.basic.netcracker.backend.service.AttendanceService;
 public class AttendanceAPI {
     private AttendanceService attendanceService;
     private CheckAttendanceService checkAttendanceService;
-    private Reporter reporter;
+    private ReporterServiceImpl reporterServiceImpl;
 
     @Autowired
-    public AttendanceAPI(AttendanceService attendanceService, CheckAttendanceService checkAttendanceService, Reporter reporter) {
+    public AttendanceAPI(AttendanceService attendanceService, CheckAttendanceService checkAttendanceService,
+                         ReporterServiceImpl reporterServiceImpl) {
         this.attendanceService = attendanceService;
         this.checkAttendanceService = checkAttendanceService;
-        this.reporter = reporter;
+        this.reporterServiceImpl = reporterServiceImpl;
     }
 
     @GetMapping("/attCourse")
     public ResponseEntity<?> getAllCourseAttendance() {
-
         List<CourseAttendanceDto> list = attendanceService.getAllCourseAttendance();
+
         return ResponseEntity.ok().body(list);
 
     }
 
     @GetMapping("/attLesson/{id}")
     public ResponseEntity<?> getLessonsByCourse(@PathVariable int id) {
-
         List<LessonAttendanceDto> list = attendanceService.getLessonsOfCourseAttendance(id);
+
         return ResponseEntity.ok().body(list);
     }
 
 
     @GetMapping("/attUser/{id}")
     public ResponseEntity<?> getUsersByLesson(@PathVariable int id) {
-
         List<UserAttendanceDto> list = attendanceService.getUsersOfCourseAttendance(id);
+
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/fullAttCheck/{id}")
     public ResponseEntity<?> checkFullAttendance(@PathVariable int id) {
-
         CheckLessonAttendanceDto checkLessonAttendanceDto = checkAttendanceService.getFullCheckAttendance(id);
+
         return ResponseEntity.ok().body(checkLessonAttendanceDto);
     }
 
     @GetMapping("/trainerLesson/{id}")
     public ResponseEntity<?> getTrainerTodayLessons(@PathVariable int id) {
-
         List<LessonAttendanceDto> lessonAttendanceDtoList = checkAttendanceService.getTodayLessonsByTrainer(id);
+
         return ResponseEntity.ok().body(lessonAttendanceDtoList);
     }
 
@@ -77,7 +77,6 @@ public class AttendanceAPI {
 
     @GetMapping("getAllTrainer")
     public ResponseEntity<?> getAllTrainer() {
-
         List<TrainerSelectorDto> list = attendanceService.getTrainerForSelector();
 
         return ResponseEntity.ok().body(list);
@@ -94,7 +93,6 @@ public class AttendanceAPI {
 
     @GetMapping("filterCourseByTrainerUsername/{username}")
     public ResponseEntity<?> getCourseByTrainerUsername(@PathVariable String username) {
-
         List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByTrainerUsername(username);
 
         return ResponseEntity.ok().body(list);
@@ -103,7 +101,6 @@ public class AttendanceAPI {
 
     @GetMapping("filterCourseBySkillLevel/{level}")
     public ResponseEntity<?> getCourseBySkillLevel(@PathVariable String level) {
-
         List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceBySkillLevel(level);
 
         return ResponseEntity.ok().body(list);
@@ -112,22 +109,23 @@ public class AttendanceAPI {
 
     @GetMapping("/getTrainerLesson/{userName}")
     public ResponseEntity<?> getTrainerTodayLessonsUsername(@PathVariable String userName) {
+        List<LessonAttendanceDto> lessonAttendanceDtoList =
+                checkAttendanceService.getTodayLessonsByTrainerUsername(userName);
 
-        List<LessonAttendanceDto> lessonAttendanceDtoList = checkAttendanceService.getTodayLessonsByTrainerUsername(userName);
         return ResponseEntity.ok().body(lessonAttendanceDtoList);
     }
 
     @GetMapping("/getManagerUserAtt/{userName}")
     public ResponseEntity<?> getStudentAttendanceForManagerByUsername(@PathVariable String userName) {
+        List<StudentAttendanceForManagerDto> studentAttendanceForManagerDtoList =
+                attendanceService.getStudentAttendanceForManagerDto(userName);
 
-        List<StudentAttendanceForManagerDto> studentAttendanceForManagerDtoList = attendanceService.getStudentAttendanceForManagerDto(userName);
         return ResponseEntity.ok().body(studentAttendanceForManagerDtoList);
     }
 
 
     @GetMapping("getCourseByUserId/{userId}")
     public ResponseEntity<?> getCourseByUserId(@PathVariable int userId) {
-
         List<CourseAttendanceDto> list = attendanceService.getCourseAttendanceByUserId(userId);
 
         return ResponseEntity.ok().body(list);
@@ -137,52 +135,36 @@ public class AttendanceAPI {
     @GetMapping("/getCourseLessonsForOneUser/{courseId}/{userId}")
     public ResponseEntity<?> getLessonsByCourseUser(@PathVariable int courseId, @PathVariable int userId) {
         List<LessonAttendanceDto> list = attendanceService.getLessonsOfCourseAttendanceByUser(courseId, userId);
+
         return ResponseEntity.ok().body(list);
     }
 
     @PostMapping("createReport/course")
     public ResponseEntity<?> createReportByCourse(@RequestParam("courses") int[] courses) {
-        try {
-            reporter.createReportByCourse(courses);
-            return new ResponseEntity<>(new ResponseMessage("Report on selected courses saved"), HttpStatus.OK);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(new ResponseMessage("Error! Can not create report!"), HttpStatus.CONFLICT);
-        }
+        reporterServiceImpl.createReportByCourse(courses);
 
+        return new ResponseEntity<>(new ResponseMessage("Report on selected courses saved"), HttpStatus.OK);
     }
 
     @PostMapping("createReport/trainer")
     public ResponseEntity<?> createReportByTrainer(@RequestParam("trainerUsername") String username) {
-        try {
-            reporter.createReportByTrainer(username);
-            return new ResponseEntity<>(new ResponseMessage("Report on selected trainer saved"), HttpStatus.OK);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(new ResponseMessage("Error! Can not create report!"), HttpStatus.CONFLICT);
-        }
+        reporterServiceImpl.createReportByTrainer(username);
+
+        return new ResponseEntity<>(new ResponseMessage("Report on selected trainer saved"), HttpStatus.OK);
     }
 
     @PostMapping("createReport/student")
     public ResponseEntity<?> createReportByStudent(@RequestParam("username") String username) {
-        try {
-            reporter.createReportByStudent(username);
-            return new ResponseEntity<>(new ResponseMessage("Report on selected user saved"), HttpStatus.OK);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(new ResponseMessage("Error! Can not create report!"), HttpStatus.CONFLICT);
-        }
+        reporterServiceImpl.createReportByStudent(username);
+
+        return new ResponseEntity<>(new ResponseMessage("Report on selected user saved"), HttpStatus.OK);
     }
 
     @PostMapping("createReport/level")
     public ResponseEntity<?> createReportByLevel(@RequestParam("level") String level) {
-        try {
-            reporter.createReportByLevel(level);
-            return new ResponseEntity<>(new ResponseMessage("Report on selected level saved"), HttpStatus.OK);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(new ResponseMessage("Error! Can not create report!"), HttpStatus.CONFLICT);
-        }
+        reporterServiceImpl.createReportByLevel(level);
+
+        return new ResponseEntity<>(new ResponseMessage("Report on selected level saved"), HttpStatus.OK);
 
     }
 
