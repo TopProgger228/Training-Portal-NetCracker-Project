@@ -3,5 +3,5 @@ export class Manager {
   fname: string;
   lname: string;
   email: string;
-
+  photo: any;
 }
