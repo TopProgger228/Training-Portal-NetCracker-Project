@@ -27,6 +27,7 @@ export class ShowStudentsComponent implements OnInit {
           this.studentService.getStudents(this.token.getUsername())
             .subscribe(data => {
               this.students = data;
+              console.log(this.students)
             })
           this.managerService.getManagerOfStudent(this.token.getUsername())
             .subscribe(data => {
