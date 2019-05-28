@@ -5,6 +5,7 @@ import { CourseService } from '../../../services/course.service';
 import { Course } from '../../../services/course'
 
 import {TokenStorageService} from "../../../auth/token-storage.service";
+import {CourseWithChoosen} from "../../../services/course-with-choosen";
 
 
 @Component({
@@ -14,7 +15,7 @@ import {TokenStorageService} from "../../../auth/token-storage.service";
 })
 export class CoursesContainerComponent implements OnInit {
 
-  courses: Course[];
+  courses: CourseWithChoosen[];
   coursesC: Array<StockCourses> = COURSES;
 
   constructor(private courseService: CourseService,

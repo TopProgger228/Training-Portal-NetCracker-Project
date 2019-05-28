@@ -4,18 +4,19 @@
     <div class="row ">
       <div class="col-7">
         <!--<div *ngIf="this.role == 'user'">-->
-        <a [routerLink]="['/student/course-page', course.name]"><h1>{{course.name}}</h1></a>
+        <!--<a [routerLink]="['/student/course-page', course.name]"><h1>{{course.name}}</h1></a>-->
         <!--</div>-->
 
 
-        <!--<div *ngIf="this.role == 'user';then thenBlock else elseBlock">-->
-        <!--</div>-->
-        <!--<ng-template #thenBlock>-->
-          <!--<a [routerLink]="['/student/course-page', course.name]"><h1>{{course.name}}</h1></a>-->
-        <!--</ng-template>-->
-        <!--<ng-template #elseBlock>-->
-          <!--<h1>{{course.name}}</h1>-->
-        <!--</ng-template>-->
+        <div *ngIf="course.isChoosen == 't';
+                  then thenBlock else elseBlock">
+        </div>
+        <ng-template #thenBlock>
+          <del><h1>{{course.name}}</h1></del> <h2>CLOSED FOR THIS SEASON</h2>
+        </ng-template>
+        <ng-template #elseBlock>
+          <a [routerLink]="['/student/course-page', course.name]"><h1>{{course.name}}</h1></a>
+        </ng-template>
 
         <em>
           <h3 class="text-muted">{{ course.skill_level }}</h3>

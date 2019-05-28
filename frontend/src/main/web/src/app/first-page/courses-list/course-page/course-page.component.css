@@ -34,7 +34,7 @@ mat-form-field {
 
 /deep/ .mat-select-value{
   font-weight: bolder;
-  color: white;
+  /*color: white;*/
 }
 
 .mat-input-placeholder{

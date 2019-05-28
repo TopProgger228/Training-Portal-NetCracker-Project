@@ -4,6 +4,7 @@ import com.group3.basic.netcracker.backend.dao.CourseDao;
 import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseIdRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseRowMapper;
+import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithChoosenRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -59,8 +60,12 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public List listActiveCourses() {
-        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" WHERE start_date > ? ORDER BY id DESC;";
-        List courses = jdbcTemplate.query(SQL, new Object[]{new java.sql.Date(System.currentTimeMillis())}, new CourseRowMapper());
+        String SQL = "SELECT DISTINCT c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week, S.is_choosen\n" +
+                "FROM \"Course\" as c\n" +
+                "join \"TimeSlot\" TS on c.id = TS.course_id\n" +
+                "left join \"Schedule\" S on TS.id = S.time_slot_id\n" +
+                "WHERE start_date > ? and S.is_choosen is null or S.is_choosen = false ORDER BY id DESC;";
+        List courses = jdbcTemplate.query(SQL, new Object[]{new java.sql.Date(System.currentTimeMillis())}, new CourseWithChoosenRowMapper());
         return courses;
     }
 
