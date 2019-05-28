@@ -12,6 +12,7 @@ import com.group3.basic.netcracker.backend.util.authorization.message.request.Si
 import com.group3.basic.netcracker.backend.util.authorization.message.response.JwtResponse;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import com.group3.basic.netcracker.backend.util.authorization.security.jwt.JwtProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -29,25 +30,25 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
+@Slf4j
 public class AuthRestAPIs {
+    private static final String STUDENT_ROLE = "Student";
+
     private final AuthenticationManager authenticationManager;
 
     private final PasswordEncoder encoder;
 
     private final JwtProvider jwtProvider;
 
-    private ApplicationContext context;
-
     private UserService userService;
 
     @Autowired
     public AuthRestAPIs(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
-                        JwtProvider jwtProvider, ApplicationContext context, UserService userService) {
+                        JwtProvider jwtProvider, UserService userService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.encoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
-        this.context = context;
     }
 
     @PostMapping("/signin")
@@ -62,10 +63,13 @@ public class AuthRestAPIs {
 
             String jwt = jwtProvider.generateJwtToken(authentication);
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            log.info("User authenticated!");
+
             return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn("Wrong user credentials!");
             return new ResponseEntity<>(new ResponseMessage("Username or Password is wrong!"),
                     HttpStatus.BAD_REQUEST);
         }
@@ -74,26 +78,34 @@ public class AuthRestAPIs {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm info) {
         if (userService.existByUsername(info.getUsername())) {
+            log.info("Username - {} is already taken", info.getUsername());
             return new ResponseEntity<>(new ResponseMessage("username is already taken"),
                     HttpStatus.OK);
         }else if (userService.existByEmail(info.getEmail())) {
+            log.info("Email - {} is already taken", info.getEmail());
             return new ResponseEntity<>(new ResponseMessage("email is already taken"),
                     HttpStatus.OK);
         }
         userService.createUser(info.getUsername(),
-                "Student", info.getFname(), info.getLname(), info.getEmail(),
+                STUDENT_ROLE, info.getFname(), info.getLname(), info.getEmail(),
                 encoder.encode(info.getPassword()), LocalDate.now(), null);
+
+        log.info("User registered with username - {}", info.getUsername());
 
         return new ResponseEntity<>(new ResponseMessage("registered successfully"), HttpStatus.OK);
     }
 
     @PostMapping("/reset_password")
-    public ResponseEntity<?> resetPassword(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public ResponseEntity<?> resetPassword(@RequestParam("email") String email,
+                                           @RequestParam("password") String password) {
         if (!userService.existByEmail(email)) {
+            log.info("User with email - {} does not exists", email);
             return new ResponseEntity<>(new ResponseMessage("user does not exist"),
                     HttpStatus.OK);
         }
         userService.resetPassword(email, encoder.encode(password));
+
+        log.info("User with email - {} reseted password successfully", email);
 
         return new ResponseEntity<>(new ResponseMessage("successfully"), HttpStatus.OK);
     }

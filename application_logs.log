@@ -1,0 +1,39 @@
+2019-05-29 00:04:08.688  INFO 8692 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-FE3LGGP with PID 8692 (C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by TopProgger in C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-29 00:04:08.712 DEBUG 8692 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-29 00:04:08.719  INFO 8692 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-29 00:04:17.292  INFO 8692 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-29 00:04:17.297  INFO 8692 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-29 00:04:17.747  INFO 8692 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-29 00:04:18.322 DEBUG 8692 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-29 00:04:21.517  INFO 8692 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 16.578 seconds (JVM running for 21.979)
+2019-05-29 00:04:21.522  INFO 8692 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started!
+2019-05-29 00:28:41.126  INFO 3088 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-FE3LGGP with PID 3088 (C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by TopProgger in C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-29 00:28:41.136 DEBUG 3088 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-29 00:28:41.136  INFO 3088 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-29 00:28:48.509  INFO 3088 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-29 00:28:48.511  INFO 3088 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-29 00:28:48.935  INFO 3088 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-29 00:28:49.521 DEBUG 3088 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-29 00:28:52.365  INFO 3088 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 14.109 seconds (JVM running for 19.01)
+2019-05-29 00:28:52.375  INFO 3088 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 1559078932375
+2019-05-29 00:35:40.302  INFO 3088 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-29 00:35:47.116 ERROR 3088 --- [http-nio-8080-exec-7] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 00:35:47.122 ERROR 3088 --- [http-nio-8080-exec-8] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 00:35:47.125 ERROR 3088 --- [http-nio-8080-exec-9] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-29 00:37:30.179  INFO 3088 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-29 00:37:37.939  INFO 3088 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-29 00:37:39.528 DEBUG 3088 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 00:37:40.425 DEBUG 3088 --- [http-nio-8080-exec-9] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-29 00:40:14.629  INFO 3088 --- [http-nio-8080-exec-5] b.c.ManagersAndTrainersEditingController : Controller get user - gagarin12
+2019-05-29 00:40:15.189  INFO 3088 --- [http-nio-8080-exec-5] b.c.ManagersAndTrainersEditingController : User created with username - gagarin12
+2019-05-29 00:40:15.894 DEBUG 3088 --- [http-nio-8080-exec-6] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-29 00:40:16.284 DEBUG 3088 --- [http-nio-8080-exec-7] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-29 00:43:50.577  INFO 7020 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-FE3LGGP with PID 7020 (C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by TopProgger in C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-29 00:43:50.620 DEBUG 7020 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-29 00:43:50.622  INFO 7020 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-29 00:44:03.035  INFO 7020 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-29 00:44:03.035  INFO 7020 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-29 00:44:03.575  INFO 7020 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-29 00:44:04.295 DEBUG 7020 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-29 00:44:08.905  INFO 7020 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 21.466 seconds (JVM running for 30.783)
+2019-05-29 00:44:08.950  INFO 7020 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-29

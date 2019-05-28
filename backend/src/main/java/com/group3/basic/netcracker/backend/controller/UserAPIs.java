@@ -4,6 +4,7 @@ import com.group3.basic.netcracker.backend.dto.UserForDisplay;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
 import com.group3.basic.netcracker.backend.util.file.ImageConverter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class UserAPIs {
     private UserService userService;
 
@@ -23,6 +25,7 @@ public class UserAPIs {
 
     @GetMapping("/getUser")
     public UserForDisplay getUser(@RequestParam("username") String username) {
+        log.debug("Got user with username - {}", username);
         return userService.getUserByUsername(username);
     }
 
@@ -33,6 +36,8 @@ public class UserAPIs {
                                         @RequestParam("lname") String lname,
                                         @RequestParam("email") String email) {
         userService.updateUser(id, username, fname, lname, email);
+
+        log.info("User with username/first name/last name - {}", username, fname, lname);
 
         return new ResponseEntity<>(new ResponseMessage("User updated successfully!"), HttpStatus.CREATED);
     }
@@ -47,20 +52,27 @@ public class UserAPIs {
 
         if (ImageConverter.convertToImage(file, filepath, fileExtension) &&
                 userService.updatePhoto(username, filepath) > 0) {
+
+            log.info("User with username - {} uploaded photo", username);
+
             return ResponseEntity.status(HttpStatus.OK).body("Photo uploaded");
         } else {
+            log.error("User - {} can not upload photo", username);
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Photo not uploaded");
         }
     }
 
-    @GetMapping(
-            value = "/getPhoto"
-    )
+    @GetMapping("/getPhoto")
     public ResponseEntity<?> getImage(@RequestParam("username") String username) {
         try {
             String filepath = userService.getPhotoByUsername(username);
+
+            log.debug("Got photo of - {}", username);
+
             return ResponseEntity.status(HttpStatus.OK).body(ImageConverter.convertToString(filepath));
         } catch (Exception e) {
+            log.error("Cannot get photo of - {}", username);
             return null;
         }
     }

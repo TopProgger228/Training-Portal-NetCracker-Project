@@ -5,6 +5,7 @@ import com.group3.basic.netcracker.backend.entity.Course;
 import com.group3.basic.netcracker.backend.service.CourseService;
 import com.group3.basic.netcracker.backend.service.ScheduleService;
 import com.group3.basic.netcracker.backend.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,11 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class GetInfoAPIs {
+    private static final String TRAINER_ROLE = "Trainer";
+    private static final String MANAGER_ROLE = "Manager";
+    private static final String STUDENT_ROLE = "Student";
 
     private final UserService userService;
     private final CourseService courseService;
@@ -29,62 +34,74 @@ public class GetInfoAPIs {
 
     @GetMapping("/usersinfo/trainers")
     public List getTrainers() {
-        return userService.listUsersForDisplay("Trainer");
+        log.debug("List of trainers received!");
+        return userService.listUsersForDisplay(TRAINER_ROLE);
     }
 
     @GetMapping("/usersinfo/managers")
     public List getManagers() {
-        return userService.listUsersForDisplay("Manager");
+        log.debug("List of managers received!");
+        return userService.listUsersForDisplay(MANAGER_ROLE);
     }
 
     @GetMapping("/usersinfo/students")
     public List getStudents() {
-        return userService.listUsersForDisplay("Student");
+        log.debug("List of students received!");
+        return userService.listUsersForDisplay(STUDENT_ROLE);
     }
 
 
     @GetMapping("/manager/students-info")
     public List getStudentsOfManager(@RequestParam("username") String username) {
+        log.info("Students of trainer - {} received", username);
         return userService.getStudentsOfManager(username);
     }
 
     @GetMapping("/manager/profile")
     public UserForDisplay getManagersInfo(@RequestParam("username") String username) {
+        log.debug("Displayed info of manager - {}", username);
         return userService.getUserByUsername(username);
     }
 
     @GetMapping("/manager/student-profile")
     public UserForDisplay getStudent(@RequestParam("username") String username) {
+        log.debug("Got student - {}", username);
         return userService.getUserByUsername(username);
     }
 
     @GetMapping("/student/course-page")
     public Course getCourse(@RequestParam("name") String name) {
+        log.debug("Got course - {}", name);
         return courseService.getCourseByName(name);
     }
 
     @GetMapping("/student_id")
     public Integer getIdByUsername(@RequestParam("username") String username) {
+        log.debug("Got id by username - {}", username);
         return userService.getIdByUsername(username);
     }
 
     @GetMapping("/scheduleinfo")
     public List listScheduleWithCourseAndTimeSlotAndUser() {
+        log.debug("Got schedule list");
         return scheduleService.listScheduleWithCourseAndTimeSlotAndUser();
     }
 
     @GetMapping("/course_id")
     public Integer getIdByCourseName(@RequestParam("name") String name) {
+        log.debug("Got id by course - {}", name);
         return courseService.getIdByCourseName(name);
     }
 
     @GetMapping("/is_choosen")
     public void scheduleGenerate(@RequestParam("id") Integer id) {
+        log.debug("Schedule generated for id - {}", id);
         scheduleService.generateSchedule(id);
     }
 
     @GetMapping("/student/my-schedule")
     public List listScheduleOfStudent(@RequestParam("username") String username){
+        log.debug("Got schedule of student - {}", username);
         return scheduleService.getScheduleOfStudent(username);
     }
 }

@@ -4,6 +4,7 @@ package com.group3.basic.netcracker.backend.controller;
 import com.group3.basic.netcracker.backend.service.UsersTokenService;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,9 @@ import java.util.UUID;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class MailSenderAPIs {
+    private static final String APP_URL = "http://localhost:4200/";
 
     private final UserService userService;
 
@@ -38,6 +41,9 @@ public class MailSenderAPIs {
         usersTokenService.createTokenForUser(email, token);
 
         javaMailSender.send(usersTokenService.constructSignUpTokenEmail(getAppUrl(), email, token));
+
+        log.info("Mail sent to - {}", email);
+
         return new ResponseEntity<>(new ResponseMessage("Mail sent"), HttpStatus.OK);
     }
 
@@ -48,9 +54,12 @@ public class MailSenderAPIs {
             usersTokenService.createTokenForUser(email, token);
 
             javaMailSender.send(usersTokenService.constructPasswordResetTokenEmail(getAppUrl(), email, token));
+
+            log.info("Mail for password recovery sent to - {}", email);
+
             return new ResponseEntity<>(new ResponseMessage("sent"), HttpStatus.OK);
         } else {
-
+            log.warn("Cannot send email to - {}", email);
             return new ResponseEntity<>(new ResponseMessage("not exist"),
                     HttpStatus.OK);
         }
@@ -58,11 +67,12 @@ public class MailSenderAPIs {
 
     @GetMapping("/auth/signup/getEmailByToken")
     public String getEmailByToken(@RequestParam("token") String token) {
+        log.debug("Got email by token - {}", token);
         return usersTokenService.getEmailByToken(token);
     }
 
     private String getAppUrl() {
-        return "http://localhost:4200/";
+        return APP_URL;
     }
 
 }

@@ -3,8 +3,7 @@ package com.group3.basic.netcracker.backend.controller;
 import com.group3.basic.netcracker.backend.dto.Member;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +16,11 @@ import java.time.LocalDate;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("edit")
+@Slf4j
 public class ManagersAndTrainersEditingController {
     private final UserService userService;
 
     private final PasswordEncoder encoder;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ManagersAndTrainersEditingController.class);
 
     @Autowired
     public ManagersAndTrainersEditingController(UserService userService, PasswordEncoder encoder) {
@@ -32,10 +30,10 @@ public class ManagersAndTrainersEditingController {
 
     @PostMapping("addmember")
     public ResponseEntity<?> addMember(@Valid @RequestBody Member member) {
-        LOGGER.debug("Controller get user - {}", member.getUsername());
+        log.info("Controller get user - {}", member.getUsername(), member.getFname(), member.getFname());
 
         if (userService.isUserExists(member.getUsername(), member.getEmail())) {
-            LOGGER.debug("User exists in system - {}", member.getUsername());
+            log.warn("User with username exists in system - {}", member.getUsername());
 
             return new ResponseEntity<>(new ResponseMessage("User exists!"), HttpStatus.BAD_REQUEST);
         } else {
@@ -48,7 +46,7 @@ public class ManagersAndTrainersEditingController {
                 userService.insertTrainerInfo(id, member.getInfo());
             }
 
-            LOGGER.debug("User created - {}", member.getUsername());
+            log.info("User created with username - {}", member.getUsername());
 
             return new ResponseEntity<>(new ResponseMessage("Trainer/manager added!"), HttpStatus.CREATED);
         }
@@ -58,7 +56,7 @@ public class ManagersAndTrainersEditingController {
     public ResponseEntity<?> delete(@RequestParam int id) {
         userService.removeUser(id);
 
-        LOGGER.debug("User with id: " + id + " is removed from system!");
+        log.info("User wit id deleted - {}", id);
 
         return new ResponseEntity<>(new ResponseMessage("Deleted!"), HttpStatus.OK);
     }
@@ -67,7 +65,7 @@ public class ManagersAndTrainersEditingController {
     public ResponseEntity<?> updateUserName(@RequestParam int id, @RequestParam String newUserName) {
         userService.updateUserName(id, newUserName);
 
-        LOGGER.debug("User with id: " + id + " got new username: " + newUserName);
+        log.info("User with id got new username - {}", id, newUserName);
 
         return new ResponseEntity<>(new ResponseMessage("Username updated!"), HttpStatus.OK);
     }
@@ -76,7 +74,7 @@ public class ManagersAndTrainersEditingController {
     public ResponseEntity<?> updateFirstName(@RequestParam int id, @RequestParam String newFirstName) {
         userService.updateUserFirstName(id, newFirstName);
 
-        LOGGER.debug("User with id: " + id + " has changed first name for: " + newFirstName);
+        log.info("User with id has updated first name - {}", id, newFirstName);
 
         return new ResponseEntity<>(new ResponseMessage("First name updated!"), HttpStatus.OK);
     }
