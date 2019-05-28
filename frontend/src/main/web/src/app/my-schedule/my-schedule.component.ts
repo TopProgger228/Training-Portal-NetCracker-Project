@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Schedule } from "../services/schedule";
 import {ActivatedRoute, Router} from "@angular/router";
 import { TokenStorageService } from "../auth/token-storage.service";
 import {ToasterService} from "../services/toaster.service";
@@ -55,6 +54,27 @@ export class MyScheduleComponent implements OnInit {
     this.token.signOut();
     window.location.reload();
     this.router.navigate(['auth/login']);
+  }
+
+  success() {
+    this.toasterService.Success("Success", "Chosen schedule was deleted successfully");
+  }
+
+  deleteSchedule(id: number) {
+    this.scheduleService.deleteMySchedule(id).subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log('FAIL to delete schedule!');
+      },
+      () => {
+        this.scheduleService.getScheduleOfStudent(this.token.getUsername())
+          .subscribe(data => {
+            this.studentSchedule = data;
+            console.log(this.studentSchedule);
+          });
+        this.success()
+        //this.reloadPage();
+      });
   }
 
 }

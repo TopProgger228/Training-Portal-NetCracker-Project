@@ -3,6 +3,7 @@ export class StudentSchedule {
               public startTime : string,
               public endTime : string,
               public weekDay : string,
+              public courseId : number,
               public isScheduled: string
   ){
 

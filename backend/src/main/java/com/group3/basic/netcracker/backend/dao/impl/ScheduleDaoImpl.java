@@ -65,7 +65,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
     @Override
     public List getScheduleOfStudent(String username){
-        String SQL = "select C2.name, TS.start_time, TS.end_time, TS.week_day, s.is_choosen from \"Schedule\" as s\n" +
+        String SQL = "select C2.name, TS.start_time, TS.end_time, TS.week_day, s.id, s.is_choosen from \"Schedule\" as s\n" +
                 "join \"User\" U on s.user_id = U.id\n" +
                 "join \"TimeSlot\" TS on s.time_slot_id = TS.id\n" +
                 "join \"Course\" C2 on TS.course_id = C2.id\n" +

@@ -76,6 +76,11 @@ public class CreateAPIs {
         }
     }
 
+    @DeleteMapping("/student/my-schedule/delete")
+    public ResponseEntity<?> deleteMySchedule(@RequestParam int id) {
+        scheduleService.removeSchedule(id);
+        return new ResponseEntity<>(new ResponseMessage("Deleted!"), HttpStatus.OK);
+    }
 
     @PostMapping("/create_new_schedule")
     public ResponseEntity<?> createNewSchedule(@RequestBody ScheduleForm scheduleForm) {

@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class ScheduleOfStudent {
 
@@ -12,6 +13,8 @@ public class ScheduleOfStudent {
     private String endTime;
     @NotBlank
     private String weekDay;
+    @NotNull
+    private int courseId;
     @NotBlank
     private String isScheduled;
 
@@ -45,6 +48,14 @@ public class ScheduleOfStudent {
 
     public void setWeekDay(String weekDay) {
         this.weekDay = weekDay;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     public String getIsScheduled() {

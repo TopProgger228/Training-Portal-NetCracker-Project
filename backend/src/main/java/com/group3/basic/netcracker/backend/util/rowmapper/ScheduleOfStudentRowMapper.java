@@ -14,6 +14,7 @@ public class ScheduleOfStudentRowMapper implements RowMapper {
         scheduleOfStudent.setStartTime(rs.getString("start_time"));
         scheduleOfStudent.setEndTime(rs.getString("end_time"));
         scheduleOfStudent.setWeekDay(rs.getString("week_day"));
+        scheduleOfStudent.setCourseId(rs.getInt("id"));
         scheduleOfStudent.setIsScheduled(rs.getString("is_choosen"));
         return scheduleOfStudent;
     }

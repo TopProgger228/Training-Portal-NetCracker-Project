@@ -32,6 +32,11 @@
                 <td>{{studSchedule.endTime}}</td>
                 <td>{{studSchedule.weekDay}}</td>
                 <td><input disabled type="checkbox" [checked]="studSchedule.isScheduled == 't'" ></td>
+                <td>
+                  <button *ngIf="studSchedule.isScheduled == 'f'" type="button" class="btn btn-default btn-lg float-rigth" (click)="deleteSchedule(studSchedule.courseId)">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </button>
+                </td>
               </tr>
               </tbody>
             </table>

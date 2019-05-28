@@ -19,6 +19,7 @@ export class ScheduleService {
   private courseIdUrl = "http://localhost:8080/api/course_id?name=";
   private isChoosenUrl = 'http://localhost:8080/api/is_choosen?id=';
   private myScheduleUrl = "http://localhost:8080/api/student/my-schedule?username=";
+  private deleteScheduleUrl = 'http://localhost:8080/api/student/my-schedule/delete?id=';
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +33,9 @@ export class ScheduleService {
 
   isChoosen(id: number): Observable<any> {
     return this.http.get<Schedule>(this.isChoosenUrl + id, httpOptions);
+  }
+  deleteMySchedule(id: number): Observable<any> {
+    return this.http.delete(this.deleteScheduleUrl + id, httpOptions);
   }
 
 }
