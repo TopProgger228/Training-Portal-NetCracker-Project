@@ -22,4 +22,6 @@ public interface TimeSlotDao {
     List getTimeslotsOfCourse(String name);
 
     boolean isTimeslotExists(LocalTime of, LocalTime of2, String weekDay, int courseId);
+
+
 }

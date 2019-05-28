@@ -1,0 +1,31 @@
+<div *ngIf="courseList.length !== 0 && isReadyToShow">
+  <mat-accordion >
+    <mat-expansion-panel *ngFor="let course of courseList; index as i">
+      <mat-expansion-panel-header (click)="setChosenCourse(course.courseId)">
+        <mat-panel-title class="row col-3">
+          <span class="col-2">{{i + 1}}</span><span class="col-10">{{course.name}}</span>
+        </mat-panel-title>
+        <mat-panel-description class="row col-9">
+          <span class="col-2">{{course.skillLevel}}</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="course.courseId === chosenOneCourse">
+        <div class="row" style="font-weight: bold" *ngIf="lessonList.length !== 0">
+          <div class="col-1">#</div>
+          <div class="col-5">Time</div>
+          <div class="col-3">Date</div>
+          <div class="col-3 text-center">Status</div>
+        </div>
+        <div *ngIf="isReadyToShowLesson && lessonList.length !== 0">
+          <app-one-trainer-lesson *ngFor="let lesson of lessonList; index as i" [lesson]="lesson" [index]="i"></app-one-trainer-lesson>
+        </div>
+        <app-no-data *ngIf="isReadyToShowLesson && lessonList.length === 0"></app-no-data>
+      </div>
+      <app-spinner *ngIf="isLessonLoading"></app-spinner>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+  <app-no-data *ngIf="courseList.length === 0 && isReadyToShow"></app-no-data>
+
+
+<app-spinner *ngIf="isCourseLoading"></app-spinner>

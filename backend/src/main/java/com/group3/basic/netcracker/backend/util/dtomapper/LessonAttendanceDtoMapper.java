@@ -8,16 +8,6 @@ import org.springframework.stereotype.Service;
 @Component
 public class LessonAttendanceDtoMapper {
 
-    public Lesson toLesson(LessonAttendanceDto lad) {
-
-        Lesson lesson = new Lesson();
-        lesson.setLessonId(lad.getLessonId());
-        lesson.setLessonDate(lad.getStartDateTime());
-        lesson.setCancel(lad.isCancel());
-
-        return lesson;
-    }
-
     public LessonAttendanceDto toLessonAttendanceDto(Lesson lesson) {
 
         LessonAttendanceDto lad = new LessonAttendanceDto();
