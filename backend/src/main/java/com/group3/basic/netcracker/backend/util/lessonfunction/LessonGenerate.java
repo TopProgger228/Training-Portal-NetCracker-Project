@@ -22,7 +22,7 @@ public class LessonGenerate {
         SqlParameterSource paramMap = new MapSqlParameterSource()
                 .addValue("course", course);
 
-        Integer result = call.executeFunction(Integer.class, paramMap);
+        call.executeFunction(Integer.class, paramMap);
         System.out.println("Lessons has been created");
     }
 }
