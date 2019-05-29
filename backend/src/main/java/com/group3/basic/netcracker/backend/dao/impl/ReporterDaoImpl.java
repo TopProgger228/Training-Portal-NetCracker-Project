@@ -31,13 +31,18 @@ public class ReporterDaoImpl implements ReporterDao {
     @Override
     public List<Map<String, Object>> queryReportByCourse(int[] courses) {
         String sql = "select c.name as \"Course\",\n" +
+        //Если нету уроков по курсу получаем Any lesson. Подобное для студентов.
+        //Так делаем на случай если в выбранном для отчета курсе нету пропусков или студентов
                 "                coalesce(cast(l.id as text), 'Any lesson') as \"Lesson\", \n" +
                 "                coalesce(u.username,'Anyone missing') as \"Student\",             \n" +
                 "                coalesce(lm.reason, '') \"Reason\"\n" +
                 "                from \"Course\" c\n" +
+        //Соединяем по left с уроками что-бы не потерять выбранные из курсов строки. Так же поступаем с остальными.
+        //Если по курсу нету совпадений в следующих таблицах простой join их обрежет, а нам нужны все
                 "                left join \"Lesson\" l on l.course_id = c.id\n" +
                 "                left join \"LessonMissing\" lm on l.id = lm.lesson_id\n" +
                 "                left join \"User\" u on u.id = lm.user_id\n" +
+        //Фильтруем по курсам, которые были выбраны
                 "                where c.id in (select id from \"Course\" where id in (";
         sql += courses[0];
         if(courses.length > 1)
