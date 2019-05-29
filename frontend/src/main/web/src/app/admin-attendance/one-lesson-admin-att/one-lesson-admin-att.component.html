@@ -12,7 +12,7 @@
     <app-one-student-admin-att *ngIf="userList.length !== 0" [userList]="userList"></app-one-student-admin-att>
 
   <div *ngIf="userList.length === 0">
-    No student here!
+    <app-no-data></app-no-data>
   </div>
   <app-spinner *ngIf="isUserLoading"></app-spinner>
 </div>
