@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Courses} from "../groups-schedule/courses";
 import {Observable} from "rxjs";
-import {Course} from "./course";
+import {Course} from "../interface/course";
 import {Timeslot} from "../groups-schedule/timeslot";
-import {Schedules} from "./schedules";
+import {Schedules} from "../interface/schedules";
 import {HttpParams, HttpRequest} from "../../../node_modules/@angular/common/http";
 import {CourseForTrainer} from "../interface/course-for-trainer";
 

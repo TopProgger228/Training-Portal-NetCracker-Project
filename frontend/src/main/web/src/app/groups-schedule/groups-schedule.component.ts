@@ -5,7 +5,7 @@ import { TokenStorageService } from "../auth/token-storage.service";
 import { TimeSlotService } from "./time-slot.service";
 import { CoursesService } from "./courses.service";
 import { Courses } from "./courses";
-import { Schedule } from "../services/schedule";
+import { Schedule } from "../interface/schedule";
 import { Timeslots } from "./timeslots";
 import * as Util from "util";
 import {ToasterService} from "../services/toaster.service";

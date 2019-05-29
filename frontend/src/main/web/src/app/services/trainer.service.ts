@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Trainer} from './trainer';
+import {Trainer} from '../interface/trainer';
 import {Lesson} from "../interface/lesson";
 
 const httpOptions = {

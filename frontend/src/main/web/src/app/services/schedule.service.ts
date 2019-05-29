@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ScheduleMod} from "./schedule-mod";
-import {Schedule} from "./schedule";
+import {ScheduleMod} from "../interface/schedule-mod";
+import {Schedule} from "../interface/schedule";
 
 const httpOptions = {
 

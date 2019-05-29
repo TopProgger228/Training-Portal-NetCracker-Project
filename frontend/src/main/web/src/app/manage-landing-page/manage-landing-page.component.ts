@@ -5,8 +5,8 @@ import { TokenStorageService } from '../auth/token-storage.service';
 
 import { NewsService } from '../services/News.service';
 import { ToasterService } from "../services/toaster.service";
-import { News } from '../services/news';
-import { TrainersInfo } from '../services/trainers-info';
+import { News } from '../interface/news';
+import { TrainersInfo } from '../interface/trainers-info';
 import { TrainersserService } from '../first-page/trainers-list/trainersser.service';
 
 @Component({

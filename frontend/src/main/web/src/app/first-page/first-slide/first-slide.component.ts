@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TokenStorageService } from '../../auth/token-storage.service';
 
 import { NewsService } from '../../services/News.service';
-import { News } from '../../services/news';
+import { News } from '../../interface/news';
 @Component({
   selector: 'app-first-slide',
   templateUrl: './first-slide.component.html',
