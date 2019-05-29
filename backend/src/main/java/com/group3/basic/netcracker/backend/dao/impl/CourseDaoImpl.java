@@ -60,11 +60,15 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public List listActiveCourses() {
-        String SQL = "SELECT DISTINCT c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week, S.is_choosen\n" +
+        String SQL = "SELECT distinct c.id, c.name, c.info, c.trainer_id, c.skill_level,\n" +
+                "c.start_date, c.end_date, c.qty_per_week,\n" +
+                "replace(string_agg(cast(S.is_choosen as text),'&'),'&false','') as choosen\n" +
                 "FROM \"Course\" as c\n" +
                 "join \"TimeSlot\" TS on c.id = TS.course_id\n" +
                 "left join \"Schedule\" S on TS.id = S.time_slot_id\n" +
-                "WHERE start_date > ? and S.is_choosen is null or S.is_choosen = false ORDER BY id DESC;";
+                "WHERE start_date > ?\n" +
+                "group by c.id, c.name, c.info\n" +
+                "ORDER BY id DESC";
         List courses = jdbcTemplate.query(SQL, new Object[]{new java.sql.Date(System.currentTimeMillis())}, new CourseWithChoosenRowMapper());
         return courses;
     }
