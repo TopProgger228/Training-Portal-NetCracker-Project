@@ -27,14 +27,6 @@ export class AuthService {
   }
 
   signUp(info: SignUpInfo): Observable<any> {
-    // const req = new HttpRequest('POST',this.SignUpUrl , info, {
-    //   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    //   reportProgress: true,
-    //   responseType: 'text',
-    //   params: new HttpParams().set("filename", info.photo.name)
-    //     .set("fileExtension", info.photo.name.slice((info.photo.name.lastIndexOf(".") - 1 >>> 0) + 2)),
-    // });
-    // return this.http.request(req);
     return this.http.post<string>(this.SignUpUrl, info, httpOptions);
   }
 

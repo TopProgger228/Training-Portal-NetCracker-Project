@@ -4,10 +4,9 @@
 <ng-template #isLoggedIn >
 
     <app-menu></app-menu>
-  <div style="height: 100%; min-height: 100vh;">
+  <div style="height: 100vh; min-height: 100vh;" class="row d-flex">
 
-
-    <div class="container mt-5">
+    <div class="container col align-self-center">
       <div class="row">
 
         <div class="center-block col-md-7 ">
@@ -91,8 +90,13 @@
         </div>
       </div>
     </div>
-  <app-user-courses *ngIf="this.token.getAuthorities()[0] == 'Student'"></app-user-courses>
-
+    <div class="col" style="padding:auto 0">
+    <div class="scrollbar" id="style-1">
+      <div class="force-overflow">
+        <app-user-courses *ngIf="this.token.getAuthorities()[0] == 'Student'" ></app-user-courses>
+      </div>
+    </div>
+    </div>
 </div>
   <app-footer></app-footer>
 </ng-template>

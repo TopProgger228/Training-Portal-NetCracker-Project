@@ -1,10 +1,11 @@
 <nav id="menubar" class="navbar navbar-expand-lg navbar-light " style="margin-bottom: 0px">
   <div class="navbar-collapse collapse ">
-
     <ul class="navbar-nav mr-auto align-items-center">
+
       <li>
         <span class="text-secondary" style="font-size: 25px;">Signed in as {{this.role}}</span>
       </li>
+
       <li class="nav-item">
         <button class="btn btn-default" type="button">
           <a class="nav-link" href="myprofile">
@@ -12,8 +13,8 @@
           </a>
         </button>
       </li>
-      <div *ngIf="this.role === 'admin'">
 
+      <div *ngIf="this.role === 'admin'">
         <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
@@ -37,8 +38,8 @@
                 <a class="dropdown-item" href="admin/users">View all users</a>
               </div>
             </div>
-
           </li>
+
           <li class="nav-item">
             <button class="btn btn-default" type="button">
               <a class="nav-link text-secondary" href="admin/manage-news">
@@ -46,8 +47,8 @@
               </a>
             </button>
           </li>
-          <li class="nav-item">
 
+          <li class="nav-item">
             <div class="dropdown">
               <button aria-expanded="false" aria-haspopup="true" class="btn btn-default text-secondary"
                 data-toggle="dropdown" id="dropdownMenuButton" type="button">
@@ -60,14 +61,12 @@
                 <a class="dropdown-item" href="admin/all-attendance">Attendance</a>
               </div>
             </div>
-
           </li>
+
         </ul>
       </div>
 
-
       <div *ngIf="this.role === 'trainer'">
-
         <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
@@ -105,9 +104,7 @@
         </ul>
       </div>
 
-
       <div *ngIf="this.role === 'user'">
-
         <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
@@ -131,7 +128,6 @@
       </div>
 
       <div *ngIf="this.role === 'mng'">
-
         <ul class="navbar-nav align-items-center">
 
           <li class="nav-item">
@@ -143,14 +139,11 @@
           </li>
 
           <li class="nav-item">
-
-
             <a class="nav-link" href="manager/students-info">
               <button class="btn btn-default text-secondary" type="button">
                 Students list
               </button>
             </a>
-
           </li>
 
           <li class="nav-item">
@@ -160,13 +153,14 @@
               </button>
             </a>
           </li>
+
         </ul>
       </div>
 
     </ul>
 
-
     <ul class="navbar-nav ml-auto">
+
       <li class="nav-item">
         <button (click)="logout()" class="btn btn-outline-secondary text-secondary" type="button">
           <a class="nav-link">
@@ -174,11 +168,8 @@
           </a>
         </button>
       </li>
+
     </ul>
   </div>
-
 </nav>
 
-
-<ng-template #loggedOut>
-</ng-template>

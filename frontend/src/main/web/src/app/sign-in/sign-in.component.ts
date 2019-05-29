@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
-  isLoginFailed = false;
   roles: string[] = [];
   private loginInfo: SignInInfo;
 
@@ -38,7 +37,7 @@ export class SignInComponent implements OnInit {
 
     this.loginInfo = new SignInInfo(
       this.form.username,
-      this.form.password);
+      this.form.password); 
 
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
@@ -46,7 +45,6 @@ export class SignInComponent implements OnInit {
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.authorities);
 
-        this.isLoginFailed = false;
         this.isLoggedIn = true;
 
 
@@ -57,9 +55,6 @@ export class SignInComponent implements OnInit {
 
         this.toasterService.Error("Fail!", error.error.message);
         this.form.password = null;
-        this.isLoginFailed = true;
-
-        this.router.navigate(['auth/login']);
       }
     );
   }

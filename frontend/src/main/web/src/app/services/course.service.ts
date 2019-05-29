@@ -5,8 +5,6 @@ import {Observable} from "rxjs";
 import {Course} from "./course";
 import {Timeslot} from "../groups-schedule/timeslot";
 import {Schedules} from "./schedules";
-import {UserModel} from "./user-model";
-import {Student} from "./student";
 import {HttpParams, HttpRequest} from "../../../node_modules/@angular/common/http";
 import {CourseForTrainer} from "../interface/course-for-trainer";
 

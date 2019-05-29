@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MailSenderService } from '../services/MailSender.service';
 
 import { ToasterService } from "../services/toaster.service";
@@ -12,11 +12,8 @@ import { Router } from '@angular/router';
 export class PasswordResetMailSenderComponent implements OnInit {
 
   form: any = {};
-  loggedout = false;
-
 
   nextPage: string = "Go to login page -->";
-  isLoginFailed = false;
   errorMessage = '';
 
   constructor(private mailSenderService: MailSenderService,
@@ -42,12 +39,10 @@ export class PasswordResetMailSenderComponent implements OnInit {
           if (data.partialText === '{"message":"sent"}') this.toasterService.Success("Success", "Mail sent successfully");
           else if (data.partialText === '{"message":"not exist"}') this.toasterService.Warning("Warning", "User does not exist");
         }
-        this.isLoginFailed = false;
       },
       error => {
         console.log(error);
         this.toasterService.Error("Error!", "Http failure response");
-        this.isLoginFailed = true;
       }
     );
   }

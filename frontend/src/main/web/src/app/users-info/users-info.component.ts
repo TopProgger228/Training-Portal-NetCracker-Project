@@ -18,9 +18,6 @@ export class UsersInfoComponent implements OnInit {
   managers: UserModel[];
   students: UserModel[];
 
-  currentJustify = 'start';
-  loggedOut = false;
-
   constructor(private router: Router, private userService: UserService, private token: TokenStorageService) {
   }
 
@@ -46,13 +43,11 @@ export class UsersInfoComponent implements OnInit {
         return false;
       });
     } else {
-      this.loggedOut = true;
       this.router.navigate(['auth/login']);
     };
   };
 
   logout() {
-    this.loggedOut = true;
     this.token.signOut();
     window.location.reload();
     this.router.navigate(['auth/login']);
