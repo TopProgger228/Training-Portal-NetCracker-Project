@@ -1,38 +1,29 @@
-<!-- Card -->
-<div class="d-flex justify-content-around">
-<div class="card promoting-card" *ngFor="let course of courses; index as i" style="width:30%">
+<div>
+  <div class="card promoting-card" *ngFor="let course of courses; index as i" style="width:auto; margin: 10px 3%">
 
-  <!-- Card content -->
-  <div class="card-body d-flex flex-row">
+    <div class="card-body d-flex flex-row">
 
-    <!-- Avatar -->
-    <!--<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">-->
+      <div>
+        <h2 class="card-title font-weight-bold mb-2" style="font-size:20px">{{course.name}}</h2>
+        <p class="card-subtitle mb-2 text-muted" style="font-size:16px">{{course.skill_level}}</p>
+        <p class="card-subtitle mb-2 text-muted" style="font-size:16px"><i class="glyphicon glyphicon-calendar pr-2"></i>{{course.start_date}} — {{course.end_date}}</p>
+      </div>
 
-    <!-- Content -->
-    <div>
-      <h2 class="card-title font-weight-bold mb-2" style="font-size:20px">{{course.name}}</h2>
-      <!-- Subtitle -->
-      <p class="card-subtitle mb-2 text-muted" style="font-size:16px">{{course.skill_level}}</p>
-      <p class="card-subtitle mb-2 text-muted" style="font-size:16px"><i class="glyphicon glyphicon-calendar pr-2"></i>{{course.start_date}} — {{course.end_date}}</p>
+    </div>
+
+    <div class="card-body">
+      <div class="divider"></div>
+      <div style="font-size:18px">Trainer</div>
+      <div style="font-size:16px">{{course.fname}} {{course.lname}}</div>
+      <div style="font-size:16px">Username: {{course.username}}</div>
+      <div style="font-size:16px">Email: {{course.email}}</div>
+      <div class="divider"></div>
+      <div>INFO</div>
+      <div class="text-justify">{{course.info}}</div>
+
+
 
     </div>
 
   </div>
-
-  <!-- Card content -->
-  <div class="card-body">
-    <div class="divider"></div>
-    <div style="font-size:18px">Trainer</div>
-    <div style="font-size:16px">{{course.fname}} {{course.lname}}</div>
-    <div style="font-size:16px">Username: {{course.username}}</div>
-    <div style="font-size:16px">Email: {{course.email}}</div>
-    <div class="divider"></div>
-    <div>INFO</div>
-    <div class="text-justify">{{course.info}}</div>
-
-
-
-  </div>
-
-</div>
 </div>
