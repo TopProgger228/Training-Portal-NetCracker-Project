@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TrainersserService} from './trainersser.service';
-import {TrainersInfo} from "../../services/trainers-info";
+import {TrainersInfo} from "../../interface/trainers-info";
 import {DomSanitizer} from "@angular/platform-browser";
 
 
