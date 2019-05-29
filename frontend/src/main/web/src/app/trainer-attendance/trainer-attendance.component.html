@@ -15,8 +15,9 @@
         <div class="col-1">{{i + 1}}</div>
         <div class="col-4">{{lesson.courseName}}</div>
         <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
-        <div class="col-3">{{lesson.startDateTime}}</div>
-        <div class="col-1">{{lesson.cancel}}</div>
+        <div class="col-3">{{lesson.lessonDate}}</div>
+        <div class="col-1" *ngIf="lesson.cancel">Cancel</div>
+        <div class="col-1" *ngIf="!lesson.cancel">Active</div>
       </div>
     </a>
   </div>

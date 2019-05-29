@@ -1,23 +1,19 @@
 package com.group3.basic.netcracker.backend.dto;
 
-import java.util.Objects;
-
 public class UserAttendanceDto {
 
     private int id;
     private String userFirstName;
     private String userLastName;
-    private int lessonId;
     private String AttendanceStatus;
 
     public UserAttendanceDto() {
     }
 
-    public UserAttendanceDto(int id, String userFirstName, String userLastName, int lessonId, String attendanceStatus) {
+    public UserAttendanceDto(int id, String userFirstName, String userLastName, String attendanceStatus) {
         this.id = id;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
-        this.lessonId = lessonId;
         AttendanceStatus = attendanceStatus;
     }
 
@@ -45,14 +41,6 @@ public class UserAttendanceDto {
         this.userLastName = userLastName;
     }
 
-    public int getLessonId() {
-        return lessonId;
-    }
-
-    public void setLessonId(int lessonId) {
-        this.lessonId = lessonId;
-    }
-
     public String getAttendanceStatus() {
         return AttendanceStatus;
     }
@@ -61,16 +49,4 @@ public class UserAttendanceDto {
         AttendanceStatus = attendanceStatus;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserAttendanceDto that = (UserAttendanceDto) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

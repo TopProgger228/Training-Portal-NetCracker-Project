@@ -25,7 +25,6 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     private final UserDao userDao;
     private final CourseDao courseDao;
     private final LessonMissingDao lessonMissingDao;
-    private final TimeSlotDao timeSlotDao;
     private final TrainerAttendanceDtoMapper trainerAttendanceDtoMapper;
     private final UserAttendanceDtoMapper userAttendanceDtoMapper;
     private final LessonAttendanceDtoMapper lessonAttendanceDtoMapper;
@@ -36,7 +35,6 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
         this.userDao = userDao;
         this.courseDao = courseDao;
         this.lessonMissingDao = lessonMissingDao;
-        this.timeSlotDao = timeSlotDao;
         this.trainerAttendanceDtoMapper = trainerAttendanceDtoMapper;
         this.userAttendanceDtoMapper = userAttendanceDtoMapper;
         this.lessonAttendanceDtoMapper = lessonAttendanceDtoMapper;
@@ -47,12 +45,11 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     public List<LessonAttendanceDto> getTodayLessonsByTrainer(int trainerId) {
 
         List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
-        for (Lesson l : lessonDao.getTodayLessonsByTrainer(trainerId)) {
-            LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
-            lad.setCourseName(courseDao.getCourseByLesson(l.getLessonId()).getName());
-            lessonAttendanceDtoList.add(lad);
-        }
+        List<Lesson> lessonList = lessonDao.getTodayLessonsByTrainer(trainerId);
+        for (Lesson lesson : lessonList) {
+            lessonAttendanceDtoList.add(lessonAttendanceDtoMapper.toLessonAttendanceDto(lesson));
 
+        }
         return lessonAttendanceDtoList;
     }
 
@@ -65,21 +62,20 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
         checkLessonAttendanceDto.setLessonId(lessonId);
         checkLessonAttendanceDto.setCourseName(course.getName());
         checkLessonAttendanceDto.setLessonDate(lessonDao.getLessonById(lessonId).getLessonDate());
-        checkLessonAttendanceDto.setCancel(false);
+        checkLessonAttendanceDto.setCancel(lessonDao.getLessonById(lessonId).isCancel());
         checkLessonAttendanceDto.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(course.getId())));
 
-        List<UserAttendanceDto> userAttendanceDtoList = new ArrayList<>();
-        List<User> userList = userDao.getUsersByLesson(lessonId);
-        for (User u : userList) {
-
-            UserAttendanceDto uad = userAttendanceDtoMapper.toUserAttendanceDto(u);
-            uad.setLessonId(lessonId);
-            userAttendanceDtoList.add(uad);
-
-        }
-        checkLessonAttendanceDto.setUserAttendanceDtoList(userAttendanceDtoList);
-
         return checkLessonAttendanceDto;
+    }
+
+    @Override
+    public List<UserAttendanceDto> getUsersByLessonId(int lessonId) {
+        List<User> userList = userDao.getUsersByLesson(lessonId);
+        List<UserAttendanceDto> userAttendanceDtoList = new ArrayList<>();
+        for (User user : userList) {
+            userAttendanceDtoList.add(userAttendanceDtoMapper.toUserAttendanceDto(user));
+        }
+        return userAttendanceDtoList;
     }
 
     @Override
@@ -105,12 +101,8 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     public List<LessonAttendanceDto> getTodayLessonsByTrainerUsername(String username) {
 
         List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
-        for (Lesson l : lessonDao.getTodayLessonsByTrainerUsername(username)) {
-            LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
-            lad.setStartTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getStartTime());
-            lad.setEndTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getEndTime());
-            lad.setCourseName(courseDao.getCourseByLesson(l.getLessonId()).getName());
-            lessonAttendanceDtoList.add(lad);
+        for (Lesson lesson : lessonDao.getTodayLessonsByTrainerUsername(username)) {
+            lessonAttendanceDtoList.add(lessonAttendanceDtoMapper.toLessonAttendanceDto(lesson));
         }
 
         return lessonAttendanceDtoList;

@@ -95,7 +95,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                     lad.setAttStatus(lm.getReason());
                 }
             }
-            if (lad.getAttStatus() == null & lad.getStartDateTime().compareTo(date) < 0 & l.isCancel() != true) {
+            if (lad.getAttStatus() == null & lad.getLessonDate().compareTo(date) < 0 & l.isCancel() != true) {
                 lad.setAttStatus("Present");
             }
             lessonAttendanceDtoList.add(lad);
@@ -113,7 +113,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         for (User u : userList) {
             UserAttendanceDto uad = userAttendanceDtoMapper.toUserAttendanceDto(u);
-            uad.setLessonId(lessonId);
 
             for (LessonMissing lm : lessonMissingList) {
                 if (uad.getId() == lm.getUserId()) {
@@ -149,7 +148,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         for (CourseAttendanceDto cad : listDto) {
             int missingLessonCount = lessonMissingDao.getMissingLessonCountByUserAndCourse(cad.getCourseId(), userId);
-            cad.setPresentLessonCount(cad.getFinishedLessonCount() - missingLessonCount);
+            cad.setPresentLessonCount(lessonDao.getLessonCountInCourseTillToday(cad.getCourseId()) - missingLessonCount);
         }
         return listDto;
 
@@ -237,9 +236,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         for (Course c : courseList) {
             CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
-            cad.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(c.getId())));
-            cad.setTotalLessonCount(lessonDao.getLessonCountInCourse(c.getId()));
-            cad.setFinishedLessonCount(lessonDao.getLessonCountInCourseTillToday(c.getId()));
 
             courseAttendanceDtoList.add(cad);
         }

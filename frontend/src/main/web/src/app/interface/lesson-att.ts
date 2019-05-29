@@ -1,6 +1,6 @@
 export interface LessonAtt {
   lessonId: number,
-  startDateTime: string,
+  lessonDate: string,
   courseName: string,
   cancel: boolean,
   startTime: string,

@@ -3,7 +3,6 @@ import { UserAtt } from "../interface/user-att";
 import { LessonAtt } from "../interface/lesson-att";
 import { CourseAtt } from "../interface/course-att";
 import { HttpClient, HttpRequest, HttpParams } from "@angular/common/http";
-import { TrainerSelector } from "../interface/trainer-selector";
 import { Observable } from "rxjs";
 
 

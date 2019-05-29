@@ -60,4 +60,9 @@ public class LessonDaoImpl implements LessonDao {
         return jdbcTemplate.queryForObject(LessonDaoQueries.getLessonCountInCourse,
                 new Object[]{courseId}, Integer.class);
     }
+
+    @Override
+    public void updateActiveStatus(int lessonId, boolean status) {
+        jdbcTemplate.update(LessonDaoQueries.updateActiveStatus, status, lessonId);
+    }
 }

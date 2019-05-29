@@ -18,7 +18,7 @@ export class LessonAttComponent implements OnInit {
   }
 
   isLess(): boolean {
-    if (this.lesson.startDateTime.toString()+ " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate)+ " " + this.currentTime ) {
+    if (this.lesson.lessonDate.toString()+ " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate)+ " " + this.currentTime ) {
       return true;
     } else {
       return false;
