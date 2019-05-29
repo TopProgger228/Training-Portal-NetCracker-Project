@@ -11,18 +11,13 @@ import {CourseService} from "../../services/course.service";
 })
 export class CoursesListComponent implements OnInit {
 
-  form: any = {};
-
   roles: string[] = [];
-  errorMessage = '';
 
   constructor(private courseService: CourseService,
               private router: Router,
               private tokenStorage: TokenStorageService) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
 
 }

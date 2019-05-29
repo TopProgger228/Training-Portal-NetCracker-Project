@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CourseAtt} from "../../interface/course-att";
-import {LessonAtt} from "../../interface/lesson-att";
-import {UserAtt} from "../../interface/user-att";
 import {AdminAttService} from "../../services/admin-att.service";
 import {ToasterService} from "../../services/toaster.service";
+
 
 @Component({
   selector: 'app-all-courses-admin-att',
@@ -21,6 +20,10 @@ export class AllCoursesAdminAttComponent implements OnInit {
 
   selectedCourseArray: Array<{ id: any, isSelected: any }> = [];
   selectedCoursesForReport: Array<number> = [];
+
+
+
+  folder: string;
 
   constructor(private adminService: AdminAttService,
               private toasterService: ToasterService) { }
@@ -66,15 +69,12 @@ export class AllCoursesAdminAttComponent implements OnInit {
           console.log(data);
 
           if (data.body)
-            this.toasterService.Success("Success", "Report download successfully");
+            this.toasterService.Success("Success", "Added to /Download folder");
         },
         error => {
           console.log(error);
 
           this.toasterService.Error("Error!", "Http failure response");
         });
-  }
-
-
-
+      }
 }

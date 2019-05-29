@@ -71,7 +71,6 @@ public class UsersTokenDaoImpl implements UsersTokenDao {
             usersToken = (UsersToken) jdbcTemplate.queryForObject(SQL, new Object[]{}, new UsersTokenRowMapper());
 
         } catch (Exception e) {
-            e.printStackTrace();
             return -1;
         }
         return usersToken.getId();

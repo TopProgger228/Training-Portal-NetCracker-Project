@@ -3,10 +3,6 @@
        style="padding: 20px; margin: 30px">
     <div class="row ">
       <div class="col-7">
-        <!--<div *ngIf="this.role == 'user'">-->
-        <!--<a [routerLink]="['/student/course-page', course.name]"><h1>{{course.name}}</h1></a>-->
-        <!--</div>-->
-
 
         <div *ngIf="course.isChoosen == 't';
                   then thenBlock else elseBlock">
