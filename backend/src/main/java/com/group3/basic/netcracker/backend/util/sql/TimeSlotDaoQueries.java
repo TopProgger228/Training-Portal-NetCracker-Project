@@ -20,4 +20,7 @@ public interface TimeSlotDaoQueries {
 
     String isTimeSlotWitAllRow = "SELECT COUNT(*) FROM \"TimeSlot\" WHERE (start_time = ? AND end_time = ?\n" +
             "AND week_day = ? AND course_id = ?)";
+
+    String getTimeslotsOfCourse = "SELECT t.id, t.start_time, t.end_time, t.week_day, t.course_id" +
+            " FROM \"TimeSlot\" t JOIN \"Course\" c ON t.course_id = c.id WHERE c.name = ?;";
 }

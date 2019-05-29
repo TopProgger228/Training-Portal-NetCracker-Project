@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   email: string = 'email';
-  ErrorMessage: string = 'Loading...'
+  ErrorMessage: string = 'Loading...';
 
   roles: string[] = [];
 
@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toasterService: ToasterService,
     private route: ActivatedRoute) {
+
     this.passwordFormGroup = this.formBuilder.group({
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required]
@@ -129,24 +130,7 @@ export class RegisterComponent implements OnInit {
         this.toasterService.Error("Error", "Something wrong, try later");
       }
     );
-
-    // if(this.ind) {
-    //     this.authService.uploadPhoto(this.signupInfo.username, this.selectedFile).subscribe(
-    //       data => {
-    //         console.log(data);
-    //         this.router.navigate(['auth/login']);
-    //       },
-    //       error => {
-    //         console.log(error);
-    //         this.router.navigate(['auth/login']);
-    //       }
-    //    );
-    //}
   }
-
-  // onFileChanged(event) {
-  //   this.selectedFile = event.target.files.item(0);
-  // }
 
   reloadPage() {
     window.location.reload();

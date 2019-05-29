@@ -6,6 +6,7 @@ import com.group3.basic.netcracker.backend.util.rowmapper.CourseIdRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithChoosenRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.CourseWithTrainerRowMapper;
+import com.group3.basic.netcracker.backend.util.sql.CourseDaoQueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -25,118 +26,90 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public void createCourse(String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week) {
-        String SQL = "INSERT INTO \"Course\" (name, start_date, end_date, info, skill_level, trainer_id, qty_per_week) VALUES (?,?,?,?,?,?,?)";
-        jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, trainer_id, qty_per_week);
+    public void createCourse(String name, LocalDate start_date, LocalDate end_date,
+                             String info, String skill_level, int trainer_id, int qty_per_week) {
+        jdbcTemplate.update(CourseDaoQueries.createCourseQuery,
+                name, start_date, end_date, info, skill_level, trainer_id, qty_per_week);
     }
 
     @Override
     public Course getCourseById(int id) {
-        String SQL = "SELECT * FROM \"Course\" WHERE id = ?";
-        Course course = (Course) jdbcTemplate.queryForObject(SQL, new Object[]{id}, new CourseRowMapper());
-        return course;
+        return (Course) jdbcTemplate.queryForObject(CourseDaoQueries.getCourseById,
+                new Object[]{id}, new CourseRowMapper());
     }
 
     @Override
     public Integer getIdByCourseName(String name) {
-        String SQL = "SELECT id FROM \"Course\" WHERE name = ?";
-        Course courseId = (Course) jdbcTemplate.queryForObject(SQL, new Object[]{name}, new CourseIdRowMapper());
+        Course courseId = (Course) jdbcTemplate.queryForObject(CourseDaoQueries.getIdByCourseNameQuery,
+                new Object[]{name}, new CourseIdRowMapper());
         return courseId.getId();
     }
 
     @Override
     public Course getCourseByName(String name) {
-        String SQL = "SELECT name, start_date, end_date, info, skill_level, trainer_id, qty_per_week, id FROM \"Course\" WHERE name = '" + name + "'";
-        Course course = (Course) jdbcTemplate.query(SQL, new CourseRowMapper()).get(0);
-
-        return course;
+        return (Course) jdbcTemplate.query(CourseDaoQueries.getCourseByName, new CourseRowMapper(), name).get(0);
     }
 
     @Override
     public List listCourses() {
-        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\"";
-        return jdbcTemplate.query(SQL, new CourseRowMapper());
+        return jdbcTemplate.query(CourseDaoQueries.getCoursesList, new CourseRowMapper());
     }
 
     @Override
     public List listActiveCourses() {
-        String SQL = "SELECT DISTINCT c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week, S.is_choosen\n" +
-                "FROM \"Course\" as c\n" +
-                "join \"TimeSlot\" TS on c.id = TS.course_id\n" +
-                "left join \"Schedule\" S on TS.id = S.time_slot_id\n" +
-                "WHERE start_date > ? and S.is_choosen is null or S.is_choosen = false ORDER BY id DESC;";
-        List courses = jdbcTemplate.query(SQL, new Object[]{new java.sql.Date(System.currentTimeMillis())}, new CourseWithChoosenRowMapper());
-        return courses;
+        return jdbcTemplate.query(CourseDaoQueries.getActiveCoursesList,
+                new Object[]{new java.sql.Date(System.currentTimeMillis())}, new CourseWithChoosenRowMapper());
     }
 
     @Override
     public List listCoursesByUsername(String username) {
-        String SQL = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date, qty_per_week FROM \"Course\" " +
-                "where trainer_id=(select id from \"User\" where username='" + username + "')";
-        List courses = jdbcTemplate.query(SQL, new CourseRowMapper());
-        return courses;
+        return jdbcTemplate.query(CourseDaoQueries.getListCoursesByUsername, new CourseRowMapper(), username);
     }
 
     @Override
     public void removeCourse(int id) {
-        String SQL = "DELETE FROM \"Course\" WHERE id = ?";
-        jdbcTemplate.update(SQL, id);
+        jdbcTemplate.update(CourseDaoQueries.removeCourse, id);
     }
 
     @Override
     public void updateCourse(int id, String name, LocalDate start_date, LocalDate end_date, String info,
                              String skill_level, int trainer_id, int qty_per_week) {
-        String SQL = "UPDATE \"Course\" SET name = ?, start_date = ?, end_date = ?, info = ?, skill_level = ?, trainer_id = ?, qty_per_week = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, name, start_date, end_date, info, skill_level, trainer_id, qty_per_week, id);
+        jdbcTemplate.update(CourseDaoQueries.updateCourse,
+                name, start_date, end_date, info, skill_level, trainer_id, qty_per_week, id);
     }
 
     @Override
     public Course getCourseByLesson(int lessonId) {
-
-        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Lesson\" l on c.id = l.course_id where  l.id = ?";
-
-        return (Course) jdbcTemplate.queryForObject(SQL, new Object[]{lessonId}, new CourseRowMapper());
-
+        return (Course) jdbcTemplate.queryForObject(CourseDaoQueries.getCourseByLessonQuery,
+                new Object[]{lessonId}, new CourseRowMapper());
     }
 
 
     @Override
     public List<Course> getCourseByUserUsername(String username) {
-
-        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id where u.username = ?";
-
-        return jdbcTemplate.query(SQL, new Object[]{username}, new CourseRowMapper());
+        return jdbcTemplate.query(CourseDaoQueries.getCourseByUserUsernameQuery,
+                new Object[]{username}, new CourseRowMapper());
     }
 
     @Override
     public List<Course> getCourseByUserId(int userId) {
-
-        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"Group\" g on c.id = g.course_id join \"User\" u on g.user_id = u.id where u.id = ?";
-
-        return jdbcTemplate.query(SQL, new Object[]{userId}, new CourseRowMapper());
+        return jdbcTemplate.query(CourseDaoQueries.getCourseByUserId, new Object[]{userId}, new CourseRowMapper());
     }
 
     @Override
     public List<Course> getCourseByTrainerUsername(String username) {
-
-        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c join \"User\" t on c.trainer_id = t.id where t.username = ?";
-
-        return jdbcTemplate.query(SQL, new Object[]{username}, new CourseRowMapper());
-
+        return jdbcTemplate.query(CourseDaoQueries.getCourseByTrainerUsername,
+                new Object[]{username}, new CourseRowMapper());
     }
 
     @Override
     public List<Course> getCourseBySkillLevel(String level) {
-
-        String SQL = "select c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, c.end_date, c.qty_per_week from \"Course\" c where c.skill_level = ?";
-
-        return jdbcTemplate.query(SQL, new Object[]{level}, new CourseRowMapper());
+        return jdbcTemplate.query(CourseDaoQueries.getCourseBySkillLevel,
+                new Object[]{level}, new CourseRowMapper());
     }
 
     public List<CourseWithTrainerRowMapper> getCoursesWithTrainerByUsername(String username) {
-
-        String SQL = "select c.name, c.info, c.skill_level, c.start_date, c.end_date, c.qty_per_week, u.username, u.fname, u.lname, u.email from (((\"Course\" c join \"Group\" g on c.id=g.course_id) join \"User\" u on c.trainer_id=u.id) join \"User\" us on g.user_id=us.id) where us.username= ?";
-
-        return jdbcTemplate.query(SQL, new Object[]{username}, new CourseWithTrainerRowMapper());
+        return jdbcTemplate.query(CourseDaoQueries.getCoursesWithTrainerByUsername,
+                new Object[]{username}, new CourseWithTrainerRowMapper());
     }
 }

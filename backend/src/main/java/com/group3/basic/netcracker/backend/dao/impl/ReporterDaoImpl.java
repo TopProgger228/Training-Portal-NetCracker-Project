@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
 import com.group3.basic.netcracker.backend.dao.ReporterDao;
+import com.group3.basic.netcracker.backend.util.sql.ReporterDaoQueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,16 +23,7 @@ public class ReporterDaoImpl implements ReporterDao {
 
     @Override
     public List<Map<String, Object>> queryReportByTrainer(String username) {
-        String sql = "select count(lm.id) as \"MissingQty\", \n" +
-                "       u.username as \"Student\", c.name as \"Course\",\n" +
-                "\t   lm.reason as \"Reason\", t.username as \"Trainer\"\n" +
-                "       from \"LessonMissing\" lm join \"User\" u on lm.user_id = u.id \n" +
-                "       join \"Group\" g on u.id = g.user_id \n" +
-                "       join \"Course\" c on c.id = g.course_id\n" +
-                "       join (select id, username from \"User\") as t on t.id = c.trainer_id\n" +
-                "              where t.username = '" + username + "' \n" +
-                "              group by u.username, lm.reason, c.name, t.username,t.id";
-        List<Map<String, Object>> list = template.queryForList(sql);
+        List<Map<String, Object>> list = template.queryForList(ReporterDaoQueries.queryForReportByTrainer, username);
         list = isResultEmpty(list);
         return list;
     }
@@ -50,24 +42,14 @@ public class ReporterDaoImpl implements ReporterDao {
                 "                group by c.name, c.id, l.id, lm.reason, u.username, u.fname\n" +
                 "\t\t\t\torder by c.name";
         List<Map<String, Object>> list = template.queryForList(sql);
-        System.out.println("------Attendance by courses-------");
+
         list = isResultEmpty(list);
         return list;
     }
 
     @Override
     public List<Map<String, Object>> queryReportByStudent(String username) {
-        String sql = "select count(lm.id) as \"MissingQty\", \n" +
-                "coalesce(u.fname || ' ' || u.lname, '')\n" +
-                "as \"Student\", crs.\"Course\", lm.reason as \"Reason\" \n" +
-                "from \"LessonMissing\" lm \n" +
-                "join \"User\" u on u.id = lm.user_id\n" +
-                "join (select c.id, c.name as \"Course\", g.user_id\n" +
-                "\t from \"Course\" c\n" +
-                "\t join \"Group\" g on g.course_id = c.id) as crs on crs.user_id = u.id \n" +
-                "where u.username like '" + username + "'\n" +
-                "group by u.fname, u.lname, crs.\"Course\", lm.reason\n";
-        List<Map<String, Object>> list = template.queryForList(sql);
+        List<Map<String, Object>> list = template.queryForList(ReporterDaoQueries.queryReportByStudent, username);
 
         list = isResultEmpty(list);
         return list;
@@ -75,18 +57,7 @@ public class ReporterDaoImpl implements ReporterDao {
 
     @Override
     public List<Map<String, Object>> queryReportByLevel(String level) {
-        String sql = "select count(lm.id) as \"MissingQty\", \n" +
-                "coalesce(u.fname || ' ' || u.lname, '')\n" +
-                "as \"Student\", crs.\"Course\", lm.reason as \"Reason\" \n" +
-                "from \"LessonMissing\" lm \n" +
-                "join \"User\" u on u.id = lm.user_id\n" +
-                "join (select c.id, c.name as \"Course\",\n" +
-                "\t g.user_id, c.skill_level\n" +
-                "\t from \"Course\" c\n" +
-                "\t join \"Group\" g on g.course_id = c.id) as crs on crs.user_id = u.id \n" +
-                "where crs.skill_level like '%" + level + "%'\n" +
-                "group by crs.\"Course\", u.fname, u.lname, lm.reason";
-        List<Map<String, Object>> list = template.queryForList(sql);
+        List<Map<String, Object>> list = template.queryForList(ReporterDaoQueries.queryReportByLevel, level);
 
         list = isResultEmpty(list);
         return list;

@@ -33,9 +33,8 @@ public class UsersTokenDaoImpl implements UsersTokenDao {
     public String getEmailByToken(String token) {
         if (isTokenExist(token)) {
             if (isTokenAlive(token)) {
-                String SQL = "SELECT email FROM \"UsersToken\" WHERE token = '" + token + "';";
-                String email = jdbcTemplate.queryForObject(SQL, new Object[]{}, String.class);
-                return email;
+                return jdbcTemplate.queryForObject(TokenDaoQueries.getEmailByTokenQuery,
+                        new Object[]{token}, String.class);
             } else return "Time to live for url out";
         } else return "Current URL does not exist";
     }
@@ -54,8 +53,10 @@ public class UsersTokenDaoImpl implements UsersTokenDao {
     @Override
     public Boolean isTokenAlive(String token) {
         java.util.Date date;
-        String SQL = "SELECT expiry_date FROM \"UsersToken\" WHERE token = '" + token + "';";
-        date = new java.util.Date(jdbcTemplate.queryForObject(SQL, java.sql.Date.class).getTime());
+
+        date = new java.util.Date(jdbcTemplate.queryForObject(TokenDaoQueries.isTokenAliveQuery,
+                new Object[]{token}, java.sql.Date.class).getTime());
+
         if (date.compareTo(new Date(System.currentTimeMillis())) > 0)
             return true;
         return false;
@@ -64,14 +65,13 @@ public class UsersTokenDaoImpl implements UsersTokenDao {
 
     @Override
     public int getIdByEmail(String email) {
-
-        String SQL = "SELECT * FROM \"UsersToken\" WHERE email = '" + email + "';";
         UsersToken usersToken;
+
         try {
-            usersToken = (UsersToken) jdbcTemplate.queryForObject(SQL, new Object[]{}, new UsersTokenRowMapper());
+            usersToken = (UsersToken) jdbcTemplate.queryForObject(TokenDaoQueries.getIdByEmailQuery,
+                    new Object[]{email}, new UsersTokenRowMapper());
 
         } catch (Exception e) {
-            e.printStackTrace();
             return -1;
         }
         return usersToken.getId();

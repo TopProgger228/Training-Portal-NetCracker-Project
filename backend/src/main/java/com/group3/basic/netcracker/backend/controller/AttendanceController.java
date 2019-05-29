@@ -17,14 +17,14 @@ import com.group3.basic.netcracker.backend.service.AttendanceService;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class AttendanceAPI {
+public class AttendanceController {
     private AttendanceService attendanceService;
     private CheckAttendanceService checkAttendanceService;
     private ReporterServiceImpl reporterServiceImpl;
 
     @Autowired
-    public AttendanceAPI(AttendanceService attendanceService, CheckAttendanceService checkAttendanceService,
-                         ReporterServiceImpl reporterServiceImpl) {
+    public AttendanceController(AttendanceService attendanceService, CheckAttendanceService checkAttendanceService,
+                                ReporterServiceImpl reporterServiceImpl) {
         this.attendanceService = attendanceService;
         this.checkAttendanceService = checkAttendanceService;
         this.reporterServiceImpl = reporterServiceImpl;

@@ -11,6 +11,7 @@ public interface UserDao {
     void createUser(String username, String role, String fname, String lname,
                     String email, String pass, LocalDate created_at, String photo);
 
+    User findByUsername(String username);
 
     void resetPassword(String email, String pass);
 

@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/auth")
 @Slf4j
-public class AuthRestAPIs {
+public class AuthRestController {
     private static final String STUDENT_ROLE = "Student";
 
     private final AuthenticationManager authenticationManager;
@@ -43,8 +43,8 @@ public class AuthRestAPIs {
     private UserService userService;
 
     @Autowired
-    public AuthRestAPIs(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
-                        JwtProvider jwtProvider, UserService userService) {
+    public AuthRestController(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
+                              JwtProvider jwtProvider, UserService userService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.encoder = passwordEncoder;
