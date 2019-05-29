@@ -22,4 +22,5 @@ public interface LessonDaoQueries {
 
     String getLessonCountInCourse = "select count(l.id) from \"Lesson\" l join \"Course\" c on l.course_id = c.id where c.id = ?";
 
+    String updateActiveStatus = "update \"Lesson\" set is_cancel=? where id=?";
 }

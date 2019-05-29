@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { COURSES } from '../default-courses';
-import { StockCourses } from "../stock-courses";
 import { CourseService } from '../../../services/course.service';
-import { Course } from '../../../services/course'
-
-import {TokenStorageService} from "../../../auth/token-storage.service";
-import {CourseWithChoosen} from "../../../services/course-with-choosen";
+import { Course } from '../../../interface/course'
 
 
 @Component({
@@ -15,17 +10,13 @@ import {CourseWithChoosen} from "../../../services/course-with-choosen";
 })
 export class CoursesContainerComponent implements OnInit {
 
-  courses: CourseWithChoosen[];
-  coursesC: Array<StockCourses> = COURSES;
+  courses: Course[];
 
-  constructor(private courseService: CourseService,
-              private tokenStorage: TokenStorageService) { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
     this.courseService.getActiveCoursesList().subscribe(data => {
       this.courses = data;
-      console.log(data);
-      console.log(this.tokenStorage);
     })
   }
 

@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
 import {UserService} from "../services/user.service";
-import {UserModel} from "../services/user-model";
+import {UserModel} from "../interface/user-model";
 import {DomSanitizer} from "@angular/platform-browser";
 
 

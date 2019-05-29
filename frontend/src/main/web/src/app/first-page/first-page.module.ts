@@ -13,7 +13,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { TrainersserService } from './trainers-list/trainersser.service';
-import { CoursePageComponent } from './courses-list/course-page/course-page.component';
 
 
 const routes: Routes =[
@@ -28,8 +27,7 @@ const routes: Routes =[
     CoursesContainerComponent,
     FirstSlideComponent,
     TrainersListComponent,
-    FooterComponent,
-    //CoursePageComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,

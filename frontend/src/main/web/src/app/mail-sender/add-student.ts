@@ -14,11 +14,8 @@ export class AddStudentMailSenderComponent implements OnInit {
   form: any = {};
 
   sentMessage: string = null;
-  loggedOut = false;
+  nextPage: string = "Go to laning page -->";
 
-  nextPage: string = "Go to landing page -->";
-  @Input()
-  resetPassword: boolean;
 
   constructor(private mailSenderService: MailSenderService,
     private router: Router,
@@ -36,36 +33,24 @@ export class AddStudentMailSenderComponent implements OnInit {
         return false;
       });
     } else {
-      this.loggedOut = true;
       this.router.navigate(['auth/login']);
     };
 
   }
 
-  logout() {
-    this.loggedOut = true;
-    this.token.signOut();
-    window.location.reload();
-    this.router.navigate(['auth/login']);
-  }
-
   onSubmit() {
-    if (this.resetPassword) {
+    this.mailSenderService.sendSignUpMail(this.form.email).subscribe(
+      data => {
+        console.log(data);
 
-    } else {
-      this.mailSenderService.sendSignUpMail(this.form.email).subscribe(
-        data => {
-          console.log(data);
-
-          if (data.body)
-            this.toasterService.Success("Success", "Mail sent successfully");
-        },
-        error => {
-          console.log(error);
-          this.toasterService.Error("Error!", "Http failure response");
-        }
-      );
-    }
+        if (data.body)
+          this.toasterService.Success("Success", "Mail sent successfully");
+      },
+      error => {
+        console.log(error);
+        this.toasterService.Error("Error!", "Http failure response");
+      }
+    );
   }
 
 }

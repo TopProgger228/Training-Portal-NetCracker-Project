@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
 import { UserService } from '../services/user.service';
-import { UserModel } from '../services/user-model';
+import { UserModel } from '../interface/user-model';
 
 
 @Component({
@@ -17,9 +17,6 @@ export class UsersInfoComponent implements OnInit {
   trainers: UserModel[];
   managers: UserModel[];
   students: UserModel[];
-
-  currentJustify = 'start';
-  loggedOut = false;
 
   constructor(private router: Router, private userService: UserService, private token: TokenStorageService) {
   }
@@ -46,13 +43,11 @@ export class UsersInfoComponent implements OnInit {
         return false;
       });
     } else {
-      this.loggedOut = true;
       this.router.navigate(['auth/login']);
     };
   };
 
   logout() {
-    this.loggedOut = true;
     this.token.signOut();
     window.location.reload();
     this.router.navigate(['auth/login']);

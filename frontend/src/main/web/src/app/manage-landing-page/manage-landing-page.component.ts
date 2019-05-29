@@ -5,8 +5,8 @@ import { TokenStorageService } from '../auth/token-storage.service';
 
 import { NewsService } from '../services/News.service';
 import { ToasterService } from "../services/toaster.service";
-import { News } from '../services/news';
-import { TrainersInfo } from '../services/trainers-info';
+import { News } from '../interface/news';
+import { TrainersInfo } from '../interface/trainers-info';
 import { TrainersserService } from '../first-page/trainers-list/trainersser.service';
 
 @Component({
@@ -21,7 +21,6 @@ export class ManageLandingPageComponent implements OnInit {
 
   trainers: TrainersInfo[];
   updateMessage: string = null;
-  loggedOut = false;
   EditNewsRow: number = -1;
   EditTrainerRow: number = -1;
   addNewNews: boolean = false;
@@ -41,22 +40,18 @@ export class ManageLandingPageComponent implements OnInit {
             data => {
               this.news = data;
               console.log(this.news);
-            }
-          )
-
+            })
           this.trainerService.getInfo().subscribe(
             data => {
               this.trainers = data;
               console.log(this.trainers);
-            }
-          )
+            })
         } else {
           this.router.navigate(['firstPage']);
         }
         return false;
       });
     } else {
-      this.loggedOut = true;
       this.router.navigate(['auth/login']);
     };
   }
@@ -74,14 +69,12 @@ export class ManageLandingPageComponent implements OnInit {
     this.currentNews = news;
     this.newsService.updateNews(this.currentNews.id.toString(), this.currentNews.title, this.currentNews.createDate, this.currentNews.context, this.currentNews.isActive.toString()).subscribe(
       data => {
-
         if (data.body)
           this.toasterService.Success("Success", "Updated successfully");
       },
       error => {
         this.toasterService.Error("Error!", "Try later");
-      }
-    );
+      });
     this.EditNewsRow = -1;
   }
 
@@ -120,16 +113,8 @@ export class ManageLandingPageComponent implements OnInit {
   }
   setNewNews() {
     this.addNewNews = true;
-
-    console.log(this.addNewNews);
   }
 
-  logout() {
-    this.loggedOut = true;
-    this.token.signOut();
-    window.location.reload();
-    this.router.navigate(['auth/login']);
-  }
 
 
 }

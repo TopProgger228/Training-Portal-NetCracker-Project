@@ -66,6 +66,13 @@ public class AttendanceController {
         return ResponseEntity.ok().body(checkLessonAttendanceDto);
     }
 
+    @GetMapping("/getStudentsByLesson/{id}")
+    public ResponseEntity<?> getStudentsByLesson(@PathVariable int id) {
+        List<UserAttendanceDto> userAttendanceDtoList = checkAttendanceService.getUsersByLessonId(id);
+
+        return ResponseEntity.ok().body(userAttendanceDtoList);
+    }
+
     @GetMapping("/trainerLesson/{id}")
     public ResponseEntity<?> getTrainerTodayLessons(@PathVariable int id) {
         List<LessonAttendanceDto> lessonAttendanceDtoList = checkAttendanceService.getTodayLessonsByTrainer(id);

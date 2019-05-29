@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from "../services/course";
+import { Course } from "../interface/course";
 import { Router } from "@angular/router";
 import { CourseService } from "../services/course.service";
 import { TokenStorageService } from "../auth/token-storage.service";
 import { StudentService } from "../services/student.service";
-import { Student } from "../services/student";
+import { Student } from "../interface/student";
 
 @Component({
   selector: 'app-students-info',

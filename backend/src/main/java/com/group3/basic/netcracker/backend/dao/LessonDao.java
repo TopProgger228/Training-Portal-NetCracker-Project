@@ -20,4 +20,6 @@ public interface LessonDao {
 
     int getLessonCountInCourse(int courseId);
 
+    void updateActiveStatus(int lessonId, boolean status);
+
 }

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TrainerService } from "../services/trainer.service";
 import { TokenStorageService } from "../auth/token-storage.service";
-import { Course } from "../services/course";
+import { Course } from "../interface/course";
 import { AddCourseService } from "../services/add-course.service";
-import { Trainer } from "../services/trainer";
+import { Trainer } from "../interface/trainer";
 
 @Component({
   selector: 'app-add-new-course',

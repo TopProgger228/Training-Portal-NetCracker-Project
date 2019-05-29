@@ -3,7 +3,7 @@ import {HttpClient, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Class} from "../interface/class";
 import {LessonAtt} from "../interface/lesson-att";
-import {Course} from "./course";
+import {UserAtt} from "../interface/user-att";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class TrainerAttService {
 
   private all_lessons_url_by_username = "http://localhost:8080/api/getTrainerLesson/";
   private lesson_url: string = "http://localhost:8080/api/fullAttCheck/";
+  private get_students_by_lesson = "http://localhost:8080/api/getStudentsByLesson/";
   private check_student_url: string = "http://localhost:8080/api/lessonAtt";
 
   constructor( private http: HttpClient) { }
@@ -23,6 +24,10 @@ export class TrainerAttService {
 
   getOneLesson(id: number) {
     return this.http.get<Class>(this.lesson_url + id);
+  }
+
+  getStudentsByLesson(id: number) {
+    return this.http.get<UserAtt[]>(this.get_students_by_lesson + id);
   }
 
   putAttendanceStatus(userId: string, lessonId: string, status: string): Observable<any> {

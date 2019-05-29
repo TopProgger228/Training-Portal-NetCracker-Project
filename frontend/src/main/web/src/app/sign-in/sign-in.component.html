@@ -23,13 +23,14 @@
                 #password="ngModel" required minlength="6" />
               <div *ngIf="f.submitted && password.invalid">
                 <div *ngIf="password.errors.required" style="font-size: 15pt">Password is required</div>
-                <div *ngIf="password.errors.minlength" style="font-size: 15pt">Password must be at least 6 characters</div>
+                <div *ngIf="password.errors.minlength" style="font-size: 15pt">Password must be at least 6 characters
+                </div>
               </div>
             </div>
             <button class="btn btn-outline-secondary ">Login</button>
             <div class="text-right"><a href="auth/reset-password"><kbd>Forgot password?</kbd></a></div>
           </form>
-          
+
         </div>
       </div>
     </div>

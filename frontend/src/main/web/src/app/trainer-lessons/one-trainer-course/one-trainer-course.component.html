@@ -14,7 +14,7 @@
           <div class="col-1">#</div>
           <div class="col-5">Time</div>
           <div class="col-3">Date</div>
-          <div class="col-3 text-center">Status</div>
+          <div class="col-3 text-center">Cancel</div>
         </div>
         <div *ngIf="isReadyToShowLesson && lessonList.length !== 0">
           <app-one-trainer-lesson *ngFor="let lesson of lessonList; index as i" [lesson]="lesson" [index]="i"></app-one-trainer-lesson>

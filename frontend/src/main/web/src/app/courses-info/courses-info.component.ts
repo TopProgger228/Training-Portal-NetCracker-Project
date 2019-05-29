@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 
-import { Course } from "../services/course";
+import { Course } from "../interface/course";
 import { CourseService } from "../services/course.service";
 
 

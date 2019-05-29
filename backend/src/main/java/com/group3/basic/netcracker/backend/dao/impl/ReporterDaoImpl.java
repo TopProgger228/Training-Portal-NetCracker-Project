@@ -17,7 +17,7 @@ public class ReporterDaoImpl implements ReporterDao {
     private final JdbcTemplate template;
 
     @Autowired
-    public ReporterDaoImpl(JdbcTemplate template){
+    public ReporterDaoImpl(JdbcTemplate template) {
         this.template = template;
     }
 
@@ -38,7 +38,13 @@ public class ReporterDaoImpl implements ReporterDao {
                 "                left join \"Lesson\" l on l.course_id = c.id\n" +
                 "                left join \"LessonMissing\" lm on l.id = lm.lesson_id\n" +
                 "                left join \"User\" u on u.id = lm.user_id\n" +
-                "                where c.id in (select id from \"Course\")\n" +
+                "                where c.id in (select id from \"Course\" where id in (";
+        sql += courses[0];
+        if(courses.length > 1)
+        for (int i  = 1; i < courses.length - 1; i++) {
+            sql += ", " + courses[i];
+        }
+        sql += "))\n" +
                 "                group by c.name, c.id, l.id, lm.reason, u.username, u.fname\n" +
                 "\t\t\t\torder by c.name";
         List<Map<String, Object>> list = template.queryForList(sql);

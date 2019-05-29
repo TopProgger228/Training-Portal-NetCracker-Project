@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from "../services/student";
+import { Student } from "../interface/student";
 import { Router } from "@angular/router";
 import { StudentService } from "../services/student.service";
 import { TokenStorageService } from "../auth/token-storage.service";
-import { Manager } from "../services/manager";
+import { Manager } from "../interface/manager";
 import { ManagerService } from "../services/manager.service";
 
 @Component({

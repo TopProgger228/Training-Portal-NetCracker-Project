@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -40,7 +42,7 @@ public class ReporterServiceImpl implements ReporterService {
         generateReport(reporterDao.queryReportByLevel(level));
     }
 
-    private void generateReport(List<Map<String, Object>> data) {
+    private String generateReport(List<Map<String, Object>> data) {
         //Blank workbook
         XSSFWorkbook workbook = new XSSFWorkbook();
         //Create a blank sheet
@@ -72,16 +74,20 @@ public class ReporterServiceImpl implements ReporterService {
         }
 
         String userDirectoryString = System.getProperty("user.home");
-
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
+        Date date = new Date(System.currentTimeMillis());
+        File file = new File(userDirectoryString + "/Downloads/" + dateFormat.format(date) + "_report.xlsx");
         try {
             //Write the workbook in file system
-            FileOutputStream out = new FileOutputStream(new File(userDirectoryString + "\\report.xlsx"));
+            FileOutputStream out = new FileOutputStream(file);
             workbook.write(out);
             out.close();
             System.out.println("Report written successfully.");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return file.getPath();
     }
 
 

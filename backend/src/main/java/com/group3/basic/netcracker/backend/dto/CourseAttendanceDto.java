@@ -10,27 +10,17 @@ public class CourseAttendanceDto {
     private TrainerAttendanceDto trainer;
     private int totalLessonCount;
     private int presentLessonCount;
-    private int finishedLessonCount;
 
     public CourseAttendanceDto() {
     }
 
-    public CourseAttendanceDto(int courseId, String name, String skillLevel, TrainerAttendanceDto trainer, int totalLessonCount, int presentLessonCount, int finishedLessonCount) {
+    public CourseAttendanceDto(int courseId, String name, String skillLevel, TrainerAttendanceDto trainer, int totalLessonCount, int presentLessonCount) {
         this.courseId = courseId;
         this.name = name;
         this.skillLevel = skillLevel;
         this.trainer = trainer;
         this.totalLessonCount = totalLessonCount;
         this.presentLessonCount = presentLessonCount;
-        this.finishedLessonCount = finishedLessonCount;
-    }
-
-    public int getFinishedLessonCount() {
-        return finishedLessonCount;
-    }
-
-    public void setFinishedLessonCount(int finishedLessonCount) {
-        this.finishedLessonCount = finishedLessonCount;
     }
 
     public int getTotalLessonCount() {

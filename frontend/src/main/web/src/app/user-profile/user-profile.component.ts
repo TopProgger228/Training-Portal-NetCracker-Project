@@ -5,7 +5,7 @@ import {ɵBROWSER_SANITIZATION_PROVIDERS, DomSanitizer} from '@angular/platform-
 import { TokenStorageService } from '../auth/token-storage.service';
 
 import {UserService} from "../services/user.service";
-import {UserModel} from "../services/user-model";
+import {UserModel} from "../interface/user-model";
 
 @Component({
   selector: 'app-user-profile',
