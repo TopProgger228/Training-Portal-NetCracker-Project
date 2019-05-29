@@ -10,18 +10,16 @@ public class CheckLessonAttendanceDto {
     private Date lessonDate;
     private boolean isCancel;
     private TrainerAttendanceDto trainer;
-    private List<UserAttendanceDto> userAttendanceDtoList;
 
     public CheckLessonAttendanceDto() {
     }
 
-    public CheckLessonAttendanceDto(int lessonId, String courseName, Date lessonDate, boolean isCancel, TrainerAttendanceDto trainer, List<UserAttendanceDto> userAttendanceDtoList) {
+    public CheckLessonAttendanceDto(int lessonId, String courseName, Date lessonDate, boolean isCancel, TrainerAttendanceDto trainer) {
         this.lessonId = lessonId;
         this.courseName = courseName;
         this.lessonDate = lessonDate;
         this.isCancel = isCancel;
         this.trainer = trainer;
-        this.userAttendanceDtoList = userAttendanceDtoList;
     }
 
     public int getLessonId() {
@@ -63,14 +61,5 @@ public class CheckLessonAttendanceDto {
     public void setTrainer(TrainerAttendanceDto trainer) {
         this.trainer = trainer;
     }
-
-    public List<UserAttendanceDto> getUserAttendanceDtoList() {
-        return userAttendanceDtoList;
-    }
-
-    public void setUserAttendanceDtoList(List<UserAttendanceDto> userAttendanceDtoList) {
-        this.userAttendanceDtoList = userAttendanceDtoList;
-    }
-
 
 }

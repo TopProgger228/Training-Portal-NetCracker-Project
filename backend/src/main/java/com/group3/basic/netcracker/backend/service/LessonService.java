@@ -9,6 +9,8 @@ public interface LessonService {
 
     List<LessonDto> getLessonsByCourseId (int courseId);
 
+    void updateActiveStatus(int lessonId, boolean status);
+
 }
 
 

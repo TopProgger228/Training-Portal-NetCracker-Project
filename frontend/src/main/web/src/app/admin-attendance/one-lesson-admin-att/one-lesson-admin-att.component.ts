@@ -27,7 +27,6 @@ export class OneLessonAdminAttComponent implements OnInit {
   setChosenLesson(id: number) {
     if (this.chosenOneLesson === id) {
       this.chosenOneLesson = -1;
-      // this.isUserLoading = false;
     } else {
       this.isUserLoading = true;
       this.chosenOneLesson = id;
@@ -42,7 +41,7 @@ export class OneLessonAdminAttComponent implements OnInit {
     }
 
   isLess(): boolean {
-    if (this.lesson.startDateTime.toString()+ " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate)+ " " + this.currentTime ) {
+    if (this.lesson.lessonDate.toString()+ " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate)+ " " + this.currentTime ) {
       return true;
     } else {
       return false;

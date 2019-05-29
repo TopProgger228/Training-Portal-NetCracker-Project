@@ -15,8 +15,8 @@
           <div *ngIf="course.courseId === chosenOneCourse">
               <div class="row" style="font-weight: bold" *ngIf="lessonList.length !== 0">
                 <div class="col-1">#</div>
-                <div class="col-5">Time</div>
                 <div class="col-3">Date</div>
+                <div class="col-5">Time</div>
                 <div class="col-3 text-center">Status</div>
               </div>
                 <app-one-lesson-admin-att *ngFor="let lesson of lessonList; index as i" [lesson]="lesson" [index]="i"></app-one-lesson-admin-att>

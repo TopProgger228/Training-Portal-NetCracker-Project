@@ -35,4 +35,9 @@ public class LessonServiceImpl implements LessonService {
 
         return lessonDtoList;
     }
+
+    @Override
+    public void updateActiveStatus(int lessonId, boolean status) {
+        lessonDao.updateActiveStatus(lessonId, status);
+    }
 }
