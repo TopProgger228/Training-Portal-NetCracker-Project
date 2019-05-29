@@ -11,7 +11,7 @@
       <br>
       <form #userForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="first_name">First name</label>
+          <label for="first_name">First name <span style="color:red">*</span></label>
           <input #fname="ngModel" [(ngModel)]="userModel.fname" class="form-control" id="first_name" name="fname"
             required type="text">
 
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-          <label for="last_name">Last name</label>
+          <label for="last_name">Last name <span style="color:red">*</span></label>
           <input #lname="ngModel" [(ngModel)]="userModel.lname" class="form-control" id="last_name" name="lname"
             required type="text">
 
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group" *ngIf="userModel.role === 'Trainer'">
-          <label for="trainers_info">Information about trainer</label>
+          <label for="trainers_info">Information about trainer <span style="color:red">*</span></label>
           <input #info="ngModel" [(ngModel)]="userModel.info" class="form-control" id="trainers_info"
                  name="trainersInfo"
                  required type="text">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">Username <span style="color:red">*</span></label>
           <input #username="ngModel" [(ngModel)]="userModel.username" class="form-control" id="username" name="username"
             required type="text">
 
@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group">
-          <label for="email">User e-mail</label>
+          <label for="email">User e-mail <span style="color:red">*</span></label>
           <input #email="ngModel" [(ngModel)]="userModel.email" class="form-control" id="email" name="email" required
             type="email">
 
@@ -69,7 +69,7 @@
         </div>
 
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Password <span style="color:red">*</span></label>
           <input #password="ngModel" [(ngModel)]="userModel.password" class="form-control" id="password" name="password"
             required minlength="6" type="password">
 

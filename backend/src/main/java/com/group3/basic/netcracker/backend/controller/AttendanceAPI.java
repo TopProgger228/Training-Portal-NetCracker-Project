@@ -6,6 +6,7 @@ import com.group3.basic.netcracker.backend.dto.*;
 import com.group3.basic.netcracker.backend.service.impl.ReporterServiceImpl;
 import com.group3.basic.netcracker.backend.service.CheckAttendanceService;
 import com.group3.basic.netcracker.backend.util.authorization.message.response.ResponseMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import com.group3.basic.netcracker.backend.service.AttendanceService;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class AttendanceAPI {
     private AttendanceService attendanceService;
     private CheckAttendanceService checkAttendanceService;
@@ -32,6 +34,8 @@ public class AttendanceAPI {
     public ResponseEntity<?> getAllCourseAttendance() {
         List<CourseAttendanceDto> list = attendanceService.getAllCourseAttendance();
 
+        log.debug("Got all courses attendance");
+
         return ResponseEntity.ok().body(list);
 
     }
@@ -40,6 +44,8 @@ public class AttendanceAPI {
     public ResponseEntity<?> getLessonsByCourse(@PathVariable int id) {
         List<LessonAttendanceDto> list = attendanceService.getLessonsOfCourseAttendance(id);
 
+        log.debug("Got lessons of course with id - {}", id);
+
         return ResponseEntity.ok().body(list);
     }
 
@@ -47,6 +53,8 @@ public class AttendanceAPI {
     @GetMapping("/attUser/{id}")
     public ResponseEntity<?> getUsersByLesson(@PathVariable int id) {
         List<UserAttendanceDto> list = attendanceService.getUsersOfCourseAttendance(id);
+
+        log.debug("Got users of lesson");
 
         return ResponseEntity.ok().body(list);
     }
