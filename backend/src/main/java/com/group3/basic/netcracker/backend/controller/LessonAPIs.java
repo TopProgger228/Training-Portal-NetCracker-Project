@@ -34,4 +34,13 @@ public class LessonAPIs {
         return ResponseEntity.ok().body(lessonDtoList);
 
     }
+
+    @PostMapping("lessonActiveStatus")
+    public ResponseEntity<?> updateActiveStatus(@RequestParam("lessonId") String lessonId,
+                                                @RequestParam("status") String status) {
+        lessonService.updateActiveStatus(Integer.parseInt(lessonId), Boolean.parseBoolean(status));
+
+        return new ResponseEntity<>(new ResponseMessage("Report on selected level saved"), HttpStatus.OK);
+
+    }
 }
