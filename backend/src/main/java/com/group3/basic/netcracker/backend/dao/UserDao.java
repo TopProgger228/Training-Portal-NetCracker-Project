@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserDao {
 
     void createUser(String username, String role, String fname, String lname,
-                    String email, String pass, LocalDate created_at, String photo);
+                    String email, String pass, LocalDate created_at, String photo, int managerId);
 
     User findByUsername(String username);
 
@@ -76,4 +76,6 @@ public interface UserDao {
     int updatePhoto(String username, String filepath);
 
     String getPhotoByUsername(String username);
+
+    int getFreeManager();
 }

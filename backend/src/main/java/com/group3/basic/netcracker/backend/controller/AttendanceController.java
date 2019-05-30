@@ -88,7 +88,7 @@ public class AttendanceController {
     }
 
     @PostMapping("/lessonAtt")
-    public ResponseEntity<?> changeAttendance(@RequestParam("userId") String userId,
+    public ResponseEntity<?> changeAttendance(@RequestParam(value = "userId") String userId,
                                               @RequestParam("lessonId") String lessonId,
                                               @RequestParam("status") String status) {
 

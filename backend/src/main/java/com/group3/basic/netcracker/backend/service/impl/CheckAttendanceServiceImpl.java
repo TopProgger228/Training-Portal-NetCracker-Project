@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CheckAttendanceServiceImpl implements CheckAttendanceService {
@@ -55,15 +56,16 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
 
     @Override
     public CheckLessonAttendanceDto getFullCheckAttendance(int lessonId) {
-
-        Course course = courseDao.getCourseByLesson(lessonId);
-
+//        TODO: create lesson mapper (lesson)
+        final Course course = courseDao.getCourseByLesson(lessonId);
+        final Lesson lesson = lessonDao.getLessonById(lessonId);
+        final User trainer = userDao.getTrainerByCourse(course.getId());
         CheckLessonAttendanceDto checkLessonAttendanceDto = new CheckLessonAttendanceDto();
         checkLessonAttendanceDto.setLessonId(lessonId);
         checkLessonAttendanceDto.setCourseName(course.getName());
-        checkLessonAttendanceDto.setLessonDate(lessonDao.getLessonById(lessonId).getLessonDate());
-        checkLessonAttendanceDto.setCancel(lessonDao.getLessonById(lessonId).isCancel());
-        checkLessonAttendanceDto.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(userDao.getTrainerByCourse(course.getId())));
+        checkLessonAttendanceDto.setLessonDate(lesson.getLessonDate());
+        checkLessonAttendanceDto.setCancel(lesson.isCancel());
+        checkLessonAttendanceDto.setTrainer(trainerAttendanceDtoMapper.toTrainerAttendanceDto(trainer));
 
         return checkLessonAttendanceDto;
     }
@@ -81,14 +83,13 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     @Override
     public void changeLessonMissing(int userId, int lessonId, String reason) {
 
+        Optional<LessonMissing> lessonMissing = Optional.ofNullable(lessonMissingDao.getLessonMissingByLessonIdAndUserId(lessonId, userId));
         if (reason.equals("Present")) {
-            for (LessonMissing lm : lessonMissingDao.getLessonMissingByLesson(lessonId)) {
-                if (userId == lm.getUserId()) {
-                    lessonMissingDao.delete(userId, lessonId);
-                }
+            if(lessonMissing.isPresent()){
+                lessonMissingDao.delete(userId, lessonId);
             }
         } else {
-            if (isExist(userId, lessonId)) {
+            if (lessonMissing.isPresent()) {
                 lessonMissingDao.updateReason(userId, lessonId, reason);
             } else {
                 lessonMissingDao.add(userId, lessonId, reason);
@@ -107,17 +108,5 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
 
         return lessonAttendanceDtoList;
     }
-
-
-    private boolean isExist(int userId, int lessonId) {
-
-        for (LessonMissing lm : lessonMissingDao.getLessonMissingByLesson(lessonId)) {
-            if (lm.getUserId() == userId) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 
 }

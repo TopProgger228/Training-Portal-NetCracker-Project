@@ -51,7 +51,7 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public List listCourses() {
+    public List<Course> listCourses() {
         return jdbcTemplate.query(CourseDaoQueries.getCoursesList, new CourseRowMapper());
     }
 

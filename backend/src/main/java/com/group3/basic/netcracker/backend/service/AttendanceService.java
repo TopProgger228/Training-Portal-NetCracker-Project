@@ -21,8 +21,6 @@ public interface AttendanceService {
 
     List<CourseAttendanceDto> getCourseAttendanceByUserId(int userId);
 
-    List<TrainerSelectorDto> getTrainerForSelector();
-
     List<CourseAttendanceDto> getCourseAttendanceByTrainerUsername(String username);
 
     List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level);

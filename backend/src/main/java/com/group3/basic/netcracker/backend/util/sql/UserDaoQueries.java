@@ -4,8 +4,8 @@ public interface UserDaoQueries {
     String addMemberQuery = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at) VALUES" +
             "(?, ?, ?, ?, ?, ?, ?)";
 
-    String createUserQuery = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo) " +
-            "VALUES (?,?,?,?,?,?,?,?)";
+    String createUserQuery = "INSERT INTO \"User\" (username, role, fname, lname, email, pass, created_at, photo, manager_id) " +
+            "VALUES (?,?,?,?,?,?,?,?,?)";
 
     String resetPasswordQuery = "UPDATE \"User\" SET  pass = ? WHERE email = ?";
 
@@ -96,4 +96,11 @@ public interface UserDaoQueries {
 
     String getStudentsByCourseName = "select fname, lname from \"User\" u join \"Group\" g\n" +
             "on u.id = g.user_id join \"Course\" c on g.course_id = c.id where c.name = ?";
+
+    String getFreeManager = "select mng.id from \"User\" mng " +
+            "left join \"User\" usr on mng.id = usr.manager_id " +
+            "where mng.role = 'Manager' " +
+            "group by mng.id " +
+            "order by count(usr.id) " +
+            "limit 1;";
 }

@@ -15,7 +15,7 @@ public interface CourseDao {
 
     Integer getIdByCourseName(String name);
 
-    List listCourses();
+    List<Course> listCourses();
 
     List listActiveCourses();
 

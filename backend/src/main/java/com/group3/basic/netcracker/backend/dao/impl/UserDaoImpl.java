@@ -106,10 +106,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void createUser(String username, String role, String fname, String lname, String email, String pass,
-                           LocalDate created_at, String photo) {
+                           LocalDate created_at, String photo, int managerId) {
 
         jdbcTemplate.update(UserDaoQueries.createUserQuery, username, role, fname, lname,
-                email, pass, created_at, photo);
+                email, pass, created_at, photo, managerId);
     }
 
     @Override
@@ -125,6 +125,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String getPhotoByUsername(String username) {
         return jdbcTemplate.queryForObject(UserDaoQueries.getPhotoByUsername, String.class, username);
+    }
+
+    @Override
+    public int getFreeManager() {
+
+        return jdbcTemplate.queryForObject(UserDaoQueries.getFreeManager, Integer.class);
     }
 
     @Override

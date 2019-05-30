@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(String username, String role, String fname, String lname,
                            String email, String pass, LocalDate created_at, String photo) {
-        userDao.createUser(username, role, fname, lname, email, pass, created_at, photo);
+        userDao.createUser(username, role, fname, lname, email, pass, created_at, photo, userDao.getFreeManager());
     }
 
     @Override

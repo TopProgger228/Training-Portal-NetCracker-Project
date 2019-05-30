@@ -22,4 +22,6 @@ public interface LessonMissingDao {
     void updateReason(int userId, int lessonId, String reason);
 
     int getMissingLessonCountByUserAndCourse(int courseId, int userId);
+
+    LessonMissing getLessonMissingByLessonIdAndUserId(int lessonId, int userId);
 }

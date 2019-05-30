@@ -1,6 +1,8 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import com.group3.basic.netcracker.backend.dao.*;
 import com.group3.basic.netcracker.backend.dto.*;
@@ -18,12 +20,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final LessonDao lessonDao;
     private final UserDao userDao;
     private final LessonMissingDao lessonMissingDao;
-    private final TimeSlotDao timeSlotDao;
     private final CourseAttendanceDtoMapper courseAttendanceDtoMapper;
     private final LessonAttendanceDtoMapper lessonAttendanceDtoMapper;
     private final UserAttendanceDtoMapper userAttendanceDtoMapper;
-    private final TrainerAttendanceDtoMapper trainerAttendanceDtoMapper;
-    private final TrainerSelectorDtoMapper trainerSelectorDtoMapper;
     private final StudentAttendanceForManagerDtoMapper studentAttendanceForManagerDtoMapper;
 
     @Autowired
@@ -33,12 +32,9 @@ public class AttendanceServiceImpl implements AttendanceService {
         this.lessonDao = lessonDao;
         this.userDao = userDao;
         this.lessonMissingDao = lessonMissingDao;
-        this.timeSlotDao = timeSlotDao;
         this.courseAttendanceDtoMapper = courseAttendanceDtoMapper;
         this.lessonAttendanceDtoMapper = lessonAttendanceDtoMapper;
         this.userAttendanceDtoMapper = userAttendanceDtoMapper;
-        this.trainerAttendanceDtoMapper = trainerAttendanceDtoMapper;
-        this.trainerSelectorDtoMapper = trainerSelectorDtoMapper;
         this.studentAttendanceForManagerDtoMapper = studentAttendanceForManagerDtoMapper;
     }
 
@@ -51,7 +47,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public List<CourseAttendanceDto> getAllCourseAttendance() {
-
         List<Course> courseList = courseDao.listCourses();
 
         return getCourseAttendanceDtoList(courseList);
@@ -60,25 +55,13 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public List<LessonAttendanceDto> getLessonsOfCourseAttendance(int courseId) {
-
-        List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
         List<Lesson> lessonsList = lessonDao.getLessonByCourse(courseId);
 
-        for (Lesson l : lessonsList) {
-            LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
-            lad.setStartTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getStartTime());
-            lad.setEndTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getEndTime());
-            lessonAttendanceDtoList.add(lad);
-
-        }
-
-        return lessonAttendanceDtoList;
-
+        return lessonsList.stream().map(lessonAttendanceDtoMapper::toLessonAttendanceDto).collect(Collectors.toList());
     }
 
     @Override
     public List<LessonAttendanceDto> getLessonsOfCourseAttendanceByUser(int courseId, int userId) {
-
         List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
         List<Lesson> lessonsList = lessonDao.getLessonByCourse(courseId);
         Date date = new Date();
@@ -86,9 +69,6 @@ public class AttendanceServiceImpl implements AttendanceService {
         for (Lesson l : lessonsList) {
             List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByLesson(l.getLessonId());
             LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
-            lad.setStartTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getStartTime());
-            lad.setEndTime(timeSlotDao.getTimeSlotByLessonId(l.getLessonId()).getEndTime());
-
 
             for (LessonMissing lm : lessonMissingList) {
                 if (userId == lm.getUserId()) {
@@ -132,12 +112,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 
     @Override
-    public List<CourseAttendanceDto> getCourseAttendanceByUser(String username) {
-
+    public List<CourseAttendanceDto> getCourseAttendanceByUser(final String username) {
         List<Course> courseList = courseDao.getCourseByUserUsername(username);
 
         return getCourseAttendanceDtoList(courseList);
-
     }
 
     @Override
@@ -155,22 +133,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public List<TrainerSelectorDto> getTrainerForSelector() {
-
-        List<TrainerSelectorDto> trainerSelectorDtoList = new ArrayList<>();
-        List<Trainer> trainerList = userDao.getTrainers();
-        for (Trainer t : trainerList) {
-
-            trainerSelectorDtoList.add(trainerSelectorDtoMapper.toTrainerSelectorDto(t));
-
-        }
-
-        return trainerSelectorDtoList;
-    }
-
-    @Override
     public List<CourseAttendanceDto> getCourseAttendanceByTrainerUsername(String username) {
-
         List<Course> courseList = courseDao.getCourseByTrainerUsername(username);
 
         return getCourseAttendanceDtoList(courseList);
@@ -179,7 +142,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public List<CourseAttendanceDto> getCourseAttendanceBySkillLevel(String level) {
-
         List<Course> courseList = courseDao.getCourseBySkillLevel(level);
 
         return getCourseAttendanceDtoList(courseList);
@@ -192,14 +154,17 @@ public class AttendanceServiceImpl implements AttendanceService {
         List<StudentAttendanceForManagerDto> dtoList = new ArrayList<>();
         List<User> userList = userDao.getStudentsOfManager(userName);
         String[] reasonList = {
-                "Absent due to business trip",
-                "Absent without reason",
-                "Absent due to sick leave",
-                "Absent due to project activities"};
+                AttendanceStatus.ABSENT_DUE_TO_BUSINESS_TRIP.toString(),
+                AttendanceStatus.ABSENT_WITHOUT_REASON.toString(),
+                AttendanceStatus.ABSENT_DUE_TO_SICK_LEAVE.toString(),
+                AttendanceStatus.ABSENT_DUE_TO_PROJECT_ACTIVITIES.toString()};
 
         for (User u : userList) {
             StudentAttendanceForManagerDto tmp = studentAttendanceForManagerDtoMapper.toStudentAttendanceForManagerDto(u);
             tmp.setTotalLessonCount(lessonDao.getLessonCountTillTodayByStudent(u.getId()));
+//            AtomicInteger for lamda
+//            AtomicInteger integer = new AtomicInteger();
+//            integer.incrementAndGet();
 
             Map<String, Integer> map = new HashMap<>();
             int presentLessonCount = tmp.getTotalLessonCount();
@@ -231,18 +196,6 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     private List<CourseAttendanceDto> getCourseAttendanceDtoList(List<Course> courseList) {
-
-        List<CourseAttendanceDto> courseAttendanceDtoList = new ArrayList<>();
-
-        for (Course c : courseList) {
-            CourseAttendanceDto cad = courseAttendanceDtoMapper.toCourseAttendanceDto(c);
-
-            courseAttendanceDtoList.add(cad);
-        }
-
-        return courseAttendanceDtoList;
-
+        return courseList.stream().map(courseAttendanceDtoMapper::toCourseAttendanceDto).collect(Collectors.toList());
     }
-
-
 }
