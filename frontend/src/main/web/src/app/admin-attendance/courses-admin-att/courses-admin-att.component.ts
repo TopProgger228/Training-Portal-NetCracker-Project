@@ -23,6 +23,7 @@ export class CoursesAdminAttComponent implements OnInit {
 
   chosenOneCourse: number = -1;
   isLessonLoading: boolean = false;
+  noData: boolean = false;
 
   constructor(private adminService: AdminAttService) {
   }
@@ -56,6 +57,7 @@ export class CoursesAdminAttComponent implements OnInit {
       .subscribe(data => {
         this.lessonList = data;
         this.isLessonLoading = false;
+        this.lessonList.length === 0 ? this.noData = true : this.noData = false
       });
   }
 

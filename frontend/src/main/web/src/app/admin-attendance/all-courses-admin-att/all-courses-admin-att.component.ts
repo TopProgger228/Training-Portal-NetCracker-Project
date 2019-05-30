@@ -14,6 +14,7 @@ export class AllCoursesAdminAttComponent implements OnInit {
   public courseList: CourseAtt[];
   public isReset: boolean;
   isLoading: boolean = true;
+  noData: boolean = false;
 
   isChooseCoursesSelected: boolean;
   isSelectAllSelected: boolean;
@@ -22,16 +23,18 @@ export class AllCoursesAdminAttComponent implements OnInit {
   selectedCoursesForReport: Array<number> = [];
 
 
-
-  folder: string;
-
   constructor(private adminService: AdminAttService,
-              private toasterService: ToasterService) { }
+              private toasterService: ToasterService) {
+  }
 
   ngOnInit() {
 
     this.adminService.getCourses()
-      .subscribe(data => { this.courseList = data; this.isLoading = false });
+      .subscribe(data => {
+        this.courseList = data;
+        this.isLoading = false
+        this.courseList.length === 0 ? this.noData = true : this.noData = false
+      });
     this.isChooseCoursesSelected = false;
     this.isSelectAllSelected = true;
   }
@@ -39,7 +42,7 @@ export class AllCoursesAdminAttComponent implements OnInit {
   setSelectedCoursesArray() {
     this.selectedCourseArray = [];
     this.courseList.forEach(course => {
-      this.selectedCourseArray.push({ id: course.courseId, isSelected: true });
+      this.selectedCourseArray.push({id: course.courseId, isSelected: true});
     });
   }
 
@@ -76,5 +79,5 @@ export class AllCoursesAdminAttComponent implements OnInit {
 
           this.toasterService.Error("Error!", "Http failure response");
         });
-      }
+  }
 }

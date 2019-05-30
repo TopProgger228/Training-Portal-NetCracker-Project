@@ -17,4 +17,4 @@
     <app-courses-admin-att (childEvent)="selectedCourseArray=$event" [courseList]="courseList" [isReset]="isReset" [isChooseCoursesSelected]="isChooseCoursesSelected"
                            [isSelectAllSelected]="isSelectAllSelected" [selectedCourseArray]="selectedCourseArray"></app-courses-admin-att>
     <app-spinner *ngIf="isLoading"></app-spinner>
-
+    <app-no-data *ngIf="noData"></app-no-data>

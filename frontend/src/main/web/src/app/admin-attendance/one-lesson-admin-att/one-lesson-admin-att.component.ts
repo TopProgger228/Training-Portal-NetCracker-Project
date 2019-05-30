@@ -14,13 +14,16 @@ export class OneLessonAdminAttComponent implements OnInit {
   @Input('index') public index: number;
   userList: UserAtt[];
   isUserLoading: boolean = false;
+  noData: boolean = false;
 
   chosenOneLesson: number = -1;
 
-  constructor(private adminService: AdminAttService) { }
+  constructor(private adminService: AdminAttService) {
+  }
 
   currentDate: Date = new Date();
-  currentTime: string = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds();
+  currentTime: string = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
+
   ngOnInit() {
   }
 
@@ -35,13 +38,17 @@ export class OneLessonAdminAttComponent implements OnInit {
   }
 
   getUsers(id: number) {
-      this.userList = [];
-      this.adminService.getStudents(id)
-        .subscribe(data => {this.userList = data; this.isUserLoading = false;});
-    }
+    this.userList = [];
+    this.adminService.getStudents(id)
+      .subscribe(data => {
+        this.userList = data;
+        this.isUserLoading = false;
+        this.userList.length === 0 ? this.noData = true : this.noData = false
+      });
+  }
 
   isLess(): boolean {
-    if (this.lesson.lessonDate.toString()+ " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate)+ " " + this.currentTime ) {
+    if (this.lesson.lessonDate.toString() + " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate) + " " + this.currentTime) {
       return true;
     } else {
       return false;

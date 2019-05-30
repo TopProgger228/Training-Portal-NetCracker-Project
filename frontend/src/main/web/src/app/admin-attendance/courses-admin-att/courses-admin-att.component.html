@@ -22,6 +22,7 @@
                 <app-one-lesson-admin-att *ngFor="let lesson of lessonList; index as i" [lesson]="lesson" [index]="i"></app-one-lesson-admin-att>
             </div>
             <app-spinner *ngIf="isLessonLoading"></app-spinner>
+            <app-no-data *ngIf="noData"></app-no-data>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

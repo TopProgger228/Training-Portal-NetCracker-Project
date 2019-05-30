@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Class} from "../interface/class";
 import {TrainerAttService} from "../services/trainer-att.service";
 import {ActivatedRoute} from "@angular/router";
@@ -15,21 +15,29 @@ export class TrainerLessonAttendanceComponent implements OnInit {
   class: Class;
   isLoading: boolean = true;
   studentList: UserAtt[];
+  noData: boolean = false;
 
 
   constructor(private trainerService: TrainerAttService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(param => {
-    this.id = param['id']});
+      this.id = param['id']
+    });
   }
 
   ngOnInit() {
 
     console.log(this.id);
     this.trainerService.getOneLesson(this.id)
-      .subscribe(data => {this.class = data});
+      .subscribe(data => {
+        this.class = data
+      });
 
     this.trainerService.getStudentsByLesson(this.id)
-      .subscribe(data => {this.studentList = data; this.isLoading = false;});
+      .subscribe(data => {
+        this.studentList = data;
+        this.isLoading = false;
+        this.studentList.length == 0 ? this.noData = true : this.noData = false
+      });
 
   }
 

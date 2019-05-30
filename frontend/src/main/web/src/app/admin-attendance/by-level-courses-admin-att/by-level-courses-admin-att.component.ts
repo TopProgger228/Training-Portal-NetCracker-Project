@@ -15,9 +15,10 @@ export class ByLevelCoursesAdminAttComponent implements OnInit {
   levelSelector: string[];
   isReset: boolean = false;
   isLoading: boolean = false;
+  noData: boolean = false;
 
-
-  constructor(private adminService: AdminAttService, private toasterService: ToasterService) { }
+  constructor(private adminService: AdminAttService, private toasterService: ToasterService) {
+  }
 
   ngOnInit() {
     this.levelSelector = [
@@ -46,9 +47,15 @@ export class ByLevelCoursesAdminAttComponent implements OnInit {
     this.isReset = true;
     this.filterBySkillLevel(val);
   }
+
   filterBySkillLevel(level: string) {
     this.adminService.filterBySkillLevel(level)
-      .subscribe(data => { this.courseList = data; this.isLoading = false; this.isReset = false });
+      .subscribe(data => {
+        this.courseList = data;
+        this.isLoading = false;
+        this.isReset = false;
+        this.courseList.length === 0 ? this.noData = true : this.noData = false
+      });
   }
 
 }

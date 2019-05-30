@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CourseAtt} from "../../interface/course-att";
 import {AdminAttService} from "../../services/admin-att.service";
 import {ToasterService} from "../../services/toaster.service";
@@ -14,9 +14,10 @@ export class ByStudentCoursesAdminAttComponent implements OnInit {
   isReset: boolean = false;
   userValue: string;
   isLoading: boolean = false;
+  noData: boolean = false;
 
-
-  constructor(private adminService: AdminAttService, private toasterService: ToasterService) { }
+  constructor(private adminService: AdminAttService, private toasterService: ToasterService) {
+  }
 
   ngOnInit() {
   }
@@ -26,7 +27,12 @@ export class ByStudentCoursesAdminAttComponent implements OnInit {
     this.isReset = true;
     console.log(username);
     this.adminService.filterByUser(username)
-      .subscribe(data => { this.courseList = data; this.isLoading = false; this.isReset = false });
+      .subscribe(data => {
+        this.courseList = data;
+        this.isLoading = false;
+        this.isReset = false;
+        this.courseList.length === 0 ? this.noData = true : this.noData = false
+      });
   }
 
   createReportByStudent() {

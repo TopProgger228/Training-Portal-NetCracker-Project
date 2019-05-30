@@ -17,4 +17,5 @@
   <div *ngFor="let user of studentList; index as i">
     <app-one-check-att-item [lessonId]="class.lessonId" [userAtt]="user" [index]="i"></app-one-check-att-item>
   </div>
+  <app-no-data *ngIf="noData"></app-no-data>
 </div>
