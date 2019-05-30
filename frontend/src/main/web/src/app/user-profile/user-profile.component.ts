@@ -25,7 +25,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     if (this.token.getToken()) {
-      // this.token.getAuthorities().every(role => {
       this.userService.getUserProfile(this.token.getUsername())
         .subscribe(data => {
           this.user = data;
@@ -34,17 +33,14 @@ export class UserProfileComponent implements OnInit {
             this.hasPhoto=true;
           }
         })
-      // }
-      // );
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);
-    };
+    }
   }
 
   updateUser(user: UserModel) {
     console.log(user);
-    //this.EditProfile=true;
     this.userService.updateUser(user.id, user.username, user.fname, user.lname, user.email).subscribe(
       data => {
         console.log(data);

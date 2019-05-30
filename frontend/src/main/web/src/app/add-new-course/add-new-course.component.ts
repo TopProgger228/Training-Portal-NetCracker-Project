@@ -8,6 +8,8 @@ import { Trainer } from "../interface/trainer";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DateComparerValidation} from "../validators/date-compare-validation";
 import {InvalidQuantityValidation} from "../validators/invalid-quantity-validation";
+import {AddMemberService} from "../services/add-member.service";
+import {AddNewManagerTrainerToasterService} from "../services/add-new-manager-trainer-toaster.service";
 
 @Component({
   selector: 'app-add-new-course',
@@ -25,7 +27,7 @@ export class AddNewCourseComponent implements OnInit {
 
 
   constructor(private router: Router, private trainerService: TrainerService, private token: TokenStorageService,
-              private httpService: AddCourseService, private formBuilder: FormBuilder) {
+              private httpService: AddCourseService, private formBuilder: FormBuilder, private toaster : AddNewManagerTrainerToasterService) {
     this.courseFormGroup = this.formBuilder.group({
       name: ['', Validators.required],
       info: ['', Validators.required],
@@ -35,8 +37,7 @@ export class AddNewCourseComponent implements OnInit {
       start_date: ['', Validators.required],
       end_date: ['', Validators.required]
     }, {
-      validator: DateComparerValidation.validate.bind(this),
-      validators: InvalidQuantityValidation.validate.bind(this)
+      validators: [DateComparerValidation.validate.bind(this), InvalidQuantityValidation.validate.bind(this)]
     });
   }
 
@@ -82,10 +83,21 @@ export class AddNewCourseComponent implements OnInit {
       },
       () => {
         console.log('POST course - now completed.');
+        this.success();
+        this.router.navigate(['firstPage']);
       });
   }
 
   compareFn(f1:any, f2:any):boolean{
     return f1.value == f2.value && f1.viewValue == f2.viewValue;
+  }
+
+  success(){
+    this.toaster.UserCreated("Success!",
+      "Course '" + this.course.name + "' created!");
+  }
+
+  error(){
+    this.toaster.Error("Error!", "Database error!")
   }
 }

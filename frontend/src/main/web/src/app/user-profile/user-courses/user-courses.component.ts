@@ -24,22 +24,22 @@ export class UserCoursesComponent implements OnInit {
   ngOnInit() {
     if (this.token.getToken()) {
       this.token.getAuthorities().every(role => {
-        if (role === 'Student') {
-          this.courseService.getStudentCoursesByUsername(this.token.getUsername())
-            .subscribe(data => {
-              console.log(data.body);
-              this.courses = data.body;
-            })
+        if ('Student' === role) {
+      this.courseService.getStudentCoursesByUsername(this.token.getUsername())
+      .subscribe(data => {
+      console.log(data.body);
+      this.courses = data.body;
+    })
 
-        } else {
+} else {
 
-        }
+}
         return true;
       });
     } else {
       this.loggedOut = true;
       this.router.navigate(['auth/login']);
-    };
+    }
   };
 
   logout() {

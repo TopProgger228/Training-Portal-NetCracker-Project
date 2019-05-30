@@ -287,3 +287,254 @@ org.postgresql.util.PSQLException: ERROR: insert or update on table "Course" vio
 2019-05-30 13:17:46.788 ERROR 10756 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : null
 2019-05-30 13:17:46.789 ERROR 10756 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : null
 2019-05-30 13:17:49.032 DEBUG 10756 --- [http-nio-8080-exec-6] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 13:38:03.191  INFO 13996 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-QHGNH54 with PID 13996 (C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by shest in C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-30 13:38:03.194 DEBUG 13996 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 13:38:03.195  INFO 13996 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 13:38:04.764  INFO 13996 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 13:38:04.765  INFO 13996 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 13:38:04.860  INFO 13996 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 13:38:05.055 DEBUG 13996 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 13:38:05.999  INFO 13996 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 3.165 seconds (JVM running for 4.232)
+2019-05-30 13:38:06.006  INFO 13996 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 13:42:39.181  INFO 13996 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 13:42:39.261 ERROR 13996 --- [http-nio-8080-exec-4] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 13:42:39.262 ERROR 13996 --- [http-nio-8080-exec-2] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 13:42:39.262 ERROR 13996 --- [http-nio-8080-exec-7] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 13:42:48.536  INFO 13956 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-QHGNH54 with PID 13956 (C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by shest in C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-30 13:42:48.539 DEBUG 13956 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 13:42:48.540  INFO 13956 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 13:42:50.981  INFO 13956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 13:42:50.982  INFO 13956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 13:42:51.099  INFO 13956 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 13:42:51.306 DEBUG 13956 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 13:42:52.381  INFO 13956 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 4.338 seconds (JVM running for 5.461)
+2019-05-30 13:42:52.390  INFO 13956 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 13:42:53.149  INFO 13956 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 13:42:53.230 ERROR 13956 --- [http-nio-8080-exec-1] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 13:42:53.231 ERROR 13956 --- [http-nio-8080-exec-2] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 13:42:53.230 ERROR 13956 --- [http-nio-8080-exec-3] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 13:43:10.529  INFO 13956 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-30 13:43:11.802  INFO 13956 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-30 13:43:12.118  INFO 13956 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.AuthRestController  : User authenticated!
+2019-05-30 13:43:12.683 DEBUG 13956 --- [http-nio-8080-exec-9] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-30 13:43:12.739  WARN 13956 --- [http-nio-8080-exec-10] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 13:43:12.740  WARN 13956 --- [http-nio-8080-exec-10] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 13:43:12.740  WARN 13956 --- [http-nio-8080-exec-10] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 13:43:12.865 DEBUG 13956 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-30 13:43:13.812 DEBUG 13956 --- [http-nio-8080-exec-10] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 13:43:25.182 DEBUG 13956 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 13:43:25.249  WARN 13956 --- [http-nio-8080-exec-1] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 13:43:31.041 DEBUG 13956 --- [http-nio-8080-exec-4] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-30 13:43:31.046 DEBUG 13956 --- [http-nio-8080-exec-6] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-30 13:43:31.098  WARN 13956 --- [http-nio-8080-exec-5] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 13:43:31.098  WARN 13956 --- [http-nio-8080-exec-5] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 13:43:31.099  WARN 13956 --- [http-nio-8080-exec-5] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 13:43:33.504 DEBUG 13956 --- [http-nio-8080-exec-5] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 13:43:38.119 DEBUG 13956 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 13:47:04.848 DEBUG 13956 --- [http-nio-8080-exec-2] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 13:48:00.250 DEBUG 13956 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 13:48:23.137 DEBUG 13956 --- [http-nio-8080-exec-4] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 15:03:40.724  WARN 13956 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h15m28s817ms462µs846ns).
+2019-05-30 15:15:10.904  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4887fee0 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.169  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@62142f17 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.369  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@73baf158 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.487  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@43d6131 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.593  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@15c2da0d (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.695  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@56ed3335 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.785  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@72f92881 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.883  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1d22eb06 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:11.986  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1eb3481d (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:12.085  WARN 13956 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2178b465 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:15:12.325 DEBUG 13956 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 15:17:43.981 DEBUG 13956 --- [http-nio-8080-exec-9] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 15:21:48.421 DEBUG 13956 --- [http-nio-8080-exec-10] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 15:22:18.242 DEBUG 13956 --- [http-nio-8080-exec-2] c.g.b.n.b.controller.UserController      : Got list of trainers!
+2019-05-30 15:23:36.203  WARN 13956 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@560c4de4 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:23:41.220  WARN 13956 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@384898b0 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:23:46.239  WARN 13956 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@38dfec11 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:23:51.250  WARN 13956 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1c1c0716 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:23:56.266  WARN 13956 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@10bfee3a (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:24:01.285  WARN 13956 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6073e2bc (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 15:24:01.312 ERROR 13956 --- [http-nio-8080-exec-6] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Can NOT set user authentication -> Message: {}
+
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30088ms.
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:305) ~[spring-jdbc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:378) ~[spring-tx-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:474) ~[spring-tx-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:289) ~[spring-tx-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at com.group3.basic.netcracker.backend.util.authorization.security.services.UserDetailsServiceImpl$$EnhancerBySpringCGLIB$$97f1230e.loadUserByUsername(<generated>) ~[classes/:na]
+	at com.group3.basic.netcracker.backend.util.authorization.security.jwt.JwtAuthTokenFilter.doFilterInternal(JwtAuthTokenFilter.java:42) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) [spring-security-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_181]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_181]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_181]
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30088ms.
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:676) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:190) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:155) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128) ~[HikariCP-3.2.0.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:262) ~[spring-jdbc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	... 61 common frames omitted
+Caused by: org.postgresql.util.PSQLException: Соединение уже было закрыто
+	at org.postgresql.jdbc.PgConnection.checkClosed(PgConnection.java:783) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgConnection.setNetworkTimeout(PgConnection.java:1556) ~[postgresql-42.2.5.jar:42.2.5]
+	at com.zaxxer.hikari.pool.PoolBase.setNetworkTimeout(PoolBase.java:550) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:165) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179) ~[HikariCP-3.2.0.jar:na]
+	... 64 common frames omitted
+
+2019-05-30 15:24:01.319 ERROR 13956 --- [http-nio-8080-exec-6] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 15:24:17.212  INFO 13956 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.CreateController    : New course created with name - course651
+2019-05-30 15:24:18.060 DEBUG 13956 --- [http-nio-8080-exec-10] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-30 15:24:18.273 DEBUG 13956 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-30 15:24:18.413  WARN 13956 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 15:24:18.413  WARN 13956 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 15:24:18.414  WARN 13956 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 15:24:20.371 DEBUG 13956 --- [http-nio-8080-exec-2] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 16:02:00.833  WARN 13956 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m50s15ms698µs494ns).
+2019-05-30 18:21:43.788  INFO 9756 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-QHGNH54 with PID 9756 (C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by shest in C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-30 18:21:43.792 DEBUG 9756 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 18:21:43.793  INFO 9756 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 18:21:47.045  INFO 9756 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 18:21:47.047  INFO 9756 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 18:21:47.266  INFO 9756 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 18:21:47.851 DEBUG 9756 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 18:21:49.556  INFO 9756 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 6.381 seconds (JVM running for 8.228)
+2019-05-30 18:21:49.568  INFO 9756 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 18:21:49.643  INFO 9756 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 18:21:50.155  INFO 9756 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-30 18:21:54.119  INFO 9756 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-30 18:21:54.568 DEBUG 9756 --- [http-nio-8080-exec-4] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-30 18:21:55.115 DEBUG 9756 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-30 18:21:56.107  WARN 9756 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:21:56.109  WARN 9756 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:21:56.112  WARN 9756 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:21:58.418 DEBUG 9756 --- [http-nio-8080-exec-6] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 18:22:26.679 DEBUG 9756 --- [http-nio-8080-exec-9] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:22:26.745  WARN 9756 --- [http-nio-8080-exec-9] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:35:21.133  INFO 14860 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-QHGNH54 with PID 14860 (C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by shest in C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-30 18:35:21.138 DEBUG 14860 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 18:35:21.139  INFO 14860 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 18:35:24.560  INFO 14860 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 18:35:24.562  INFO 14860 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 18:35:24.862  INFO 14860 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 18:35:25.466 DEBUG 14860 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 18:35:27.289  INFO 14860 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 6.726 seconds (JVM running for 8.886)
+2019-05-30 18:35:27.306  INFO 14860 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 18:35:53.648  INFO 14860 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 18:35:54.321  INFO 14860 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-30 18:35:55.332  INFO 14860 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-30 18:35:55.838 DEBUG 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:35:56.220  WARN 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:36:22.043 DEBUG 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:36:22.111  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:38:15.608 DEBUG 14860 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:38:15.682  WARN 14860 --- [http-nio-8080-exec-5] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:38:43.267 DEBUG 14860 --- [http-nio-8080-exec-6] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:38:43.359  WARN 14860 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:39:45.994 DEBUG 14860 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:39:46.311  WARN 14860 --- [http-nio-8080-exec-8] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:40:21.829 DEBUG 14860 --- [http-nio-8080-exec-9] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:40:22.272  WARN 14860 --- [http-nio-8080-exec-9] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:43:37.851 DEBUG 14860 --- [http-nio-8080-exec-2] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:43:37.913  WARN 14860 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:45:05.466 DEBUG 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:45:07.375  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 18:45:53.223 DEBUG 14860 --- [http-nio-8080-exec-4] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 18:45:53.274  WARN 14860 --- [http-nio-8080-exec-4] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:32:45.185 DEBUG 14860 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:32:45.231  WARN 14860 --- [http-nio-8080-exec-7] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:33:37.909 DEBUG 14860 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:33:37.971  WARN 14860 --- [http-nio-8080-exec-8] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:33:55.692 DEBUG 14860 --- [http-nio-8080-exec-9] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:33:55.762  WARN 14860 --- [http-nio-8080-exec-9] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:34:56.404 DEBUG 14860 --- [http-nio-8080-exec-2] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:34:56.479  WARN 14860 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:35:49.265 DEBUG 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:35:49.315  WARN 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:38:20.410 DEBUG 14860 --- [http-nio-8080-exec-4] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:38:20.455  WARN 14860 --- [http-nio-8080-exec-4] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:38:43.445 DEBUG 14860 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:38:43.493  WARN 14860 --- [http-nio-8080-exec-5] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:41:15.287 DEBUG 14860 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:41:15.330  WARN 14860 --- [http-nio-8080-exec-7] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:41:37.527 DEBUG 14860 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:41:37.576  WARN 14860 --- [http-nio-8080-exec-8] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:41:57.062 DEBUG 14860 --- [http-nio-8080-exec-9] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:41:57.122  WARN 14860 --- [http-nio-8080-exec-9] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:42:39.304 DEBUG 14860 --- [http-nio-8080-exec-10] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:42:39.351  WARN 14860 --- [http-nio-8080-exec-10] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:43:02.224 DEBUG 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:43:02.295  WARN 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:43:11.939 DEBUG 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:43:12.024  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:46:16.888 DEBUG 14860 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:46:16.943  WARN 14860 --- [http-nio-8080-exec-5] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:47:02.167 DEBUG 14860 --- [http-nio-8080-exec-6] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:47:02.208  WARN 14860 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:48:01.786 DEBUG 14860 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.UserController      : Got user with username - admin
+2019-05-30 19:48:01.835  WARN 14860 --- [http-nio-8080-exec-7] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:48:09.346 DEBUG 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-30 19:48:09.346 DEBUG 14860 --- [http-nio-8080-exec-2] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-30 19:48:09.798  WARN 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:48:09.798  WARN 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:48:09.799  WARN 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 19:48:10.544 DEBUG 14860 --- [http-nio-8080-exec-1] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 20:08:48.228 DEBUG 14860 --- [http-nio-8080-exec-10] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-30 20:08:48.619 DEBUG 14860 --- [http-nio-8080-exec-2] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-30 20:08:48.660  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 20:08:48.660  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 20:08:48.661  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 20:08:49.096 DEBUG 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
