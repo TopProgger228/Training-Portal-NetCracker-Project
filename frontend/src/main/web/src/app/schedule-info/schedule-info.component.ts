@@ -87,11 +87,11 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
         //this.reloadPage();
         setTimeout(() => {
             this.router.navigate(['admin/all-attendance']);
-          }
-          ,7000);
+          },6000);
       });
-
   }
+
+
 /*
   OnSubmitLesson(id: number){
     this.scheduleService.createLesson(id).subscribe(data => {
