@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<div class="container mx-auto mt-5" style="font-size: 20px">
+<div class="container mx-auto mt-5" style="font-size: 20px; min-height: 100vh">
   <h2 class="text-center">
     <div class="row">
       <div class="col-4">Course: {{class?.courseName}}</div>
@@ -19,3 +19,4 @@
   </div>
   <app-no-data *ngIf="noData"></app-no-data>
 </div>
+<app-footer></app-footer>

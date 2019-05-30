@@ -9,7 +9,7 @@
 
 <div *ngIf="lesson.lessonId === chosenOneLesson">
 
-    <app-one-student-admin-att *ngIf="userList.length !== 0" [userList]="userList"></app-one-student-admin-att>
+    <app-one-student-admin-att *ngIf="userList.length !== 0" [userList]="userList" [lesson]="lesson"></app-one-student-admin-att>
 
     <app-no-data *ngIf="noData"></app-no-data>
   <app-spinner *ngIf="isUserLoading"></app-spinner>

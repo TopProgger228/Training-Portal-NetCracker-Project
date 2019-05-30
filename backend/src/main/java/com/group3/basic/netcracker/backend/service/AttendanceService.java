@@ -7,8 +7,6 @@ import com.group3.basic.netcracker.backend.entity.Attendance;
 
 public interface AttendanceService {
 
-    List<Attendance> listAttendance();
-
     List<CourseAttendanceDto> getAllCourseAttendance();
 
     List<LessonAttendanceDto> getLessonsOfCourseAttendance(int courseId);

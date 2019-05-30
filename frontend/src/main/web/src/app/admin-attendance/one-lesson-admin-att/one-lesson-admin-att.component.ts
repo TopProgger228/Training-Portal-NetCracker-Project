@@ -22,7 +22,7 @@ export class OneLessonAdminAttComponent implements OnInit {
   }
 
   currentDate: Date = new Date();
-  currentTime: string = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
+  currentTime: string = ("0" + new Date().getHours()).slice(-2) + ':' + ("0" + new Date().getMinutes()).slice(-2) + ':'+ ("0" + new Date().getSeconds()).slice(-2);
 
   ngOnInit() {
   }
@@ -48,11 +48,7 @@ export class OneLessonAdminAttComponent implements OnInit {
   }
 
   isLess(): boolean {
-    if (this.lesson.lessonDate.toString() + " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate) + " " + this.currentTime) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.lesson.lessonDate.toString() + " " + this.lesson.endTime < this.dateAsYYYYMMDD(this.currentDate) + " " + this.currentTime;
   }
 
   dateAsYYYYMMDD(date): string {

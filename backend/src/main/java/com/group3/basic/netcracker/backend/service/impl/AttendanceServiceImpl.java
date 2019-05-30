@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
-    private final AttendanceDao attendanceDao;
     private final CourseDao courseDao;
     private final LessonDao lessonDao;
     private final UserDao userDao;
@@ -26,8 +25,11 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final StudentAttendanceForManagerDtoMapper studentAttendanceForManagerDtoMapper;
 
     @Autowired
-    public AttendanceServiceImpl(AttendanceDao attendanceDao, CourseDao courseDao, LessonDao lessonDao, UserDao userDao, LessonMissingDao lessonMissingDao, TimeSlotDao timeSlotDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper, LessonAttendanceDtoMapper lessonAttendanceDtoMapper, UserAttendanceDtoMapper userAttendanceDtoMapper, TrainerAttendanceDtoMapper trainerAttendanceDtoMapper, TrainerSelectorDtoMapper trainerSelectorDtoMapper, StudentAttendanceForManagerDtoMapper studentAttendanceForManagerDtoMapper) {
-        this.attendanceDao = attendanceDao;
+    public AttendanceServiceImpl(CourseDao courseDao, LessonDao lessonDao, UserDao userDao,
+                                 LessonMissingDao lessonMissingDao, CourseAttendanceDtoMapper courseAttendanceDtoMapper,
+                                 LessonAttendanceDtoMapper lessonAttendanceDtoMapper,
+                                 UserAttendanceDtoMapper userAttendanceDtoMapper,
+                                 StudentAttendanceForManagerDtoMapper studentAttendanceForManagerDtoMapper) {
         this.courseDao = courseDao;
         this.lessonDao = lessonDao;
         this.userDao = userDao;
@@ -36,12 +38,6 @@ public class AttendanceServiceImpl implements AttendanceService {
         this.lessonAttendanceDtoMapper = lessonAttendanceDtoMapper;
         this.userAttendanceDtoMapper = userAttendanceDtoMapper;
         this.studentAttendanceForManagerDtoMapper = studentAttendanceForManagerDtoMapper;
-    }
-
-
-    @Override
-    public List<Attendance> listAttendance() {
-        return attendanceDao.listAttendance();
     }
 
 
@@ -82,7 +78,6 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
         return lessonAttendanceDtoList;
     }
-
 
 
     public List<UserAttendanceDto> getUsersOfCourseAttendance(int lessonId) {

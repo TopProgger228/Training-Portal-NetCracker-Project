@@ -13,7 +13,8 @@
       <td scope="row">{{i + 1}}</td>
       <td>{{user.userFirstName}}</td>
       <td>{{user.userLastName}}</td>
-      <td>{{user.attendanceStatus}}</td>
+      <td *ngIf="isLess()">{{user.attendanceStatus}}</td>
+      <td *ngIf="!isLess()"></td>
     </tr>
     </tbody>
   </table>
