@@ -44,7 +44,7 @@ public interface ReporterDaoQueries {
     //Выводим fname и lname в одну колонку, через coalesce указываем пустой символ если не нашли lname
             "            coalesce(u.fname || ' ' || u.lname, '')\n"+
             "            as \"Student\",\n"+
-    //Добавляем в вывод курс, который достаем из подзапроса и причину пропуска из LessonMissing
+    //Добавляем в вывод курс и причину пропуска из LessonMissing
             "            c.name as \"Coruse\", lm.reason as \"Reason\"\n"+
             "            from \"LessonMissing\" lm \n"+
     //Соединяем с User по пропущенному уроку, с группой по юзеру
