@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class CourseAPIs {
+public class CourseController {
 
     private final CourseService courseService;
     private final TimeSlotService timeSlotService;
     private final UserService userService;
 
     @Autowired
-    public CourseAPIs(CourseService courseService, TimeSlotService timeSlotService,
-                      UserService userService){
+    public CourseController(CourseService courseService, TimeSlotService timeSlotService,
+                            UserService userService){
         this.courseService = courseService;
         this.timeSlotService = timeSlotService;
         this.userService = userService;
@@ -62,7 +62,8 @@ public class CourseAPIs {
 
     @GetMapping("getCoursesByTrainer/{username}")
     public ResponseEntity<?> getCoursesForTrainerByTrainerUsername(@PathVariable String username) {
-        List<CourseForTrainerDto> courseForTrainerDtoList = courseService.getCoursesForTrainerByTrainerUsername(username);
+        List<CourseForTrainerDto> courseForTrainerDtoList = courseService
+                .getCoursesForTrainerByTrainerUsername(username);
 
         return ResponseEntity.ok().body(courseForTrainerDtoList);
 

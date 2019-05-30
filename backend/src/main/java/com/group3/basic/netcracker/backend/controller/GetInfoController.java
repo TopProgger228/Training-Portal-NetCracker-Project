@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class GetInfoAPIs {
+public class GetInfoController {
     private static final String TRAINER_ROLE = "Trainer";
     private static final String MANAGER_ROLE = "Manager";
     private static final String STUDENT_ROLE = "Student";
@@ -25,8 +25,8 @@ public class GetInfoAPIs {
     private final ScheduleService scheduleService;
 
     @Autowired
-    public GetInfoAPIs(UserService userService, CourseService courseService,
-                       ScheduleService scheduleService) {
+    public GetInfoController(UserService userService, CourseService courseService,
+                             ScheduleService scheduleService) {
         this.userService = userService;
         this.courseService = courseService;
         this.scheduleService = scheduleService;

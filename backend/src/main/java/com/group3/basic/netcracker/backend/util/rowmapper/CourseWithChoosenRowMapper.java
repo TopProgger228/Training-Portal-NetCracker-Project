@@ -18,7 +18,7 @@ public class CourseWithChoosenRowMapper implements RowMapper {
         courseWithChoosen.setSkill_level(row.getString("skill_level"));
         courseWithChoosen.setTrainer_id(row.getInt("trainer_id"));
         courseWithChoosen.setQty_per_week(row.getInt("qty_per_week"));
-        courseWithChoosen.setChoosen(row.getString("choosen"));
+        courseWithChoosen.setChoosen(row.getInt("choosen"));
         return courseWithChoosen;
     }
 }

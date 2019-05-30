@@ -1,6 +1,5 @@
 package com.group3.basic.netcracker.backend.dao.impl;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -24,14 +23,15 @@ public class TimeSlotDaoImpl implements TimeSlotDao {
     }
 
     @Override
+    public int getCourseIdById(int timeSlotId) {
+        return jdbcTemplate.queryForObject(TimeSlotDaoQueries.getCourseIdById,
+                Integer.class, timeSlotId);
+    }
+
+    @Override
     public TimeSlot getTimeSlotById(int id) {
         return (TimeSlot) jdbcTemplate.queryForObject(TimeSlotDaoQueries.getTimeSlotByIdQuery,
                 new Object[]{id}, new TimeSlotRowMapper());
-    }
-
-    public TimeSlot findByStartTime(Time startTime) {
-        return (TimeSlot) jdbcTemplate.queryForObject(TimeSlotDaoQueries.findByStartTimeQuery,
-                new Object[]{startTime}, new TimeSlotRowMapper());
     }
 
     @Override
@@ -57,9 +57,7 @@ public class TimeSlotDaoImpl implements TimeSlotDao {
 
     @Override
     public List getTimeslotsOfCourse(String name) {
-        String SQL = "SELECT t.id, t.start_time, t.end_time, t.week_day, t.course_id FROM \"TimeSlot\" t " +
-                "JOIN \"Course\" c ON t.course_id = c.id WHERE c.name LIKE '" + name + "';";
-        return jdbcTemplate.query(SQL, new TimeSlotRowMapper());
+        return jdbcTemplate.query(TimeSlotDaoQueries.getTimeslotsOfCourse, new TimeSlotRowMapper(), name);
     }
 
     @Override

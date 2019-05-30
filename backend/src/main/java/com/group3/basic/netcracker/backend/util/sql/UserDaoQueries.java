@@ -62,4 +62,38 @@ public interface UserDaoQueries {
 
     String isUserWithEmailExistsQuery = "SELECT COUNT(*) FROM \"User\" WHERE email = ?";
 
+    String getUserByUsernameQuery = "SELECT fname, lname, username, email, id , photo FROM \"User\" WHERE username = ?";
+
+    String getUsersListForDisplay = "SELECT fname, lname, username, email, id FROM \"User\" WHERE role = ?;";
+
+    String getStudentsOfManagerQuery = "SELECT u.*, man.\"Manager\" \n" +
+            "FROM \"User\" u\n" +
+            "JOIN (SELECT id AS m_id, username AS \"Manager\" \n" +
+            "\t\t   FROM \"User\") AS man ON man.m_id = u.manager_id\n" +
+            "\t\t WHERE man.\"Manager\" = ?;";
+
+    String getManagerOfStudent = "SELECT m.* FROM \"User\" AS m\n" +
+            "WHERE m.id IN (\n" +
+            "SELECT w.manager_id FROM\n" +
+            "(SELECT u.manager_id AS manager_id, t.trainer AS \"Trainer\" FROM \"User\" u \n" +
+            "                JOIN \"Group\" g ON g.user_id = u.id JOIN \"Course\" c ON c.id = g.course_id \n" +
+            "                JOIN (SELECT c.id AS course, u.username AS trainer FROM \"User\" u JOIN \"Course\" c " +
+            "ON c.trainer_id = u.id) AS t ON t.course = course_id \n WHERE t.trainer = ?) AS w);";
+
+    String getStudentsOfTrainer = "select distinct u.username, u.fname, u.lname, u.email, \n" +
+            "man.fname as \"ManagerFname\", man.lname as \"ManagerLname\",man.email as \"ManagerMail\", " +
+            "man.username as \"ManagerUsername\"\n" +
+            "from \"User\" u\n" +
+            "join \"Group\" g on g.user_id = u.id\n" +
+            "join \"Course\" c on c.id = g.course_id\n" +
+            "left join (select c.id as course_id, u.username as trainer\n" +
+            "from \"User\" u \n" +
+            "join \"Course\" c on c.trainer_id = u.id) as t on t.course_id = g.course_id\n" +
+            "left join (select id, username, fname, lname, email from \"User\" ) as man on man.id = u.manager_id\n" +
+            "where t.trainer = ? order by u.username";
+
+    String getTrainerCourses = "select name from \"Course\" where trainer_id = ?";
+
+    String getStudentsByCourseName = "select fname, lname from \"User\" u join \"Group\" g\n" +
+            "on u.id = g.user_id join \"Course\" c on g.course_id = c.id where c.name = ?";
 }

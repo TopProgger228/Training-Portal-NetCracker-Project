@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TrainerService } from "../services/trainer.service";
 import { TokenStorageService } from "../auth/token-storage.service";
-import { Course } from "../services/course";
+import { Course } from "../interface/course";
 import { AddCourseService } from "../services/add-course.service";
+import { Trainer } from "../interface/trainer";
 import { Trainer } from "../services/trainer";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DateComparerValidation} from "../validators/date-compare-validation";
@@ -44,8 +45,6 @@ export class AddNewCourseComponent implements OnInit {
     if (this.token.getToken()) {
       this.token.getAuthorities().every(role => {
         if (role === 'Admin') {
-          // this.courseFormGroup.setValidators(AddNewCourseComponent.qtyPerWeekValidator);
-          // this.courseFormGroup.updateValueAndValidity();
           this.trainerService.getTrainers()
             .subscribe(data => {
               this.trainers = data;

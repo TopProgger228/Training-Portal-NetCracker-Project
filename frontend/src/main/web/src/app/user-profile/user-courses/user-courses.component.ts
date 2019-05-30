@@ -5,7 +5,7 @@ import { TokenStorageService } from '../../auth/token-storage.service';
 
 import { CourseService } from "../../services/course.service";
 import {UserService} from "../../services/user.service";
-import {CourseWithTrainer} from "../../services/courseWithTrainer";
+import {CourseWithTrainer} from "../../interface/courseWithTrainer";
 
 
 @Component({

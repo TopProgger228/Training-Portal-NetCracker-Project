@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Course} from "./course";
+import {Course} from "../interface/course";
 import {HttpClient} from "@angular/common/http";
 import {JwtResponse} from "../auth/jwt-response";
 import {HttpHeaders} from "../../../node_modules/@angular/common/http";

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserModel } from './user-model';
+import { UserModel } from '../interface/user-model';
 import {HttpParams, HttpRequest} from "../../../node_modules/@angular/common/http";
 
 const httpOptions = {

@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class CreateAPIs {
+public class CreateController {
 
     private CourseService courseService;
     private UserService userService;
@@ -34,8 +34,8 @@ public class CreateAPIs {
     private ScheduleService scheduleService;
 
     @Autowired
-    public CreateAPIs(CourseService courseService, UserService userService, TimeSlotService timeSlotService,
-                      ScheduleService scheduleService) {
+    public CreateController(CourseService courseService, UserService userService, TimeSlotService timeSlotService,
+                            ScheduleService scheduleService) {
         this.courseService = courseService;
         this.userService = userService;
         this.timeSlotService = timeSlotService;

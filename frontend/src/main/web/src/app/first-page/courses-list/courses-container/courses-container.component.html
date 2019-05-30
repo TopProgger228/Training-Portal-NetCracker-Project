@@ -4,7 +4,7 @@
     <div class="row ">
       <div class="col-7">
 
-        <div *ngIf="course.choosen == 'true';
+        <div *ngIf="course.choosen >= 1;
                   then thenBlock else elseBlock">
         </div>
         <ng-template #thenBlock>

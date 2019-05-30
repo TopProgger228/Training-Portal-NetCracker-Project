@@ -17,11 +17,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class UserAPIs {
+public class UserController {
     private UserService userService;
 
     @Autowired
-    public UserAPIs(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

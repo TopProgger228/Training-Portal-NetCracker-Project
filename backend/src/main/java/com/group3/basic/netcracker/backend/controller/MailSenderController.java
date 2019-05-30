@@ -17,7 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class MailSenderAPIs {
+public class MailSenderController {
     private static final String APP_URL = "http://localhost:4200/";
 
     private final UserService userService;
@@ -27,8 +27,8 @@ public class MailSenderAPIs {
     private JavaMailSender javaMailSender;
 
     @Autowired
-    public MailSenderAPIs(UserService userService, UsersTokenService usersTokenService,
-                          JavaMailSender javaMailSender) {
+    public MailSenderController(UserService userService, UsersTokenService usersTokenService,
+                                JavaMailSender javaMailSender) {
         this.userService = userService;
         this.usersTokenService = usersTokenService;
         this.javaMailSender = javaMailSender;

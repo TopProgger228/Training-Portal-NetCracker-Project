@@ -2,7 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {ActivatedRoute, Router} from "@angular/router";
 import {ScheduleService} from "../services/schedule.service";
 import {TokenStorageService} from "../auth/token-storage.service";
-import {ScheduleMod} from "../services/schedule-mod";
+import {ScheduleMod} from "../interface/schedule-mod";
 import {ToasterService} from "../services/toaster.service";
 
 @Component({

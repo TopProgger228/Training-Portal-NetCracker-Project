@@ -8,7 +8,6 @@ import com.group3.basic.netcracker.backend.util.dtomapper.TrainersInfoDtoMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.*;
 import com.group3.basic.netcracker.backend.util.sql.UserDaoQueries;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,87 +46,61 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public UserForDisplay getUserByUsername(String username) {
-        String SQL = "SELECT fname, lname, username, email, id , photo FROM \"User\" WHERE username = '" + username + "'";
-        UserForDisplay user = (UserForDisplay) jdbcTemplate.query(SQL, new UserProfileRowMapper()).get(0);
-
-        return user;
+        return (UserForDisplay) jdbcTemplate.query(UserDaoQueries.getUserByUsernameQuery,
+                new UserProfileRowMapper(), username).get(0);
     }
 
 
     public boolean existsByUsername(String username) {
-        Long count = (Long) ((Object) jdbcTemplate.queryForObject(UserDaoQueries.existsByUsernameQuery,
-                new Object[]{username}, Object.class));
+        Long count = (Long) jdbcTemplate.queryForObject(UserDaoQueries.existsByUsernameQuery,
+                new Object[]{username}, Object.class);
 
         return count != 0;
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        String SQL = "SELECT count(*) FROM \"User\" WHERE email = ?";
-        Long count = (Long) ((Object) jdbcTemplate.queryForObject(UserDaoQueries.existsByEmailQuery,
-                new Object[]{email}, Object.class));
+        Long count = (Long) jdbcTemplate.queryForObject(UserDaoQueries.existsByEmailQuery,
+                new Object[]{email}, Object.class);
+
         return count != 0;
     }
 
 
     public User findByUsername(String username) {
-        User user = (User) jdbcTemplate.queryForObject(UserDaoQueries.findByUsernameQuery,
+        return (User) jdbcTemplate.queryForObject(UserDaoQueries.findByUsernameQuery,
                 new Object[]{username}, new UserRowMapper());
-        return user;
     }
 
     @Override
     public List listUsers() {
-        List Users = jdbcTemplate.query(UserDaoQueries.usersListQuery, new UserRowMapper());
-        return Users;
+        return jdbcTemplate.query(UserDaoQueries.usersListQuery, new UserRowMapper());
     }
 
     @Override
     public List getTrainers() {
-        List trainers = jdbcTemplate.query(UserDaoQueries.getTrainersQuery, new TrainerRowMapper());
-        return trainers;
+        return jdbcTemplate.query(UserDaoQueries.getTrainersQuery, new TrainerRowMapper());
     }
 
     @Override
     public List listUsersForDisplay(String role) {
-        String SQL = ("SELECT fname, lname, username, email, id FROM \"User\" WHERE role = '" + role + "';");
-        List Users = jdbcTemplate.query(SQL, new UserForDisplayRowMapper());
-        return Users;
+        return jdbcTemplate.query(UserDaoQueries.getUsersListForDisplay,
+                new UserForDisplayRowMapper(), role);
     }
 
     @Override
     public List<User> getStudentsOfManager(String username) {
-
-        String SQL = ("SELECT u.*, man.\"Manager\" \n" +
-                "FROM \"User\" u\n" +
-                "JOIN (SELECT id AS m_id, username AS \"Manager\" \n" +
-                "\t\t   FROM \"User\") AS man ON man.m_id = u.manager_id\n" +
-                "\t\t WHERE man.\"Manager\" LIKE '" + username + "';");
-
-        List<User> Users = jdbcTemplate.query(SQL, new UserRowMapper());
-        return Users;
-
+        return jdbcTemplate.query(UserDaoQueries.getStudentsOfManagerQuery, new UserRowMapper(), username);
     }
 
     @Override
     public List getManagerOfStudent(String username) {
-        String SQL = "SELECT m.* FROM \"User\" AS m\n" +
-                "WHERE m.id IN (\n" +
-                "SELECT w.manager_id FROM\n" +
-                "(SELECT u.manager_id AS manager_id, t.trainer AS \"Trainer\" FROM \"User\" u \n" +
-                "                JOIN \"Group\" g ON g.user_id = u.id JOIN \"Course\" c ON c.id = g.course_id \n" +
-                "                JOIN (SELECT c.id AS course, u.username AS trainer FROM \"User\" u JOIN \"Course\" c ON c.trainer_id = u.id) \n" +
-                "AS t ON t.course = course_id \n" +
-                "--left join (SELECT id as m_id, username, fname, lname, email as \"Manager\" from \"User\") as man on man.m_id = u.manager_id\n" +
-                "                WHERE t.trainer LIKE '" + username + "') AS w);";
-        List Users = jdbcTemplate.query(SQL, new UserRowMapper());
-        return Users;
+        return jdbcTemplate.query(UserDaoQueries.getManagerOfStudent, new UserRowMapper(), username);
     }
 
     @Override
     public void removeUser(int id) {
         jdbcTemplate.update(UserDaoQueries.removeUserQuery, id);
-        System.out.println("User with id: " + id + " successfully removed");
     }
 
 
@@ -211,17 +184,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List getStudentsOfTrainer(String username) {
-        String SQL = "select distinct u.username, u.fname, u.lname, u.email, \n" +
-                "man.fname as \"ManagerFname\", man.lname as \"ManagerLname\",man.email as \"ManagerMail\", man.username as \"ManagerUsername\"\n" +
-                "from \"User\" u\n" +
-                "join \"Group\" g on g.user_id = u.id\n" +
-                "join \"Course\" c on c.id = g.course_id\n" +
-                "left join (select c.id as course_id, u.username as trainer\n" +
-                "from \"User\" u \n" +
-                "join \"Course\" c on c.trainer_id = u.id) as t on t.course_id = g.course_id\n" +
-                "left join (select id, username, fname, lname, email from \"User\" ) as man on man.id = u.manager_id\n" +
-                "where t.trainer like '" + username + "' order by u.username";
-        return jdbcTemplate.query(SQL, new StudentRowMapper());
+        return jdbcTemplate.query(UserDaoQueries.getStudentsOfTrainer, new StudentRowMapper(), username);
     }
 
     @Override
@@ -231,15 +194,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<String> getTrainerCourses(int id) {
-        String SQL = "select name from \"Course\" where trainer_id = " + id + "";
-        return jdbcTemplate.queryForList(SQL, String.class);
+        return jdbcTemplate.queryForList(UserDaoQueries.getTrainerCourses, String.class, id);
     }
 
     @Override
     public List getStudentsByCourseName(String course) {
-        String SQL = "select fname, lname from \"User\" u join \"Group\" g\n" +
-                "on u.id = g.user_id join \"Course\" c on g.course_id = c.id where c.name = '" + course + "'";
-        return jdbcTemplate.query(SQL, new CourseAttendeeMapper());
+        return jdbcTemplate.query(UserDaoQueries.getStudentsByCourseName, new CourseAttendeeMapper(), course);
     }
 
     @Override

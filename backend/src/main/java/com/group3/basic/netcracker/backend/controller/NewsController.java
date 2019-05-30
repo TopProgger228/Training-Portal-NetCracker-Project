@@ -15,11 +15,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class NewsAPIs {
+public class NewsController {
     private NewsService newsService;
 
     @Autowired
-    public NewsAPIs(NewsService newsService) {
+    public NewsController(NewsService newsService) {
         this.newsService = newsService;
     }
 

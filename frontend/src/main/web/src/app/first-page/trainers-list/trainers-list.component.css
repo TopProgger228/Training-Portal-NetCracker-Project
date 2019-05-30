@@ -9,11 +9,13 @@
 }
 
 .trainer-img{
-  width: 115%;
+  width: 100%;
+  padding-right: 20pt;
 }
 
 .trainer-img-default{
-  width: 115%;
+  width: 100%;
+  padding-right: 20pt;
 }
 
 

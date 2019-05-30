@@ -24,4 +24,8 @@ public interface ScheduleDao {
     List listScheduleWithCourseAndTimeSlotAndUser();
 
     void generateSchedule(int course);
+
+    void connectUserAndCourse(int courseId, int userId);
+
+    boolean isGroupExist(int courseId, int userId);
 }

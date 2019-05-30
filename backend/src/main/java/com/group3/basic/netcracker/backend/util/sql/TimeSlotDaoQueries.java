@@ -3,6 +3,8 @@ package com.group3.basic.netcracker.backend.util.sql;
 public interface TimeSlotDaoQueries {
     String getTimeSlotByIdQuery = "SELECT * FROM \"TimeSlot\" WHERE id = ?";
 
+    String getCourseIdById = "SELECT course_id FROM \"TimeSlot\" WHERE id = ?";
+
     String findByStartTimeQuery = "SELECT * FROM \"TimeSlot\" WHERE start_time = ?";
 
     String getTimeSlotsListQuery = "SELECT id, start_time, end_time, week_day, course_id FROM \"TimeSlot\"";
@@ -20,4 +22,7 @@ public interface TimeSlotDaoQueries {
 
     String isTimeSlotWitAllRow = "SELECT COUNT(*) FROM \"TimeSlot\" WHERE (start_time = ? AND end_time = ?\n" +
             "AND week_day = ? AND course_id = ?)";
+
+    String getTimeslotsOfCourse = "SELECT t.id, t.start_time, t.end_time, t.week_day, t.course_id" +
+            " FROM \"TimeSlot\" t JOIN \"Course\" c ON t.course_id = c.id WHERE c.name = ?;";
 }

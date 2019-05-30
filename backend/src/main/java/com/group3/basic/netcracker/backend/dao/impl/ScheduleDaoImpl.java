@@ -9,6 +9,7 @@ import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleOfStudentRowMa
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleWithInfoRowMapper;
 import com.group3.basic.netcracker.backend.util.sql.ScheduleDaoQueries;
+import com.group3.basic.netcracker.backend.util.sql.TimeSlotDaoQueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,6 +17,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import static com.group3.basic.netcracker.backend.util.sql.ScheduleDaoQueries.connectUserAndCourse;
 
 @Transactional
 @Repository
@@ -57,6 +60,18 @@ public class ScheduleDaoImpl implements ScheduleDao {
     }
 
     @Override
+    public void connectUserAndCourse(int courseId, int userId) {
+
+        jdbcTemplate.update(ScheduleDaoQueries.connectUserAndCourse, courseId, userId);
+    }
+
+    @Override
+    public boolean isGroupExist(int courseId, int userId) {
+        int result = jdbcTemplate.queryForObject(ScheduleDaoQueries.isGroupExist, Integer.class, courseId, userId);
+        return result != 0;
+    }
+
+    @Override
     public void createSchedule(int userId, Integer[] timeSlotId, boolean isChoosen) {
         for (int i = 0; i < timeSlotId.length; i++) {
             jdbcTemplate.update(ScheduleDaoQueries.createScheduleQuery, userId, timeSlotId[i], isChoosen);
@@ -65,12 +80,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
     @Override
     public List getScheduleOfStudent(String username){
-        String SQL = "select C2.name, TS.start_time, TS.end_time, TS.week_day, s.id, s.is_choosen from \"Schedule\" as s\n" +
-                "join \"User\" U on s.user_id = U.id\n" +
-                "join \"TimeSlot\" TS on s.time_slot_id = TS.id\n" +
-                "join \"Course\" C2 on TS.course_id = C2.id\n" +
-                "where U.username like '" + username + "'";
-        return jdbcTemplate.query(SQL, new ScheduleOfStudentRowMapper());
+        return jdbcTemplate.query(ScheduleDaoQueries.getScheduleOfStudentQuery,
+                new ScheduleOfStudentRowMapper(), username);
     }
 
     @Override

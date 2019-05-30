@@ -22,9 +22,18 @@ export class ByTrainerCoursesAdminAttComponent implements OnInit {
 
   createReportByTrainer() {
     this.adminService.createReportByTrainer(this.trainerValue)
-      .subscribe(
-        data => console.log(data),
-        error => console.log(error))
+    .subscribe(
+      data => {
+        console.log(data);
+
+        if (data.body)
+          this.toasterService.Success("Success", "Added to /Download folder");
+      },
+      error => {
+        console.log(error);
+
+        this.toasterService.Error("Error!", "Http failure response");
+      });
   }
 
   filterByTrainerUsername(username: string) {

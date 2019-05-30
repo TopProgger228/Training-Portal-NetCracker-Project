@@ -15,12 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class LessonAPIs {
+public class LessonController {
 
     private LessonService lessonService;
 
     @Autowired
-    public LessonAPIs(LessonService lessonService) {
+    public LessonController(LessonService lessonService) {
         this.lessonService = lessonService;
     }
 
