@@ -31,7 +31,7 @@ export class OneTrainerLessonComponent implements OnInit {
   }
 
   success(lesson: Lesson) {
-    this.toasterService.Success("Success", "Lesson " + lesson.lessonDate.toString() + " " + lesson.startTime.toString() + " \nis " + (lesson.cancel ? "activated!" : "canceled!"));
+    this.toasterService.Success("Success", "Lesson " + lesson.lessonDate.toString() + " " + lesson.startTime.toString() + " \nis " + (lesson.cancel ? "canceled!" : "activated!"));
   }
 
   error() {

@@ -1,6 +1,7 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
 import com.group3.basic.netcracker.backend.dao.*;
+import com.group3.basic.netcracker.backend.dto.AttendanceStatus;
 import com.group3.basic.netcracker.backend.dto.CheckLessonAttendanceDto;
 import com.group3.basic.netcracker.backend.dto.LessonAttendanceDto;
 import com.group3.basic.netcracker.backend.dto.UserAttendanceDto;
@@ -84,7 +85,7 @@ public class CheckAttendanceServiceImpl implements CheckAttendanceService {
     public void changeLessonMissing(int userId, int lessonId, String reason) {
 
         Optional<LessonMissing> lessonMissing = Optional.ofNullable(lessonMissingDao.getLessonMissingByLessonIdAndUserId(lessonId, userId));
-        if (reason.equals("Present")) {
+        if (reason.equals(AttendanceStatus.PRESENT.toString())) {
             if(lessonMissing.isPresent()){
                 lessonMissingDao.delete(userId, lessonId);
             }

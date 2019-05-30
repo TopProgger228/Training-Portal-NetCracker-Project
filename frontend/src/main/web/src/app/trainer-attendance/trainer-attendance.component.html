@@ -10,13 +10,21 @@
   </div>
   <app-spinner *ngIf="isLoading"></app-spinner>
   <div class="list-group " *ngFor="let lesson of lessonList; index as i" style="font-size: 20px">
-    <a class="list-group-item list-group-item-action mt-2" (click)="navigate(lesson.lessonId)" >
+    <div class="list-group-item mt-2" *ngIf="lesson.cancel">
       <div class="row">
         <div class="col-1">{{i + 1}}</div>
         <div class="col-4">{{lesson.courseName}}</div>
         <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
         <div class="col-3">{{lesson.lessonDate}}</div>
         <div class="col-1" *ngIf="lesson.cancel">Cancel</div>
+      </div>
+    </div>
+    <a class="list-group-item list-group-item-action mt-2" (click)="navigate(lesson.lessonId)" *ngIf="!lesson.cancel">
+      <div class="row">
+        <div class="col-1">{{i + 1}}</div>
+        <div class="col-4">{{lesson.courseName}}</div>
+        <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
+        <div class="col-3">{{lesson.lessonDate}}</div>
         <div class="col-1" *ngIf="!lesson.cancel">Active</div>
       </div>
     </a>
