@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface CheckAttendanceService {
 
-    List<LessonAttendanceDto> getTodayLessonsByTrainer(int trainerId);
-
     CheckLessonAttendanceDto getFullCheckAttendance(int lessonId);
 
     List<UserAttendanceDto> getUsersByLessonId(int lessonId);

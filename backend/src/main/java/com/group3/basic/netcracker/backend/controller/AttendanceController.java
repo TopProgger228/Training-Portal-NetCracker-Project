@@ -78,22 +78,13 @@ public class AttendanceController {
         return ResponseEntity.ok().body(userAttendanceDtoList);
     }
 
-    @GetMapping("/trainerLesson/{id}")
-    public ResponseEntity<?> getTrainerTodayLessons(@PathVariable int id) {
-        List<LessonAttendanceDto> lessonAttendanceDtoList = checkAttendanceService.getTodayLessonsByTrainer(id);
-
-        log.debug("Got trainer with id = {} today lessons", id);
-
-        return ResponseEntity.ok().body(lessonAttendanceDtoList);
-    }
-
     @PostMapping("/lessonAtt")
     public ResponseEntity<?> changeAttendance(@RequestParam(value = "userId") String userId,
                                               @RequestParam("lessonId") String lessonId,
                                               @RequestParam("status") String status) {
 
 
-        log.debug("User with id = {} is checked as \"{}\" on lesson with lessonId = {}", userId, lessonId, status);
+        log.debug("User with id = {} is checked as \"{}\" on lesson with lessonId = {}", userId, status, lessonId);
 
         checkAttendanceService.changeLessonMissing(Integer.parseInt(userId), Integer.parseInt(lessonId), status);
         return new ResponseEntity<>(new ResponseMessage("Present"), HttpStatus.OK);

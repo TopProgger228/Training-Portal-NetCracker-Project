@@ -5,6 +5,9 @@
   <div class="col" *ngIf="isLess() && !lesson.cancel"><span matTooltip="Lesson has already been">Done</span></div>
   <div class="col" *ngIf="!lesson.cancel && !isLess()"><span matTooltip="Lesson will be according to the schedule">Active</span></div>
   <div class="col" *ngIf="lesson.cancel"><span matTooltip="Lesson has been canceled">Cancel</span></div>
-  <div class="col" ><span matTooltip="Attendance status of user">{{lesson.attStatus}}</span></div>
+  <div class="col" *ngIf="isLess()"><span matTooltip="Attendance status of user">{{lesson.attStatus}}</span></div>
+  <div class="col" *ngIf="!isLess()"><span matTooltip="Attendance status of user"></span></div>
+
+
 </div>
 

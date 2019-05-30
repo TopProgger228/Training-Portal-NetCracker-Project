@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LessonAtt} from "../interface/lesson-att";
 import {TrainerAttService} from "../services/trainer-att.service";
 import {TokenStorageService} from "../auth/token-storage.service";
@@ -13,13 +13,19 @@ export class TrainerAttendanceComponent implements OnInit {
 
   public lessonList: LessonAtt[];
   isLoading: boolean = true;
-
-  constructor(private trainerService: TrainerAttService, private token: TokenStorageService, private router: Router) { }
+  noData: boolean = false;
+  constructor(private trainerService: TrainerAttService, private token: TokenStorageService, private router: Router) {
+  }
 
   ngOnInit() {
 
     this.trainerService.getLessonsByUsername(this.token.getUsername())
-      .subscribe(data => {this.lessonList = data; this.isLoading = false});
+      .subscribe(data => {
+        this.lessonList = data;
+        this.isLoading = false;
+        this.lessonList.length == 0 ? this.noData = true : this.noData = false
+
+      });
 
   }
 

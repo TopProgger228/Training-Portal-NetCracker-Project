@@ -10,8 +10,6 @@ public interface LessonDao {
 
     Lesson getLessonById(int lessonId);
 
-    List<Lesson> getTodayLessonsByTrainer(int trainerId);
-
     List<Lesson> getTodayLessonsByTrainerUsername(String username);
 
     int getLessonCountTillTodayByStudent(int userId);

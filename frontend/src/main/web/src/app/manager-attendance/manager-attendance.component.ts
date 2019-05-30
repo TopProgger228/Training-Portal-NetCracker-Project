@@ -14,6 +14,7 @@ export class ManagerAttendanceComponent implements OnInit {
   statusList: any[] = [];
   isLoading: boolean = true;
 
+  isDone: boolean;
   constructor(private managerAttService: ManagerAttService, private token: TokenStorageService) {
     this.managerAttService.getManagerUserByUsername(this.token.getUsername())
       .subscribe(data=> {this.managerUserList = data; this.init(); this.isLoading = false});
