@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -21,6 +23,12 @@ public class UserAPIs {
     @Autowired
     public UserAPIs(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/gettrainers")
+    public List getTrainers() {
+        log.debug("Got list of trainers!");
+        return userService.getTrainers();
     }
 
     @GetMapping("/getUser")

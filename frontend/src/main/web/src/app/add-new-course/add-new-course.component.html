@@ -8,105 +8,81 @@
 
       <div class="container">
         <h1>Course Form</h1>
-        <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="courseFormGroup">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name<span style="color:red">*</span></label>
             <input type="text" class="form-control" id="name" required
-                   [(ngModel)]="course.name" name="name"
-                   #name="ngModel">
-            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-              Course name is required!
-            </div>
+                   name="name" formControlName="name">
+            <div
+              *ngIf="courseFormGroup.controls.name.errors?.required  && courseFormGroup.controls.name.touched"
+              style="font-size: 15pt">First name is required</div>
           </div>
 
-          <div class="form-group">
-            <label for="start_date">Star date</label>
-            <input type="date" class="form-control" id="start_date" required
-                   [(ngModel)]="course.start_date" name="start_date"
-                   #start_date="ngModel">
-            <div [hidden]="start_date.valid || start_date.pristine" class="alert alert-danger">
-              Start date is required!
+          <!--<div [formGroup]="dateFormGroup">-->
+            <div class="form-group">
+              <label for="start_date">Star date<span style="color:red">*</span></label>
+              <input type="date" class="form-control" id="start_date" required
+                     formControlName="start_date" name="start_date">
+              <div
+                *ngIf="courseFormGroup.controls.start_date.errors?.required  && courseFormGroup.controls.start_date.touched"
+                style="font-size: 15pt">First name is required</div>
             </div>
 
-          </div>
-
-          <div class="form-group">
-            <label for="end_date">End date</label>
-            <input type="date" class="form-control" id="end_date" required
-                   [(ngModel)]="course.end_date" name="end_date"
-                   #end_date="ngModel">
-            <div [hidden]="end_date.valid || end_date.pristine" class="alert alert-danger">
-              End date is required!
+            <div class="form-group">
+              <label for="end_date">End date<span style="color:red">*</span></label>
+              <input type="date" class="form-control" id="end_date" required
+                     formControlName="end_date" name="end_date">
+              <div
+                *ngIf="courseFormGroup.controls.end_date.errors?.required  && courseFormGroup.controls.end_date.touched"
+                style="font-size: 15pt">First name is required</div>
+              <div *ngIf="courseFormGroup.errors?.compareDate" style="font-size: 15pt">End date must be greater than start date
+              </div>
             </div>
-          </div>
 
           <div class="form-group">
-            <label for="info">Info</label>
-            <!--<input type="text" class="form-control" id="info" required-->
-                   <!--[(ngModel)]="course.info" name="info"-->
-                   <!--#info="ngModel">-->
+            <label for="info">Info<span style="color:red">*</span></label>
             <textarea cols="20" rows="5" class="form-control" id="info" required
-                      [(ngModel)]="course.info" name="info"
-                      #info="ngModel">
+                      formControlName="info" name="info">
 
             </textarea>
-            <div [hidden]="info.valid || info.pristine" class="alert alert-danger">
-              Info is required!
-            </div>
+            <div
+              *ngIf="courseFormGroup.controls.info.errors?.required  && courseFormGroup.controls.info.touched"
+              style="font-size: 15pt">First name is required</div>
           </div>
 
           <div class="form-group">
-            <label for="skill_level">Skill level</label>
-            <!--<input type="text" class="form-control" id="skill_level" required-->
-                   <!--[(ngModel)]="course.skill_level" name="skill_level"-->
-                   <!--#skill_level="ngModel">-->
-            <select [(ngModel)]="course.skill_level" class="form-control" id="skill_level" name="skill_level">
+            <label for="skill_level">Skill level<span style="color:red">*</span></label>
+            <select formControlName="skill_level" [compareWith]="compareFn" class="form-control" id="skill_level" name="skill_level">
               <option *ngFor="let l of levels" [value]="l">{{l}}</option>
             </select>
-            <div [hidden]="info.valid || info.pristine" class="alert alert-danger">
-              Skill level is required!
-            </div>
+            <div
+              *ngIf="courseFormGroup.controls.skill_level.errors?.required  && courseFormGroup.controls.skill_level.touched"
+              style="font-size: 15pt">First name is required</div>
           </div>
 
 
           <div class="form-group">
-            <label for="trainer_id">Trainer</label>
-            <select [(ngModel)]="course.trainer_id" class="form-control" id="trainer_id" name="trainer_id"> required
+            <label for="trainer_id">Trainer<span style="color:red">*</span></label>
+            <select formControlName="trainer_id" [compareWith]="compareFn" class="form-control" id="trainer_id" name="trainer_id"> required
               <option *ngFor="let t of trainers" [value]="t.id">{{t.fname}} {{t.lname}}</option>
             </select>
-            <!--<div [hidden]="user_id.valid || user_id.pristine" class="alert alert-danger">-->
-              <!--Trainer is required!-->
-            <!--</div>-->
-            <!--<div *ngIf="user_id.invalid" >-->
-              <!--<div *ngIf="user_id.errors.required " class="alert alert-danger">-->
-                <!--Trainer is required!-->
-              <!--</div>-->
-            <!--</div>-->
+            <div
+              *ngIf="courseFormGroup.controls.trainer_id.errors?.required  && courseFormGroup.controls.trainer_id.touched"
+              style="font-size: 15pt">First name is required</div>
           </div>
 
 
           <div class="form-group">
-            <label for="qty_per_week">Quantity per week ( 1 - 4 )</label>
-            <input type="number" class="form-control" #qty id="qty_per_week"
-                   [(ngModel)]="course.qty_per_week" name="qty_per_week" min="1" max="4"
-                   #qty_per_week="ngModel">
-            <!--<div *ngIf="qty_per_week.invalid && courseForm.submitted" class="alert alert-danger">-->
-              <!--<div [hidden]="!qty_per_week.errors?.min" class="alert alert-danger">-->
-                <!--Quantity of lessons > 0!-->
-              <!--</div>-->
-            <div [hidden]="qty_per_week.valid || qty_per_week.pristine" class="alert alert-danger">
-              Quantity per week is required!
+            <label for="qty_per_week">Quantity per week ( 1 - 4 )<span style="color:red">*</span></label>
+            <input type="number" class="form-control" id="qty_per_week"
+                   formControlName="qty_per_week" name="qty_per_week" min="1" max="4">
+            <div
+              *ngIf="courseFormGroup.controls.qty_per_week.errors?.required  && courseFormGroup.controls.qty_per_week.touched"
+              style="font-size: 15pt">First name is required</div>
+            <div *ngIf="courseFormGroup.errors?.invalidQty && courseFormGroup.controls.qty_per_week.touched" style="font-size: 15pt">Quantity per week must be from 1 to 4
             </div>
-            <!--<div [hidden]="qty > 0 " class="alert alert-danger">-->
-              <!--Invalid value!-->
-            <!--</div>-->
-            <!--</div>-->
           </div>
-
-          <input [disabled]="!courseForm.form.valid" type="submit" class="btn btn-secondary" value="Submit">
-          <!--<div *ngIf="courseForm.submitted && isCreationFailed" class="alert alert-danger" style="font-size: 15pt">-->
-            <!--Login failed: {{errorMessage}}-->
-          <!--</div>-->
+          <input [disabled]="!courseFormGroup.valid" type="submit" class="btn btn-secondary" value="Submit">
         </form>
       </div>
 

@@ -1,0 +1,107 @@
+2019-05-30 10:13:54.987  WARN 9660 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12h17m28s975ms8µs704ns).
+2019-05-30 10:51:16.207 DEBUG 9660 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 10:53:28.293 DEBUG 9660 --- [http-nio-8080-exec-5] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 10:55:05.191 DEBUG 9660 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 10:56:00.407 DEBUG 9660 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 10:56:54.971 DEBUG 9660 --- [http-nio-8080-exec-9] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 10:58:13.369 DEBUG 9660 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:00:22.000 DEBUG 9660 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:00:30.145 DEBUG 9660 --- [http-nio-8080-exec-4] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:04:09.598 DEBUG 9660 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:06:54.966 DEBUG 9660 --- [http-nio-8080-exec-9] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:07:05.054 DEBUG 9660 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:08:19.247 DEBUG 9660 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:09:00.785 DEBUG 9660 --- [http-nio-8080-exec-4] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:12:35.390 DEBUG 9660 --- [http-nio-8080-exec-6] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:14:19.023 DEBUG 9660 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:16:56.965 DEBUG 9660 --- [http-nio-8080-exec-10] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:18:09.347 DEBUG 9660 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:18:48.516 DEBUG 9660 --- [http-nio-8080-exec-4] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:20:53.545 DEBUG 9660 --- [http-nio-8080-exec-6] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:25:13.222 DEBUG 9660 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:28:49.597 DEBUG 9660 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.CreateAPIs    : Got list of trainers!
+2019-05-30 11:30:24.298  INFO 11608 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-QHGNH54 with PID 11608 (C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by shest in C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-30 11:30:24.304 DEBUG 11608 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 11:30:24.305  INFO 11608 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 11:30:28.773  INFO 11608 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 11:30:28.774  INFO 11608 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 11:30:28.900  INFO 11608 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 11:30:29.129 DEBUG 11608 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 11:30:30.233  INFO 11608 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 6.47 seconds (JVM running for 7.633)
+2019-05-30 11:30:30.243  INFO 11608 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 11:30:50.545  INFO 11608 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 11:30:51.102  INFO 11608 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-30 11:30:53.075  INFO 11608 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-30 11:30:53.542 DEBUG 11608 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:32:23.579 DEBUG 11608 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:34:24.001 DEBUG 11608 --- [http-nio-8080-exec-5] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:35:37.394 DEBUG 11608 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:37:18.791 DEBUG 11608 --- [http-nio-8080-exec-9] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:42:46.384 DEBUG 11608 --- [http-nio-8080-exec-2] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:45:20.368 DEBUG 11608 --- [http-nio-8080-exec-4] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:47:03.880 DEBUG 11608 --- [http-nio-8080-exec-6] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:49:25.141 DEBUG 11608 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:51:50.384 DEBUG 11608 --- [http-nio-8080-exec-10] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:53:32.952 DEBUG 11608 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:53:53.901 DEBUG 11608 --- [http-nio-8080-exec-4] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:54:57.106  INFO 352 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-QHGNH54 with PID 352 (C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by shest in C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-30 11:54:57.109 DEBUG 352 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 11:54:57.110  INFO 352 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 11:54:58.630  INFO 352 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 11:54:58.631  INFO 352 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 11:54:58.726  INFO 352 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 11:54:58.908 DEBUG 352 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 11:54:59.782  INFO 352 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 3.1 seconds (JVM running for 4.128)
+2019-05-30 11:54:59.790  INFO 352 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 11:56:00.461  INFO 352 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 11:56:00.849  INFO 352 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-30 11:56:01.862  INFO 352 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-30 11:56:02.008 DEBUG 352 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:57:19.950 DEBUG 352 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 11:58:54.865 DEBUG 352 --- [http-nio-8080-exec-5] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:00:22.985 DEBUG 352 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:01:21.220 DEBUG 352 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:02:23.259 DEBUG 352 --- [http-nio-8080-exec-10] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:02:38.269 DEBUG 352 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:03:13.442 DEBUG 352 --- [http-nio-8080-exec-2] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:05:05.266 DEBUG 352 --- [http-nio-8080-exec-5] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:05:32.231 DEBUG 352 --- [http-nio-8080-exec-6] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:11:49.469 DEBUG 352 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:26:44.892  WARN 352 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14m42s899ms463µs83ns).
+2019-05-30 12:26:48.994  INFO 8224 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-QHGNH54 with PID 8224 (C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by shest in C:\Users\shest\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-30 12:26:48.998 DEBUG 8224 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 12:26:48.998  INFO 8224 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 12:26:50.574  INFO 8224 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 12:26:50.575  INFO 8224 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 12:26:50.671  INFO 8224 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 12:26:50.866 DEBUG 8224 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 12:26:51.784  INFO 8224 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 3.138 seconds (JVM running for 4.308)
+2019-05-30 12:26:51.792  INFO 8224 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 12:27:38.554  INFO 8224 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 12:27:39.140  INFO 8224 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-30 12:27:40.600  INFO 8224 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-30 12:27:40.922 DEBUG 8224 --- [http-nio-8080-exec-1] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:41:29.293  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6baefdbe (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.297  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6914c137 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.300  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@75cb92a6 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.303  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5402afa8 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.305  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@54ac487 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.307  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4a18a060 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.309  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@636f5527 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.312  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@22d1c90d (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.314  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@71ec4f2c (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.316  WARN 8224 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7e78ead1 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2019-05-30 12:41:29.853 DEBUG 8224 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-30 12:41:30.129 DEBUG 8224 --- [http-nio-8080-exec-9] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-30 12:41:31.088 DEBUG 8224 --- [http-nio-8080-exec-8] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 12:44:03.941 DEBUG 8224 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-30 12:44:03.992 DEBUG 8224 --- [http-nio-8080-exec-5] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-30 12:44:04.530 DEBUG 8224 --- [http-nio-8080-exec-4] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 12:47:52.799 DEBUG 8224 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.NewsAPIs      : Got list of active news!
+2019-05-30 12:47:52.858 DEBUG 8224 --- [http-nio-8080-exec-2] c.g.b.n.backend.controller.CourseAPIs    : Got active courses!
+2019-05-30 12:47:53.518 DEBUG 8224 --- [http-nio-8080-exec-10] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 12:48:01.817 DEBUG 8224 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:50:15.150 DEBUG 8224 --- [http-nio-8080-exec-7] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:53:32.571 DEBUG 8224 --- [http-nio-8080-exec-8] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:55:06.850 DEBUG 8224 --- [http-nio-8080-exec-10] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!
+2019-05-30 12:57:51.636 DEBUG 8224 --- [http-nio-8080-exec-3] c.g.b.n.backend.controller.UserAPIs      : Got list of trainers!

@@ -42,13 +42,6 @@ public class CreateAPIs {
         this.scheduleService = scheduleService;
     }
 
-
-    @GetMapping("/gettrainers")
-    public List getTrainers() {
-        log.debug("Got list of trainers!");
-        return userService.getTrainers();
-    }
-
     @PostMapping("/create_new_course")
     public ResponseEntity<?> createNewCourse(@RequestBody CourseForm courseForm) {
 
