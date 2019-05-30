@@ -9,6 +9,7 @@ import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleOfStudentRowMa
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleRowMapper;
 import com.group3.basic.netcracker.backend.util.rowmapper.ScheduleWithInfoRowMapper;
 import com.group3.basic.netcracker.backend.util.sql.ScheduleDaoQueries;
+import com.group3.basic.netcracker.backend.util.sql.TimeSlotDaoQueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,6 +17,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import static com.group3.basic.netcracker.backend.util.sql.ScheduleDaoQueries.connectUserAndCourse;
 
 @Transactional
 @Repository
@@ -54,6 +57,18 @@ public class ScheduleDaoImpl implements ScheduleDao {
     @Override
     public void updateSchedule(int userId, int timeSlotId, boolean isChoosen, int id) {
         jdbcTemplate.update(ScheduleDaoQueries.updateScheduleQuery, userId, timeSlotId, isChoosen);
+    }
+
+    @Override
+    public void connectUserAndCourse(int courseId, int userId) {
+
+        jdbcTemplate.update(ScheduleDaoQueries.connectUserAndCourse, courseId, userId);
+    }
+
+    @Override
+    public boolean isGroupExist(int courseId, int userId) {
+        int result = jdbcTemplate.queryForObject(ScheduleDaoQueries.isGroupExist, Integer.class, courseId, userId);
+        return result != 0;
     }
 
     @Override

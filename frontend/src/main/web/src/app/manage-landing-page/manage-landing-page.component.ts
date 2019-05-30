@@ -109,6 +109,7 @@ export class ManageLandingPageComponent implements OnInit {
       }
     );
     this.addNewNews = false;
+    window.location.reload();
 
   }
   setNewNews() {

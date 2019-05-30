@@ -32,7 +32,7 @@ export class ByLevelCoursesAdminAttComponent implements OnInit {
           console.log(data);
 
           if (data.body)
-            this.toasterService.Success("Success", "Report download successfully");
+            this.toasterService.Success("Success", "Added to /Download folder");
         },
         error => {
           console.log(error);

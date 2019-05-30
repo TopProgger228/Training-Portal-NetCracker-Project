@@ -1,7 +1,12 @@
 package com.group3.basic.netcracker.backend.util.sql;
 
 public interface ScheduleDaoQueries {
+
+    String isGroupExist = "SELECT count(*) FROM \"Group\" WHERE course_id = ? and user_id = ?";
+
     String getScheduleByIdQuery = "SELECT * FROM \"Schedule\" WHERE id = ?";
+
+    String connectUserAndCourse = "INSERT INTO \"Group\" (course_id, user_id) VALUES (?,?)";
 
     String getScheduleListQuery = "SELECT id, user_id, time_slot_id, is_choosen FROM \"Schedule\"";
 

@@ -23,6 +23,12 @@ public class TimeSlotDaoImpl implements TimeSlotDao {
     }
 
     @Override
+    public int getCourseIdById(int timeSlotId) {
+        return jdbcTemplate.queryForObject(TimeSlotDaoQueries.getCourseIdById,
+                Integer.class, timeSlotId);
+    }
+
+    @Override
     public TimeSlot getTimeSlotById(int id) {
         return (TimeSlot) jdbcTemplate.queryForObject(TimeSlotDaoQueries.getTimeSlotByIdQuery,
                 new Object[]{id}, new TimeSlotRowMapper());

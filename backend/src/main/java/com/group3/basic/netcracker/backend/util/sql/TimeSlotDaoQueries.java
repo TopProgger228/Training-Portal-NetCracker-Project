@@ -3,6 +3,8 @@ package com.group3.basic.netcracker.backend.util.sql;
 public interface TimeSlotDaoQueries {
     String getTimeSlotByIdQuery = "SELECT * FROM \"TimeSlot\" WHERE id = ?";
 
+    String getCourseIdById = "SELECT course_id FROM \"TimeSlot\" WHERE id = ?";
+
     String findByStartTimeQuery = "SELECT * FROM \"TimeSlot\" WHERE start_time = ?";
 
     String getTimeSlotsListQuery = "SELECT id, start_time, end_time, week_day, course_id FROM \"TimeSlot\"";

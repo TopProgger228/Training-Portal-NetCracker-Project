@@ -80,7 +80,7 @@ public interface UserDaoQueries {
             "                JOIN (SELECT c.id AS course, u.username AS trainer FROM \"User\" u JOIN \"Course\" c " +
             "ON c.trainer_id = u.id) AS t ON t.course = course_id \n WHERE t.trainer = ?) AS w);";
 
-    String getStudentsOfTrainer = "select u.username, u.fname, u.lname, u.email, \n" +
+    String getStudentsOfTrainer = "select distinct u.username, u.fname, u.lname, u.email, \n" +
             "man.fname as \"ManagerFname\", man.lname as \"ManagerLname\",man.email as \"ManagerMail\", " +
             "man.username as \"ManagerUsername\"\n" +
             "from \"User\" u\n" +

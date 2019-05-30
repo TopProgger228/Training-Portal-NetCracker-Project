@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
+import com.group3.basic.netcracker.backend.dao.TimeSlotDao;
 import com.group3.basic.netcracker.backend.service.ScheduleService;
 import com.group3.basic.netcracker.backend.entity.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
     private final ScheduleDao scheduleDao;
+    private final TimeSlotDao timeSlotDao;
 
     @Autowired
-    public ScheduleServiceImpl(ScheduleDao scheduleDao) {
+    public ScheduleServiceImpl(ScheduleDao scheduleDao, TimeSlotDao timeSlotDao) {
         this.scheduleDao = scheduleDao;
+        this.timeSlotDao = timeSlotDao;
     }
 
     @Override
     public void createSchedule(int userId, Integer[] timeSlotId, boolean isChoosen) {
         scheduleDao.createSchedule(userId, timeSlotId, isChoosen);
+        int courseId = timeSlotDao.getCourseIdById(timeSlotId[0]);
+        if(!scheduleDao.isGroupExist(courseId, userId)){
+            scheduleDao.connectUserAndCourse(courseId, userId);
+        }
     }
 
     @Override

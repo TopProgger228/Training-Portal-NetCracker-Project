@@ -9,6 +9,8 @@ public interface TimeSlotDao {
 
     TimeSlot getTimeSlotById(int id);
 
+    int getCourseIdById(int id);
+
     List<TimeSlot> listTimeSlots();
 
     void removeTimeSlot(int id);
