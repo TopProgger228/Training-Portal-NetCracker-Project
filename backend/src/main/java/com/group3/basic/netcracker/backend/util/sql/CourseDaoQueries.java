@@ -14,12 +14,15 @@ public interface CourseDaoQueries {
     String getCoursesList = "SELECT id, name, info, trainer_id, skill_level, " +
             "start_date, end_date, qty_per_week FROM \"Course\"";
 
-    String getActiveCoursesList = "SELECT DISTINCT c.id, c.name, c.info, c.trainer_id, c.skill_level, c.start_date, " +
-            "c.end_date, c.qty_per_week, S.is_choosen\n" +
-            "FROM \"Course\" as c\n" +
-            "join \"TimeSlot\" TS on c.id = TS.course_id\n" +
-            "left join \"Schedule\" S on TS.id = S.time_slot_id\n" +
-            "WHERE start_date > ? and S.is_choosen is null or S.is_choosen = false ORDER BY id DESC;";
+    String getActiveCoursesList = "SELECT distinct c.id, c.name, c.info, c.trainer_id, c.skill_level,\n" +
+            "                c.start_date, c.end_date, c.qty_per_week,\n" +
+            "                replace(string_agg(cast(S.is_choosen as text),'&'),'&false','') as choosen\n" +
+            "                FROM \"Course\" as c\n" +
+            "                join \"TimeSlot\" TS on c.id = TS.course_id\n" +
+            "                left join \"Schedule\" S on TS.id = S.time_slot_id\n" +
+            "                WHERE start_date > ?\n" +
+            "                group by c.id, c.name, c.info\n" +
+            "                ORDER BY id DESC";
 
     String getListCoursesByUsername = "SELECT id, name, info, trainer_id, skill_level, start_date, end_date," +
             " qty_per_week FROM \"Course\" where trainer_id=(select id from \"User\" where username=?)";
