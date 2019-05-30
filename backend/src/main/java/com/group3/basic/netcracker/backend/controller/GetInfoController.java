@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -97,8 +98,15 @@ public class GetInfoController {
     public void scheduleGenerate(@RequestParam("id") Integer id) {
         log.debug("Schedule generated for id - {}", id);
         scheduleService.generateSchedule(id);
+        scheduleService.generateLesson(id);
     }
-
+/*
+    @GetMapping("/create_lesson")
+    public void scheduleLesson(@RequestParam("id") Integer id) {
+        log.debug("Schedule generated for id - {}", id);
+        scheduleService.generateLesson(id);
+    }
+*/
     @GetMapping("/student/my-schedule")
     public List listScheduleOfStudent(@RequestParam("username") String username){
         log.debug("Got schedule of student - {}", username);

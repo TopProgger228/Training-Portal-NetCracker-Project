@@ -66,6 +66,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public void generateLesson(int course){
+        scheduleDao.generateLesson(course);
+    }
+
+    @Override
     public void generateSchedule(int course) {
         scheduleDao.generateSchedule(course);
     }

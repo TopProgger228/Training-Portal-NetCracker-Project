@@ -2,6 +2,7 @@ package com.group3.basic.netcracker.backend.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.group3.basic.netcracker.backend.dao.ScheduleDao;
 import com.group3.basic.netcracker.backend.entity.Schedule;
@@ -82,6 +83,20 @@ public class ScheduleDaoImpl implements ScheduleDao {
     public List getScheduleOfStudent(String username){
         return jdbcTemplate.query(ScheduleDaoQueries.getScheduleOfStudentQuery,
                 new ScheduleOfStudentRowMapper(), username);
+    }
+
+    @Override
+    public void generateLesson(int course) {
+        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate)
+                .withFunctionName("create_lessons");
+
+        SqlParameterSource paramMap = new MapSqlParameterSource()
+                .addValue("course", course);
+
+        //call.execute(paramMap);
+        String result = call.executeFunction(String.class, paramMap);
+        //call.ex
+        System.out.println("Lessons has been created ");
     }
 
     @Override

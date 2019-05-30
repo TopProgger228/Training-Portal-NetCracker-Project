@@ -58,14 +58,19 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
     // }
   }
 
-  success() {
+  success1() {
     this.toasterService.Success("Success", "You finished creating schedule for students");
   }
 
+  success2() {
+    this.toasterService.Success("Success", "You created lesson successfully");
+  }
+
+  error2() {
+    this.toasterService.Error("Error", "Fail to create lesson");
+  }
+
   OnSubmitSchedule(id: number) {
-    /*console.log('Local record = ', this.info);
-    let result = this.info.map(({ courseId }) => courseId);
-    console.log('Current id1 = ', result);*/
     this.scheduleService.isChoosen(id).subscribe(data => {
       console.log(data);
       }, error => {
@@ -78,11 +83,24 @@ export class ScheduleInfoComponent implements OnInit, OnChanges {
             this.info = data;
             console.log('This record = ', this.info)
           })
-        this.success()
+        this.success1()
         //this.reloadPage();
       });
   }
-
+/*
+  OnSubmitLesson(id: number){
+    this.scheduleService.createLesson(id).subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log('FAIL to finish lesson!');
+      },
+      () => {
+        console.log('isChoosen == true.');
+        this.success2()
+        //this.reloadPage();
+      });
+  }
+*/
   reloadPage() {
     window.location.reload();
   }

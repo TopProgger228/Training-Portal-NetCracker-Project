@@ -23,5 +23,7 @@ public interface ScheduleService {
 
     List listScheduleWithCourseAndTimeSlotAndUser();
 
+    void generateLesson(int course);
+
     void generateSchedule(int course);
 }

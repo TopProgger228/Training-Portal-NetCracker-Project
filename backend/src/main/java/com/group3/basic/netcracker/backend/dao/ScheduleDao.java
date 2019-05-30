@@ -23,6 +23,8 @@ public interface ScheduleDao {
 
     List listScheduleWithCourseAndTimeSlotAndUser();
 
+    void generateLesson(int course);
+
     void generateSchedule(int course);
 
     void connectUserAndCourse(int courseId, int userId);
