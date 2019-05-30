@@ -7,6 +7,6 @@ export class CourseWithChoosen {
     public skill_level : string,
     public trainer_id : number,
     public qty_per_week : number,
-    public choosen: string
+    public choosen: number
   ){}
 }

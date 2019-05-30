@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../../services/course.service';
-import { Course } from '../../../interface/course'
+import {CourseWithChoosen} from "../../../services/course-with-choosen";
 
 
 @Component({
@@ -10,7 +10,7 @@ import { Course } from '../../../interface/course'
 })
 export class CoursesContainerComponent implements OnInit {
 
-  courses: Course[];
+  courses: CourseWithChoosen[];
 
   constructor(private courseService: CourseService) { }
 

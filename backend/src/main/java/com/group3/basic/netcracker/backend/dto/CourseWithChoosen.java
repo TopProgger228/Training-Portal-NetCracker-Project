@@ -11,12 +11,12 @@ public class CourseWithChoosen {
     private String skill_level;
     private int trainer_id;
     private int qty_per_week;
-    private String choosen;
+    private int choosen;
 
     public CourseWithChoosen() {
     }
 
-    public CourseWithChoosen(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week, String choosen) {
+    public CourseWithChoosen(int id, String name, LocalDate start_date, LocalDate end_date, String info, String skill_level, int trainer_id, int qty_per_week, int choosen) {
         this.id = id;
         this.name = name;
         this.start_date = start_date;
@@ -92,11 +92,11 @@ public class CourseWithChoosen {
         this.qty_per_week = qty_per_week;
     }
 
-    public String getChoosen() {
+    public int getChoosen() {
         return choosen;
     }
 
-    public void setChoosen(String choosen) {
+    public void setChoosen(int choosen) {
         this.choosen = choosen;
     }
 }

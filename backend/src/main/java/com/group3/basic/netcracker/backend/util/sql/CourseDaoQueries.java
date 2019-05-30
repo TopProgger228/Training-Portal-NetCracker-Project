@@ -16,7 +16,9 @@ public interface CourseDaoQueries {
 
     String getActiveCoursesList = "SELECT distinct c.id, c.name, c.info, c.trainer_id, c.skill_level,\n" +
             "                c.start_date, c.end_date, c.qty_per_week,\n" +
-            "                replace(string_agg(cast(S.is_choosen as text),'&'),'&false','') as choosen\n" +
+            "                sum(case when S.is_choosen = true\n" +
+            "                then 1\n" +
+            "                else 0 end) as choosen\n" +
             "                FROM \"Course\" as c\n" +
             "                join \"TimeSlot\" TS on c.id = TS.course_id\n" +
             "                left join \"Schedule\" S on TS.id = S.time_slot_id\n" +
