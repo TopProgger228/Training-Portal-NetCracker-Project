@@ -538,3 +538,51 @@ Caused by: org.postgresql.util.PSQLException: Соединение уже был
 2019-05-30 20:08:48.660  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
 2019-05-30 20:08:48.661  WARN 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
 2019-05-30 20:08:49.096 DEBUG 14860 --- [http-nio-8080-exec-3] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 21:29:00.296  INFO 2992 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on Max-Desktop with PID 2992 (C:\Users\Max\IdeaProjects4\Training-Portal-NetCracker-Project\backend\target\classes started by Max in C:\Users\Max\IdeaProjects4\Training-Portal-NetCracker-Project)
+2019-05-30 21:29:00.299 DEBUG 2992 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-30 21:29:00.299  INFO 2992 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-30 21:29:10.685  INFO 2992 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-30 21:29:10.685  INFO 2992 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-30 21:29:10.778  INFO 2992 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-30 21:29:11.046 DEBUG 2992 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-30 21:29:12.783  INFO 2992 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 17.32 seconds (JVM running for 19.003)
+2019-05-30 21:29:12.790  INFO 2992 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-30
+2019-05-30 21:29:55.799  INFO 2992 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-30 21:29:56.929 ERROR 2992 --- [http-nio-8080-exec-6] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 21:29:56.929 ERROR 2992 --- [http-nio-8080-exec-4] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 21:29:56.929 ERROR 2992 --- [http-nio-8080-exec-5] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-30 21:30:08.828  INFO 2992 --- [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-30 21:30:09.791  INFO 2992 --- [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-30 21:30:10.350  INFO 2992 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.AuthRestController  : User authenticated!
+2019-05-30 21:30:11.201 DEBUG 2992 --- [http-nio-8080-exec-2] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-30 21:30:11.257 DEBUG 2992 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-30 21:30:11.298  WARN 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 21:30:11.298  WARN 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 21:30:11.299  WARN 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-30 21:30:11.823 DEBUG 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-30 21:30:15.840 DEBUG 2992 --- [http-nio-8080-exec-6] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:30:58.297 DEBUG 2992 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:31:05.121 DEBUG 2992 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:31:42.022 DEBUG 2992 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:31:49.204 DEBUG 2992 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.GetInfoController   : Schedule generated for id - 22
+2019-05-30 21:31:49.879 DEBUG 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:32:07.439 DEBUG 2992 --- [http-nio-8080-exec-6] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
+2019-05-30 21:32:13.322 DEBUG 2992 --- [http-nio-8080-exec-8] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 22
+2019-05-30 21:32:18.394 DEBUG 2992 --- [http-nio-8080-exec-9] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 7
+2019-05-30 21:32:24.107 DEBUG 2992 --- [http-nio-8080-exec-1] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 22
+2019-05-30 21:34:04.216 DEBUG 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 37
+2019-05-30 21:34:16.808 DEBUG 2992 --- [http-nio-8080-exec-4] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 22
+2019-05-30 21:37:05.812 DEBUG 2992 --- [http-nio-8080-exec-7] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
+2019-05-30 21:37:09.106 DEBUG 2992 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:37:12.383 DEBUG 2992 --- [http-nio-8080-exec-10] c.g.b.n.b.controller.GetInfoController   : Schedule generated for id - 22
+2019-05-30 21:37:12.964 DEBUG 2992 --- [http-nio-8080-exec-1] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:37:16.025 DEBUG 2992 --- [http-nio-8080-exec-9] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
+2019-05-30 21:37:21.771 DEBUG 2992 --- [http-nio-8080-exec-2] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 22
+2019-05-30 21:37:55.512 DEBUG 2992 --- [http-nio-8080-exec-5] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
+2019-05-30 21:39:45.416 DEBUG 2992 --- [http-nio-8080-exec-6] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
+2019-05-30 21:39:49.325 DEBUG 2992 --- [http-nio-8080-exec-7] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:39:58.060 DEBUG 2992 --- [http-nio-8080-exec-8] c.g.b.n.b.controller.GetInfoController   : Schedule generated for id - 22
+2019-05-30 21:39:58.576 DEBUG 2992 --- [http-nio-8080-exec-10] c.g.b.n.b.controller.GetInfoController   : Got schedule list
+2019-05-30 21:40:09.014 DEBUG 2992 --- [http-nio-8080-exec-1] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
+2019-05-30 21:40:27.810 DEBUG 2992 --- [http-nio-8080-exec-9] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 22
+2019-05-30 21:43:16.009 DEBUG 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.c.AttendanceController         : Got lessons of course with id - 22
