@@ -15,29 +15,28 @@
                    name="name" formControlName="name">
             <div
               *ngIf="courseFormGroup.controls.name.errors?.required  && courseFormGroup.controls.name.touched"
-              style="font-size: 15pt">First name is required</div>
+              style="font-size: 15pt" class="text-danger">Name is required</div>
           </div>
 
-          <!--<div [formGroup]="dateFormGroup">-->
-            <div class="form-group">
-              <label for="start_date">Star date<span style="color:red">*</span></label>
-              <input type="date" class="form-control" id="start_date" required
-                     formControlName="start_date" name="start_date">
-              <div
-                *ngIf="courseFormGroup.controls.start_date.errors?.required  && courseFormGroup.controls.start_date.touched"
-                style="font-size: 15pt">First name is required</div>
-            </div>
+          <div class="form-group">
+            <label for="start_date">Star date<span style="color:red">*</span></label>
+            <input type="date" class="form-control" id="start_date" required
+                   formControlName="start_date" name="start_date">
+            <div
+              *ngIf="courseFormGroup.controls.start_date.errors?.required  && courseFormGroup.controls.start_date.touched"
+              style="font-size: 15pt" class="text-danger">Start date is required</div>
+          </div>
 
-            <div class="form-group">
-              <label for="end_date">End date<span style="color:red">*</span></label>
-              <input type="date" class="form-control" id="end_date" required
-                     formControlName="end_date" name="end_date">
-              <div
-                *ngIf="courseFormGroup.controls.end_date.errors?.required  && courseFormGroup.controls.end_date.touched"
-                style="font-size: 15pt">First name is required</div>
-              <div *ngIf="courseFormGroup.errors?.compareDate" style="font-size: 15pt">End date must be greater than start date
-              </div>
+          <div class="form-group">
+            <label for="end_date">End date<span style="color:red">*</span></label>
+            <input type="date" class="form-control" id="end_date" required
+                   formControlName="end_date" name="end_date">
+            <div
+              *ngIf="courseFormGroup.controls.end_date.errors?.required  && courseFormGroup.controls.end_date.touched"
+              style="font-size: 15pt" class="text-danger">End is required</div>
+            <div *ngIf="courseFormGroup.errors?.compareDate" style="font-size: 15pt" class="text-danger">End date must be greater than start date
             </div>
+          </div>
 
           <div class="form-group">
             <label for="info">Info<span style="color:red">*</span></label>
@@ -47,7 +46,7 @@
             </textarea>
             <div
               *ngIf="courseFormGroup.controls.info.errors?.required  && courseFormGroup.controls.info.touched"
-              style="font-size: 15pt">First name is required</div>
+              style="font-size: 15pt" class="text-danger">Info is required</div>
           </div>
 
           <div class="form-group">
@@ -57,7 +56,7 @@
             </select>
             <div
               *ngIf="courseFormGroup.controls.skill_level.errors?.required  && courseFormGroup.controls.skill_level.touched"
-              style="font-size: 15pt">First name is required</div>
+              style="font-size: 15pt" class="text-danger">Skill level is required</div>
           </div>
 
 
@@ -68,7 +67,7 @@
             </select>
             <div
               *ngIf="courseFormGroup.controls.trainer_id.errors?.required  && courseFormGroup.controls.trainer_id.touched"
-              style="font-size: 15pt">First name is required</div>
+              style="font-size: 15pt" class="text-danger">Trainer is required</div>
           </div>
 
 
@@ -78,8 +77,8 @@
                    formControlName="qty_per_week" name="qty_per_week" min="1" max="4">
             <div
               *ngIf="courseFormGroup.controls.qty_per_week.errors?.required  && courseFormGroup.controls.qty_per_week.touched"
-              style="font-size: 15pt">First name is required</div>
-            <div *ngIf="courseFormGroup.errors?.invalidQty && courseFormGroup.controls.qty_per_week.touched" style="font-size: 15pt">Quantity per week must be from 1 to 4
+              style="font-size: 15pt" class="text-danger">Quantity is required</div>
+            <div *ngIf="courseFormGroup.errors?.invalidQty && courseFormGroup.controls.qty_per_week.touched" style="font-size: 15pt" class="text-danger">Quantity per week must be from 1 to 4
             </div>
           </div>
           <input [disabled]="!courseFormGroup.valid" type="submit" class="btn btn-secondary" value="Submit">

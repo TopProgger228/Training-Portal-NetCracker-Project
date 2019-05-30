@@ -54,7 +54,7 @@ public class CourseForm {
         return trainer_id;
     }
 
-    public void setTrainer_id(int user_id) {
+    public void setTrainer_id(int trainer_id) {
         this.trainer_id = trainer_id;
     }
 

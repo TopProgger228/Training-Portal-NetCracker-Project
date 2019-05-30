@@ -33,9 +33,9 @@ public class ImageConverter {
             fileInputStreamReader.read(bytes);
             encodedfile = new String(Base64.encodeBase64(bytes), StandardCharsets.UTF_8);
         } catch (FileNotFoundException e) {
-            log.error(e.getMessage());
-        } catch (NullPointerException | UnsupportedEncodingException e) {
-            log.error(e.getMessage());
+            log.warn("Your server don't have user's photo");
+        } catch (NullPointerException e) {
+            log.warn("User hasn't downloaded photo yet");
         } catch (IOException e) {
             log.error(e.getMessage());
         }

@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import javax.validation.Valid;
 
 
-import com.group3.basic.netcracker.backend.dao.UserDao;
-import com.group3.basic.netcracker.backend.dao.impl.UserDaoImpl;
 import com.group3.basic.netcracker.backend.service.UserService;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.LoginForm;
 import com.group3.basic.netcracker.backend.util.authorization.message.request.SignUpForm;
@@ -14,7 +12,6 @@ import com.group3.basic.netcracker.backend.util.authorization.message.response.R
 import com.group3.basic.netcracker.backend.util.authorization.security.jwt.JwtProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

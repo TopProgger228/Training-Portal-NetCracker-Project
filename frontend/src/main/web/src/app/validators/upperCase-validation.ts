@@ -9,7 +9,7 @@ export class UpperCaseValidator {
             return {
                 fnameIsLowerCase: true
             };
-        };
+        }
         
         if (!((lname.charAt(0).toUpperCase() + lname.slice(1)) === lname)) {
             return {

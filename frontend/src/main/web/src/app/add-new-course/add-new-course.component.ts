@@ -5,7 +5,6 @@ import { TokenStorageService } from "../auth/token-storage.service";
 import { Course } from "../interface/course";
 import { AddCourseService } from "../services/add-course.service";
 import { Trainer } from "../interface/trainer";
-import { Trainer } from "../services/trainer";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DateComparerValidation} from "../validators/date-compare-validation";
 import {InvalidQuantityValidation} from "../validators/invalid-quantity-validation";
@@ -37,7 +36,7 @@ export class AddNewCourseComponent implements OnInit {
       end_date: ['', Validators.required]
     }, {
       validator: DateComparerValidation.validate.bind(this),
-      validator: InvalidQuantityValidation.validate.bind(this)
+      validators: InvalidQuantityValidation.validate.bind(this)
     });
   }
 
