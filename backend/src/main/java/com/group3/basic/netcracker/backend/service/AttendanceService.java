@@ -3,7 +3,6 @@ package com.group3.basic.netcracker.backend.service;
 import java.util.List;
 
 import com.group3.basic.netcracker.backend.dto.*;
-import com.group3.basic.netcracker.backend.entity.Attendance;
 
 public interface AttendanceService {
 

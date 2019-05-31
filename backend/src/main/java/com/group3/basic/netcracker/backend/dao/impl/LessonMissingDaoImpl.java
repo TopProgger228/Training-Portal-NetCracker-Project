@@ -70,11 +70,8 @@ public class LessonMissingDaoImpl implements LessonMissingDao {
 
     @Override
     public LessonMissing getLessonMissingByLessonIdAndUserId(int lessonId, int userId) {
-
-        String SQL = "select lm.id, lm.user_id, lm.lesson_id, lm.reason from \"LessonMissing\" lm " +
-                "where lm.lesson_id = ? and lm.user_id = ?";
-
-        List<LessonMissing> lessonMissingList = jdbcTemplate.query(SQL, new Object[] {lessonId, userId}, lessonMissingRowMapper);
+        List<LessonMissing> lessonMissingList = jdbcTemplate.query(LessonMissingDaoQueries.getLessonMissingByLessonIdAndUserId,
+                new Object[] {lessonId, userId}, lessonMissingRowMapper);
         if (lessonMissingList.size() > 1) {
             log.debug("Duplicate line into lessonMissing table. Line with lesson id - {} and user id - {}", lessonId, userId);
             throw new RuntimeException();

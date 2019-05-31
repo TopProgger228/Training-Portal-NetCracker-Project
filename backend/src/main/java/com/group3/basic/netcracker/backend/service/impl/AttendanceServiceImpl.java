@@ -1,9 +1,7 @@
 package com.group3.basic.netcracker.backend.service.impl;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
 import com.group3.basic.netcracker.backend.dao.*;
 import com.group3.basic.netcracker.backend.dto.*;
 import com.group3.basic.netcracker.backend.entity.*;
@@ -48,7 +46,6 @@ public class AttendanceServiceImpl implements AttendanceService {
         return getCourseAttendanceDtoList(courseList);
     }
 
-
     @Override
     public List<LessonAttendanceDto> getLessonsOfCourseAttendance(int courseId) {
         List<Lesson> lessonsList = lessonDao.getLessonByCourse(courseId);
@@ -61,21 +58,20 @@ public class AttendanceServiceImpl implements AttendanceService {
         List<LessonAttendanceDto> lessonAttendanceDtoList = new ArrayList<>();
         List<Lesson> lessonsList = lessonDao.getLessonByCourse(courseId);
         Date date = new Date();
-
-        for (Lesson l : lessonsList) {
-            List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByLesson(l.getLessonId());
-            LessonAttendanceDto lad = lessonAttendanceDtoMapper.toLessonAttendanceDto(l);
-
-            for (LessonMissing lm : lessonMissingList) {
-                if (userId == lm.getUserId()) {
-                    lad.setAttStatus(lm.getReason());
+        for (Lesson lesson : lessonsList) {
+            List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByLesson(lesson.getLessonId());
+            LessonAttendanceDto lessonAttendanceDto = lessonAttendanceDtoMapper.toLessonAttendanceDto(lesson);
+            for (LessonMissing lessonMissing : lessonMissingList) {
+                if (userId == lessonMissing.getUserId()) {
+                    lessonAttendanceDto.setAttStatus(lessonMissing.getReason());
                 }
             }
-            if (lad.getAttStatus() == null & lad.getLessonDate().compareTo(date) < 0 & l.isCancel() != true) {
-                lad.setAttStatus("Present");
+            if (lessonAttendanceDto.getAttStatus() == null && lessonAttendanceDto.getLessonDate().compareTo(date) < 0 && !lesson.isCancel()) {
+                lessonAttendanceDto.setAttStatus(AttendanceStatus.PRESENT.toString());
             }
-            lessonAttendanceDtoList.add(lad);
+            lessonAttendanceDtoList.add(lessonAttendanceDto);
         }
+
         return lessonAttendanceDtoList;
     }
 
@@ -85,21 +81,17 @@ public class AttendanceServiceImpl implements AttendanceService {
         List<UserAttendanceDto> userAttendanceDtoList = new ArrayList<>();
         List<User> userList = userDao.getUsersByLesson(lessonId);
         List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByLesson(lessonId);
-
-        for (User u : userList) {
-            UserAttendanceDto uad = userAttendanceDtoMapper.toUserAttendanceDto(u);
-
-            for (LessonMissing lm : lessonMissingList) {
-                if (uad.getId() == lm.getUserId()) {
-                    uad.setAttendanceStatus(lm.getReason());
+        for (User user : userList) {
+            UserAttendanceDto userAttendanceDto = userAttendanceDtoMapper.toUserAttendanceDto(user);
+            for (LessonMissing lessonMissing : lessonMissingList) {
+                if (userAttendanceDto.getId() == lessonMissing.getUserId()) {
+                    userAttendanceDto.setAttendanceStatus(lessonMissing.getReason());
                 }
             }
-            if (uad.getAttendanceStatus() == null) {
-                uad.setAttendanceStatus("Present");
+            if (userAttendanceDto.getAttendanceStatus() == null) {
+                userAttendanceDto.setAttendanceStatus(AttendanceStatus.PRESENT.toString());
             }
-
-            userAttendanceDtoList.add(uad);
-
+            userAttendanceDtoList.add(userAttendanceDto);
         }
 
         return userAttendanceDtoList;
@@ -119,9 +111,10 @@ public class AttendanceServiceImpl implements AttendanceService {
         List<Course> courseList = courseDao.getCourseByUserId(userId);
         List<CourseAttendanceDto> listDto = getCourseAttendanceDtoList(courseList);
 
-        for (CourseAttendanceDto cad : listDto) {
-            int missingLessonCount = lessonMissingDao.getMissingLessonCountByUserAndCourse(cad.getCourseId(), userId);
-            cad.setPresentLessonCount(lessonDao.getLessonCountInCourseTillToday(cad.getCourseId()) - missingLessonCount);
+        for (CourseAttendanceDto courseAttendanceDto : listDto) {
+            int missingLessonCount = lessonMissingDao.getMissingLessonCountByUserAndCourse(courseAttendanceDto.getCourseId(), userId);
+            courseAttendanceDto.setPresentLessonCount(lessonDao
+                    .getLessonCountInCourseTillToday(courseAttendanceDto.getCourseId()) - missingLessonCount);
         }
         return listDto;
 
@@ -148,43 +141,33 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         List<StudentAttendanceForManagerDto> dtoList = new ArrayList<>();
         List<User> userList = userDao.getStudentsOfManager(userName);
-        String[] reasonList = {
-                AttendanceStatus.ABSENT_DUE_TO_BUSINESS_TRIP.toString(),
-                AttendanceStatus.ABSENT_WITHOUT_REASON.toString(),
-                AttendanceStatus.ABSENT_DUE_TO_SICK_LEAVE.toString(),
-                AttendanceStatus.ABSENT_DUE_TO_PROJECT_ACTIVITIES.toString()};
+        for (User user : userList) {
+            StudentAttendanceForManagerDto studentAttendanceForManagerDto = studentAttendanceForManagerDtoMapper.toStudentAttendanceForManagerDto(user);
+            studentAttendanceForManagerDto.setTotalLessonCount(lessonDao.getLessonCountTillTodayByStudent(user.getId()));
 
-        for (User u : userList) {
-            StudentAttendanceForManagerDto tmp = studentAttendanceForManagerDtoMapper.toStudentAttendanceForManagerDto(u);
-            tmp.setTotalLessonCount(lessonDao.getLessonCountTillTodayByStudent(u.getId()));
-//            AtomicInteger for lamda
-//            AtomicInteger integer = new AtomicInteger();
-//            integer.incrementAndGet();
-
-            Map<String, Integer> map = new HashMap<>();
-            int presentLessonCount = tmp.getTotalLessonCount();
-            List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByUser(u.getId());
+            Map<String, Integer> AttendanceStatusMap = new HashMap<>();
+            AttendanceStatusMap.put(AttendanceStatus.ABSENT_DUE_TO_BUSINESS_TRIP.toString(), 0);
+            AttendanceStatusMap.put(AttendanceStatus.ABSENT_WITHOUT_REASON.toString(), 0);
+            AttendanceStatusMap.put(AttendanceStatus.ABSENT_DUE_TO_SICK_LEAVE.toString(), 0);
+            AttendanceStatusMap.put(AttendanceStatus.ABSENT_DUE_TO_PROJECT_ACTIVITIES.toString(), 0);
+            int presentLessonCount = studentAttendanceForManagerDto.getTotalLessonCount();
+            List<LessonMissing> lessonMissingList = lessonMissingDao.getLessonMissingByUser(user.getId());
             if (lessonMissingList != null && lessonMissingList.size() > 0) {
                 int count;
-                for (int i = 0; i < reasonList.length; i++) {
+                for ( Map.Entry<String, Integer> oneStatus : AttendanceStatusMap.entrySet()) {
                     count = 0;
-                    for (int j = 0; j < lessonMissingList.size(); j++) {
-                        if (reasonList[i].equals(lessonMissingList.get(j).getReason())) {
+                    for (LessonMissing aLessonMissingList : lessonMissingList) {
+                        if (oneStatus.getKey().equals(aLessonMissingList.getReason())) {
                             count++;
                         }
                     }
-                    map.put(reasonList[i], count);
+                    AttendanceStatusMap.put(oneStatus.getKey(), count);
                     presentLessonCount -= count;
                 }
-            } else {
-                map.put("Absent due to business trip", 0);
-                map.put("Absent without reason", 0);
-                map.put("Absent due to sick leave", 0);
-                map.put("Absent due to project activities", 0);
             }
-            map.put("Present", presentLessonCount);
-            tmp.setLessonsMap(map);
-            dtoList.add(tmp);
+            AttendanceStatusMap.put(AttendanceStatus.PRESENT.toString(), presentLessonCount);
+            studentAttendanceForManagerDto.setLessonsMap(AttendanceStatusMap);
+            dtoList.add(studentAttendanceForManagerDto);
         }
 
         return dtoList;

@@ -20,12 +20,13 @@ public interface LessonDaoQueries {
             "join \"Group\" g on c.id = g.course_id " +
             "join \"User\" u on g.user_id = u.id " +
             "join \"TimeSlot\" ts on l.time_slot_id = ts.id " +
-            "where u.id = ? and l.lesson_date <= cast(current_timestamp as date) " +
+            "where u.id = ? and l.lesson_date + ts.start_time <= current_timestamp " +
             "and (l.is_cancel = false or l.is_cancel is null)";
 
     String getLessonCountInCourseTillToday = "select count(l.id) from \"Lesson\" l " +
             "join \"Course\" c on l.course_id = c.id " +
-            "where c.id = ? and l.lesson_date <= cast(current_timestamp as date) " +
+            "join \"TimeSlot\" ts on l.time_slot_id = ts.id " +
+            "where c.id = ? and l.lesson_date + ts.start_time <= current_timestamp " +
             "and (l.is_cancel = false or l.is_cancel is null)";
 
     String getLessonCountInCourse = "select count(l.id) from \"Lesson\" l join \"Course\" c on l.course_id = c.id " +

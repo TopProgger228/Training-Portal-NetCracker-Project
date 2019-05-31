@@ -33,8 +33,9 @@ public class LessonDaoImpl implements LessonDao {
 
     @Override
     public List<Lesson> getTodayLessonsByTrainerUsername(String username) {
-        return jdbcTemplate.query(LessonDaoQueries.getTodayLessonsByTrainerUsername,
+        List<Lesson> lessonList = jdbcTemplate.query(LessonDaoQueries.getTodayLessonsByTrainerUsername,
                 new Object[]{username}, new LessonRowMapper());
+        return lessonList;
     }
 
     @Override

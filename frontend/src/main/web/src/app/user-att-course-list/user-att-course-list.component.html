@@ -3,7 +3,7 @@
   <div class="col-3"><span matTooltip="Course name">{{course.name}}</span></div>
   <div class="col-2"><span matTooltip="Course skill level">{{course.skillLevel}}</span></div>
   <div class="col-3"><span matTooltip="Trainer">{{course.trainer.firstName}} {{course.trainer.lastName}}</span></div>
-  <div class="col-3" style="text-align: center"><span matTooltip="Number of lesson in this course">{{course.totalLessonCount}} lesson(s)</span></div>
+  <div class="col-3" style="text-align: center"><span matTooltip="Number of lesson in this course">{{course.totalLessonCount}} lessons ({{course.presentLessonCount}} present)</span></div>
 </div>
 <div *ngIf="!hide">
   <app-spinner *ngIf="isLoading"></app-spinner>
