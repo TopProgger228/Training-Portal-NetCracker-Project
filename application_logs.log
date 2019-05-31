@@ -602,3 +602,35 @@ Caused by: org.postgresql.util.PSQLException: Соединение уже был
 2019-05-30 21:57:26.242 DEBUG 2992 --- [http-nio-8080-exec-9] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
 2019-05-30 22:04:05.666 DEBUG 2992 --- [http-nio-8080-exec-3] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
 2019-05-30 22:07:10.493 DEBUG 2992 --- [http-nio-8080-exec-6] c.g.b.n.b.c.AttendanceController         : Got all courses for show attendance
+2019-05-31 13:22:40.476  INFO 8716 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Starting BackendApplication on DESKTOP-FE3LGGP with PID 8716 (C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project\backend\target\classes started by TopProgger in C:\Users\TopProgger\IdeaProjects\Training-Portal-NetCracker-Project)
+2019-05-31 13:22:40.532 DEBUG 8716 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-05-31 13:22:40.534  INFO 8716 --- [restartedMain] c.g.b.n.backend.BackendApplication       : No active profile set, falling back to default profiles: default
+2019-05-31 13:22:52.415  INFO 8716 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-31 13:22:52.419  INFO 8716 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-05-31 13:22:52.890  INFO 8716 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-31 13:22:54.083 DEBUG 8716 --- [restartedMain] c.g.b.n.b.u.a.s.jwt.JwtAuthTokenFilter   : Filter 'authenticationJwtTokenFilter' configured for use
+2019-05-31 13:22:58.029  INFO 8716 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Started BackendApplication in 21.787 seconds (JVM running for 41.02)
+2019-05-31 13:22:58.070  INFO 8716 --- [restartedMain] c.g.b.n.backend.BackendApplication       : Application started! - 2019-05-31
+2019-05-31 13:31:15.121  INFO 8716 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-31 13:31:22.103 ERROR 8716 --- [http-nio-8080-exec-6] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-31 13:31:22.104 ERROR 8716 --- [http-nio-8080-exec-5] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-31 13:31:22.101 ERROR 8716 --- [http-nio-8080-exec-4] c.g.b.n.b.u.a.s.jwt.JwtAuthEntryPoint    : Unauthorized error. Message - Full authentication is required to access this resource
+2019-05-31 13:32:51.596  INFO 8716 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-05-31 13:33:00.368  INFO 8716 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-05-31 13:33:01.434  INFO 8716 --- [http-nio-8080-exec-3] c.g.b.n.b.controller.AuthRestController  : User authenticated!
+2019-05-31 13:33:02.879 DEBUG 8716 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-31 13:33:02.930 DEBUG 8716 --- [http-nio-8080-exec-9] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-31 13:33:03.138  WARN 8716 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-31 13:33:03.216  WARN 8716 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : Your server don't have user's photo
+2019-05-31 13:33:03.218  WARN 8716 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-31 13:33:16.328  WARN 8716 --- [http-nio-8080-exec-6] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-31 13:33:17.210 DEBUG 8716 --- [http-nio-8080-exec-6] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
+2019-05-31 13:34:30.674  INFO 8716 --- [http-nio-8080-exec-1] b.c.ManagersAndTrainersEditingController : Controller get user - fernando1111
+2019-05-31 13:34:31.391  INFO 8716 --- [http-nio-8080-exec-1] b.c.ManagersAndTrainersEditingController : User created with username - fernando1111
+2019-05-31 13:34:31.873 DEBUG 8716 --- [http-nio-8080-exec-4] c.g.b.n.b.controller.NewsController      : Got list of active news!
+2019-05-31 13:34:31.937 DEBUG 8716 --- [http-nio-8080-exec-5] c.g.b.n.b.controller.CourseController    : Got active courses!
+2019-05-31 13:34:31.985  WARN 8716 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-31 13:34:31.989  WARN 8716 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : Your server don't have user's photo
+2019-05-31 13:34:31.989  WARN 8716 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-31 13:34:31.993  WARN 8716 --- [http-nio-8080-exec-2] c.g.b.n.b.util.file.ImageConverter       : User hasn't downloaded photo yet
+2019-05-31 13:34:32.648 DEBUG 8716 --- [http-nio-8080-exec-2] c.g.b.n.b.c.ShowTrainersController       : List of trainers is received!
