@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+<div class="container mx-auto mt-5" style="min-height: 100vh">
+  <h2 class="text-center" style="font-size: 30px">Your lessons for today</h2>
+  <div class="row" style="font-size: 20px; font-weight: bold">
+    <div class="col-1">#</div>
+    <div class="col-4">Course name</div>
+    <div class="col-3">Time</div>
+    <div class="col-3">Date</div>
+    <div class="col-1">Status</div>
+  </div>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+  <app-no-data *ngIf="noData"></app-no-data>
+  <div class="list-group " *ngFor="let lesson of lessonList; index as i" style="font-size: 20px">
+    <div class="list-group-item mt-2" *ngIf="lesson.cancel">
+      <div class="row">
+        <div class="col-1">{{i + 1}}</div>
+        <div class="col-4">{{lesson.courseName}}</div>
+        <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
+        <div class="col-3">{{lesson.lessonDate}}</div>
+        <div class="col-1" *ngIf="lesson.cancel">Cancel</div>
+      </div>
+    </div>
+    <a class="list-group-item list-group-item-action mt-2" (click)="navigate(lesson.lessonId)" *ngIf="!lesson.cancel">
+      <div class="row">
+        <div class="col-1">{{i + 1}}</div>
+        <div class="col-4">{{lesson.courseName}}</div>
+        <div class="col-3">{{lesson.startTime}}-{{lesson.endTime}}</div>
+        <div class="col-3">{{lesson.lessonDate}}</div>
+        <div class="col-1" *ngIf="!lesson.cancel">Active</div>
+      </div>
+    </a>
+  </div>
+</div>
+<app-footer></app-footer>

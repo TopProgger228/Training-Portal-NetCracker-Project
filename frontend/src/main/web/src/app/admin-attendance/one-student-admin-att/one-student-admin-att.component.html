@@ -1,0 +1,23 @@
+<div style="margin-left: 5%; font-size: 14px; border: #999999">
+  <table class="table">
+    <thead>
+    <tr>
+      <td scope="col">#</td>
+      <td scope="col">First name</td>
+      <td scope="col">Last name</td>
+      <td scope="col">Status</td>
+    </tr>
+    </thead>
+    <tbody *ngFor="let user of userList; index as i">
+    <tr>
+      <td scope="row">{{i + 1}}</td>
+      <td>{{user.userFirstName}}</td>
+      <td>{{user.userLastName}}</td>
+      <td *ngIf="isLess()">{{user.attendanceStatus}}</td>
+      <td *ngIf="!isLess()"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

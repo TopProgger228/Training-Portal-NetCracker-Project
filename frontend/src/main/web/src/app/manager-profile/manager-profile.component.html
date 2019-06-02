@@ -1,0 +1,89 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 100%; min-height: 100vh;">
+
+    <app-menu></app-menu>
+    <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"-->
+    <!--id="bootstrap-css">-->
+
+    <div class="container mt-5">
+      <div class="row">
+
+        <div class="center-block col-md-7 ">
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4>User Profile</h4></div>
+            <div class="panel-body">
+
+              <div class="box box-info">
+
+                <div class="box-body">
+                  <div class="col-sm-6">
+                    <div align="center">    <img *ngIf="hasPhoto" alt="User Pic"
+                                             [src]="manager.photo"
+                                             id="profile-image" class="img-circle img-responsive">
+                                            <img *ngIf="!hasPhoto" alt="User Pic"
+                                              src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                                              id="profile-image1" class="img-circle img-responsive">
+
+                      <input id="profile-image-upload" class="hidden" type="file">
+                      <!--<div style="color:#999;">click here to change profile image</div>-->
+                      <!--Upload Image Js And Css-->
+                    </div>
+                    <!-- /input-group -->
+                  </div>
+
+                  <!--<div *ngFor="let student of students; let i = index">-->
+                    <div class="col-sm-6">
+                      <h4 style="color:#00b1b1; font-size:20px">{{manager.fname}} {{manager.lname}}</h4>
+                      <span><p>Manager</p></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+
+
+                    <div class="col-sm-5 col-xs-6 tital ">First Name:</div>
+                    <div class="col-sm-7 col-xs-6 ">
+                      <h5 style="font-size:16px"> {{manager.fname}}</h5></div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="col-sm-5 col-xs-6 tital ">Last Name:</div>
+                    <div class="col-sm-7">
+                      <h6 style="font-size:16px">{{manager.lname}}</h6></div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="col-sm-5 col-xs-6 tital ">E-mail:</div>
+                    <div class="col-sm-7">
+                      <h6 style="font-size:16px">{{manager.email}}</h6></div>
+                  <!--</div>-->
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!--скрипт для добавления фотографии-->
+        <!--<script>-->
+        <!--$(function () {-->
+        <!--$('#profile-image1').on('click', function () {-->
+        <!--$('#profile-image-upload').click();-->
+        <!--});-->
+        <!--});-->
+        <!--</script>-->
+
+
+      </div>
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+</ng-template>

@@ -1,0 +1,41 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header style="min-height: max-content">
+    <mat-panel-title style="min-width: 20%">
+      <div>
+        <div>Username: {{user.userName}}</div>
+        <div>First name: {{user.firstName}}</div>
+        <div>Last name: {{user.lastName}}</div>
+        <div>Total lessons: {{user.totalLessonCount}}</div>
+      </div>
+    </mat-panel-title>
+    <mat-panel-description>
+      <table class="table table-bordered" style="text-align: center">
+        <thead>
+        <tr>
+          <td>Present</td>
+          <td>Absent without reason</td>
+          <td>Absent due to business trip</td>
+          <td>Absent due to sick leave</td>
+          <td>Absent due to project activities</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{statusList.get("Present")}}</td>
+          <td>{{statusList.get("Absent without reason")}}</td>
+          <td>{{statusList.get("Absent due to business trip")}}</td>
+          <td>{{statusList.get("Absent due to sick leave")}}</td>
+          <td>{{statusList.get("Absent due to project activities")}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <div class="list-group " *ngFor="let course of courseList; index as i" style="font-size: 14px">
+    <a class="list-group-item list-group-item-action mt-2">
+      <app-user-att-course-list [index]="i" [courseAtt]="course" [userId]="user.id"></app-user-att-course-list>
+    </a>
+  </div>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+</mat-expansion-panel>

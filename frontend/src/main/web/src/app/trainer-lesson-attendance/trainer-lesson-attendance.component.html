@@ -1,0 +1,22 @@
+<app-menu></app-menu>
+<div class="container mx-auto mt-5" style="font-size: 20px; min-height: 100vh">
+  <h2 class="text-center">
+    <div class="row">
+      <div class="col-4">Course: {{class?.courseName}}</div>
+      <div class="col-4">Trainer: {{class?.trainer.firstName}} {{class?.trainer.firstName}}</div>
+      <div class="col-4">Date:  {{class?.lessonDate}}</div>
+    </div>
+  </h2>
+  <div class="row" style="font-weight: bold">
+    <div class="col-1">#</div>
+    <div class="col-3">First name</div>
+    <div class="col-3">Last name</div>
+    <div class="col-5"></div>
+  </div>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+  <div *ngFor="let user of studentList; index as i">
+    <app-one-check-att-item [lessonId]="class.lessonId" [userAtt]="user" [index]="i"></app-one-check-att-item>
+  </div>
+  <app-no-data *ngIf="noData"></app-no-data>
+</div>
+<app-footer></app-footer>

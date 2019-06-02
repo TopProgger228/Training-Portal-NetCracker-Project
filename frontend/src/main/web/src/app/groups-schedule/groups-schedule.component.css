@@ -1,0 +1,72 @@
+#bg-image{
+  background: url('../../assets/images/sand-clock.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
+/*#bg-overlay{*/
+  /*background-size: cover;*/
+  /**/
+  /*height: 100vh;*/
+
+/*}*/
+
+.container{
+  width: 50%;
+}
+
+#headerh1{
+  margin-top: 50px;
+}
+
+label, select, option{
+  width: 100%;
+  font-size: 20px;
+}
+
+input{
+  margin-top: 2%;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+button{
+  font-size: 22px;
+}
+
+mat-option {
+  font-size: 20px;
+}
+
+mat-select, mat-list-item{
+  font-size: 20px;
+  background-color: white;
+  height: 80%;
+}
+
+/*цвет текста*/
+/deep/ .mat-select-value{
+  font-weight: bolder;
+  /*color: navy;*/
+}
+
+/deep/ .mat-select-panel {
+  max-height: 50vh !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/deep/ .mat-form-field-underline {
+  height: 0 !important;
+}
+
+
+.alert{
+  width: 70%;
+  font-family: Times, serif;
+  letter-spacing:normal;
+  font-size: 16px;
+}

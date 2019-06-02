@@ -1,0 +1,27 @@
+<div class="row justify-content-center">
+  <div *ngFor="let course of courses" class="col-lg-5 shadow p-3 mb-5 rounded thumbnail "
+       style="padding: 20px; margin: 30px">
+    <div class="row ">
+      <div class="col-7">
+
+        <div *ngIf="course.choosen >= 1;
+                  then thenBlock else elseBlock">
+        </div>
+        <ng-template #thenBlock>
+          <del><h1>{{course.name}}</h1></del> <h2>CLOSED FOR THIS SEASON</h2>
+        </ng-template>
+        <ng-template #elseBlock>
+          <a [routerLink]="['/student/course-page', course.name]"><h1>{{course.name}}</h1></a>
+        </ng-template>
+
+        <em>
+          <h3 class="text-muted">{{ course.skill_level }}</h3>
+        </em>
+
+        <h4>{{ course.start_date }} - {{course.end_date}}</h4>
+      </div>
+
+    </div>
+    <h3 style="margin-top: 10px;">{{ course.info }}</h3>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+
+  <div class="row list-inline-item">
+    <div class="col-1">{{index + 1}}</div>
+    <div class="col-3">{{user.userFirstName}}</div>
+    <div class="col-3">{{user.userLastName}}</div>
+    <div class="col-4">
+      <select [(ngModel)]="selectedStatus" >
+        <option *ngFor="let status of statusList">
+          {{status}}
+        </option>
+      </select>
+    </div>
+    <div class="col-1"><button type="button" class="btn btn-primary btn-lg" (click)="check(user.id.toString(), lessonId.toString(), selectedStatus)">Check</button></div>
+  </div>

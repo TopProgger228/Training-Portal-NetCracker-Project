@@ -1,0 +1,49 @@
+.trainers{
+    background: rgba(185, 185, 185, 0.233);
+    background-size: cover;
+   
+}
+
+.col{
+    background:  rgba(0, 0, 0, 0);
+}
+
+.trainer-img{
+  width: 100%;
+  padding-right: 20pt;
+}
+
+.trainer-img-default{
+  width: 100%;
+  padding-right: 20pt;
+}
+
+
+.scrollbar {
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.force-overflow{
+  width: 90%;
+  justify-items:  center;
+  margin: auto;
+}
+
+#style-1::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+#style-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}

@@ -1,0 +1,89 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 100%; min-height: 100vh">
+
+    <app-menu></app-menu>
+    <div class="container">
+      <h1>User Form</h1>
+      <br>
+      <br>
+      <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="first_name">First name <span style="color:red">*</span></label>
+          <input #fname="ngModel" [(ngModel)]="userModel.fname" class="form-control" id="first_name" name="fname"
+            required type="text">
+
+          <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger">
+            User name is required!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="last_name">Last name <span style="color:red">*</span></label>
+          <input #lname="ngModel" [(ngModel)]="userModel.lname" class="form-control" id="last_name" name="lname"
+            required type="text">
+
+          <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger">
+            Last name is required!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="role">User role</label>
+          <select [(ngModel)]="userModel.role" class="form-control" id="role" name="role">
+            <option *ngFor="let rl of roles" [value]="rl">{{rl}}</option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="userModel.role === 'Trainer'">
+          <label for="trainers_info">Information about trainer <span style="color:red">*</span></label>
+          <input #info="ngModel" [(ngModel)]="userModel.info" class="form-control" id="trainers_info"
+                 name="trainersInfo"
+                 required type="text">
+
+          <div [hidden]="info.valid || info.pristine" class="alert alert-danger">
+            Trainer`s information is required!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username <span style="color:red">*</span></label>
+          <input #username="ngModel" [(ngModel)]="userModel.username" class="form-control" id="username" name="username"
+            required type="text">
+
+          <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+            Username is required!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">User e-mail <span style="color:red">*</span></label>
+          <input #email="ngModel" [(ngModel)]="userModel.email" class="form-control" id="email" name="email" required email
+            type="text">
+
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            E-mail is required!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password <span style="color:red">*</span></label>
+          <input #password="ngModel" [(ngModel)]="userModel.password" class="form-control" id="password" name="password"
+            required minlength="6" type="password">
+
+          <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+            Password is required!
+          </div>
+        </div>
+
+        <button [disabled]="!userForm.form.valid" class="btn btn-secondary" type="submit">Submit</button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+</ng-template>

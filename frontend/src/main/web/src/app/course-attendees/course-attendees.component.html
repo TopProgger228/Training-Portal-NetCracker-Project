@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+
+<div style="height: 100%;  min-height: 100vh">
+  <div style="width: 80%;  margin: 20px auto;">
+    <ngb-tabset>
+      <ngb-tab>
+        <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">
+          {{name}} course attendees</span>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First name</th>
+              <th scope="col">Last name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let attendee of attendees; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{attendee.fname}}</td>
+              <td>{{attendee.lname}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

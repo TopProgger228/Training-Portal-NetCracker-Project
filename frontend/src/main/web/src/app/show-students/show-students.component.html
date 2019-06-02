@@ -1,0 +1,59 @@
+<div *ngIf="!loggedOut">
+  <div style="height: 100%;  min-height: 100vh">
+    <app-menu></app-menu>
+
+    <div class=" row justify-content-center">
+      <div *ngFor="let student of students" class="col-lg-5 shadow p-3 mb-5 rounded thumbnail"
+           style="padding: 20px; margin: 30px">
+        <div class="row ">
+          <div class="col-7">
+            <h1>{{student.fname}} {{student.lname}}</h1>
+
+            <em>
+              <h3 class="text-muted">Student username: {{student.username}}</h3>
+            </em>
+
+            <div *ngIf="student.managerUsername == null;
+                  then thenBlock1 else elseBlock1">
+            </div>
+
+            <ng-template #thenBlock1>
+              <h4 class="text-muted">Manager: No manager yet</h4>
+            </ng-template>
+            <ng-template #elseBlock1>
+              <h4 class="text-muted">Manager: {{student.managerFname}} {{student.managerLname}}</h4>
+              <h4 class="text-muted">Manager`s e-mail: {{student.managerEmail}}</h4>
+            </ng-template>
+
+            <!--<h4 class="text-muted">Manager: {{student.managerFname}} {{student.managerLname}}</h4>-->
+            <!--<h4 class="text-muted">Manager`s e-mail: {{student.managerEmail}}</h4>-->
+          </div>
+        </div>
+
+        <h3 style="margin-top: 10px;">E-mail: {{student.email}}</h3>
+        <h3 style="margin-top: 10px;">Manager profile:
+          <div *ngIf="student.managerUsername == null;
+                  then thenBlock else elseBlock">
+          </div>
+          <ng-template #thenBlock>
+            <a [routerLink]="['/manager/profile/', student.managerUsername]" disabled>
+              <button mat-raised-button type="submit" class="btn btn-secondary" disabled>Open profile</button>
+            </a>
+          </ng-template>
+          <ng-template #elseBlock>
+            <a [routerLink]="['/manager/profile/', student.managerUsername]">
+              <button mat-raised-button type="submit" class="btn btn-secondary">Open profile</button>
+            </a>
+          </ng-template>
+          <!--<a [routerLink]="['/manager/profile', student.managerUsername]"><button type="button" class="btn btn-info" >Open profile</button></a>-->
+        </h3>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,39 @@
+<script src="courses-admin-att/courses-admin-att.component.ts"></script>
+<app-menu></app-menu>
+<div class="container mx-auto mt-5" style="min-height: 100vh">
+  <h2 class="text-center" style="font-size: 30px">Courses</h2>
+  <ngb-tabset style="font-size: 20px">
+
+    <ngb-tab>
+      <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">All</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-all-courses-admin-att></app-all-courses-admin-att>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab>
+      <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">By trainer</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-by-trainer-courses-admin-att></app-by-trainer-courses-admin-att>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab>
+      <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">By student</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-by-student-courses-admin-att></app-by-student-courses-admin-att>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab>
+      <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px">By level</span></ng-template>
+      <ng-template ngbTabContent>
+        <app-by-level-courses-admin-att></app-by-level-courses-admin-att>
+      </ng-template>
+    </ngb-tab>
+
+
+
+  </ngb-tabset>
+</div>
+<app-footer></app-footer>

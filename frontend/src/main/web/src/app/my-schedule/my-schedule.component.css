@@ -1,0 +1,12 @@
+td, th, title{
+  font-family: "Times New Roman", Times, serif;
+
+  font-size: 22px;
+}
+
+input[type="checkbox"]{
+  width: 30px; /*Desired width*/
+  height: 30px; /*Desired height*/
+  margin: auto;
+  position : center;
+}

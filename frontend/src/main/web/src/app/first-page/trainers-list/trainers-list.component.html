@@ -1,0 +1,33 @@
+<div class="trainers" style="padding: 30px;">
+
+  <div class="scrollbar" id="style-1">
+    <div class="force-overflow">
+      <br><br>
+      <div *ngFor="let trainer of trainers" style="width: 90%; margin: auto;">
+        <div class="col shadow p-3 mb-5 rounded" style="padding: 10px; ">
+          <div class="row justify-content-center">
+
+            <div class="col-2">
+              <img *ngIf="trainer.photo != null" [src]="trainer.photo" class="img-circle trainer-img" alt="User Pic">
+              <img *ngIf="trainer.photo == null"
+                   src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                   class="img-circle trainer-img-default" alt="User Pic">
+            </div>
+
+            <div class="col">
+              <h1>{{ trainer.fname }} {{ trainer.lname}}</h1>
+              <div *ngFor="let course of trainer.courses">
+                <h3 class="text-muted">{{course}}</h3>
+              </div>
+              <em><h3 style="margin-top: 10px;">{{ trainer.info  }}</h3></em>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <br><br>
+    </div>
+
+  </div>
+</div>
+

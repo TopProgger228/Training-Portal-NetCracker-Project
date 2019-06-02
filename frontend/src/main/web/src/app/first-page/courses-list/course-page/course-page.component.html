@@ -1,0 +1,62 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+<ng-template #isLoggedIn>
+
+  <div style="height: 100%; min-height: 100vh">
+    <app-menu></app-menu>
+    <div id="bg-image">
+      <div id="bg-overlay">
+        <div class="container">
+
+          <div id="headerh1"><h1 class="text-center"></h1></div>
+          <!--Schedule Form-->
+          <br>
+          <br>
+          <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
+            <mat-list-item class="primary-imenu-item" role="listitem">
+              <mat-form-field class="select-form">
+                <mat-select
+                  placeholder="Schedule"
+                  name="Schedule"
+                  class="filter-select"
+                  [(ngModel)]="schedule.time_slot_id"
+                  multiple
+                  #timeSelect="ngModel">
+                  <mat-option
+                    disabled="disabled"
+                    class="filter-option">
+                    <button
+                      mat-raised-button
+                      class="mat-primary fill text-sm"
+                      (click)="selectAll(timeSelect, myIdArray)">
+                      Select All
+                    </button>
+                    <button
+                      mat-raised-button
+                      class="mat-accent fill text-sm"
+                      (click)="deselectAll(timeSelect)">
+                      Deselect All
+                    </button>
+                  </mat-option>
+                  <mat-option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}
+                  </mat-option>
+                </mat-select>
+
+              </mat-form-field>
+
+            </mat-list-item>
+            <button id="submitButton" mat-raised-button type="submit" class="btn btn-secondary">Submit</button>
+          <!--<mat-select [(ngModel)]="schedule.time_slot_id" class="filter-select" id="time_slot_id">-->
+          <!--<mat-option *ngFor="let t of timeSlots" [value]="t.id">{{t.startTime}} {{t.endTime}} {{t.weekDay}}-->
+          <!--</mat-option>-->
+          <!--</mat-select>-->
+          <!--<button type="submit" class="btn btn-secondary">Submit</button>-->
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</ng-template>

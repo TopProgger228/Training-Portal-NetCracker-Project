@@ -1,0 +1,175 @@
+<nav id="menubar" class="navbar navbar-expand-lg navbar-light " style="margin-bottom: 0px">
+  <div class="navbar-collapse collapse ">
+    <ul class="navbar-nav mr-auto align-items-center">
+
+      <li>
+        <span class="text-secondary" style="font-size: 25px;">Signed in as {{this.role}}</span>
+      </li>
+
+      <li class="nav-item">
+        <button class="btn btn-default" type="button">
+          <a class="nav-link" href="myprofile">
+            My profile
+          </a>
+        </button>
+      </li>
+
+      <div *ngIf="this.role === 'admin'">
+        <ul class="navbar-nav align-items-center">
+
+          <li class="nav-item">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
+                Home
+              </button>
+            </a>
+          </li>
+
+          <li class="nav-item">
+
+            <div class="dropdown">
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default text-secondary"
+                data-toggle="dropdown" id="dropdownMenuButton" type="button">
+                Manage users
+              </button>
+              <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                <a class="dropdown-item " href="admin/add-user">Add trainers/managers</a>
+                <a class="dropdown-item" href="admin/add-student">Add student</a>
+                <a class="dropdown-item" href="admin/users">View all users</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button class="btn btn-default" type="button">
+              <a class="nav-link text-secondary" href="admin/manage-news">
+                Manage landing page
+              </a>
+            </button>
+          </li>
+
+          <li class="nav-item">
+            <div class="dropdown">
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-default text-secondary"
+                data-toggle="dropdown" id="dropdownMenuButton" type="button">
+                Manage courses
+              </button>
+              <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                <a class="dropdown-item" href="admin/create_new_course">Create new course</a>
+                <a class="dropdown-item" href="admin/groups-schedule">Create new Timeslot</a>
+                <a class="dropdown-item" href="admin/schedule-info">Groups' Schedule</a>
+                <a class="dropdown-item" href="admin/all-attendance">Attendance</a>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <div *ngIf="this.role === 'trainer'">
+        <ul class="navbar-nav align-items-center">
+
+          <li class="nav-item">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
+                Home
+              </button>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="trainer/courses-info">
+              <button class="btn btn-default text-secondary" type="button">
+                See my courses
+              </button>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="trainer/students-info">
+              <button class="btn btn-default text-secondary" type="button">
+                See my students
+              </button>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="trainer/check-attendance">
+              <button class="btn btn-default text-secondary" type="button">
+                Check attendance
+              </button>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div *ngIf="this.role === 'user'">
+        <ul class="navbar-nav align-items-center">
+
+          <li class="nav-item">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
+                Home
+              </button>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="student/my-schedule">
+              <button class="btn btn-default text-secondary" type="button">
+                My Schedule
+              </button>
+            </a>
+          </li>
+
+
+        </ul>
+      </div>
+
+      <div *ngIf="this.role === 'mng'">
+        <ul class="navbar-nav align-items-center">
+
+          <li class="nav-item">
+            <a class="nav-link" href="firstPage">
+              <button class="btn btn-default text-secondary" type="button">
+                Home
+              </button>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="manager/students-info">
+              <button class="btn btn-default text-secondary" type="button">
+                Students list
+              </button>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="manager/student-att">
+              <button class="btn btn-default text-secondary" type="button">
+                Attendance
+              </button>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item">
+        <button (click)="logout()" class="btn btn-outline-secondary text-secondary" type="button">
+          <a class="nav-link">
+            Logout
+          </a>
+        </button>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+

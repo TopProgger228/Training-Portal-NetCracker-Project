@@ -1,0 +1,81 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn>
+  <div style="height: 100%;  min-height: 100vh">
+
+    <app-menu></app-menu>
+    <div style="width: 80%;  margin: 20px auto;">
+      <ngb-tabset>
+        <ngb-tab>
+          <ng-template ngbTabTitle><span class="text text-secondary" style="font-size: 20px;">Schedule</span>
+          </ng-template>
+          <ng-template ngbTabContent>
+
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name of Course</th>
+                <th scope="col">Chosen Timeslots</th>
+                <th scope="col">Status of Schedule</th>
+                <!--<th scope="col">End time</th>-->
+                <!--<th scope="col">Week day</th>-->
+                <!--<th scope="col">Finished schedule</th>-->
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let schedule of info; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{schedule.courseName}}</td>
+                <td>{{schedule.countVoted}}</td>
+                <td><input disabled type="checkbox" [checked]="schedule.isScheduled == 'Schedule has been set'" ></td>
+                <!--<input type="checkbox" [checked]="schedule.isChoosen" >-->
+                <td>
+
+                  <div *ngIf="schedule.countVoted==0 || schedule.isScheduled == 'Schedule has been set';
+                  then thenBlock else elseBlock">
+                  </div>
+                  <ng-template #thenBlock>
+                    <button mat-raised-button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)" disabled>Finish schedule
+                      <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
+                    </button>
+                  </ng-template>
+                  <ng-template #elseBlock>
+                    <button mat-raised-button type="submit"  class="btn btn-secondary" (click)="OnSubmitSchedule(schedule.courseId)">Finish schedule
+                      <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
+                    </button>
+                  </ng-template>
+
+                </td>
+
+                <!--<td>-->
+
+                  <!--<div *ngIf="schedule.isScheduled == 'Schedule has been set';-->
+                  <!--then thenBlock1 else elseBlock1">-->
+                  <!--</div>-->
+                  <!--<ng-template #thenBlock1>-->
+                    <!--<button mat-raised-button type="submit"  class="btn btn-secondary" (click)="OnSubmitLesson(schedule.courseId)">Create lesson-->
+                      <!--&lt;!&ndash;<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ndash;&gt;-->
+                    <!--</button>-->
+                  <!--</ng-template>-->
+                  <!--<ng-template #elseBlock1>-->
+                    <!--<button mat-raised-button type="submit"  class="btn btn-secondary" (click)="OnSubmitLesson(schedule.courseId)" disabled>Create lesson-->
+                      <!--&lt;!&ndash;<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ndash;&gt;-->
+                    <!--</button>-->
+                  <!--</ng-template>-->
+
+                <!--</td>-->
+              </tr>
+              </tbody>
+            </table>
+
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+</ng-template>

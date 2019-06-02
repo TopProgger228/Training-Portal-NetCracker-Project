@@ -1,0 +1,71 @@
+<div *ngIf="loggedOut; else isLoggedIn">
+</div>
+
+<ng-template #isLoggedIn >
+  <div style="height: 100%; min-height: 100vh">
+
+    <app-menu></app-menu>
+
+    <div class="container mt-5">
+      <div class="row">
+
+        <div class="center-block col-md-7 ">
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4>User Profile</h4></div>
+            <div class="panel-body">
+
+              <div class="box box-info">
+
+                <div class="box-body">
+                  <div class="col-sm-6">
+                    <div align="center"><img *ngIf="hasPhoto" alt="User Pic"
+                                             [src]="student.photo"
+                                             id="profile-image" class="img-circle img-responsive">
+                      <img *ngIf="!hasPhoto" alt="User Pic"
+                           src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                           id="profile-image1" class="img-circle img-responsive">
+
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <h4 style="color:#00b1b1; font-size:20px">{{student.fname}} {{student.lname}}</h4>
+                  </div>
+                  <div class="clearfix"></div>
+                  <hr style="margin:5px 0 5px 0;">
+
+                  <div class="col-sm-5 col-xs-6 tital ">Username:</div>
+                  <div class="col-sm-7 col-xs-6 ">
+                    <h5 style="font-size:16px"> {{student.username}}</h5>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+                  <div class="col-sm-5 col-xs-6 tital ">First Name:</div>
+                  <div class="col-sm-7 col-xs-6 ">
+                    <h5 style="font-size:16px"> {{student.fname}}</h5>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+                  <div class="col-sm-5 col-xs-6 tital ">Last Name:</div>
+                  <div class="col-sm-7">
+                    <h6 style="font-size:16px">{{student.lname}}</h6>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="bot-border"></div>
+
+                  <div class="col-sm-5 col-xs-6 tital ">E-mail:</div>
+                  <div class="col-sm-7">
+                    <h6 style="font-size:16px">{{student.email}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</ng-template>

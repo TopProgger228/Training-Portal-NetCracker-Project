@@ -1,0 +1,16 @@
+<div class="row" (click)="setChosenLesson(lesson.lessonId)">
+  <div class="col-1">{{index + 1}}</div>
+  <div class="col-3">{{lesson.lessonDate}}</div>
+  <div class="col-5">{{lesson.startTime}} - {{lesson.endTime}}</div>
+  <div class="col-3 text-center" *ngIf="lesson.cancel">Cancel</div>
+  <div class="col-3 text-center" *ngIf="!lesson.cancel && !isLess()">Active</div>
+  <div class="col-3 text-center" *ngIf="!lesson.cancel && isLess()">Done</div>
+</div>
+
+<div *ngIf="lesson.lessonId === chosenOneLesson">
+
+    <app-one-student-admin-att *ngIf="userList.length !== 0" [userList]="userList" [lesson]="lesson"></app-one-student-admin-att>
+
+    <app-no-data *ngIf="noData"></app-no-data>
+  <app-spinner *ngIf="isUserLoading"></app-spinner>
+</div>
